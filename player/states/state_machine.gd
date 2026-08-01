@@ -10,8 +10,8 @@ var current_state: PlayerState:
 var previous_state: PlayerState:
 	get: return states[1]
 
-func init(owner: Player) -> void:
-	player = owner
+func init(state_owner: Player) -> void:
+	player = state_owner
 	_initialize_states()
 
 func process(delta: float) -> void:
@@ -52,6 +52,4 @@ func change_state(new_state: PlayerState) -> void:
 	current_state.enter()
 	states.resize(3)
 	
-	var label := get_node_or_null("../Label") as Label
-	if label:
-		label.text = current_state.name
+	%StateLabel.text = current_state.name

@@ -9,6 +9,6 @@ var walk := Vector2.ZERO
 func decide(event: InputEvent) -> void:
 	walk = Input.get_vector("left", "right", "up", "down")
 	attack = event.is_action_pressed("attack")
-	idle = walk == Vector2.ZERO
 	roll = event.is_action_pressed("roll")
-	swing = event.is_action_pressed("swing_test")
+	swing = !swing if event.is_action_pressed("swing_test") else swing
+	idle = walk == Vector2.ZERO

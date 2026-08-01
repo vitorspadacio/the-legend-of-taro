@@ -199,6 +199,23 @@ tracks/2/keys = {
 "update": 0,
 "values": [-1.5707963267948966]
 }
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("AttackArea")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.1, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [true],
+"method": &"set_active"
+}, {
+"args": [false],
+"method": &"set_active"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_2uvqg"]
 resource_name = "attack_right"
@@ -931,7 +948,8 @@ debug_color = Color(0, 0.6509804, 0.11764706, 0)
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=542705358]
 
-[node name="Label" type="Label" parent="." unique_id=342285391]
+[node name="StateLabel" type="Label" parent="." unique_id=342285391]
+unique_name_in_owner = true
 offset_left = -24.0
 offset_top = -21.0
 offset_right = 23.0

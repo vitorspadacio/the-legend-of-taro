@@ -25,7 +25,7 @@ var base_move_speed := 100
 var direction := Vector2(0, 0)
 var lock_direction := false
 var facing_direction := Vector2.DOWN
-var selected_weapon := WEAPONS.katana
+var selected_weapon := WEAPONS.axe
 
 ##### Core #####
 

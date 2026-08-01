@@ -1,7 +1,7 @@
 @icon("res://assets/icons/state.svg")
 class_name PlayerSwingState extends PlayerState
 
-@export var slow_rate := 0.3
+@export var slow_rate := 0.5
 
 func init() -> void:
 	state_name = "swing"
