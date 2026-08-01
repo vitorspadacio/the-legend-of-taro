@@ -3,6 +3,7 @@
 class_name PlayerState extends Node
 
 @onready var attack: PlayerState = %Attack
+@onready var hurt: PlayerState = %Hurt
 @onready var idle: PlayerState = %Idle
 @onready var roll: PlayerState = %Roll
 @onready var swing: PlayerState = %Swing
@@ -38,7 +39,7 @@ func get_command_state() -> PlayerState:
 		return attack
 	if player.controller.roll and roll.can_enter():
 		return roll
-	if player.controller.swing and roll.can_enter():
+	if player.controller.swing and swing.can_enter():
 		return swing
 	if player.controller.walk != Vector2.ZERO:
 		return walk

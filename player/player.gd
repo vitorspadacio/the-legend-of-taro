@@ -13,7 +13,7 @@ const WEAPONS := {
 	"pickaxe": "uid://d1ihaoqhyix5j"
 }
 
-signal damage_taken
+signal damage_taken(attack_area: AttackArea)
 
 @onready var animation: AnimationPlayer = $AnimationPlayer
 @onready var collision: CollisionShape2D = $CollisionShape2D
@@ -79,5 +79,5 @@ func _get_cardinal_direction() -> Vector2:
 ##### Side Effects #####
 
 func _on_damage_taken(attack_area: AttackArea) -> void:
-	damage_taken.emit()
+	damage_taken.emit(attack_area)
 	print("Acertou com dano %s" % attack_area.damage)
