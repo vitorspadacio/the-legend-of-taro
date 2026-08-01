@@ -3,6 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://c5dtb51gcaxvy" path="res://player/player.tscn" id="1_rupst"]
 [ext_resource type="Script" uid="uid://ceq3yglldj6c0" path="res://enemy.gd" id="2_m8u5f"]
 [ext_resource type="Script" uid="uid://jn6ptg2mpq5h" path="res://systems/combat/damage_area.gd" id="3_is3ju"]
+[ext_resource type="Script" uid="uid://c5xnwwp1r457n" path="res://systems/combat/hazard_area.gd" id="4_is3ju"]
 
 [sub_resource type="Gradient" id="Gradient_rupst"]
 colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 1)
@@ -22,6 +23,9 @@ gradient = SubResource("Gradient_m8u5f")
 [sub_resource type="CircleShape2D" id="CircleShape2D_xldlm"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_s88v2"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vrppe"]
+radius = 7.999996
 
 [node name="Playground" type="Node2D" unique_id=254054208]
 
@@ -47,6 +51,7 @@ script = ExtResource("2_m8u5f")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Enemy" unique_id=2017096252]
 scale = Vector2(23.272709, 0.09523807)
+collision_layer = 64
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy/StaticBody2D" unique_id=1765764981]
 shape = SubResource("CircleShape2D_xldlm")
@@ -60,3 +65,13 @@ metadata/_custom_type_script = "uid://jn6ptg2mpq5h"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy/DamageArea" unique_id=176456444]
 shape = SubResource("CircleShape2D_s88v2")
 debug_color = Color(0.7529412, 0.45882353, 0, 0)
+
+[node name="HazardArea" type="Area2D" parent="Enemy" unique_id=582810722]
+script = ExtResource("4_is3ju")
+metadata/_custom_type_script = "uid://c5xnwwp1r457n"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy/HazardArea" unique_id=628407436]
+position = Vector2(6.1035156e-05, 9.536743e-07)
+scale = Vector2(23.272709, 0.09523807)
+shape = SubResource("CircleShape2D_vrppe")
+debug_color = Color(0.6313726, 0.34509805, 1, 0)

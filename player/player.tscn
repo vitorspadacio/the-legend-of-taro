@@ -10,6 +10,7 @@
 [ext_resource type="Script" uid="uid://btbmbpcu6oj5v" path="res://systems/combat/attack_area.gd" id="7_boad6"]
 [ext_resource type="Script" uid="uid://i2qmst7chrxr" path="res://player/states/attack_state.gd" id="7_rgyib"]
 [ext_resource type="Script" uid="uid://da2r7gn05a3nq" path="res://player/player_controller.gd" id="10_8t03j"]
+[ext_resource type="Script" uid="uid://jn6ptg2mpq5h" path="res://systems/combat/damage_area.gd" id="11_2ieo8"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_kqu6x"]
 load_path = "res://.godot/imported/player.png-1ad27fc2a62fa126eae918723933dd6f.ctex"
@@ -924,7 +925,11 @@ size = Vector2(14, 6)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_s88v2"]
 size = Vector2(24.5, 40)
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_xldlm"]
+radius = 9.0
+
 [node name="Player" type="CharacterBody2D" unique_id=870341819 groups=["player"]]
+collision_layer = 32
 script = ExtResource("1_oul6g")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=786664194]
@@ -959,18 +964,6 @@ text = "Teste"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="AttackArea" type="Area2D" parent="." unique_id=311756541]
-position = Vector2(0, -1)
-rotation = -3.1415927
-script = ExtResource("7_boad6")
-metadata/_custom_type_script = "uid://btbmbpcu6oj5v"
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea" unique_id=1787226678]
-position = Vector2(-2, -13)
-rotation = -1.5707964
-shape = SubResource("RectangleShape2D_s88v2")
-debug_color = Color(0.9764706, 0, 0.42352942, 0)
-
 [node name="StateMachine" type="Node" parent="." unique_id=1441566676]
 script = ExtResource("4_hg6s5")
 metadata/_custom_type_script = "uid://ng48piqixoww"
@@ -1003,3 +996,23 @@ metadata/_custom_type_script = "uid://i2qmst7chrxr"
 [node name="PlayerController" type="Node" parent="." unique_id=1587776310]
 script = ExtResource("10_8t03j")
 metadata/_custom_type_script = "uid://da2r7gn05a3nq"
+
+[node name="AttackArea" type="Area2D" parent="." unique_id=311756541]
+position = Vector2(0, -1)
+rotation = -3.1415927
+script = ExtResource("7_boad6")
+metadata/_custom_type_script = "uid://btbmbpcu6oj5v"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea" unique_id=1787226678]
+position = Vector2(-2, -13)
+rotation = -1.5707964
+shape = SubResource("RectangleShape2D_s88v2")
+debug_color = Color(0.9764706, 0, 0.42352942, 0)
+
+[node name="DamageArea" type="Area2D" parent="." unique_id=1322900672]
+script = ExtResource("11_2ieo8")
+metadata/_custom_type_script = "uid://jn6ptg2mpq5h"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DamageArea" unique_id=1485156665]
+shape = SubResource("CircleShape2D_xldlm")
+debug_color = Color(0.7529412, 0.45882353, 0, 0)

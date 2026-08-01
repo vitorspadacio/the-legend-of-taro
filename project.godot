@@ -98,6 +98,13 @@ attack={
 ]
 }
 
+[layer_names]
+
+2d_physics/layer_1="object"
+2d_physics/layer_2="movable"
+2d_physics/layer_6="player"
+2d_physics/layer_7="enemy"
+
 [physics]
 
 3d/physics_engine="Jolt Physics"

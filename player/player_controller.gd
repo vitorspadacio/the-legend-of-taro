@@ -1,3 +1,4 @@
+@icon("res://assets/icons/decision_engine.svg")
 class_name PlayerController extends Node
 
 var attack := false

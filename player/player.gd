@@ -13,18 +13,22 @@ const WEAPONS := {
 	"pickaxe": "uid://d1ihaoqhyix5j"
 }
 
+signal damage_taken
+
 @onready var animation: AnimationPlayer = $AnimationPlayer
 @onready var collision: CollisionShape2D = $CollisionShape2D
 @onready var controller: PlayerController = $PlayerController
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var state_machine: StateMachine = $StateMachine
 
+@onready var damage_area: DamageArea = $DamageArea
+
 @export var move_speed := 100.00
 
 var base_move_speed := 100
 var direction := Vector2(0, 0)
-var lock_direction := false
 var facing_direction := Vector2.DOWN
+var lock_direction := false
 var selected_weapon := WEAPONS.axe
 
 ##### Core #####
@@ -35,6 +39,8 @@ func _ready() -> void:
 		return
 	state_machine.init(self)
 	self.call_deferred("reparent", get_tree().root)
+
+	damage_area.damage_taken.connect(_on_damage_taken)
 
 func _process(delta: float) -> void:
 	update_direction()
@@ -69,3 +75,9 @@ func _get_cardinal_direction() -> Vector2:
 	if absf(direction.x) > absf(direction.y):
 		return Vector2.RIGHT if direction.x > 0 else Vector2.LEFT
 	return Vector2.DOWN if direction.y > 0 else Vector2.UP
+
+##### Side Effects #####
+
+func _on_damage_taken(attack_area: AttackArea) -> void:
+	damage_taken.emit()
+	print("Acertou com dano %s" % attack_area.damage)
