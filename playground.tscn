@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://bq3qxhjqfrakk"]
+
+[ext_resource type="PackedScene" uid="uid://c5dtb51gcaxvy" path="res://player/player.tscn" id="1_rupst"]
+
+[sub_resource type="Gradient" id="Gradient_rupst"]
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_xldlm"]
+gradient = SubResource("Gradient_rupst")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s88v2"]
+size = Vector2(256, 1.0000005)
+
+[node name="Playground" type="Node2D" unique_id=254054208]
+
+[node name="Player" parent="." unique_id=870341819 instance=ExtResource("1_rupst")]
+position = Vector2(160, 90)
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=2103282604]
+position = Vector2(159, 59.999996)
+scale = Vector2(1, 14.500003)
+texture = SubResource("GradientTexture1D_xldlm")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Sprite2D" unique_id=2088562463]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/StaticBody2D" unique_id=1703043586]
+position = Vector2(0, -0.017241955)
+shape = SubResource("RectangleShape2D_s88v2")
