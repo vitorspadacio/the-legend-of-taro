@@ -19,6 +19,7 @@ signal damage_taken(attack_area: AttackArea)
 @onready var collision: CollisionShape2D = $CollisionShape2D
 @onready var controller: PlayerController = $PlayerController
 @onready var sprite: Sprite2D = $Sprite2D
+@onready var sprite_attack: Sprite2D = $SpriteAttack2D
 @onready var state_machine: StateMachine = $StateMachine
 
 @onready var damage_area: DamageArea = $DamageArea

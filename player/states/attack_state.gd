@@ -3,27 +3,25 @@ class_name PlayerAttackState extends PlayerState
 @export var cooldown := 0.25
 @export var sound: AudioStream
 
-@onready var attack_sprite: Sprite2D = %AttackSprite
-
 var next_attack_time := 0.0
 
 func init() -> void:
 	state_name = "attack"
-	attack_sprite.visible = false
+	player.sprite_attack.visible = false
 	
 func enter() -> void:
-	attack_sprite.texture = load(player.selected_weapon)
-	attack_sprite.visible = true
 	player.animation.animation_finished.connect(_on_animation_finished)
 	player.lock_direction = true
+	player.sprite_attack.texture = load(player.selected_weapon)
+	player.sprite_attack.visible = true
 	player.velocity = Vector2.ZERO
 	# Audio.play_spatial_sound(sound_effect, player.attack_area.global_position, false, true)
 	
 func exit() -> void:
-	player.animation.clear_queue()
 	player.animation.animation_finished.disconnect(_on_animation_finished)
-	attack_sprite.visible = false
+	player.animation.clear_queue()
 	player.lock_direction = false
+	player.sprite_attack.visible = false
 	next_state = null
 	next_attack_time = Time.get_ticks_msec() / 1000.0 + cooldown
 

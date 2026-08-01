@@ -59,6 +59,8 @@ debug_color = Color(0.9764706, 0, 0.42352942, 0)
 
 [node name="DamageArea" type="Area2D" parent="Enemy" unique_id=283878261]
 scale = Vector2(23.272709, 0.09523807)
+collision_layer = 64
+collision_mask = 0
 script = ExtResource("3_is3ju")
 metadata/_custom_type_script = "uid://jn6ptg2mpq5h"
 

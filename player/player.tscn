@@ -33,7 +33,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("AttackSprite:frame")
+tracks/1/path = NodePath("SpriteAttack2D:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -69,7 +69,7 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("AttackSprite:flip_h")
+tracks/4/path = NodePath("SpriteAttack2D:flip_h")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -98,7 +98,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("AttackSprite:frame")
+tracks/1/path = NodePath("SpriteAttack2D:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -151,7 +151,7 @@ tracks/4/keys = {
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("AttackSprite:flip_h")
+tracks/5/path = NodePath("SpriteAttack2D:flip_h")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
@@ -180,7 +180,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("AttackSprite:frame")
+tracks/1/path = NodePath("SpriteAttack2D:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -238,7 +238,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("AttackSprite:frame")
+tracks/1/path = NodePath("SpriteAttack2D:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -296,7 +296,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("AttackSprite:frame")
+tracks/1/path = NodePath("SpriteAttack2D:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -927,7 +927,7 @@ size = Vector2(14, 6)
 size = Vector2(24.5, 40)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_xldlm"]
-radius = 9.0
+radius = 7.0
 
 [node name="Player" type="CharacterBody2D" unique_id=870341819 groups=["player"]]
 collision_layer = 32
@@ -938,7 +938,7 @@ texture = SubResource("CompressedTexture2D_kqu6x")
 hframes = 8
 vframes = 17
 
-[node name="AttackSprite" type="Sprite2D" parent="." unique_id=1681474606]
+[node name="SpriteAttack2D" type="Sprite2D" parent="." unique_id=1681474606]
 unique_name_in_owner = true
 texture = ExtResource("2_g6k8r")
 hframes = 4
@@ -1006,6 +1006,8 @@ metadata/_custom_type_script = "uid://da2r7gn05a3nq"
 [node name="AttackArea" type="Area2D" parent="." unique_id=311756541]
 position = Vector2(0, -1)
 rotation = -3.1415927
+collision_layer = 0
+collision_mask = 64
 script = ExtResource("7_boad6")
 metadata/_custom_type_script = "uid://btbmbpcu6oj5v"
 
@@ -1016,7 +1018,6 @@ shape = SubResource("RectangleShape2D_s88v2")
 debug_color = Color(0.9764706, 0, 0.42352942, 0)
 
 [node name="DamageArea" type="Area2D" parent="." unique_id=1322900672]
-unique_name_in_owner = true
 script = ExtResource("11_2ieo8")
 metadata/_custom_type_script = "uid://jn6ptg2mpq5h"
 
