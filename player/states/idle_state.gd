@@ -13,17 +13,7 @@ func enter() -> void:
 func exit() -> void:
 	pass
 
-func handle_input(event: InputEvent) -> PlayerState:
-	if player.controller.idle:
-		return idle
-	if player.controller.walk:
-		return walk
-	if player.controller.roll:
-		return roll
-	if player.controller.attack:
-		return attack
-	if player.controller.swing:
-		return swing
+func handle_input(_event: InputEvent) -> PlayerState:
 	return null
 	
 func physics_process(delta: float) -> PlayerState:
@@ -32,4 +22,4 @@ func physics_process(delta: float) -> PlayerState:
 	return null
 	
 func process(_delta: float) -> PlayerState:
-	return null
+	return get_command_state()

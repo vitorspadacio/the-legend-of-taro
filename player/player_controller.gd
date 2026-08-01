@@ -6,9 +6,9 @@ var roll := false
 var swing := false
 var walk := Vector2.ZERO
 
-func decide() -> void:
-	attack = Input.is_action_just_pressed("attack")
-	idle = walk == Vector2.ZERO
-	roll = Input.is_action_just_pressed("roll")
-	swing = Input.is_action_just_pressed("swing_test")
+func decide(event: InputEvent) -> void:
 	walk = Input.get_vector("left", "right", "up", "down")
+	attack = event.is_action_pressed("attack")
+	idle = walk == Vector2.ZERO
+	roll = event.is_action_pressed("roll")
+	swing = event.is_action_pressed("swing_test")

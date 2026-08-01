@@ -2,6 +2,7 @@
 class_name StateMachine extends Node
 
 var states: Array[PlayerState]
+var player: Player
 
 var current_state: PlayerState:
 	get: return states.front()
@@ -9,25 +10,26 @@ var current_state: PlayerState:
 var previous_state: PlayerState:
 	get: return states[1]
 
-func _ready() -> void:
+func init(owner: Player) -> void:
+	player = owner
 	_initialize_states()
 
 func process(delta: float) -> void:
-	current_state.process(delta)
+	change_state(current_state.process(delta))
 
 func physics_process(delta: float) -> void:
-	current_state.physics_process(delta)
+	change_state(current_state.physics_process(delta))
 
 func handle_input(event: InputEvent) -> void:
-	current_state.handle_input(event)
+	change_state(current_state.handle_input(event))
 
 func _initialize_states() -> void:
 	states = []
 	
-	for c in $States.get_children():
+	for c in get_children():
 		if c is PlayerState:
 			states.append(c)
-			c.player = self
+			c.player = player
 		
 	if states.size() == 0:
 		return
@@ -50,4 +52,6 @@ func change_state(new_state: PlayerState) -> void:
 	current_state.enter()
 	states.resize(3)
 	
-	$Label.text = current_state.name
+	var label := get_node_or_null("../Label") as Label
+	if label:
+		label.text = current_state.name

@@ -916,6 +916,7 @@ hframes = 8
 vframes = 17
 
 [node name="AttackSprite" type="Sprite2D" parent="." unique_id=1681474606]
+unique_name_in_owner = true
 texture = ExtResource("2_g6k8r")
 hframes = 4
 vframes = 4

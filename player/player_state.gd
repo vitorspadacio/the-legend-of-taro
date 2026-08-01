@@ -29,3 +29,19 @@ func physics_process(_delta: float) -> PlayerState:
 	
 func process(_delta: float) -> PlayerState:
 	return null
+
+func can_enter() -> bool:
+	return true
+
+func get_command_state() -> PlayerState:
+	if player.controller.attack and attack.can_enter():
+		return attack
+	if player.controller.roll:
+		return roll
+	if player.controller.walk != Vector2.ZERO:
+		return walk
+	if player.controller.idle:
+		return idle
+	if player.controller.swing:
+		return swing
+	return null
