@@ -7,11 +7,8 @@ const DIRECTION_NAMES := {
 	Vector2.RIGHT: "right",
 }
 
-const MULTIPLIER := 10
-
 signal direction_changed(direction: Vector2, direction_name: String)
 
-@export var animation: AnimationPlayer
 @export var body: PhysicsBody2D
 @export var speed := 100.00
 
@@ -43,9 +40,6 @@ func knockback(knockback_speed: float, knockback_direction: Vector2) -> void:
 	body.move_and_slide()
 
 func update_direction() -> void:
-	var x_axis = Input.get_axis("left", "right")
-	var y_axis = Input.get_axis("up", "down")
-	direction = Vector2(x_axis, y_axis)
 	if direction != Vector2.ZERO and not lock_direction:
 		facing_direction = _get_cardinal_direction()
 	direction_changed.emit(direction, _get_direction_name())

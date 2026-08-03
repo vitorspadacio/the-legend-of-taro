@@ -926,7 +926,7 @@ _data = {
 size = Vector2(14, 6)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_s88v2"]
-size = Vector2(24.5, 40)
+size = Vector2(18.25, 38)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_xldlm"]
 radius = 7.0
@@ -1018,7 +1018,7 @@ script = ExtResource("7_boad6")
 damage = 2.5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea" unique_id=1787226678]
-position = Vector2(-2, -13)
+position = Vector2(-0.9999989, -9.875)
 rotation = -1.5707964
 shape = SubResource("RectangleShape2D_s88v2")
 debug_color = Color(0.9764706, 0, 0.42352942, 0)
@@ -1038,10 +1038,9 @@ animation = NodePath("../../AnimationPlayer")
 body = NodePath("../..")
 metadata/_custom_type_script = "uid://1t060yt1ejl"
 
-[node name="AnimationComponent" type="Node" parent="Components" unique_id=1730349623 node_paths=PackedStringArray("animation_player", "movement")]
+[node name="AnimationComponent" type="Node" parent="Components" unique_id=1730349623 node_paths=PackedStringArray("animation_player")]
 script = ExtResource("14_kb6p2")
 animation_player = NodePath("../../AnimationPlayer")
-movement = NodePath("../MovementComponent")
 metadata/_custom_type_script = "uid://bavckwsbwuxsc"
 
 [node name="InputComponent" type="Node" parent="Components" unique_id=1587776310]

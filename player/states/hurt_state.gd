@@ -13,7 +13,7 @@ func init() -> void:
 	
 func enter() -> void:
 	player.animation.play("hurt")
-	time = player.animation.animation_player.current_animation_length
+	time = player.animation.animation_player.current_animation_length + 0.15
 	player.damage_area.make_invulnerable(invulnerable_duration)
 	# Audio.play_spatial_sound(sound_effect, player.global_position)
 	# VisualEffects.camera_shake(2)
