@@ -35,14 +35,14 @@ func can_enter() -> bool:
 	return true
 
 func get_command_state() -> PlayerState:
-	if player.controller.attack and attack.can_enter():
+	if player.input.attack and attack.can_enter():
 		return attack
-	if player.controller.roll and roll.can_enter():
+	if player.input.roll and roll.can_enter():
 		return roll
-	if player.controller.swing and swing.can_enter():
+	if player.input.swing and swing.can_enter():
 		return swing
-	if player.controller.walk != Vector2.ZERO:
+	if player.input.walk != Vector2.ZERO:
 		return walk
-	if player.controller.idle:
+	if player.input.idle:
 		return idle
 	return null

@@ -1,14 +1,16 @@
 @icon("res://assets/icons/state.svg")
 class_name PlayerRollState extends PlayerState
 
-@export var add_speed := 1.25
 @export var durantion := 0.5
+@export var speed_rate := 1.25
+
 var timer := 0.0
 
 func init() -> void:
-	state_name = "roll"
+	pass
 	
 func enter() -> void:
+	player.animation.play("roll")
 	timer = durantion
 	
 func exit() -> void:
@@ -18,13 +20,13 @@ func handle_input(_event: InputEvent) -> PlayerState:
 	return null
 	
 func physics_process(_delta: float) -> PlayerState:
-	player.velocity = player.facing_direction * player.move_speed * add_speed
+	player.movement.roll(speed_rate)
 	return null
 	
 func process(delta: float) -> PlayerState:
 	timer -= delta
 	if timer <= 0:
-		if player.direction != Vector2.ZERO:
+		if player.movement.direction != Vector2.ZERO:
 			return walk
 		else:
 			return idle

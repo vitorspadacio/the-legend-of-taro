@@ -2,10 +2,10 @@
 class_name PlayerWalkState extends PlayerState
 
 func init() -> void:
-	state_name = "walk"
+	pass
 	
 func enter() -> void:
-	pass
+	player.animation.play("walk")
 	
 func exit() -> void:
 	pass
@@ -14,7 +14,7 @@ func handle_input(_event: InputEvent) -> PlayerState:
 	return null
 	
 func physics_process(_delta: float) -> PlayerState:
-	player.velocity = player.direction * player.move_speed
+	player.movement.move()
 	return null
 	
 func process(_delta: float) -> PlayerState:

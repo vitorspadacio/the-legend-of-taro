@@ -7,11 +7,13 @@
 [ext_resource type="Script" uid="uid://ng48piqixoww" path="res://player/states/state_machine.gd" id="4_hg6s5"]
 [ext_resource type="Script" uid="uid://dxs7ulvhlufa" path="res://player/states/roll_state.gd" id="4_yw30f"]
 [ext_resource type="Script" uid="uid://dibvquiq1y44n" path="res://player/states/swing_state.gd" id="5_qjkh3"]
-[ext_resource type="Script" uid="uid://btbmbpcu6oj5v" path="res://systems/combat/attack_area.gd" id="7_boad6"]
+[ext_resource type="Script" uid="uid://btbmbpcu6oj5v" path="res://systems/gameplay/attack_area.gd" id="7_boad6"]
 [ext_resource type="Script" uid="uid://i2qmst7chrxr" path="res://player/states/attack_state.gd" id="7_rgyib"]
 [ext_resource type="Script" uid="uid://dtso3403kjldq" path="res://player/states/hurt_state.gd" id="9_ebec5"]
-[ext_resource type="Script" uid="uid://da2r7gn05a3nq" path="res://player/player_controller.gd" id="10_8t03j"]
-[ext_resource type="Script" uid="uid://jn6ptg2mpq5h" path="res://systems/combat/damage_area.gd" id="11_2ieo8"]
+[ext_resource type="Script" uid="uid://da2r7gn05a3nq" path="res://systems/components/input.gd" id="10_8t03j"]
+[ext_resource type="Script" uid="uid://jn6ptg2mpq5h" path="res://systems/gameplay/damage_area.gd" id="11_2ieo8"]
+[ext_resource type="Script" uid="uid://1t060yt1ejl" path="res://systems/components/movement.gd" id="13_yllr7"]
+[ext_resource type="Script" uid="uid://bavckwsbwuxsc" path="res://systems/components/animation.gd" id="14_kb6p2"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_kqu6x"]
 load_path = "res://.godot/imported/player.png-1ad27fc2a62fa126eae918723933dd6f.ctex"
@@ -929,9 +931,17 @@ size = Vector2(24.5, 40)
 [sub_resource type="CircleShape2D" id="CircleShape2D_xldlm"]
 radius = 7.0
 
-[node name="Player" type="CharacterBody2D" unique_id=870341819 groups=["player"]]
+[node name="Player" type="CharacterBody2D" unique_id=870341819 node_paths=PackedStringArray("collision", "damage_area", "sprite", "sprite_attack", "state_machine", "animation", "input", "movement") groups=["player"]]
 collision_layer = 32
 script = ExtResource("1_oul6g")
+collision = NodePath("CollisionShape2D")
+damage_area = NodePath("DamageArea")
+sprite = NodePath("Sprite2D")
+sprite_attack = NodePath("SpriteAttack2D")
+state_machine = NodePath("StateMachine")
+animation = NodePath("Components/AnimationComponent")
+input = NodePath("Components/InputComponent")
+movement = NodePath("Components/MovementComponent")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=786664194]
 texture = SubResource("CompressedTexture2D_kqu6x")
@@ -999,10 +1009,6 @@ unique_name_in_owner = true
 script = ExtResource("9_ebec5")
 metadata/_custom_type_script = "uid://dtso3403kjldq"
 
-[node name="PlayerController" type="Node" parent="." unique_id=1587776310]
-script = ExtResource("10_8t03j")
-metadata/_custom_type_script = "uid://da2r7gn05a3nq"
-
 [node name="AttackArea" type="Area2D" parent="." unique_id=311756541]
 position = Vector2(0, -1)
 rotation = -3.1415927
@@ -1010,7 +1016,6 @@ collision_layer = 0
 collision_mask = 64
 script = ExtResource("7_boad6")
 damage = 2.5
-metadata/_custom_type_script = "uid://btbmbpcu6oj5v"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea" unique_id=1787226678]
 position = Vector2(-2, -13)
@@ -1020,8 +1025,25 @@ debug_color = Color(0.9764706, 0, 0.42352942, 0)
 
 [node name="DamageArea" type="Area2D" parent="." unique_id=1322900672]
 script = ExtResource("11_2ieo8")
-metadata/_custom_type_script = "uid://jn6ptg2mpq5h"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DamageArea" unique_id=1485156665]
 shape = SubResource("CircleShape2D_xldlm")
 debug_color = Color(0.7529412, 0.45882353, 0, 0)
+
+[node name="Components" type="Node" parent="." unique_id=405113486]
+
+[node name="MovementComponent" type="Node" parent="Components" unique_id=1166935362 node_paths=PackedStringArray("animation", "body")]
+script = ExtResource("13_yllr7")
+animation = NodePath("../../AnimationPlayer")
+body = NodePath("../..")
+metadata/_custom_type_script = "uid://1t060yt1ejl"
+
+[node name="AnimationComponent" type="Node" parent="Components" unique_id=1730349623 node_paths=PackedStringArray("animation_player", "movement")]
+script = ExtResource("14_kb6p2")
+animation_player = NodePath("../../AnimationPlayer")
+movement = NodePath("../MovementComponent")
+metadata/_custom_type_script = "uid://bavckwsbwuxsc"
+
+[node name="InputComponent" type="Node" parent="Components" unique_id=1587776310]
+script = ExtResource("10_8t03j")
+metadata/_custom_type_script = "uid://da2r7gn05a3nq"

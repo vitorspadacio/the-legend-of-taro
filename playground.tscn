@@ -2,8 +2,8 @@
 
 [ext_resource type="PackedScene" uid="uid://c5dtb51gcaxvy" path="res://player/player.tscn" id="1_rupst"]
 [ext_resource type="Script" uid="uid://ceq3yglldj6c0" path="res://enemy.gd" id="2_m8u5f"]
-[ext_resource type="Script" uid="uid://jn6ptg2mpq5h" path="res://systems/combat/damage_area.gd" id="3_is3ju"]
-[ext_resource type="Script" uid="uid://c5xnwwp1r457n" path="res://systems/combat/hazard_area.gd" id="4_is3ju"]
+[ext_resource type="Script" uid="uid://jn6ptg2mpq5h" path="res://systems/gameplay/damage_area.gd" id="3_is3ju"]
+[ext_resource type="Script" uid="uid://c5xnwwp1r457n" path="res://systems/gameplay/hazard_area.gd" id="4_is3ju"]
 
 [sub_resource type="Gradient" id="Gradient_rupst"]
 colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 1)

@@ -2,7 +2,7 @@
 class_name AttackArea extends Area2D
 
 @export var damage := 1.0
-@export var sound_effect: AudioStream
+@export var damage_sound: AudioStream
 
 func _ready() -> void:
 	body_entered.connect(_on_body_entered)
