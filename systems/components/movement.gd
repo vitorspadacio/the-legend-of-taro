@@ -9,6 +9,7 @@ const DIRECTION_NAMES := {
 
 signal direction_changed(direction: Vector2, direction_name: String)
 
+@export var acceleration := 200.00
 @export var body: PhysicsBody2D
 @export var speed := 100.00
 
@@ -19,12 +20,9 @@ var direction_name: String:
 var facing_direction := Vector2.DOWN
 var lock_direction := false
 
-func stop() -> void:
-	actual_speed = 0.0
-
-func move(multiplier: float = 1.0) -> void:
+func move(delta: float = 0.0) -> void:
 	update_direction()
-	actual_speed = speed * multiplier
+	actual_speed = speed
 	body.velocity = direction * actual_speed
 	body.move_and_slide()
 

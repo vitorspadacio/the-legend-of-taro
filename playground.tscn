@@ -580,7 +580,7 @@ width = 10
 [sub_resource type="CircleShape2D" id="CircleShape2D_s88v2"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_vrppe"]
-radius = 7.999996
+radius = 5.999996
 
 [node name="Playground" type="Node2D" unique_id=254054208]
 

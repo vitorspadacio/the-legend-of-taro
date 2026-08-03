@@ -36,7 +36,6 @@ func _physics_process(delta: float) -> void:
 	
 func _unhandled_input(event: InputEvent) -> void:
 	input.update(event)
-
 	state_machine.handle_input(event)
 
 ##### Functions #####

@@ -6,7 +6,7 @@ const WEAPONS := {
 	"pickaxe": "uid://d1ihaoqhyix5j"
 }
 
-@export var cooldown := 0.25
+@export var cooldown := 0.1
 @export var sound: AudioStream
 
 var next_attack_time := 0.0
@@ -21,7 +21,6 @@ func enter() -> void:
 	player.sprite_attack.texture = load(selected_weapon)
 	player.sprite_attack.visible = true
 	player.movement.lock_direction = true
-	player.movement.stop()
 	# Audio.play_spatial_sound(sound_effect, player.attack_area.global_position, false, true)
 	
 func exit() -> void:
@@ -36,7 +35,6 @@ func handle_input(_event: InputEvent) -> PlayerState:
 	return null
 	
 func physics_process(_delta: float) -> PlayerState:
-	player.velocity = Vector2.ZERO
 	return null
 	
 func process(_delta: float) -> PlayerState:
