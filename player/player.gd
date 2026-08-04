@@ -28,6 +28,7 @@ func _process(delta: float) -> void:
 	state_machine.process(delta)
 
 func _physics_process(delta: float) -> void:
+	input.update()
 	movement.direction = input.walk
 	animation.direction_name = movement.direction_name
 	animation.play()
@@ -35,7 +36,6 @@ func _physics_process(delta: float) -> void:
 	state_machine.physics_process(delta)
 	
 func _unhandled_input(event: InputEvent) -> void:
-	input.update(event)
 	state_machine.handle_input(event)
 
 ##### Functions #####

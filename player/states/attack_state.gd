@@ -6,11 +6,11 @@ const WEAPONS := {
 	"pickaxe": "uid://d1ihaoqhyix5j"
 }
 
-@export var cooldown := 0.1
+@export var cooldown := 0.001
 @export var sound: AudioStream
 
 var next_attack_time := 0.0
-var selected_weapon := WEAPONS.axe
+var selected_weapon := WEAPONS.katana
 
 func init() -> void:
 	player.sprite_attack.visible = false
@@ -29,7 +29,7 @@ func exit() -> void:
 	player.movement.lock_direction = false
 	player.sprite_attack.visible = false
 	next_state = null
-	next_attack_time = Time.get_ticks_msec() / 1000.0 + cooldown
+	# next_attack_time = Time.get_ticks_msec() / 1000.0 + cooldown
 
 func handle_input(_event: InputEvent) -> PlayerState:
 	return null
@@ -41,7 +41,8 @@ func process(_delta: float) -> PlayerState:
 	return next_state
 
 func can_enter() -> bool:
-	return Time.get_ticks_msec() / 1000.0 >= next_attack_time
+	return true
+	# return Time.get_ticks_msec() / 1000.0 >= next_attack_time
 
 func _on_animation_finished(_animation_name: String) -> void:
 	next_state = idle
