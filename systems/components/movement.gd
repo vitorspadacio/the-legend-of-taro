@@ -7,8 +7,6 @@ const DIRECTION_NAMES := {
 	Vector2.RIGHT: "right",
 }
 
-signal direction_changed(direction: Vector2, direction_name: String)
-
 @export var acceleration := 200.00
 @export var body: PhysicsBody2D
 @export var speed := 100.00
@@ -20,7 +18,7 @@ var direction_name: String:
 var facing_direction := Vector2.DOWN
 var lock_direction := false
 
-func move(delta: float = 0.0) -> void:
+func move() -> void:
 	update_direction()
 	actual_speed = speed
 	body.velocity = direction * actual_speed
@@ -40,7 +38,6 @@ func knockback(knockback_speed: float, knockback_direction: Vector2) -> void:
 func update_direction() -> void:
 	if direction != Vector2.ZERO and not lock_direction:
 		facing_direction = _get_cardinal_direction()
-	direction_changed.emit(direction, _get_direction_name())
 
 func _get_direction_name() -> String:
 	return DIRECTION_NAMES.get(facing_direction, "down")

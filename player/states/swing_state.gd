@@ -17,7 +17,7 @@ func handle_input(_event: InputEvent) -> PlayerState:
 	return null
 	
 func physics_process(_delta: float) -> PlayerState:
-	player.movement.move(slow_rate)
+	player.movement.move()
 	return null
 	
 func process(_delta: float) -> PlayerState:

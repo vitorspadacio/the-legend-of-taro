@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://d1ihaoqhyix5j" path="res://player/weapons/pickaxe.png" id="2_g6k8r"]
 [ext_resource type="Script" uid="uid://cvaamshurktlq" path="res://player/states/idle_state.gd" id="2_rkbax"]
 [ext_resource type="Script" uid="uid://c0khupn86eoav" path="res://player/states/walk_state.gd" id="3_g1dw6"]
-[ext_resource type="Script" uid="uid://ng48piqixoww" path="res://player/states/state_machine.gd" id="4_hg6s5"]
+[ext_resource type="Script" uid="uid://ng48piqixoww" path="res://systems/gameplay/state_machine.gd" id="4_hg6s5"]
 [ext_resource type="Script" uid="uid://dxs7ulvhlufa" path="res://player/states/roll_state.gd" id="4_yw30f"]
 [ext_resource type="Script" uid="uid://dibvquiq1y44n" path="res://player/states/swing_state.gd" id="5_qjkh3"]
 [ext_resource type="Script" uid="uid://btbmbpcu6oj5v" path="res://systems/gameplay/attack_area.gd" id="7_boad6"]

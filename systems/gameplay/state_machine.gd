@@ -1,17 +1,24 @@
 @icon("res://assets/icons/state_machine.svg")
 class_name StateMachine extends Node
 
-var states: Array[PlayerState]
-var player: Player
+@onready var state_label: Label = %StateLabel
 
-var current_state: PlayerState:
+var states: Array[State]
+var player: Player
+var enemy: Enemy
+
+var current_state: State:
 	get: return states.front()
 	
-var previous_state: PlayerState:
+var previous_state: State:
 	get: return states[1]
 
-func init(state_owner: Player) -> void:
+func init_player(state_owner: Player) -> void:
 	player = state_owner
+	_initialize_states()
+
+func init_enemy(state_owner: Enemy) -> void:
+	enemy = state_owner
 	_initialize_states()
 
 func process(delta: float) -> void:
@@ -26,10 +33,14 @@ func handle_input(event: InputEvent) -> void:
 func _initialize_states() -> void:
 	states = []
 	
-	for c in get_children():
-		if c is PlayerState:
-			states.append(c)
-			c.player = player
+	for child in get_children():
+		if child is PlayerState:
+			states.append(child)
+			child.player = player
+		if child is EnemyState:
+			print(child)
+			states.append(child)
+			child.enemy = enemy
 		
 	if states.size() == 0:
 		return
@@ -39,12 +50,15 @@ func _initialize_states() -> void:
 	
 	change_state(current_state)
 	current_state.enter()
+	%StateLabel.text = current_state.name
 	
-func change_state(new_state: PlayerState) -> void:
-	if new_state == null:
+func change_state(new_state: State) -> void:
+	if not new_state:
 		return
 		
 	elif new_state == current_state:
+		if enemy:
+			current_state.re_enter()
 		return
 		
 	states.push_front(new_state)

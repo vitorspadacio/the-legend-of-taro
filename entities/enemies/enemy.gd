@@ -1,38 +1,28 @@
-class_name Player extends CharacterBody2D
+class_name Enemy extends CharacterBody2D
 
 signal damage_taken(attack_area: AttackArea)
 
 @export var collision: CollisionShape2D
 @export var damage_area: DamageArea
 @export var sprite: Sprite2D
-@export var sprite_attack: Sprite2D
 @export var state_machine: StateMachine
 
 @export_category("components")
 @export var animation: AnimationComponent
-@export var input: InputComponent
+@export var health: HealthComponent
 @export var movement: MovementComponent
 
 ##### Core #####
 
 func _ready() -> void:
-	if get_tree().get_first_node_in_group("player") != self:
-		self.queue_free()
-		return
-	state_machine.init_player(self)
-	self.call_deferred("reparent", get_tree().root)
-
+	state_machine.init_enemy(self)
 	damage_area.damage_taken.connect(_on_damage_taken)
 
 func _process(delta: float) -> void:
 	state_machine.process(delta)
 
 func _physics_process(delta: float) -> void:
-	input.update()
-	movement.direction = input.walk
-	animation.direction_name = movement.direction_name
-	animation.play()
-
+	# movement.direction = input.walk
 	state_machine.physics_process(delta)
 	
 func _unhandled_input(event: InputEvent) -> void:
