@@ -4,13 +4,16 @@
 [ext_resource type="Texture2D" uid="uid://cec7p2nap78dw" path="res://entities/enemies/lantern/sprite.png" id="2_up7p2"]
 [ext_resource type="Script" uid="uid://ng48piqixoww" path="res://systems/gameplay/state_machine.gd" id="3_twuwp"]
 [ext_resource type="Script" uid="uid://2jr6y5ue0pv2" path="res://entities/enemies/states/idle_state.gd" id="4_sktox"]
-[ext_resource type="Script" uid="uid://btbmbpcu6oj5v" path="res://systems/gameplay/attack_area.gd" id="5_eqkkc"]
+[ext_resource type="Script" uid="uid://btbmbpcu6oj5v" path="res://systems/combat/attack_area.gd" id="5_eqkkc"]
 [ext_resource type="Script" uid="uid://c1srggf83pnkt" path="res://entities/enemies/states/walk_state.gd" id="5_twuwp"]
-[ext_resource type="Script" uid="uid://jn6ptg2mpq5h" path="res://systems/gameplay/damage_area.gd" id="6_ark6j"]
+[ext_resource type="Script" uid="uid://de137lhvib8k5" path="res://entities/enemies/states/chase_state.gd" id="6_4wxmk"]
+[ext_resource type="Script" uid="uid://jn6ptg2mpq5h" path="res://systems/combat/damage_area.gd" id="6_ark6j"]
 [ext_resource type="Script" uid="uid://1t060yt1ejl" path="res://systems/components/movement.gd" id="7_4wxmk"]
 [ext_resource type="Script" uid="uid://bavckwsbwuxsc" path="res://systems/components/animation.gd" id="8_ir0ep"]
 [ext_resource type="Script" uid="uid://da2r7gn05a3nq" path="res://systems/components/input.gd" id="9_hqf6w"]
 [ext_resource type="Script" uid="uid://dyl8o8lbuap7r" path="res://systems/components/health.gd" id="10_up7p2"]
+[ext_resource type="Script" uid="uid://bymg7s440aae" path="res://entities/enemies/decision_engines/decision_engine_basic.gd" id="12_sktox"]
+[ext_resource type="Script" uid="uid://brsq1cmtrtshq" path="res://systems/components/player_sensor.gd" id="13_eqkkc"]
 
 [sub_resource type="Animation" id="Animation_h3twn"]
 length = 0.001
@@ -117,14 +120,20 @@ size = Vector2(18.25, 34)
 [sub_resource type="CircleShape2D" id="CircleShape2D_i36jk"]
 radius = 7.0
 
-[node name="Lantern" type="CharacterBody2D" unique_id=822421158 node_paths=PackedStringArray("collision", "damage_area", "sprite", "state_machine", "animation", "health", "movement")]
+[sub_resource type="CircleShape2D" id="CircleShape2D_xldlm"]
+radius = 77.10383
+
+[node name="Lantern" type="CharacterBody2D" unique_id=822421158 node_paths=PackedStringArray("collision", "damage_area", "decision_engine", "sprite", "state_machine", "navigation", "animation", "health", "movement")]
 collision_layer = 64
 collision_mask = 3
+motion_mode = 1
 script = ExtResource("1_8opbg")
 collision = NodePath("CollisionShape2D")
 damage_area = NodePath("DamageArea")
+decision_engine = NodePath("DecisionEngineBasic")
 sprite = NodePath("Sprite2D")
 state_machine = NodePath("StateMachine")
+navigation = NodePath("NavigationAgent2D")
 animation = NodePath("Components/AnimationComponent")
 health = NodePath("Components/HealthComponent")
 movement = NodePath("Components/MovementComponent")
@@ -169,6 +178,11 @@ unique_name_in_owner = true
 script = ExtResource("5_twuwp")
 metadata/_custom_type_script = "uid://c1srggf83pnkt"
 
+[node name="Chase" type="Node" parent="StateMachine" unique_id=221317073]
+unique_name_in_owner = true
+script = ExtResource("6_4wxmk")
+metadata/_custom_type_script = "uid://de137lhvib8k5"
+
 [node name="AttackArea" type="Area2D" parent="." unique_id=321825884]
 visible = false
 position = Vector2(0, -1)
@@ -211,3 +225,28 @@ metadata/_custom_type_script = "uid://da2r7gn05a3nq"
 script = ExtResource("10_up7p2")
 max_health = 10
 metadata/_custom_type_script = "uid://dyl8o8lbuap7r"
+
+[node name="DecisionEngineBasic" type="Node" parent="." unique_id=1880518253 node_paths=PackedStringArray("chase", "idle", "walk")]
+script = ExtResource("12_sktox")
+chase = NodePath("../StateMachine/Chase")
+idle = NodePath("../StateMachine/Idle")
+walk = NodePath("../StateMachine/Walk")
+metadata/_custom_type_script = "uid://bymg7s440aae"
+
+[node name="PlayerSensor" type="Area2D" parent="." unique_id=215446581]
+collision_layer = 0
+collision_mask = 32
+script = ExtResource("13_eqkkc")
+metadata/_custom_type_script = "uid://brsq1cmtrtshq"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerSensor" unique_id=39529473]
+shape = SubResource("CircleShape2D_xldlm")
+debug_color = Color(1, 1, 0.2784314, 0.039215688)
+
+[node name="Label" type="Label" parent="." unique_id=2120024853]
+unique_name_in_owner = true
+offset_right = 40.0
+offset_bottom = 22.0
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=143501294]
+path_postprocessing = 1

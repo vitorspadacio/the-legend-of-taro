@@ -7,11 +7,11 @@
 [ext_resource type="Script" uid="uid://ng48piqixoww" path="res://systems/gameplay/state_machine.gd" id="4_hg6s5"]
 [ext_resource type="Script" uid="uid://dxs7ulvhlufa" path="res://player/states/roll_state.gd" id="4_yw30f"]
 [ext_resource type="Script" uid="uid://dibvquiq1y44n" path="res://player/states/swing_state.gd" id="5_qjkh3"]
-[ext_resource type="Script" uid="uid://btbmbpcu6oj5v" path="res://systems/gameplay/attack_area.gd" id="7_boad6"]
+[ext_resource type="Script" uid="uid://btbmbpcu6oj5v" path="res://systems/combat/attack_area.gd" id="7_boad6"]
 [ext_resource type="Script" uid="uid://i2qmst7chrxr" path="res://player/states/attack_state.gd" id="7_rgyib"]
 [ext_resource type="Script" uid="uid://dtso3403kjldq" path="res://player/states/hurt_state.gd" id="9_ebec5"]
 [ext_resource type="Script" uid="uid://da2r7gn05a3nq" path="res://systems/components/input.gd" id="10_8t03j"]
-[ext_resource type="Script" uid="uid://jn6ptg2mpq5h" path="res://systems/gameplay/damage_area.gd" id="11_2ieo8"]
+[ext_resource type="Script" uid="uid://jn6ptg2mpq5h" path="res://systems/combat/damage_area.gd" id="11_2ieo8"]
 [ext_resource type="Script" uid="uid://1t060yt1ejl" path="res://systems/components/movement.gd" id="13_yllr7"]
 [ext_resource type="Script" uid="uid://bavckwsbwuxsc" path="res://systems/components/animation.gd" id="14_kb6p2"]
 

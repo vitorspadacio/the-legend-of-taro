@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" uid="uid://cs50qqils3rkm" path="res://entities/enemies/slime/slime.gd" id="1_4wdl7"]
 [ext_resource type="Texture2D" uid="uid://bwe6hlcltkm82" path="res://entities/enemies/slime/slime.png" id="2_o8tp2"]
-[ext_resource type="Script" uid="uid://jn6ptg2mpq5h" path="res://systems/gameplay/damage_area.gd" id="3_r5c7m"]
-[ext_resource type="Script" uid="uid://c5xnwwp1r457n" path="res://systems/gameplay/hazard_area.gd" id="4_qm4ps"]
+[ext_resource type="Script" uid="uid://jn6ptg2mpq5h" path="res://systems/combat/damage_area.gd" id="3_r5c7m"]
+[ext_resource type="Script" uid="uid://c5xnwwp1r457n" path="res://systems/combat/hazard_area.gd" id="4_qm4ps"]
 [ext_resource type="Script" uid="uid://dyl8o8lbuap7r" path="res://systems/components/health.gd" id="5_2uvyc"]
 [ext_resource type="Script" uid="uid://1t060yt1ejl" path="res://systems/components/movement.gd" id="6_ilf0m"]
 [ext_resource type="Script" uid="uid://bavckwsbwuxsc" path="res://systems/components/animation.gd" id="7_lj0bh"]
