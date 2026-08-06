@@ -13,8 +13,8 @@ func exit() -> void:
 func handle_input(_event: InputEvent) -> PlayerState:
 	return null
 	
-func physics_process(_delta: float) -> PlayerState:
-	player.movement.move()
+func physics_process(delta: float) -> PlayerState:
+	player.movement.move(delta)
 	return null
 	
 func process(_delta: float) -> PlayerState:

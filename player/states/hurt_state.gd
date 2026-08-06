@@ -1,7 +1,7 @@
 @icon("res://assets/icons/state.svg")
 class_name PlayerHurtState extends PlayerState
 
-@export var force := 20.0
+@export var force := 50.0
 @export var invulnerable_duration := 0.2
 @export var sound_effect: AudioStream
 
@@ -15,14 +15,12 @@ func enter() -> void:
 	player.animation.play("hurt")
 	time = player.animation.animation_player.current_animation_length + 0.15
 	player.damage_area.make_invulnerable(invulnerable_duration)
-	# Audio.play_spatial_sound(sound_effect, player.global_position)
-	# VisualEffects.camera_shake(2)
 	
 func exit() -> void:
 	pass
 
-func physics_process(_delta: float) -> PlayerState:
-	player.movement.knockback(force, direction)
+func physics_process(delta: float) -> PlayerState:
+	player.movement.knockback(force, direction, delta)
 	return null
 	
 func process(delta: float) -> PlayerState:

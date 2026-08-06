@@ -21,7 +21,7 @@ func _ready() -> void:
 		set_collision_mask_value(5, true)
 		body_entered.connect(_on_body_entered)
 		body_exited.connect(_on_body_exited)
-		# enemy.direction_changed.connect(_on_direction_changed)
+		enemy.movement.direction_changed.connect(_on_direction_changed)
 		# if use_audio_sensor:
 		# 	Audio.player_made_sound.connect(_on_player_sound)
 
@@ -42,11 +42,8 @@ func _on_body_exited(_node: Node2D) -> void:
 	player_exited.emit()
 	timer = search_duration
 
-# func _on_direction_changed(direction: float) -> void:
-# 	if direction < 0:
-# 		scale.x = -1
-# 	elif direction > 0:
-# 		scale.x = 1
+func _on_direction_changed(direction: Vector2) -> void:
+	rotation = Vector2.DOWN.angle_to(direction.normalized())
 
 # func _on_player_sound(sound_position: Vector2, volume: float) -> void:
 # 	var sound_distance: float = global_position.distance_to(sound_position)

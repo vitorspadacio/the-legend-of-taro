@@ -1,5 +1,7 @@
 class_name MovementComponent extends Node
 
+signal direction_changed(direction: Vector2)
+
 const DIRECTION_NAMES := {
 	Vector2.UP: "up",
 	Vector2.DOWN: "down",
@@ -7,7 +9,7 @@ const DIRECTION_NAMES := {
 	Vector2.RIGHT: "right",
 }
 
-@export var acceleration := 200.00
+@export var acceleration := 2500.00
 @export var body: PhysicsBody2D
 @export var speed := 100.00
 
@@ -18,10 +20,13 @@ var direction_name: String:
 var facing_direction := Vector2.DOWN
 var lock_direction := false
 
-func move() -> void:
+func move(delta: float = 0.5) -> void:
 	update_direction()
 	actual_speed = speed
-	body.velocity = direction * actual_speed
+	body.velocity = body.velocity.move_toward(
+		direction * actual_speed,
+		acceleration * delta)
+	# body.velocity = direction * actual_speed
 	body.move_and_slide()
 
 func roll(multiplier: float = 1.25) -> void:
@@ -30,10 +35,16 @@ func roll(multiplier: float = 1.25) -> void:
 	body.velocity = facing_direction * actual_speed
 	body.move_and_slide()
 
-func knockback(knockback_speed: float, knockback_direction: Vector2) -> void:
+func knockback(knockback_speed: float, knockback_direction: Vector2, delta: float) -> void:
 	actual_speed = knockback_speed
-	body.velocity = knockback_direction * actual_speed
+	body.velocity = body.velocity.move_toward(
+		knockback_direction * actual_speed,
+		acceleration * delta)
 	body.move_and_slide()
+
+func change_direction(new_direction: Vector2) -> void:
+	direction = new_direction
+	direction_changed.emit(direction)
 
 func update_direction() -> void:
 	if direction != Vector2.ZERO and not lock_direction:

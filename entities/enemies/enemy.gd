@@ -47,3 +47,4 @@ func _unhandled_input(event: InputEvent) -> void:
 
 func _on_damage_taken(attack_area: AttackArea) -> void:
 	damage_taken.emit(attack_area)
+	health.damage(attack_area.damage)

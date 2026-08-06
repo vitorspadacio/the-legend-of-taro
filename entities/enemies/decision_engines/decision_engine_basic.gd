@@ -1,7 +1,11 @@
 class_name DecisionEngineBasic
 extends DecisionEngine
 
+@export var entity: Enemy
+
 @export var chase: EnemyChaseState
+@export var death: EnemyDeathState
+@export var hurt: EnemyHurtState
 @export var idle: EnemyIdleState
 @export var walk: EnemyWalkState
 
@@ -41,10 +45,10 @@ func _process(delta: float) -> void:
 
 func decide() -> EnemyState:
 	if blackboard.damage_source:
-		if enemy.health.current_health <= 0:
-			return walk
+		if entity.health.current_health <= 0:
+			return death
 		else:
-			return walk
+			return hurt
 
 	if not blackboard.can_decide:
 		return null

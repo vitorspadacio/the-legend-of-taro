@@ -38,7 +38,6 @@ func _initialize_states() -> void:
 			states.append(child)
 			child.player = player
 		if child is EnemyState:
-			print(child)
 			states.append(child)
 			child.enemy = enemy
 		
