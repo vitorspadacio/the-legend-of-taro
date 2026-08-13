@@ -10,7 +10,7 @@ func init() -> void:
 	pass
 	
 func enter() -> void:
-	enemy.animation.play("idle")
+	enemy.animation.play("walk")
 	enemy.blackboard.can_decide = false
 	timer = cooldown
 	

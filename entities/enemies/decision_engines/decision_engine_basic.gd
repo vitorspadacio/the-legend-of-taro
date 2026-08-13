@@ -27,8 +27,6 @@ var patrol_timer := 1.0
 
 func _ready() -> void:
 	await super()
-	idle_timer = cooldown
-	# walk_timer = cooldown
 
 func _process(delta: float) -> void:
 	patrol_timer -= delta

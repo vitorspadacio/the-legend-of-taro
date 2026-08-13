@@ -1,21 +1,23 @@
 [gd_scene format=3 uid="uid://ddrgs0vld8mve"]
 
-[ext_resource type="Script" uid="uid://cs50qqils3rkm" path="res://entities/enemies/slime/slime.gd" id="1_4wdl7"]
+[ext_resource type="Script" uid="uid://7hy21q0snabx" path="res://entities/enemies/enemy.gd" id="1_lcogp"]
 [ext_resource type="Texture2D" uid="uid://bwe6hlcltkm82" path="res://entities/enemies/slime/slime.png" id="2_o8tp2"]
 [ext_resource type="Script" uid="uid://jn6ptg2mpq5h" path="res://systems/combat/damage_area.gd" id="3_r5c7m"]
 [ext_resource type="Script" uid="uid://c5xnwwp1r457n" path="res://systems/combat/hazard_area.gd" id="4_qm4ps"]
 [ext_resource type="Script" uid="uid://dyl8o8lbuap7r" path="res://systems/components/health.gd" id="5_2uvyc"]
 [ext_resource type="Script" uid="uid://1t060yt1ejl" path="res://systems/components/movement.gd" id="6_ilf0m"]
+[ext_resource type="Script" uid="uid://ng48piqixoww" path="res://systems/gameplay/state_machine.gd" id="6_tvhfh"]
 [ext_resource type="Script" uid="uid://bavckwsbwuxsc" path="res://systems/components/animation.gd" id="7_lj0bh"]
+[ext_resource type="Script" uid="uid://2jr6y5ue0pv2" path="res://entities/enemies/states/idle_state.gd" id="7_ukwh2"]
+[ext_resource type="Script" uid="uid://c1srggf83pnkt" path="res://entities/enemies/states/walk_state.gd" id="8_q4wxk"]
+[ext_resource type="Script" uid="uid://de137lhvib8k5" path="res://entities/enemies/states/chase_state.gd" id="9_t7tha"]
+[ext_resource type="Script" uid="uid://cfu3rte1qqlpw" path="res://entities/enemies/states/hurt_state.gd" id="10_f64ac"]
+[ext_resource type="Script" uid="uid://bsns8tu52ba2t" path="res://entities/enemies/states/death_state.gd" id="11_nc4tg"]
+[ext_resource type="Script" uid="uid://bymg7s440aae" path="res://entities/enemies/decision_engines/decision_engine_basic.gd" id="15_i5v6j"]
+[ext_resource type="Script" uid="uid://brsq1cmtrtshq" path="res://systems/components/player_sensor.gd" id="16_5pum5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4bqqs"]
 size = Vector2(14, 9)
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_c2g2c"]
-radius = 7.0
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_uke5v"]
-radius = 5.0
 
 [sub_resource type="Animation" id="Animation_reset"]
 length = 0.001
@@ -34,7 +36,8 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_idle_down"]
 resource_name = "idle_down"
-length = 0.001
+length = 0.2
+step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -50,23 +53,8 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_idle_left"]
 resource_name = "idle_left"
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [1]
-}
-
-[sub_resource type="Animation" id="Animation_idle_right"]
-resource_name = "idle_right"
-length = 0.001
+length = 0.2
+step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -80,9 +68,10 @@ tracks/0/keys = {
 "values": [2]
 }
 
-[sub_resource type="Animation" id="Animation_idle_up"]
-resource_name = "idle_up"
-length = 0.001
+[sub_resource type="Animation" id="Animation_idle_right"]
+resource_name = "idle_right"
+length = 0.2
+step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -94,6 +83,23 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [3]
+}
+
+[sub_resource type="Animation" id="Animation_idle_up"]
+resource_name = "idle_up"
+length = 0.2
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
 }
 
 [sub_resource type="Animation" id="Animation_walk_down"]
@@ -181,9 +187,25 @@ _data = {
 &"walk_up": SubResource("Animation_walk_up")
 }
 
-[node name="Slime" type="CharacterBody2D" unique_id=1996041847 groups=["enemies"]]
+[sub_resource type="CircleShape2D" id="CircleShape2D_6h86f"]
+radius = 8.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0lrwo"]
+radius = 7.0
+
+[node name="Slime" type="CharacterBody2D" unique_id=1996041847 node_paths=PackedStringArray("collision", "damage_area", "decision_engine", "sprite", "state_machine", "navigation", "animation", "health", "movement") groups=["enemies"]]
+collision_layer = 64
 collision_mask = 3
-script = ExtResource("1_4wdl7")
+script = ExtResource("1_lcogp")
+collision = NodePath("CollisionShape2D")
+damage_area = NodePath("DamageArea")
+decision_engine = NodePath("DecisionEngineBasic")
+sprite = NodePath("Sprite2D")
+state_machine = NodePath("StateMachine")
+navigation = NodePath("NavigationAgent2D")
+animation = NodePath("Components/AnimationComponent")
+health = NodePath("Components/HealthComponent")
+movement = NodePath("Components/MovementComponent")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1414823171]
 texture = ExtResource("2_o8tp2")
@@ -196,36 +218,107 @@ position = Vector2(0, 2.5)
 shape = SubResource("RectangleShape2D_4bqqs")
 debug_color = Color(0, 0.6509804, 0.11764706, 0)
 
-[node name="DamageArea" type="Area2D" parent="." unique_id=1716017237]
-collision_layer = 64
-collision_mask = 0
-script = ExtResource("3_r5c7m")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="DamageArea" unique_id=1412909997]
-shape = SubResource("CircleShape2D_c2g2c")
-debug_color = Color(0.7529412, 0.45882353, 0, 0)
-
-[node name="HazardArea" type="Area2D" parent="." unique_id=1597254766]
-script = ExtResource("4_qm4ps")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HazardArea" unique_id=1403767453]
-shape = SubResource("CircleShape2D_uke5v")
-debug_color = Color(0.6313726, 0.34509805, 1, 0)
-
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=66015378]
 libraries/ = SubResource("AnimationLibrary_4wdl7")
 
 [node name="Components" type="Node" parent="." unique_id=1647763286]
 
+[node name="AnimationComponent" type="Node" parent="Components" unique_id=112754747 node_paths=PackedStringArray("animation_player")]
+script = ExtResource("7_lj0bh")
+animation_player = NodePath("../../AnimationPlayer")
+
 [node name="HealthComponent" type="Node" parent="Components" unique_id=588899216]
 script = ExtResource("5_2uvyc")
-max_health = 20
+max_health = 5
 
 [node name="MovementComponent" type="Node" parent="Components" unique_id=1352421591 node_paths=PackedStringArray("body")]
 script = ExtResource("6_ilf0m")
 body = NodePath("../..")
 speed = 35.0
 
-[node name="AnimationComponent" type="Node" parent="Components" unique_id=112754747 node_paths=PackedStringArray("animation_player")]
-script = ExtResource("7_lj0bh")
-animation_player = NodePath("../../AnimationPlayer")
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=464317413]
+path_postprocessing = 1
+
+[node name="StateLabel" type="Label" parent="." unique_id=1116733381]
+unique_name_in_owner = true
+visible = false
+z_index = 10
+offset_left = -24.0
+offset_top = -21.0
+offset_right = 23.0
+offset_bottom = -9.0
+theme_override_font_sizes/font_size = 8
+text = "Teste"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="StateMachine" type="Node" parent="." unique_id=527759229]
+script = ExtResource("6_tvhfh")
+metadata/_custom_type_script = "uid://ng48piqixoww"
+
+[node name="Idle" type="Node" parent="StateMachine" unique_id=1118385730]
+unique_name_in_owner = true
+script = ExtResource("7_ukwh2")
+metadata/_custom_type_script = "uid://2jr6y5ue0pv2"
+
+[node name="Walk" type="Node" parent="StateMachine" unique_id=1011662107]
+unique_name_in_owner = true
+script = ExtResource("8_q4wxk")
+metadata/_custom_type_script = "uid://c1srggf83pnkt"
+
+[node name="Chase" type="Node" parent="StateMachine" unique_id=1414035139]
+unique_name_in_owner = true
+script = ExtResource("9_t7tha")
+metadata/_custom_type_script = "uid://de137lhvib8k5"
+
+[node name="Hurt" type="Node" parent="StateMachine" unique_id=1478315784]
+unique_name_in_owner = true
+script = ExtResource("10_f64ac")
+metadata/_custom_type_script = "uid://cfu3rte1qqlpw"
+
+[node name="Death" type="Node" parent="StateMachine" unique_id=391338787]
+unique_name_in_owner = true
+script = ExtResource("11_nc4tg")
+metadata/_custom_type_script = "uid://bsns8tu52ba2t"
+
+[node name="HazardArea" type="Area2D" parent="." unique_id=1411495225]
+script = ExtResource("4_qm4ps")
+metadata/_custom_type_script = "uid://c5xnwwp1r457n"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HazardArea" unique_id=533454259]
+shape = SubResource("CircleShape2D_6h86f")
+debug_color = Color(0.6313726, 0.34509805, 1, 0)
+
+[node name="DamageArea" type="Area2D" parent="." unique_id=1991178186]
+collision_layer = 64
+collision_mask = 0
+script = ExtResource("3_r5c7m")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DamageArea" unique_id=2039072470]
+shape = SubResource("CircleShape2D_0lrwo")
+debug_color = Color(0.7529412, 0.45882353, 0, 0)
+
+[node name="DecisionEngineBasic" type="Node" parent="." unique_id=1326313399 node_paths=PackedStringArray("entity", "chase", "death", "hurt", "idle", "walk")]
+script = ExtResource("15_i5v6j")
+entity = NodePath("..")
+chase = NodePath("../StateMachine/Chase")
+death = NodePath("../StateMachine/Death")
+hurt = NodePath("../StateMachine/Hurt")
+idle = NodePath("../StateMachine/Idle")
+walk = NodePath("../StateMachine/Walk")
+metadata/_custom_type_script = "uid://bymg7s440aae"
+
+[node name="PlayerSensor" type="Area2D" parent="." unique_id=1345294903]
+collision_layer = 0
+collision_mask = 32
+script = ExtResource("16_5pum5")
+metadata/_custom_type_script = "uid://brsq1cmtrtshq"
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="PlayerSensor" unique_id=1614396633]
+polygon = PackedVector2Array(0, 0, -40, 70, 0, 100, 40, 70)
+
+[node name="Label" type="Label" parent="." unique_id=1589526189]
+unique_name_in_owner = true
+visible = false
+offset_right = 40.0
+offset_bottom = 22.0

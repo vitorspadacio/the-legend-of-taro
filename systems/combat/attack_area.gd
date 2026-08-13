@@ -1,7 +1,7 @@
 @icon("res://assets/icons/attack_area.svg")
 class_name AttackArea extends Area2D
 
-@export var damage := 1.0
+@export var damage := 1
 @export var damage_sound: AudioStream
 
 func _ready() -> void:
