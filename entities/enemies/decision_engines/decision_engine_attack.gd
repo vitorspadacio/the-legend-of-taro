@@ -1,8 +1,9 @@
-class_name DecisionEngineBasic
+class_name DecisionEngineAttack
 extends DecisionEngine
 
 @export var entity: Enemy
 
+@export var attack: EnemyAttackState
 @export var chase: EnemyChaseState
 @export var death: EnemyDeathState
 @export var hurt: EnemyHurtState
@@ -52,6 +53,9 @@ func decide() -> EnemyState:
 		return null
 	
 	if blackboard.target:
+		print("can attack? ", attack.can_attack())
+		if attack.can_attack():
+			return attack
 		return chase
 
 	match patrol_state:

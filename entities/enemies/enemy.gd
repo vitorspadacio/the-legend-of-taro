@@ -2,6 +2,7 @@ class_name Enemy extends CharacterBody2D
 
 signal damage_taken(attack_area: AttackArea)
 
+@export var attack_area: AttackArea
 @export var collision: CollisionShape2D
 @export var damage_area: DamageArea
 @export var decision_engine: DecisionEngine
@@ -37,6 +38,10 @@ func _physics_process(delta: float) -> void:
 	if blackboard == null:
 		return
 
+	# if blackboard.target:
+	# 	navigation.target_position = blackboard.target.global_position
+	# 	var next_point = navigation.get_final_position()
+
 	blackboard.update_distance_to_target(global_position)
 	state_machine.change_state(decision_engine.decide())
 	state_machine.physics_process(delta)
@@ -48,9 +53,9 @@ func _unhandled_input(event: InputEvent) -> void:
 
 ##### Side Effects #####
 
-func _on_damage_taken(attack_area: AttackArea) -> void:
-	damage_taken.emit(attack_area)
-	health.damage(attack_area.damage)
+func _on_damage_taken(attacker_area: AttackArea) -> void:
+	damage_taken.emit(attacker_area)
+	health.damage(attacker_area.damage)
 
 func _on_player_death() -> void:
 	blackboard.target = null

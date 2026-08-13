@@ -1,6 +1,21 @@
 extends Node
 
+const CLAW_EFFECT = preload("uid://cjtmopya5v7v0")
 const SMOKE_EFFECT = preload("uid://bdl7svonujls4")
+
+func create_claw(position: Vector2, direction: Vector2) -> void:
+	print("direction: ", direction)
+	var effect = CLAW_EFFECT.instantiate()
+	effect.global_position = position + (direction * 16)
+	if abs(direction.x) > abs(direction.y):
+		if direction.x < 0:
+			effect.scale.x = -1
+	else:
+		if direction.y < 0:
+			effect.rotation = -90
+		else:
+			effect.rotation = 90
+	get_tree().current_scene.add_child(effect)
 
 func create_smoke(position: Vector2) -> void:
 	var effect = SMOKE_EFFECT.instantiate()

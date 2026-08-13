@@ -6,9 +6,6 @@ signal player_exited
 signal started_searching
 
 @export var search_duration := 2.0
-# @export var use_audio_sensor: bool = true
-# @export var audio_detect_distance: float = 256
-# @export var min_audio_distance: float = 0.5
 
 var enemy: Enemy
 var timer: float
@@ -22,8 +19,6 @@ func _ready() -> void:
 		body_entered.connect(_on_body_entered)
 		body_exited.connect(_on_body_exited)
 		enemy.movement.direction_changed.connect(_on_direction_changed)
-		# if use_audio_sensor:
-		# 	Audio.player_made_sound.connect(_on_player_sound)
 
 func _physics_process(delta: float) -> void:
 	if timer > 0:
