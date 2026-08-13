@@ -282,6 +282,9 @@ vframes = 4
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=179585093]
 libraries/ = SubResource("AnimationLibrary_mbudi")
 
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=143501294]
+path_postprocessing = 1
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=962862630]
 position = Vector2(0, 5)
 shape = SubResource("RectangleShape2D_fcw4k")
@@ -330,6 +333,7 @@ metadata/_custom_type_script = "uid://bsns8tu52ba2t"
 
 [node name="HazardArea" type="Area2D" parent="." unique_id=1560320956]
 script = ExtResource("7_ir0ep")
+damage = 3.0
 metadata/_custom_type_script = "uid://c5xnwwp1r457n"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HazardArea" unique_id=1051203391]
@@ -422,6 +426,3 @@ unique_name_in_owner = true
 visible = false
 offset_right = 40.0
 offset_bottom = 22.0
-
-[node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=143501294]
-path_postprocessing = 1

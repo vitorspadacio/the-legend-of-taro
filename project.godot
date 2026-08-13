@@ -14,6 +14,11 @@ config/name="the-legend-of-taro"
 config/features=PackedStringArray("4.7", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+VisualEffects="*uid://6fsty8cc28nd"
+PlayerHud="*uid://dclu8eu4ausns"
+
 [display]
 
 window/size/viewport_width=320

@@ -3,9 +3,9 @@ class_name StateMachine extends Node
 
 @onready var state_label: Label = %StateLabel
 
-var states: Array[State]
-var player: Player
 var enemy: Enemy
+var player: Player
+var states: Array[State]
 
 var current_state: State:
 	get: return states.front()
@@ -49,7 +49,7 @@ func _initialize_states() -> void:
 	
 	change_state(current_state)
 	current_state.enter()
-	%StateLabel.text = current_state.name
+	_update_state_label(current_state.name)
 	
 func change_state(new_state: State) -> void:
 	if not new_state:
@@ -64,5 +64,7 @@ func change_state(new_state: State) -> void:
 	previous_state.exit()
 	current_state.enter()
 	states.resize(3)
-	
-	%StateLabel.text = current_state.name
+	_update_state_label(current_state.name)
+
+func _update_state_label(state_name: String) -> void:
+	%StateLabel.text = state_name

@@ -5,7 +5,7 @@ func init() -> void:
 	pass
 	
 func enter() -> void:
-	enemy.movement.change_direction(Vector2.RIGHT.rotated(randf() * TAU))
+	enemy.movement.update_direction(Vector2.RIGHT.rotated(randf() * TAU))
 	enemy.animation.play("idle")
 
 func exit() -> void:

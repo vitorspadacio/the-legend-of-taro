@@ -1,7 +1,7 @@
 @icon("res://assets/icons/state.svg")
 class_name EnemyHurtState extends EnemyState
 
-@export var force := 30.0
+@export var knockback_force := 30.0
 @export var invulnerable_duration := 0.2
 @export var sound_effect: AudioStream
 
@@ -14,7 +14,7 @@ func init() -> void:
 func enter() -> void:
 	enemy.animation.play("idle")
 	time = enemy.animation.animation_player.current_animation_length + 0.15
-	enemy.damage_area.make_invulnerable(invulnerable_duration)
+	enemy.damage_area.make_invulnerable(time + invulnerable_duration)
 	enemy.blackboard.can_decide = false
 	enemy.blackboard.target = enemy.blackboard.damage_source.owner
 	enemy.blackboard.damage_source = null
@@ -23,7 +23,7 @@ func exit() -> void:
 	pass
 
 func physics_process(delta: float) -> PlayerState:
-	enemy.movement.knockback(force, direction, delta)
+	enemy.movement.knockback(knockback_force, direction, delta)
 	return null
 	
 func process(delta: float) -> PlayerState:

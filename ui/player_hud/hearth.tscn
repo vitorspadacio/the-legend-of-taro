@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://ce2kyoasha10s"]
+
+[ext_resource type="Texture2D" uid="uid://ckya86xbp40cc" path="res://ui/player_hud/heart.png" id="1_diwfs"]
+[ext_resource type="Script" uid="uid://cwqfebovq0o6l" path="res://ui/player_hud/hearth.gd" id="1_klh40"]
+
+[node name="Hearth" type="Control" unique_id=2042825907]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_klh40")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1838053200]
+position = Vector2(8, 8)
+texture = ExtResource("1_diwfs")
+hframes = 5

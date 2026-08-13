@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://dd626o61pm43c" path="res://player/player.gd" id="1_oul6g"]
 [ext_resource type="Texture2D" uid="uid://d1ihaoqhyix5j" path="res://player/weapons/pickaxe.png" id="2_g6k8r"]
 [ext_resource type="Script" uid="uid://cvaamshurktlq" path="res://player/states/idle_state.gd" id="2_rkbax"]
+[ext_resource type="Texture2D" uid="uid://yh7t5i0qpf0l" path="res://player/shadow.png" id="2_wodsf"]
 [ext_resource type="Script" uid="uid://c0khupn86eoav" path="res://player/states/walk_state.gd" id="3_g1dw6"]
 [ext_resource type="Script" uid="uid://ng48piqixoww" path="res://systems/gameplay/state_machine.gd" id="4_hg6s5"]
 [ext_resource type="Script" uid="uid://dxs7ulvhlufa" path="res://player/states/roll_state.gd" id="4_yw30f"]
@@ -12,7 +13,9 @@
 [ext_resource type="Script" uid="uid://dtso3403kjldq" path="res://player/states/hurt_state.gd" id="9_ebec5"]
 [ext_resource type="Script" uid="uid://da2r7gn05a3nq" path="res://systems/components/input.gd" id="10_8t03j"]
 [ext_resource type="Script" uid="uid://jn6ptg2mpq5h" path="res://systems/combat/damage_area.gd" id="11_2ieo8"]
+[ext_resource type="Script" uid="uid://yoq0u4m0p1pq" path="res://player/states/death_state.gd" id="11_tqiix"]
 [ext_resource type="Script" uid="uid://1t060yt1ejl" path="res://systems/components/movement.gd" id="13_yllr7"]
+[ext_resource type="Script" uid="uid://dyl8o8lbuap7r" path="res://systems/components/health.gd" id="14_32hag"]
 [ext_resource type="Script" uid="uid://bavckwsbwuxsc" path="res://systems/components/animation.gd" id="14_kb6p2"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_kqu6x"]
@@ -357,7 +360,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_c35mf"]
 resource_name = "death"
-length = 0.2
+length = 0.39999999999999997
 step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -366,10 +369,10 @@ tracks/0/path = NodePath("Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
-"values": [108, 116]
+"values": [36, 44, 108, 116]
 }
 
 [sub_resource type="Animation" id="Animation_65viv"]
@@ -926,12 +929,12 @@ _data = {
 size = Vector2(14, 6)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_s88v2"]
-size = Vector2(18.25, 34)
+size = Vector2(19.25, 34)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_xldlm"]
 radius = 7.0
 
-[node name="Player" type="CharacterBody2D" unique_id=870341819 node_paths=PackedStringArray("collision", "damage_area", "sprite", "sprite_attack", "state_machine", "animation", "input", "movement") groups=["player"]]
+[node name="Player" type="CharacterBody2D" unique_id=870341819 node_paths=PackedStringArray("collision", "damage_area", "sprite", "sprite_attack", "state_machine", "animation", "health", "input", "movement") groups=["player"]]
 collision_layer = 32
 collision_mask = 3
 script = ExtResource("1_oul6g")
@@ -941,8 +944,13 @@ sprite = NodePath("Sprite2D")
 sprite_attack = NodePath("SpriteAttack2D")
 state_machine = NodePath("StateMachine")
 animation = NodePath("Components/AnimationComponent")
+health = NodePath("Components/HealthComponent")
 input = NodePath("Components/InputComponent")
 movement = NodePath("Components/MovementComponent")
+
+[node name="SpriteShadow2D" type="Sprite2D" parent="." unique_id=609152420]
+position = Vector2(0, 5)
+texture = ExtResource("2_wodsf")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=786664194]
 texture = SubResource("CompressedTexture2D_kqu6x")
@@ -1012,6 +1020,10 @@ unique_name_in_owner = true
 script = ExtResource("9_ebec5")
 metadata/_custom_type_script = "uid://dtso3403kjldq"
 
+[node name="Death" type="Node" parent="StateMachine" unique_id=2113070146]
+script = ExtResource("11_tqiix")
+metadata/_custom_type_script = "uid://yoq0u4m0p1pq"
+
 [node name="AttackArea" type="Area2D" parent="." unique_id=311756541]
 position = Vector2(0, -1)
 rotation = -3.1415927
@@ -1021,7 +1033,7 @@ script = ExtResource("7_boad6")
 damage = 2.5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea" unique_id=1787226678]
-position = Vector2(-1, -9.875)
+position = Vector2(-0.99999994, -10.375)
 rotation = -1.5707964
 shape = SubResource("RectangleShape2D_s88v2")
 debug_color = Color(0.9764706, 0, 0.42352942, 0)
@@ -1035,16 +1047,21 @@ debug_color = Color(0.7529412, 0.45882353, 0, 0)
 
 [node name="Components" type="Node" parent="." unique_id=405113486]
 
-[node name="MovementComponent" type="Node" parent="Components" unique_id=1166935362 node_paths=PackedStringArray("body")]
-script = ExtResource("13_yllr7")
-body = NodePath("../..")
-metadata/_custom_type_script = "uid://1t060yt1ejl"
-
 [node name="AnimationComponent" type="Node" parent="Components" unique_id=1730349623 node_paths=PackedStringArray("animation_player")]
 script = ExtResource("14_kb6p2")
 animation_player = NodePath("../../AnimationPlayer")
 metadata/_custom_type_script = "uid://bavckwsbwuxsc"
 
+[node name="HealthComponent" type="Node" parent="Components" unique_id=856802278]
+script = ExtResource("14_32hag")
+max_health = 8
+metadata/_custom_type_script = "uid://dyl8o8lbuap7r"
+
 [node name="InputComponent" type="Node" parent="Components" unique_id=1587776310]
 script = ExtResource("10_8t03j")
 metadata/_custom_type_script = "uid://da2r7gn05a3nq"
+
+[node name="MovementComponent" type="Node" parent="Components" unique_id=1166935362 node_paths=PackedStringArray("body")]
+script = ExtResource("13_yllr7")
+body = NodePath("../..")
+metadata/_custom_type_script = "uid://1t060yt1ejl"

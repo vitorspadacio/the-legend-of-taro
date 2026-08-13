@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://dclu8eu4ausns"]
+
+[ext_resource type="Script" uid="uid://4hsw0p1l7xkr" path="res://ui/player_hud/player_hud.gd" id="1_vyppb"]
+[ext_resource type="PackedScene" uid="uid://ce2kyoasha10s" path="res://ui/player_hud/hearth.tscn" id="2_rtdb5"]
+
+[node name="PlayerHud" type="CanvasLayer" unique_id=302008842]
+script = ExtResource("1_vyppb")
+
+[node name="Hearts" type="HBoxContainer" parent="." unique_id=620677000]
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 113.0
+offset_bottom = 26.0
+theme_override_constants/separation = 2
+
+[node name="Hearth" parent="Hearts" unique_id=2042825907 instance=ExtResource("2_rtdb5")]
+layout_mode = 2
+
+[node name="Hearth2" parent="Hearts" unique_id=1726676404 instance=ExtResource("2_rtdb5")]
+layout_mode = 2
+
+[node name="Hearth3" parent="Hearts" unique_id=2063944626 instance=ExtResource("2_rtdb5")]
+layout_mode = 2
+
+[node name="Hearth4" parent="Hearts" unique_id=54797738 instance=ExtResource("2_rtdb5")]
+layout_mode = 2

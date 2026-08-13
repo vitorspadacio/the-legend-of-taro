@@ -30,4 +30,5 @@ func process(delta: float) -> PlayerState:
 			return walk
 		else:
 			return idle
+
 	return null

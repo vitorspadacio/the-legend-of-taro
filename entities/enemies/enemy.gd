@@ -24,6 +24,9 @@ func _ready() -> void:
 	state_machine.init_enemy(self)
 	damage_area.damage_taken.connect(_on_damage_taken)
 
+	var player = get_tree().get_first_node_in_group("player")
+	player.died.connect(_on_player_death)
+
 func _process(delta: float) -> void:
 	var target: Player = blackboard.target
 	var distance: float = blackboard.distance_to_target
@@ -48,3 +51,6 @@ func _unhandled_input(event: InputEvent) -> void:
 func _on_damage_taken(attack_area: AttackArea) -> void:
 	damage_taken.emit(attack_area)
 	health.damage(attack_area.damage)
+
+func _on_player_death() -> void:
+	blackboard.target = null

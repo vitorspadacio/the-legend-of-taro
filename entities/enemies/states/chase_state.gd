@@ -26,7 +26,7 @@ func physics_process(delta: float) -> EnemyState:
 
 	enemy.navigation.target_position = enemy.blackboard.target.global_position
 	var next_point = enemy.navigation.get_next_path_position()
-	enemy.movement.change_direction(enemy.global_position.direction_to(next_point))
+	enemy.movement.update_direction(enemy.global_position.direction_to(next_point))
 	enemy.animation.direction_name = enemy.movement.direction_name
 	enemy.animation.play()
 	enemy.movement.move()

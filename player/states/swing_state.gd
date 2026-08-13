@@ -17,6 +17,7 @@ func handle_input(_event: InputEvent) -> PlayerState:
 	return null
 	
 func physics_process(_delta: float) -> PlayerState:
+	player.update_direction()
 	player.movement.move()
 	return null
 	

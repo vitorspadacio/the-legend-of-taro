@@ -42,11 +42,9 @@ func knockback(knockback_speed: float, knockback_direction: Vector2, delta: floa
 		acceleration * delta)
 	body.move_and_slide()
 
-func change_direction(new_direction: Vector2) -> void:
+func update_direction(new_direction: Vector2 = direction) -> void:
 	direction = new_direction
 	direction_changed.emit(direction)
-
-func update_direction() -> void:
 	if direction != Vector2.ZERO and not lock_direction:
 		facing_direction = _get_cardinal_direction()
 

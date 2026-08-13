@@ -14,8 +14,18 @@ func handle_input(_event: InputEvent) -> PlayerState:
 	return null
 	
 func physics_process(delta: float) -> PlayerState:
+	player.update_direction()
 	player.movement.move(delta)
 	return null
 	
 func process(_delta: float) -> PlayerState:
-	return get_command_state()
+	if player.input.attack:
+		return attack
+	if player.input.roll:
+		return roll
+	if player.input.swing:
+		return swing
+	if player.input.direction == Vector2.ZERO:
+		return idle
+
+	return null
