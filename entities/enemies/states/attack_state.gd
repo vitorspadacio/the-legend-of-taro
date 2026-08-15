@@ -8,9 +8,6 @@ class_name EnemyAttackState extends EnemyState
 var timer := 0.0
 var on_cooldown := false
 
-func init() -> void:
-	pass
-	
 func enter() -> void:
 	enemy.animation.play("idle")
 	set_attack_direction(enemy.movement.direction)

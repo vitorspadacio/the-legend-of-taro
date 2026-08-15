@@ -5,9 +5,11 @@ func enter() -> void:
 	player.jump.jump()
 	player.animation.play("jump")
 	player.collision.disabled = true
+	player.damage_area.monitorable = false
 	
 func exit() -> void:
 	player.collision.disabled = false
+	player.damage_area.monitorable = true
 
 func handle_input(_event: InputEvent) -> PlayerState:
 	return null

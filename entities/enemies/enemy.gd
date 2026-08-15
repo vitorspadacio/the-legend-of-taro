@@ -13,6 +13,7 @@ signal damage_taken(attack_area: AttackArea)
 @export_category("components")
 @export var animation: AnimationComponent
 @export var health: HealthComponent
+@export var jump: JumpComponent
 @export var movement: MovementComponent
 
 var blackboard: Blackboard
@@ -24,6 +25,7 @@ func _ready() -> void:
 	decision_engine.blackboard = blackboard
 	state_machine.init_enemy(self)
 	damage_area.damage_taken.connect(_on_damage_taken)
+	jump.height_changed.connect(_on_jump_height_changed)
 
 	var player = get_tree().get_first_node_in_group("player")
 	player.died.connect(_on_player_death)
@@ -59,3 +61,6 @@ func _on_damage_taken(attacker_area: AttackArea) -> void:
 
 func _on_player_death() -> void:
 	blackboard.target = null
+
+func _on_jump_height_changed(height: float) -> void:
+	sprite.position.y = - height

@@ -3,7 +3,7 @@ extends DecisionEngine
 
 @export var entity: Enemy
 
-@export var attack: EnemyAttackState
+@export var attack: EnemyState
 @export var chase: EnemyChaseState
 @export var death: EnemyDeathState
 @export var hurt: EnemyHurtState
