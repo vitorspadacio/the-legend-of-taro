@@ -3,10 +3,9 @@ extends Node
 const CLAW_EFFECT = preload("uid://cjtmopya5v7v0")
 const SMOKE_EFFECT = preload("uid://bdl7svonujls4")
 
-func create_claw(position: Vector2, direction: Vector2) -> void:
-	print("direction: ", direction)
+func create_claw(position: Vector2, direction: Vector2, distance: float = 16.0) -> void:
 	var effect = CLAW_EFFECT.instantiate()
-	effect.global_position = position + (direction * 16)
+	effect.global_position = position + (direction * distance)
 	if abs(direction.x) > abs(direction.y):
 		if direction.x < 0:
 			effect.scale.x = -1

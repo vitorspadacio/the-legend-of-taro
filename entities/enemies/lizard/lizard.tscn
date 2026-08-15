@@ -307,7 +307,7 @@ damage = 2
 metadata/_custom_type_script = "uid://btbmbpcu6oj5v"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea" unique_id=635570342]
-position = Vector2(0, 7)
+position = Vector2(0, 9)
 shape = SubResource("RectangleShape2D_xldlm")
 debug_color = Color(0.9764706, 0, 0.42352942, 0)
 

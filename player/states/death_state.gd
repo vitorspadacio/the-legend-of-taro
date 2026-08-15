@@ -6,7 +6,6 @@ func init() -> void:
 	
 func enter() -> void:
 	player.animation.play_no_direction("death")
-	print("entrou morte")
 	player.animation.animation_player.animation_finished.connect(_on_animation_finished)
 
 func _on_animation_finished(animation_name: String) -> void:

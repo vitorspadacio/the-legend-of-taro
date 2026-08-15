@@ -53,7 +53,6 @@ func decide() -> EnemyState:
 		return null
 	
 	if blackboard.target:
-		print("can attack? ", attack.can_attack())
 		if attack.can_attack():
 			return attack
 		return chase
