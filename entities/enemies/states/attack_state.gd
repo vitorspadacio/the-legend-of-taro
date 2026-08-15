@@ -17,6 +17,7 @@ func enter() -> void:
 	VisualEffects.create_claw(enemy.global_position, enemy.movement.direction)
 	enemy.attack_area.activate()
 	enemy.blackboard.can_decide = false
+	enemy.damage_area.make_invulnerable()
 	on_cooldown = true
 	timer = 0
 
@@ -32,7 +33,7 @@ func physics_process(delta: float) -> EnemyState:
 	return null
 
 func can_attack() -> bool:
-	if enemy.blackboard.distance_to_target <= attack_range:
+	if enemy.blackboard.distance_to_target <= attack_range and not on_cooldown:
 		return true
 	return false
 

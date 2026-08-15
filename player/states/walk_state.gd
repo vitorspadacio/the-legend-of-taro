@@ -23,6 +23,8 @@ func process(_delta: float) -> PlayerState:
 		return attack
 	if player.input.roll:
 		return roll
+	if player.input.jump:
+		return jump
 	if player.input.swing:
 		return swing
 	if player.input.direction == Vector2.ZERO:

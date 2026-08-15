@@ -302,8 +302,7 @@ metadata/_custom_type_script = "uid://bsns8tu52ba2t"
 
 [node name="SpinAttack" type="Node" parent="StateMachine" unique_id=134507507]
 script = ExtResource("9_h3twn")
-attack_range = 50
-cooldown = 5.0
+attack_range = 35
 metadata/_custom_type_script = "uid://ckurxh5y1ibya"
 
 [node name="HazardArea" type="Area2D" parent="." unique_id=1560320956]

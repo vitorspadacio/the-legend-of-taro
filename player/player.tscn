@@ -5,6 +5,7 @@
 [ext_resource type="Script" uid="uid://cvaamshurktlq" path="res://player/states/idle_state.gd" id="2_rkbax"]
 [ext_resource type="Texture2D" uid="uid://yh7t5i0qpf0l" path="res://player/shadow.png" id="2_wodsf"]
 [ext_resource type="Script" uid="uid://c0khupn86eoav" path="res://player/states/walk_state.gd" id="3_g1dw6"]
+[ext_resource type="Script" uid="uid://byx6b7oeoo6oh" path="res://player/jump_blocker.gd" id="4_65viv"]
 [ext_resource type="Script" uid="uid://ng48piqixoww" path="res://systems/gameplay/state_machine.gd" id="4_hg6s5"]
 [ext_resource type="Script" uid="uid://dxs7ulvhlufa" path="res://player/states/roll_state.gd" id="4_yw30f"]
 [ext_resource type="Script" uid="uid://dibvquiq1y44n" path="res://player/states/swing_state.gd" id="5_qjkh3"]
@@ -14,9 +15,11 @@
 [ext_resource type="Script" uid="uid://da2r7gn05a3nq" path="res://systems/components/input.gd" id="10_8t03j"]
 [ext_resource type="Script" uid="uid://jn6ptg2mpq5h" path="res://systems/combat/damage_area.gd" id="11_2ieo8"]
 [ext_resource type="Script" uid="uid://yoq0u4m0p1pq" path="res://player/states/death_state.gd" id="11_tqiix"]
+[ext_resource type="Script" uid="uid://c3rx518jf3lm2" path="res://player/states/jump_state.gd" id="12_c35mf"]
 [ext_resource type="Script" uid="uid://1t060yt1ejl" path="res://systems/components/movement.gd" id="13_yllr7"]
 [ext_resource type="Script" uid="uid://dyl8o8lbuap7r" path="res://systems/components/health.gd" id="14_32hag"]
 [ext_resource type="Script" uid="uid://bavckwsbwuxsc" path="res://systems/components/animation.gd" id="14_kb6p2"]
+[ext_resource type="Script" uid="uid://blposikaswy0u" path="res://systems/components/jump.gd" id="17_e7oew"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_kqu6x"]
 load_path = "res://.godot/imported/player.png-1ad27fc2a62fa126eae918723933dd6f.ctex"
@@ -360,7 +363,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_c35mf"]
 resource_name = "death"
-length = 0.39999999999999997
+length = 0.4
 step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -934,18 +937,21 @@ size = Vector2(19.25, 34)
 [sub_resource type="CircleShape2D" id="CircleShape2D_xldlm"]
 radius = 7.0
 
-[node name="Player" type="CharacterBody2D" unique_id=870341819 node_paths=PackedStringArray("collision", "damage_area", "sprite", "sprite_attack", "state_machine", "animation", "health", "input", "movement") groups=["player"]]
+[node name="Player" type="CharacterBody2D" unique_id=870341819 node_paths=PackedStringArray("attack_area", "collision", "damage_area", "sprite", "sprite_attack", "state_machine", "raycast_2d", "animation", "health", "input", "jump", "movement") groups=["player"]]
 collision_layer = 32
 collision_mask = 3
 script = ExtResource("1_oul6g")
+attack_area = NodePath("AttackArea")
 collision = NodePath("CollisionShape2D")
 damage_area = NodePath("DamageArea")
 sprite = NodePath("Sprite2D")
 sprite_attack = NodePath("SpriteAttack2D")
 state_machine = NodePath("StateMachine")
+raycast_2d = NodePath("RayCast2D")
 animation = NodePath("Components/AnimationComponent")
 health = NodePath("Components/HealthComponent")
 input = NodePath("Components/InputComponent")
+jump = NodePath("Components/JumpComponent")
 movement = NodePath("Components/MovementComponent")
 
 [node name="SpriteShadow2D" type="Sprite2D" parent="." unique_id=609152420]
@@ -987,6 +993,12 @@ text = "Teste"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="RayCast2D" type="RayCast2D" parent="." unique_id=642531111]
+target_position = Vector2(0, 11)
+collision_mask = 3
+hit_from_inside = true
+script = ExtResource("4_65viv")
+
 [node name="StateMachine" type="Node" parent="." unique_id=1441566676]
 script = ExtResource("4_hg6s5")
 metadata/_custom_type_script = "uid://ng48piqixoww"
@@ -1025,6 +1037,11 @@ metadata/_custom_type_script = "uid://dtso3403kjldq"
 script = ExtResource("11_tqiix")
 metadata/_custom_type_script = "uid://yoq0u4m0p1pq"
 
+[node name="Jump" type="Node" parent="StateMachine" unique_id=518687742]
+unique_name_in_owner = true
+script = ExtResource("12_c35mf")
+metadata/_custom_type_script = "uid://c3rx518jf3lm2"
+
 [node name="AttackArea" type="Area2D" parent="." unique_id=311756541]
 position = Vector2(0, -1)
 rotation = -3.1415927
@@ -1060,6 +1077,11 @@ metadata/_custom_type_script = "uid://dyl8o8lbuap7r"
 [node name="InputComponent" type="Node" parent="Components" unique_id=1587776310]
 script = ExtResource("10_8t03j")
 metadata/_custom_type_script = "uid://da2r7gn05a3nq"
+
+[node name="JumpComponent" type="Node" parent="Components" unique_id=1267836588 node_paths=PackedStringArray("raycast_2d")]
+script = ExtResource("17_e7oew")
+raycast_2d = NodePath("../../RayCast2D")
+metadata/_custom_type_script = "uid://blposikaswy0u"
 
 [node name="MovementComponent" type="Node" parent="Components" unique_id=1166935362 node_paths=PackedStringArray("body")]
 script = ExtResource("13_yllr7")
