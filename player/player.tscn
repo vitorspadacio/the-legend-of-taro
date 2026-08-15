@@ -959,6 +959,7 @@ position = Vector2(0, 5)
 texture = ExtResource("2_wodsf")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=786664194]
+scale = Vector2(1, 1.1)
 texture = SubResource("CompressedTexture2D_kqu6x")
 hframes = 8
 vframes = 17
