@@ -2,6 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://c5dtb51gcaxvy" path="res://player/player.tscn" id="1_rupst"]
 [ext_resource type="Texture2D" uid="uid://ccrv0s3k84k2p" path="res://content/world/tiles/tileset_village_abandoned.png" id="2_o00ia"]
+[ext_resource type="PackedScene" uid="uid://b6nhmafoangcv" path="res://entities/enemies/lantern/lantern.tscn" id="5_o00ia"]
 [ext_resource type="PackedScene" uid="uid://b80n5ps8xrarc" path="res://entities/enemies/lizard/lizard.tscn" id="6_4bqqs"]
 [ext_resource type="Texture2D" uid="uid://dcpslblxsasba" path="res://content/world/tiles/tileset_floor.png" id="7_ynsuh"]
 
@@ -4853,3 +4854,6 @@ position = Vector2(294, 142)
 
 [node name="Lizard" parent="." unique_id=1716200186 instance=ExtResource("6_4bqqs")]
 position = Vector2(158, 63)
+
+[node name="Lantern" parent="." unique_id=822421158 instance=ExtResource("5_o00ia")]
+position = Vector2(380, 90)

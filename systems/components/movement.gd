@@ -26,7 +26,6 @@ func move(delta: float = 0.5) -> void:
 	body.velocity = body.velocity.move_toward(
 		direction * actual_speed,
 		acceleration * delta)
-	# body.velocity = direction * actual_speed
 	body.move_and_slide()
 
 func roll(multiplier: float = 1.25) -> void:

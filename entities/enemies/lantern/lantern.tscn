@@ -12,10 +12,12 @@
 [ext_resource type="Script" uid="uid://c5xnwwp1r457n" path="res://systems/combat/hazard_area.gd" id="7_ir0ep"]
 [ext_resource type="Script" uid="uid://bsns8tu52ba2t" path="res://entities/enemies/states/death_state.gd" id="8_h3twn"]
 [ext_resource type="Script" uid="uid://bavckwsbwuxsc" path="res://systems/components/animation.gd" id="8_ir0ep"]
+[ext_resource type="Script" uid="uid://ckurxh5y1ibya" path="res://entities/enemies/states/spin_attack_state.gd" id="9_h3twn"]
 [ext_resource type="Script" uid="uid://da2r7gn05a3nq" path="res://systems/components/input.gd" id="9_hqf6w"]
+[ext_resource type="Script" uid="uid://btbmbpcu6oj5v" path="res://systems/combat/attack_area.gd" id="10_hqf6w"]
 [ext_resource type="Script" uid="uid://dyl8o8lbuap7r" path="res://systems/components/health.gd" id="10_up7p2"]
-[ext_resource type="Script" uid="uid://bymg7s440aae" path="res://entities/enemies/decision_engines/decision_engine_basic.gd" id="12_sktox"]
 [ext_resource type="Script" uid="uid://brsq1cmtrtshq" path="res://systems/components/player_sensor.gd" id="13_eqkkc"]
+[ext_resource type="Script" uid="uid://be43a7q4k86aa" path="res://entities/enemies/decision_engines/decision_engine_attack.gd" id="18_h3twn"]
 
 [sub_resource type="Animation" id="Animation_h3twn"]
 length = 0.001
@@ -34,7 +36,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_ir0ep"]
 resource_name = "idle_down"
-length = 0.19999999999999998
+length = 0.2
 loop_mode = 1
 step = 0.1
 tracks/0/type = "value"
@@ -52,7 +54,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_hqf6w"]
 resource_name = "idle_left"
-length = 0.19999999999999998
+length = 0.2
 loop_mode = 1
 step = 0.1
 tracks/0/type = "value"
@@ -70,7 +72,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_mbudi"]
 resource_name = "idle_right"
-length = 0.19999999999999998
+length = 0.2
 loop_mode = 1
 step = 0.1
 tracks/0/type = "value"
@@ -88,7 +90,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_fcw4k"]
 resource_name = "idle_up"
-length = 0.19999999999999998
+length = 0.2
 loop_mode = 1
 step = 0.1
 tracks/0/type = "value"
@@ -102,6 +104,24 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [1, 5]
+}
+
+[sub_resource type="Animation" id="Animation_e4thx"]
+resource_name = "spin"
+length = 0.4
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 3, 9, 14]
 }
 
 [sub_resource type="Animation" id="Animation_po64l"]
@@ -183,6 +203,7 @@ _data = {
 &"idle_left": SubResource("Animation_hqf6w"),
 &"idle_right": SubResource("Animation_mbudi"),
 &"idle_up": SubResource("Animation_fcw4k"),
+&"spin": SubResource("Animation_e4thx"),
 &"walk_down": SubResource("Animation_po64l"),
 &"walk_left": SubResource("Animation_vtncx"),
 &"walk_right": SubResource("Animation_06vb3"),
@@ -195,20 +216,24 @@ size = Vector2(14, 6)
 [sub_resource type="CircleShape2D" id="CircleShape2D_s88v2"]
 radius = 8.0
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_vrppe"]
+radius = 12.0415945
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_i36jk"]
 radius = 7.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_xldlm"]
 radius = 77.10383
 
-[node name="Lantern" type="CharacterBody2D" unique_id=822421158 node_paths=PackedStringArray("collision", "damage_area", "decision_engine", "sprite", "state_machine", "navigation", "animation", "health", "movement")]
+[node name="Lantern" type="CharacterBody2D" unique_id=822421158 node_paths=PackedStringArray("attack_area", "collision", "damage_area", "decision_engine", "sprite", "state_machine", "navigation", "animation", "health", "movement")]
 collision_layer = 64
 collision_mask = 3
 motion_mode = 1
 script = ExtResource("1_8opbg")
+attack_area = NodePath("AttackArea")
 collision = NodePath("CollisionShape2D")
 damage_area = NodePath("DamageArea")
-decision_engine = NodePath("DecisionEngineBasic")
+decision_engine = NodePath("DecisionEngineAttack")
 sprite = NodePath("Sprite2D")
 state_machine = NodePath("StateMachine")
 navigation = NodePath("NavigationAgent2D")
@@ -275,6 +300,12 @@ unique_name_in_owner = true
 script = ExtResource("8_h3twn")
 metadata/_custom_type_script = "uid://bsns8tu52ba2t"
 
+[node name="SpinAttack" type="Node" parent="StateMachine" unique_id=134507507]
+script = ExtResource("9_h3twn")
+attack_range = 50
+cooldown = 5.0
+metadata/_custom_type_script = "uid://ckurxh5y1ibya"
+
 [node name="HazardArea" type="Area2D" parent="." unique_id=1560320956]
 script = ExtResource("7_ir0ep")
 metadata/_custom_type_script = "uid://c5xnwwp1r457n"
@@ -282,6 +313,14 @@ metadata/_custom_type_script = "uid://c5xnwwp1r457n"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HazardArea" unique_id=1051203391]
 shape = SubResource("CircleShape2D_s88v2")
 debug_color = Color(0.6313726, 0.34509805, 1, 0)
+
+[node name="AttackArea" type="Area2D" parent="." unique_id=1416506051]
+script = ExtResource("10_hqf6w")
+metadata/_custom_type_script = "uid://btbmbpcu6oj5v"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea" unique_id=2014297735]
+shape = SubResource("CircleShape2D_vrppe")
+debug_color = Color(0.9764706, 0, 0.42352942, 0)
 
 [node name="DamageArea" type="Area2D" parent="." unique_id=361152139]
 collision_layer = 64
@@ -314,16 +353,6 @@ script = ExtResource("10_up7p2")
 max_health = 10
 metadata/_custom_type_script = "uid://dyl8o8lbuap7r"
 
-[node name="DecisionEngineBasic" type="Node" parent="." unique_id=1880518253 node_paths=PackedStringArray("entity", "chase", "death", "hurt", "idle", "walk")]
-script = ExtResource("12_sktox")
-entity = NodePath("..")
-chase = NodePath("../StateMachine/Chase")
-death = NodePath("../StateMachine/Death")
-hurt = NodePath("../StateMachine/Hurt")
-idle = NodePath("../StateMachine/Idle")
-walk = NodePath("../StateMachine/Walk")
-metadata/_custom_type_script = "uid://bymg7s440aae"
-
 [node name="PlayerSensor" type="Area2D" parent="." unique_id=215446581]
 collision_layer = 0
 collision_mask = 32
@@ -344,3 +373,14 @@ unique_name_in_owner = true
 visible = false
 offset_right = 40.0
 offset_bottom = 22.0
+
+[node name="DecisionEngineAttack" type="Node" parent="." unique_id=1236219136 node_paths=PackedStringArray("entity", "attack", "chase", "death", "hurt", "idle", "walk")]
+script = ExtResource("18_h3twn")
+entity = NodePath("..")
+attack = NodePath("../StateMachine/SpinAttack")
+chase = NodePath("../StateMachine/Chase")
+death = NodePath("../StateMachine/Death")
+hurt = NodePath("../StateMachine/Hurt")
+idle = NodePath("../StateMachine/Idle")
+walk = NodePath("../StateMachine/Walk")
+metadata/_custom_type_script = "uid://be43a7q4k86aa"
