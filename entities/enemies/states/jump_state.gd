@@ -11,6 +11,7 @@ var on_cooldown := false
 func enter() -> void:
 	enemy.jump.jump()
 	enemy.animation.play("walk")
+	enemy.animation.animation_player.pause()
 	enemy.collision.disabled = true
 	enemy.damage_area.monitorable = false
 	enemy.blackboard.can_decide = false
@@ -28,6 +29,7 @@ func physics_process(delta: float) -> EnemyState:
 		var next_point = enemy.navigation.get_next_path_position()
 		enemy.movement.update_direction(enemy.global_position.direction_to(next_point))
 		enemy.movement.roll(3.0)
+		set_jump_frame()
 	elif not enemy.jump.is_jumping:
 		enemy.blackboard.can_decide = true
 
@@ -35,6 +37,13 @@ func physics_process(delta: float) -> EnemyState:
 	if timer >= duration:
 		enemy.blackboard.can_decide = true
 	return null
+
+func set_jump_frame() -> void:
+	var progress := enemy.jump.jump_time / enemy.jump.jump_duration
+	enemy.animation.animation_player.seek(
+		progress * 0.4,
+		true
+	)
 
 func run_cooldown() -> void:
 	await get_tree().create_timer(cooldown).timeout
