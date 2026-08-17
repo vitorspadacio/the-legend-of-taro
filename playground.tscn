@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://c5dtb51gcaxvy" path="res://player/player.tscn" id="1_rupst"]
 [ext_resource type="Texture2D" uid="uid://ccrv0s3k84k2p" path="res://content/world/tiles/tileset_village_abandoned.png" id="2_o00ia"]
-[ext_resource type="PackedScene" uid="uid://ddrgs0vld8mve" path="res://entities/enemies/slime/slime.tscn" id="4_is3ju"]
+[ext_resource type="PackedScene" uid="uid://1vy678saa0gj" path="res://entities/bosses/slime_boss/slime_boss.tscn" id="4_is3ju"]
 [ext_resource type="Texture2D" uid="uid://dcpslblxsasba" path="res://content/world/tiles/tileset_floor.png" id="7_ynsuh"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_is3ju"]
@@ -4885,5 +4885,5 @@ tile_set = SubResource("TileSet_v7dth")
 [node name="Player" parent="." unique_id=870341819 instance=ExtResource("1_rupst")]
 position = Vector2(294, 142)
 
-[node name="Slime" parent="." unique_id=1996041847 instance=ExtResource("4_is3ju")]
-position = Vector2(146, 124)
+[node name="SlimeBoss" parent="." unique_id=1996041847 instance=ExtResource("4_is3ju")]
+position = Vector2(205, 129)

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cwadv8l6ap7c2"
-path="res://.godot/imported/Jump.png-cd1e0fa750f2e202bf2feed0649ef0d3.ctex"
+uid="uid://0uogfcwrc24p"
+path="res://.godot/imported/Hit.png-0a5ce3d032c45b393a6b13ffc726b2b9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://entities/enemies/slime_boss/Jump.png"
-dest_files=["res://.godot/imported/Jump.png-cd1e0fa750f2e202bf2feed0649ef0d3.ctex"]
+source_file="res://entities/bosses/slime_boss/Hit.png"
+dest_files=["res://.godot/imported/Hit.png-0a5ce3d032c45b393a6b13ffc726b2b9.ctex"]
 
 [params]
 

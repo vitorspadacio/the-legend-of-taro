@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dgwa1rtlh88p3"
-path="res://.godot/imported/Idle.png-5ef71c63b083ba8df15561698cc8014a.ctex"
+uid="uid://cwadv8l6ap7c2"
+path="res://.godot/imported/Jump.png-8b3666c27d1894c4d76c7072f4cb3ca5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://entities/enemies/slime_boss/Idle.png"
-dest_files=["res://.godot/imported/Idle.png-5ef71c63b083ba8df15561698cc8014a.ctex"]
+source_file="res://entities/bosses/slime_boss/Jump.png"
+dest_files=["res://.godot/imported/Jump.png-8b3666c27d1894c4d76c7072f4cb3ca5.ctex"]
 
 [params]
 

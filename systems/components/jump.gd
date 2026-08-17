@@ -5,6 +5,7 @@ signal height_changed(height: float)
 signal jump_started
 signal jump_finished
 
+@export var jump_curve: Curve
 @export var jump_height := 15.0
 @export var jump_duration := 0.5
 @export var raycast_2d: RayCast2D
@@ -38,7 +39,6 @@ func can_jump() -> bool:
 	var tiledata := tile_map.get_cell_tile_data(cell)
 
 	if tiledata is TileData and tiledata.has_custom_data("height"):
-		print(tiledata.get_custom_data("height"), "+", height)
 		return height >= tiledata.get_custom_data("height")
 
 	return false
@@ -56,9 +56,9 @@ func _process(delta: float) -> void:
 		is_jumping = false
 
 	if can_jump():
-		height = sin(progress * PI) * jump_height
+		height = jump_curve.sample(progress) * jump_height
 	else:
-		height = sin(progress * PI) * 10
+		height = jump_curve.sample(progress) * 10.0
 	height_changed.emit(height)
 
 	if not is_jumping:
