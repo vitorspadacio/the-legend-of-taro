@@ -4886,4 +4886,4 @@ tile_set = SubResource("TileSet_v7dth")
 position = Vector2(294, 142)
 
 [node name="SlimeBoss" parent="." unique_id=1996041847 instance=ExtResource("4_is3ju")]
-position = Vector2(205, 129)
+position = Vector2(209, 102)

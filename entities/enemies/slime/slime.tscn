@@ -16,9 +16,8 @@
 [ext_resource type="Script" uid="uid://cfu3rte1qqlpw" path="res://entities/enemies/states/hurt_state.gd" id="10_f64ac"]
 [ext_resource type="Script" uid="uid://bsns8tu52ba2t" path="res://entities/enemies/states/death_state.gd" id="11_nc4tg"]
 [ext_resource type="Script" uid="uid://c3503keb3062u" path="res://entities/enemies/states/jump_state.gd" id="12_tvhfh"]
-[ext_resource type="Script" uid="uid://brsq1cmtrtshq" path="res://systems/components/player_sensor.gd" id="16_5pum5"]
-[ext_resource type="Script" uid="uid://be43a7q4k86aa" path="res://entities/enemies/decision_engines/decision_engine_attack.gd" id="16_ukwh2"]
 [ext_resource type="Script" uid="uid://byx6b7oeoo6oh" path="res://player/jump_blocker.gd" id="18_t7tha"]
+[ext_resource type="Script" uid="uid://bymg7s440aae" path="res://entities/enemies/decision_engines/decision_engine_basic.gd" id="19_t7tha"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4bqqs"]
 size = Vector2(14, 9)
@@ -191,20 +190,25 @@ _data = {
 &"walk_up": SubResource("Animation_walk_up")
 }
 
+[sub_resource type="Curve" id="Curve_520c8"]
+_data = [Vector2(0.016077168, 0.001760602), 0.0, 0.0, 0, 0, Vector2(0.5176849, 0.9911972), 0.0, 0.0, 0, 0, Vector2(1, 0.001760602), 0.0, 0.0, 0, 0]
+point_count = 3
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_6h86f"]
 radius = 8.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0lrwo"]
 radius = 7.0
 
-[node name="Slime" type="CharacterBody2D" unique_id=1996041847 node_paths=PackedStringArray("attack_area", "collision", "damage_area", "decision_engine", "sprite", "state_machine", "navigation", "animation", "health", "jump", "movement") groups=["enemies"]]
+[node name="Slime" type="CharacterBody2D" unique_id=1996041847 node_paths=PackedStringArray("attack_area", "collision", "damage_area", "decision_engine", "hazard_area", "sprite", "state_machine", "navigation", "animation", "health", "jump", "movement") groups=["enemies"]]
 collision_layer = 64
 collision_mask = 3
 script = ExtResource("1_lcogp")
 attack_area = NodePath("HazardArea")
 collision = NodePath("CollisionShape2D")
 damage_area = NodePath("DamageArea")
-decision_engine = NodePath("DecisionEngineAttack")
+decision_engine = NodePath("DecisionEngineBasic")
+hazard_area = NodePath("HazardArea")
 sprite = NodePath("Sprite2D")
 state_machine = NodePath("StateMachine")
 navigation = NodePath("NavigationAgent2D")
@@ -248,6 +252,7 @@ speed = 35.0
 
 [node name="JumpComponent" type="Node" parent="Components" unique_id=2042509210 node_paths=PackedStringArray("raycast_2d")]
 script = ExtResource("6_q4wxk")
+jump_curve = SubResource("Curve_520c8")
 jump_duration = 1.0
 raycast_2d = NodePath("../../JumpBlocker")
 metadata/_custom_type_script = "uid://blposikaswy0u"
@@ -257,6 +262,7 @@ path_postprocessing = 1
 
 [node name="StateLabel" type="Label" parent="." unique_id=1116733381]
 unique_name_in_owner = true
+visible = false
 z_index = 10
 offset_left = -24.0
 offset_top = -21.0
@@ -319,26 +325,6 @@ script = ExtResource("3_r5c7m")
 shape = SubResource("CircleShape2D_0lrwo")
 debug_color = Color(0.7529412, 0.45882353, 0, 0)
 
-[node name="PlayerSensor" type="Area2D" parent="." unique_id=1345294903]
-collision_layer = 0
-collision_mask = 32
-script = ExtResource("16_5pum5")
-metadata/_custom_type_script = "uid://brsq1cmtrtshq"
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="PlayerSensor" unique_id=1614396633]
-polygon = PackedVector2Array(0, 0, -40, 70, 0, 100, 40, 70)
-
-[node name="DecisionEngineAttack" type="Node" parent="." unique_id=578654880 node_paths=PackedStringArray("entity", "attack", "chase", "death", "hurt", "idle", "walk")]
-script = ExtResource("16_ukwh2")
-entity = NodePath("..")
-attack = NodePath("../StateMachine/Jump")
-chase = NodePath("../StateMachine/Chase")
-death = NodePath("../StateMachine/Death")
-hurt = NodePath("../StateMachine/Hurt")
-idle = NodePath("../StateMachine/Idle")
-walk = NodePath("../StateMachine/Walk")
-metadata/_custom_type_script = "uid://be43a7q4k86aa"
-
 [node name="JumpBlocker" type="RayCast2D" parent="." unique_id=1061712879]
 target_position = Vector2(0, 10)
 script = ExtResource("18_t7tha")
@@ -346,6 +332,7 @@ metadata/_custom_type_script = "uid://byx6b7oeoo6oh"
 
 [node name="Label" type="Label" parent="." unique_id=311193273]
 unique_name_in_owner = true
+visible = false
 offset_left = -20.0
 offset_top = -35.0
 offset_right = 20.0
@@ -355,3 +342,13 @@ theme_override_font_sizes/font_size = 6
 text = "teste
 teste"
 horizontal_alignment = 1
+
+[node name="DecisionEngineBasic" type="Node" parent="." unique_id=969932858 node_paths=PackedStringArray("entity", "chase", "death", "hurt", "idle", "walk")]
+script = ExtResource("19_t7tha")
+entity = NodePath("..")
+chase = NodePath("../StateMachine/Chase")
+death = NodePath("../StateMachine/Death")
+hurt = NodePath("../StateMachine/Hurt")
+idle = NodePath("../StateMachine/Idle")
+walk = NodePath("../StateMachine/Walk")
+metadata/_custom_type_script = "uid://bymg7s440aae"

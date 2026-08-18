@@ -20,6 +20,7 @@
 [ext_resource type="Script" uid="uid://jn6ptg2mpq5h" path="res://systems/combat/damage_area.gd" id="16_qvovf"]
 [ext_resource type="Script" uid="uid://brsq1cmtrtshq" path="res://systems/components/player_sensor.gd" id="17_im8pi"]
 [ext_resource type="Script" uid="uid://byx6b7oeoo6oh" path="res://player/jump_blocker.gd" id="19_cp32o"]
+[ext_resource type="Script" uid="uid://b2vrewhpsoywj" path="res://entities/bosses/states/spawn_slimes_state.gd" id="20_spawn_slimes"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4bqqs"]
 size = Vector2(36, 15)
@@ -286,7 +287,7 @@ _data = {
 }
 
 [sub_resource type="Curve" id="Curve_im8pi"]
-_data = [Vector2(0, 0), 0.0, -0.11838592, 0, 0, Vector2(0.31993568, 0.001760602), 0.0, 0.0, 0, 0, Vector2(0.32958198, 0.27288735), 2.855007, 2.855007, 0, 0, Vector2(0.45337617, 1), 0.6198507, 0.6198507, 0, 0, Vector2(0.681672, 0.001760602), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+_data = [Vector2(0, 0), 0.0, -0.11838592, 0, 0, Vector2(0.2829582, 0), 0.0, 0.0, 0, 0, Vector2(0.32958198, 0.27288735), 2.855007, 2.855007, 0, 0, Vector2(0.45337617, 1), 0.6198507, 0.6198507, 0, 0, Vector2(0.681672, 0.001760602), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 6
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5draq"]
@@ -396,6 +397,10 @@ metadata/_custom_type_script = "uid://c1lvj5x2olppe"
 script = ExtResource("15_8lk7y")
 metadata/_custom_type_script = "uid://qxkl4r6wo8iw"
 
+[node name="SpawnSlimes" type="Node" parent="StateMachine" unique_id=175057868]
+script = ExtResource("20_spawn_slimes")
+metadata/_custom_type_script = "uid://b2vrewhpsoywj"
+
 [node name="HazardArea" type="Area2D" parent="." unique_id=1411495225]
 position = Vector2(0, 9)
 script = ExtResource("15_fk0i0")
@@ -435,13 +440,14 @@ text = "teste
 teste"
 horizontal_alignment = 1
 
-[node name="DecisionEngineBossSlime" type="Node" parent="." unique_id=543990865 node_paths=PackedStringArray("entity", "death", "hurt", "idle", "jump", "walk")]
+[node name="DecisionEngineBossSlime" type="Node" parent="." unique_id=543990865 node_paths=PackedStringArray("entity", "death", "hurt", "idle", "jump", "spawn", "walk")]
 script = ExtResource("16_im8pi")
 entity = NodePath("..")
 death = NodePath("../StateMachine/Death")
 hurt = NodePath("../StateMachine/Hurt")
 idle = NodePath("../StateMachine/Idle")
 jump = NodePath("../StateMachine/Jump")
+spawn = NodePath("../StateMachine/SpawnSlimes")
 walk = NodePath("../StateMachine/Walk")
 metadata/_custom_type_script = "uid://bf6q1amoahgfg"
 

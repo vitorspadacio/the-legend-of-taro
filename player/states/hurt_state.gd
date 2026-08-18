@@ -2,7 +2,7 @@
 class_name PlayerHurtState extends PlayerState
 
 @export var force := 75.0
-@export var invulnerable_duration := 0.2
+@export var invulnerable_duration := 1.0
 @export var sound_effect: AudioStream
 
 var buffered_attack := false
