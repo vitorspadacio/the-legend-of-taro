@@ -10,13 +10,8 @@ extends DecisionEngine
 @export var spawn: EnemyState
 @export var walk: EnemyState
 
-enum PhaseTransition {NONE, JUMP_TO_CENTER, HURT, WAIT, SPAWN}
-
 var player: Player
-
-var phase_transition := PhaseTransition.NONE
-var transition_wait_time := 0.0
-var transition_jump_started := false
+var phase_transition := StateSequence.new()
 
 var jump_cooldown := 5.0
 var jump_timer := 0.0
@@ -37,14 +32,13 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	jump_timer -= delta
 	spawn_timer -= delta
-	if phase_transition == PhaseTransition.WAIT:
-		transition_wait_time -= delta
+	phase_transition.process(delta)
 
 func decide() -> EnemyState:
 	player = get_tree().get_first_node_in_group("player")
 	blackboard.target = player
 
-	if phase_transition != PhaseTransition.NONE:
+	if phase_transition.is_running():
 		return _advance_phase_transition()
 
 	if blackboard.boss_phase == blackboard.BossPhase.Phase1:
@@ -81,47 +75,22 @@ func phase_1() -> EnemyState:
 	return idle
 
 func _start_phase_transition() -> void:
-	phase_transition = PhaseTransition.JUMP_TO_CENTER
-	transition_jump_started = false
 	jump.target = marker_center.global_position
+	var transition_states: Array[EnemyState] = [jump, hurt, idle, spawn]
+	var transition_delays: Array[float] = [0.0, 0.0, 1.0, 0.0]
+	phase_transition.start(transition_states, transition_delays)
 
 func _advance_phase_transition() -> EnemyState:
-	match phase_transition:
-		PhaseTransition.JUMP_TO_CENTER:
-			if not blackboard.can_decide:
-				return null
-			if not transition_jump_started:
-				# Finish a pre-existing jump before starting the transition jump.
-				if entity.state_machine.current_state == jump:
-					return idle
-				transition_jump_started = true
-				return jump
-			phase_transition = PhaseTransition.HURT
-			return hurt
+	var next_state: EnemyState = phase_transition.advance(
+		blackboard, entity.state_machine.current_state
+	)
 
-		PhaseTransition.HURT:
-			if not blackboard.can_decide:
-				return null
-			phase_transition = PhaseTransition.WAIT
-			transition_wait_time = 1.0
-			blackboard.can_decide = false
-			return idle
+	if phase_transition.is_finished():
+		blackboard.boss_phase = blackboard.BossPhase.Phase2
+		spawn_timer = spawn_cooldown
+		return walk
 
-		PhaseTransition.WAIT:
-			if transition_wait_time > 0.0:
-				return null
-			phase_transition = PhaseTransition.SPAWN
-			return spawn
-
-		PhaseTransition.SPAWN:
-			if not blackboard.can_decide:
-				return null
-			blackboard.boss_phase = blackboard.BossPhase.Phase2
-			spawn_timer = spawn_cooldown
-			phase_transition = PhaseTransition.NONE
-			return walk
-
-	return null
+	return next_state
 
 func phase_2() -> EnemyState:
 	if blackboard.damage_source:
