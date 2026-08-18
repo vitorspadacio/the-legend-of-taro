@@ -4898,6 +4898,14 @@ position = Vector2(212, 144)
 unique_name_in_owner = true
 position = Vector2(134, 180)
 
+[node name="MarkerLeft" type="Marker2D" parent="BossArena" unique_id=1768709616]
+unique_name_in_owner = true
+position = Vector2(132, 109)
+
+[node name="MarkerRight" type="Marker2D" parent="BossArena" unique_id=2140931816]
+unique_name_in_owner = true
+position = Vector2(299, 189)
+
 [node name="MarkerDown" type="Marker2D" parent="BossArena" unique_id=992475384]
 unique_name_in_owner = true
 position = Vector2(294, 111)

@@ -21,18 +21,21 @@ var spawn_timer := 0.0
 @onready var marker_center: Marker2D = get_parent().get_node("%MarkerCenter")
 @onready var marker_up: Marker2D = get_parent().get_node("%MarkerUp")
 @onready var marker_down: Marker2D = get_parent().get_node("%MarkerDown")
+@onready var marker_left: Marker2D = get_parent().get_node("%MarkerLeft")
+@onready var marker_right: Marker2D = get_parent().get_node("%MarkerRight")
 
 func _ready() -> void:
 	await super()
-	player = get_tree().get_first_node_in_group("player")
 	blackboard.boss_phase = blackboard.BossPhase.Phase1
-	blackboard.target = player
 
 func _process(delta: float) -> void:
 	jump_timer -= delta
 	spawn_timer -= delta
 
 func decide() -> EnemyState:
+	player = get_tree().get_first_node_in_group("player")
+	blackboard.target = player
+
 	if blackboard.boss_phase == blackboard.BossPhase.Phase1:
 		return phase_1()
 	else:
@@ -57,9 +60,14 @@ func phase_1() -> EnemyState:
 		var markers: Array[Marker2D] = [
 			marker_center,
 			marker_up,
-			marker_down
+			marker_down,
+			marker_left,
+			marker_right
 		]
-		jump.target = markers.pick_random().global_position
+		var a = markers.pick_random()
+		jump.target = a.global_position
+		print(a.global_position)
+		print(jump.target)
 		return jump
 
 	return idle

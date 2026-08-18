@@ -6,8 +6,7 @@ var random_direction: Vector2
 
 func enter() -> void:
 	# target = enemy.blackboard.target.global_position
-	random_direction = Vector2.from_angle(randf() * TAU)
-
+	# random_direction = Vector2.from_angle(randf() * TAU)
 	enemy.jump.jump()
 	enemy.animation.play_no_direction("jump")
 	enemy.animation.animation_player.pause()
@@ -36,7 +35,7 @@ func physics_process(delta: float) -> EnemyState:
 	return null
 
 func get_target_position() -> void:
-	var jump_target := target + random_direction * 24.0
+	var jump_target := target
 
 	enemy.movement.update_direction(
 		enemy.global_position.direction_to(jump_target)
