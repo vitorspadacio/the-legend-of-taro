@@ -1,5 +1,5 @@
 @icon("res://assets/icons/state.svg")
-class_name BossSpawnSlimesState extends EnemyState
+class_name BossSpawnState extends EnemyState
 
 const SLIME_SCENE := preload("res://entities/enemies/slime/slime.tscn")
 

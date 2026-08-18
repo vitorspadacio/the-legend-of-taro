@@ -5,7 +5,7 @@ var target: Vector2
 var random_direction: Vector2
 
 func enter() -> void:
-	target = enemy.blackboard.target.global_position
+	# target = enemy.blackboard.target.global_position
 	random_direction = Vector2.from_angle(randf() * TAU)
 
 	enemy.jump.jump()

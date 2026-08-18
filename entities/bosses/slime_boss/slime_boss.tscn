@@ -16,11 +16,10 @@
 [ext_resource type="Script" uid="uid://c1lvj5x2olppe" path="res://entities/bosses/states/walk_state.gd" id="14_lv11g"]
 [ext_resource type="Script" uid="uid://qxkl4r6wo8iw" path="res://entities/bosses/states/death_state.gd" id="15_8lk7y"]
 [ext_resource type="Script" uid="uid://c5xnwwp1r457n" path="res://systems/combat/hazard_area.gd" id="15_fk0i0"]
-[ext_resource type="Script" uid="uid://bf6q1amoahgfg" path="res://entities/bosses/decision_engines/decision_engine_boss_slime.gd" id="16_im8pi"]
+[ext_resource type="Script" uid="uid://bf6q1amoahgfg" path="res://entities/bosses/decision_boss/decision_boss_slime.gd" id="16_im8pi"]
 [ext_resource type="Script" uid="uid://jn6ptg2mpq5h" path="res://systems/combat/damage_area.gd" id="16_qvovf"]
-[ext_resource type="Script" uid="uid://brsq1cmtrtshq" path="res://systems/components/player_sensor.gd" id="17_im8pi"]
 [ext_resource type="Script" uid="uid://byx6b7oeoo6oh" path="res://player/jump_blocker.gd" id="19_cp32o"]
-[ext_resource type="Script" uid="uid://b2vrewhpsoywj" path="res://entities/bosses/states/spawn_slimes_state.gd" id="20_spawn_slimes"]
+[ext_resource type="Script" uid="uid://b2vrewhpsoywj" path="res://entities/bosses/states/spawn_state.gd" id="20_spawn_slimes"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4bqqs"]
 size = Vector2(36, 15)
@@ -303,7 +302,7 @@ script = ExtResource("1_kpw31")
 attack_area = NodePath("HazardArea")
 collision = NodePath("CollisionShape2D")
 damage_area = NodePath("DamageArea")
-decision_engine = NodePath("DecisionEngineBossSlime")
+decision_engine = NodePath("DecisionBossSlime")
 hazard_area = NodePath("HazardArea")
 sprite = NodePath("Sprite2D")
 state_machine = NodePath("StateMachine")
@@ -331,6 +330,15 @@ debug_color = Color(0, 0.6509804, 0.11764706, 0)
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=66015378]
 libraries/ = SubResource("AnimationLibrary_4wdl7")
 
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=464317413]
+path_postprocessing = 1
+
+[node name="JumpBlocker" type="RayCast2D" parent="." unique_id=1061712879]
+position = Vector2(0, 17)
+target_position = Vector2(0, 10)
+script = ExtResource("19_cp32o")
+metadata/_custom_type_script = "uid://byx6b7oeoo6oh"
+
 [node name="Components" type="Node" parent="." unique_id=1647763286]
 
 [node name="AnimationComponent" type="Node" parent="Components" unique_id=112754747 node_paths=PackedStringArray("animation_player")]
@@ -339,7 +347,7 @@ animation_player = NodePath("../../AnimationPlayer")
 
 [node name="HealthComponent" type="Node" parent="Components" unique_id=588899216]
 script = ExtResource("5_567pb")
-max_health = 20
+max_health = 12
 
 [node name="MovementComponent" type="Node" parent="Components" unique_id=1352421591 node_paths=PackedStringArray("body")]
 script = ExtResource("6_qo01b")
@@ -353,21 +361,15 @@ jump_duration = 1.0
 raycast_2d = NodePath("../../JumpBlocker")
 metadata/_custom_type_script = "uid://blposikaswy0u"
 
-[node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=464317413]
-path_postprocessing = 1
-
-[node name="StateLabel" type="Label" parent="." unique_id=1116733381]
-unique_name_in_owner = true
-visible = false
-z_index = 10
-offset_left = -24.0
-offset_top = -21.0
-offset_right = 23.0
-offset_bottom = -9.0
-theme_override_font_sizes/font_size = 8
-text = "Teste"
-horizontal_alignment = 1
-vertical_alignment = 1
+[node name="DecisionBossSlime" type="Node" parent="." unique_id=543990865 node_paths=PackedStringArray("entity", "death", "hurt", "idle", "jump", "spawn", "walk")]
+script = ExtResource("16_im8pi")
+entity = NodePath("..")
+death = NodePath("../StateMachine/Death")
+hurt = NodePath("../StateMachine/Hurt")
+idle = NodePath("../StateMachine/Idle")
+jump = NodePath("../StateMachine/Jump")
+spawn = NodePath("../StateMachine/Spawn")
+walk = NodePath("../StateMachine/Walk")
 
 [node name="StateMachine" type="Node" parent="." unique_id=527759229]
 script = ExtResource("8_qqh2v")
@@ -397,7 +399,7 @@ metadata/_custom_type_script = "uid://c1lvj5x2olppe"
 script = ExtResource("15_8lk7y")
 metadata/_custom_type_script = "uid://qxkl4r6wo8iw"
 
-[node name="SpawnSlimes" type="Node" parent="StateMachine" unique_id=175057868]
+[node name="Spawn" type="Node" parent="StateMachine" unique_id=175057868]
 script = ExtResource("20_spawn_slimes")
 metadata/_custom_type_script = "uid://b2vrewhpsoywj"
 
@@ -421,11 +423,18 @@ position = Vector2(0, 10)
 shape = SubResource("CircleShape2D_0lrwo")
 debug_color = Color(0.7529412, 0.45882353, 0, 0)
 
-[node name="JumpBlocker" type="RayCast2D" parent="." unique_id=1061712879]
-position = Vector2(0, 17)
-target_position = Vector2(0, 10)
-script = ExtResource("19_cp32o")
-metadata/_custom_type_script = "uid://byx6b7oeoo6oh"
+[node name="StateLabel" type="Label" parent="." unique_id=1116733381]
+unique_name_in_owner = true
+visible = false
+z_index = 10
+offset_left = -24.0
+offset_top = -21.0
+offset_right = 23.0
+offset_bottom = -9.0
+theme_override_font_sizes/font_size = 8
+text = "Teste"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Label" type="Label" parent="." unique_id=311193273]
 unique_name_in_owner = true
@@ -439,24 +448,3 @@ theme_override_font_sizes/font_size = 6
 text = "teste
 teste"
 horizontal_alignment = 1
-
-[node name="DecisionEngineBossSlime" type="Node" parent="." unique_id=543990865 node_paths=PackedStringArray("entity", "death", "hurt", "idle", "jump", "spawn", "walk")]
-script = ExtResource("16_im8pi")
-entity = NodePath("..")
-death = NodePath("../StateMachine/Death")
-hurt = NodePath("../StateMachine/Hurt")
-idle = NodePath("../StateMachine/Idle")
-jump = NodePath("../StateMachine/Jump")
-spawn = NodePath("../StateMachine/SpawnSlimes")
-walk = NodePath("../StateMachine/Walk")
-metadata/_custom_type_script = "uid://bf6q1amoahgfg"
-
-[node name="PlayerSensor" type="Area2D" parent="." unique_id=1901502286]
-visible = false
-collision_layer = 0
-collision_mask = 32
-script = ExtResource("17_im8pi")
-metadata/_custom_type_script = "uid://brsq1cmtrtshq"
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="PlayerSensor" unique_id=299889848]
-polygon = PackedVector2Array(-4, -142, -163, -24, 1, 135, 200, -17)
