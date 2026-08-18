@@ -20,9 +20,9 @@ var direction_name: String:
 var facing_direction := Vector2.DOWN
 var lock_direction := false
 
-func move(delta: float = 0.5) -> void:
+func move(multiplier: float = 1.0, delta: float = 0.5) -> void:
 	update_direction()
-	actual_speed = speed
+	actual_speed = speed * multiplier
 	body.velocity = body.velocity.move_toward(
 		direction * actual_speed,
 		acceleration * delta)

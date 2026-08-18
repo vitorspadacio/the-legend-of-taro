@@ -14,6 +14,7 @@
 [ext_resource type="Script" uid="uid://cas36bw32fqng" path="res://entities/bosses/states/hurt_state.gd" id="12_5draq"]
 [ext_resource type="Script" uid="uid://6kltlbyjb46s" path="res://entities/bosses/states/jump_state.gd" id="12_im8pi"]
 [ext_resource type="Script" uid="uid://c1lvj5x2olppe" path="res://entities/bosses/states/walk_state.gd" id="14_lv11g"]
+[ext_resource type="Script" uid="uid://qxkl4r6wo8iw" path="res://entities/bosses/states/death_state.gd" id="15_8lk7y"]
 [ext_resource type="Script" uid="uid://c5xnwwp1r457n" path="res://systems/combat/hazard_area.gd" id="15_fk0i0"]
 [ext_resource type="Script" uid="uid://bf6q1amoahgfg" path="res://entities/bosses/decision_engines/decision_engine_boss_slime.gd" id="16_im8pi"]
 [ext_resource type="Script" uid="uid://jn6ptg2mpq5h" path="res://systems/combat/damage_area.gd" id="16_qvovf"]
@@ -60,6 +61,95 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [5]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite2D:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Sprite2D:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_lv11g"]
+resource_name = "death"
+length = 1.4
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.3003093, 0.4, 0.4015426, 0.5, 0.6012333, 0.7, 1.0016768, 1.0988011, 1.1988012, 1.3025756),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 1, 4, 2, 1, 2, 3, 3, 1, 2, 3]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:texture")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("4_gkurn")]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:hframes")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [5]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite2D:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1.0016768, 1.101223),
+"transitions": PackedFloat32Array(1, 1.5, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0.5, 0.5), Vector2(0.35, 0.35)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Sprite2D:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 1.0031228, 1.1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 11), Vector2(0, 14)]
 }
 
 [sub_resource type="Animation" id="Animation_leoyn"]
@@ -189,6 +279,7 @@ tracks/2/keys = {
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_4wdl7"]
 _data = {
 &"RESET": SubResource("Animation_reset"),
+&"death": SubResource("Animation_lv11g"),
 &"hurt": SubResource("Animation_leoyn"),
 &"idle": SubResource("Animation_idle_down"),
 &"jump": SubResource("Animation_o0mx5")
@@ -247,7 +338,7 @@ animation_player = NodePath("../../AnimationPlayer")
 
 [node name="HealthComponent" type="Node" parent="Components" unique_id=588899216]
 script = ExtResource("5_567pb")
-max_health = 5
+max_health = 20
 
 [node name="MovementComponent" type="Node" parent="Components" unique_id=1352421591 node_paths=PackedStringArray("body")]
 script = ExtResource("6_qo01b")
@@ -301,6 +392,10 @@ metadata/_custom_type_script = "uid://6kltlbyjb46s"
 script = ExtResource("14_lv11g")
 metadata/_custom_type_script = "uid://c1lvj5x2olppe"
 
+[node name="Death" type="Node" parent="StateMachine" unique_id=2134786408]
+script = ExtResource("15_8lk7y")
+metadata/_custom_type_script = "uid://qxkl4r6wo8iw"
+
 [node name="HazardArea" type="Area2D" parent="." unique_id=1411495225]
 position = Vector2(0, 9)
 script = ExtResource("15_fk0i0")
@@ -340,9 +435,10 @@ text = "teste
 teste"
 horizontal_alignment = 1
 
-[node name="DecisionEngineBossSlime" type="Node" parent="." unique_id=543990865 node_paths=PackedStringArray("entity", "hurt", "idle", "jump", "walk")]
+[node name="DecisionEngineBossSlime" type="Node" parent="." unique_id=543990865 node_paths=PackedStringArray("entity", "death", "hurt", "idle", "jump", "walk")]
 script = ExtResource("16_im8pi")
 entity = NodePath("..")
+death = NodePath("../StateMachine/Death")
 hurt = NodePath("../StateMachine/Hurt")
 idle = NodePath("../StateMachine/Idle")
 jump = NodePath("../StateMachine/Jump")

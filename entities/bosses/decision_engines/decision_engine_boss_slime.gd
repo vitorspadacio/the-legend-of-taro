@@ -3,6 +3,7 @@ extends DecisionEngine
 
 @export var entity: Enemy
 
+@export var death: BossDeathState
 @export var hurt: BossHurtState
 @export var idle: BossIdleState
 @export var jump: BossJumpState
@@ -20,7 +21,7 @@ func _process(delta: float) -> void:
 func decide() -> EnemyState:
 	if blackboard.damage_source:
 		if entity.health.current_health <= 0:
-			return hurt
+			return death
 		else:
 			return hurt
 
@@ -28,7 +29,7 @@ func decide() -> EnemyState:
 		return null
 
 	if timer <= 0 and blackboard.target:
-		timer = cooldown
+		timer = randf_range(3 - cooldown, cooldown)
 		return jump
 	# if not blackboard.can_decide:
 	# 	return null
@@ -42,4 +43,4 @@ func decide() -> EnemyState:
 	# 		return idle
 	# 	PatrolState.WALK:
 	# 		return walk
-	return walk
+	return idle
