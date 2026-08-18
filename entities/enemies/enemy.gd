@@ -6,6 +6,7 @@ signal damage_taken(attack_area: AttackArea)
 @export var collision: CollisionShape2D
 @export var damage_area: DamageArea
 @export var decision_engine: DecisionEngine
+@export var hazard_area: HazardArea
 @export var sprite: Sprite2D
 @export var state_machine: StateMachine
 @export var navigation: NavigationAgent2D

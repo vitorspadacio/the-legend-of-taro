@@ -12,6 +12,7 @@ func enter() -> void:
 	enemy.animation.play_no_direction("jump")
 	enemy.animation.animation_player.pause()
 	enemy.collision.disabled = true
+	enemy.hazard_area.monitorable = false
 	enemy.damage_area.monitorable = false
 	enemy.blackboard.can_decide = false
 	on_cooldown = true
@@ -19,6 +20,8 @@ func enter() -> void:
 
 func exit() -> void:
 	target = Vector2.ZERO
+	enemy.hazard_area.monitorable = true
+	enemy.damage_area.monitorable = true
 
 func physics_process(delta: float) -> EnemyState:
 	if enemy.jump.can_jump():
