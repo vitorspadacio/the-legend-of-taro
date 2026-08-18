@@ -10,7 +10,13 @@ extends DecisionEngine
 @export var spawn: EnemyState
 @export var walk: EnemyState
 
+enum PhaseTransition {NONE, JUMP_TO_CENTER, HURT, WAIT, SPAWN}
+
 var player: Player
+
+var phase_transition := PhaseTransition.NONE
+var transition_wait_time := 0.0
+var transition_jump_started := false
 
 var jump_cooldown := 5.0
 var jump_timer := 0.0
@@ -31,10 +37,15 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	jump_timer -= delta
 	spawn_timer -= delta
+	if phase_transition == PhaseTransition.WAIT:
+		transition_wait_time -= delta
 
 func decide() -> EnemyState:
 	player = get_tree().get_first_node_in_group("player")
 	blackboard.target = player
+
+	if phase_transition != PhaseTransition.NONE:
+		return _advance_phase_transition()
 
 	if blackboard.boss_phase == blackboard.BossPhase.Phase1:
 		return phase_1()
@@ -43,12 +54,9 @@ func decide() -> EnemyState:
 
 func phase_1() -> EnemyState:
 	if blackboard.damage_source:
-		if entity.health.current_health <= 6:
-			print("entrou fase 2")
-			blackboard.boss_phase = blackboard.BossPhase.Phase2
-			jump.target = marker_center.global_position
-			blackboard.damage_source = null
-			return jump
+		if entity.health.current_health <= entity.health.max_health * 0.5:
+			_start_phase_transition()
+			return _advance_phase_transition()
 		return hurt
 
 	if not blackboard.can_decide:
@@ -57,20 +65,63 @@ func phase_1() -> EnemyState:
 	if jump_timer <= 0 and blackboard.target:
 		jump_timer = randf_range(3 - jump_cooldown, jump_cooldown)
 		blackboard.last_attack = "jump"
-		var markers: Array[Marker2D] = [
-			marker_center,
-			marker_up,
-			marker_down,
-			marker_left,
-			marker_right
-		]
-		var a = markers.pick_random()
-		jump.target = a.global_position
-		print(a.global_position)
-		print(jump.target)
+		if randf() < 0.5:
+			jump.target = blackboard.target.global_position
+		else:
+			var markers: Array[Marker2D] = [
+				marker_center,
+				marker_up,
+				marker_down,
+				marker_left,
+				marker_right
+			]
+			jump.target = markers.pick_random().global_position
 		return jump
 
 	return idle
+
+func _start_phase_transition() -> void:
+	phase_transition = PhaseTransition.JUMP_TO_CENTER
+	transition_jump_started = false
+	jump.target = marker_center.global_position
+
+func _advance_phase_transition() -> EnemyState:
+	match phase_transition:
+		PhaseTransition.JUMP_TO_CENTER:
+			if not blackboard.can_decide:
+				return null
+			if not transition_jump_started:
+				# Finish a pre-existing jump before starting the transition jump.
+				if entity.state_machine.current_state == jump:
+					return idle
+				transition_jump_started = true
+				return jump
+			phase_transition = PhaseTransition.HURT
+			return hurt
+
+		PhaseTransition.HURT:
+			if not blackboard.can_decide:
+				return null
+			phase_transition = PhaseTransition.WAIT
+			transition_wait_time = 1.0
+			blackboard.can_decide = false
+			return idle
+
+		PhaseTransition.WAIT:
+			if transition_wait_time > 0.0:
+				return null
+			phase_transition = PhaseTransition.SPAWN
+			return spawn
+
+		PhaseTransition.SPAWN:
+			if not blackboard.can_decide:
+				return null
+			blackboard.boss_phase = blackboard.BossPhase.Phase2
+			spawn_timer = spawn_cooldown
+			phase_transition = PhaseTransition.NONE
+			return walk
+
+	return null
 
 func phase_2() -> EnemyState:
 	if blackboard.damage_source:

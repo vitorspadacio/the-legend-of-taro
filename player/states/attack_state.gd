@@ -29,6 +29,7 @@ func exit() -> void:
 	player.animation.animation_player.clear_queue()
 	player.movement.lock_direction = false
 	player.sprite_attack.visible = false
+	player.attack_area.activate(false)
 	next_state = null
 
 func handle_input(event: InputEvent) -> PlayerState:

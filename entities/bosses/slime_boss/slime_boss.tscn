@@ -347,7 +347,7 @@ animation_player = NodePath("../../AnimationPlayer")
 
 [node name="HealthComponent" type="Node" parent="Components" unique_id=588899216]
 script = ExtResource("5_567pb")
-max_health = 12
+max_health = 20
 
 [node name="MovementComponent" type="Node" parent="Components" unique_id=1352421591 node_paths=PackedStringArray("body")]
 script = ExtResource("6_qo01b")
