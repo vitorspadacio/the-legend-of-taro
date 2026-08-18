@@ -1,13 +1,16 @@
 @icon("res://assets/icons/state.svg")
 class_name BossJumpState extends EnemyJumpState
 
+@export var prepare_duration := 0.2
+@export var jump_end_time := 1.0
+
 var target: Vector2
-var random_direction: Vector2
+var jump_started := false
+var previous_jump_duration := 0.0
 
 func enter() -> void:
-	# target = enemy.blackboard.target.global_position
-	# random_direction = Vector2.from_angle(randf() * TAU)
-	enemy.jump.jump()
+	jump_started = false
+	previous_jump_duration = enemy.jump.jump_duration
 	enemy.animation.play_no_direction("jump")
 	enemy.animation.animation_player.pause()
 	enemy.hazard_area.monitorable = false
@@ -18,30 +21,43 @@ func enter() -> void:
 
 func exit() -> void:
 	target = Vector2.ZERO
+	enemy.jump.jump_duration = previous_jump_duration
 	enemy.hazard_area.monitorable = true
 	enemy.damage_area.monitorable = true
 
 func physics_process(delta: float) -> EnemyState:
-	if enemy.jump.can_jump():
-		get_target_position()
-		enemy.movement.move(3.0, delta)
-		set_jump_frame()
-	elif not enemy.jump.is_jumping:
-		enemy.blackboard.can_decide = true
-
 	timer += delta
+	set_jump_frame()
+
+	if timer < prepare_duration:
+		enemy.velocity = Vector2.ZERO
+	elif timer < jump_end_time:
+		_start_jump()
+
+		if enemy.jump.can_jump():
+			get_target_position()
+			enemy.movement.move(3.0, delta)
+	else:
+		enemy.velocity = Vector2.ZERO
+
 	if timer >= duration:
 		enemy.blackboard.can_decide = true
+
 	return null
 
-func get_target_position() -> void:
-	var jump_target := target
+func _start_jump() -> void:
+	if jump_started:
+		return
 
+	enemy.jump.jump_duration = jump_end_time - prepare_duration
+	enemy.jump.jump()
+	jump_started = true
+
+func get_target_position() -> void:
 	enemy.movement.update_direction(
-		enemy.global_position.direction_to(jump_target)
+		enemy.global_position.direction_to(target)
 	)
 	
 func set_jump_frame() -> void:
-	var progress := clampf(enemy.jump.jump_time / enemy.jump.jump_duration, 0.0, 1.3)
 	enemy.animation.animation_player.seek(
-		progress, true)
+		minf(timer, duration), true)
