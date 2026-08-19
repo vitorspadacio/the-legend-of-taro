@@ -16,3 +16,8 @@ func update_distance_to_target(position: Vector2) -> void:
 		distance_to_target = position.distance_to(target.global_position)
 	else:
 		distance_to_target = -1
+
+func is_in_phase(phase: BossPhase) -> bool:
+	if boss_phase == phase:
+		return true
+	return false
