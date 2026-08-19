@@ -11,8 +11,12 @@ extends DecisionEngine
 @export var spawn: EnemyState
 @export var walk: EnemyState
 
+@export_category("Arena")
+@export var markers: Array[NodePath] = []
+
 var player: Player
 var phase_transition := StateSequence.new()
+var marker_nodes: Array[Marker2D] = []
 
 var jump_cooldown := 5.0
 var jump_timer := 0.0
@@ -20,14 +24,12 @@ var jump_timer := 0.0
 var spawn_cooldown := 20.0
 var spawn_timer := 0.0
 
-@onready var marker_center: Marker2D = get_parent().get_node("%MarkerCenter")
-@onready var marker_down: Marker2D = get_parent().get_node("%MarkerDown")
-@onready var marker_left: Marker2D = get_parent().get_node("%MarkerLeft")
-@onready var marker_right: Marker2D = get_parent().get_node("%MarkerRight")
-@onready var marker_up: Marker2D = get_parent().get_node("%MarkerUp")
-
 func _ready() -> void:
 	await super()
+	for marker_path in markers:
+		var marker := get_node_or_null(marker_path) as Marker2D
+		if marker:
+			marker_nodes.append(marker)
 	blackboard.boss_phase = blackboard.BossPhase.Phase1
 
 func _process(delta: float) -> void:
@@ -75,7 +77,6 @@ func phase_2() -> EnemyState:
 		return null
 	
 	if spawn_timer <= 0 and blackboard.target:
-		blackboard.last_attack = "spawn"
 		spawn_timer = spawn_cooldown
 		return spawn
 
@@ -86,21 +87,14 @@ func phase_2() -> EnemyState:
 
 func _jump() -> EnemyState:
 	jump_timer = randf_range(3 - jump_cooldown, jump_cooldown)
-	if randf() < 0.5:
+	if randf() < 0.5 or marker_nodes.is_empty():
 		jump.target = blackboard.target.global_position
 	else:
-		var markers: Array[Marker2D] = [
-			marker_center,
-			marker_up,
-			marker_down,
-			marker_left,
-			marker_right
-		]
-		jump.target = markers.pick_random().global_position
+		jump.target = marker_nodes.pick_random().global_position
 	return jump
 
 func _start_phase_transition() -> void:
-	jump.target = marker_center.global_position
+	jump.target = marker_nodes.front().global_position if not marker_nodes.is_empty() else entity.global_position
 	var transition_states: Array[EnemyState] = [jump, hurt, idle, spawn]
 	var transition_delays: Array[float] = [0.0, 0.0, 1.0, 0.0]
 	phase_transition.start(transition_states, transition_delays)
