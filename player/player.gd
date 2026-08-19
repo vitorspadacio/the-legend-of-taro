@@ -45,9 +45,9 @@ func update_direction() -> void:
 
 ##### Side Effects #####
 
-func _on_damage_taken(attack_area: AttackArea) -> void:
-	health.damage(attack_area.damage)
-	damage_taken.emit(attack_area)
+func _on_damage_taken(attacker_area: AttackArea) -> void:
+	# health.damage(attacker_area.damage)
+	damage_taken.emit(attacker_area)
 
 func _on_jump_height_changed(height: float) -> void:
 	sprite.position.y = - height

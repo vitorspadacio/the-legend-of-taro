@@ -2,7 +2,7 @@
 class_name PlayerHurtState extends PlayerState
 
 @export var force := 75.0
-@export var invulnerable_duration := 1.0
+@export var invulnerable_duration := 0.75
 @export var sound_effect: AudioStream
 
 var buffered_attack := false
@@ -37,15 +37,8 @@ func process(delta: float) -> PlayerState:
 		return idle
 	return null
 
-func flash_red() -> void:
-	var tween := create_tween()
-	for i in 3:
-		tween.tween_property(player, "modulate", Color.RED, 0.06)
-		tween.tween_property(player, "modulate", Color.WHITE, 0.06)
-
 func _on_hurt(attack_area: AttackArea) -> void:
 	if player.health.current_health == 0:
 		return
 	player.state_machine.change_state(self)
 	direction = (player.global_position - attack_area.global_position).normalized()
-	flash_red()

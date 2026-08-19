@@ -12,11 +12,9 @@ func enter() -> void:
 	enemy.blackboard.target = enemy.blackboard.damage_source.owner
 	enemy.blackboard.damage_source = null
 
-func physics_process(delta: float) -> PlayerState:
-	# enemy.movement.knockback(knockback_force, direction, delta)
+func physics_process(_delta: float) -> PlayerState:
 	return null
-	
+
 func _on_hurt(attack_area: AttackArea) -> void:
-	print("bateu")
 	enemy.blackboard.damage_source = attack_area
 	direction = (enemy.global_position - attack_area.global_position).normalized()

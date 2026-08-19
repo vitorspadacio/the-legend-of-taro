@@ -15,12 +15,6 @@ func _ready() -> void:
 	health.died.connect(destroy)
 	collision_mask = 0
 
-func _physics_process(delta: float) -> void:
-	pass
-	# if push_velocity.length():
-	# 	move_and_collide(push_velocity * delta)
-	# 	push_velocity = push_velocity.move_toward(Vector2.ZERO, 300 * delta)
-
 func take_damage(attack_area: AttackArea):
 	health.damage(attack_area.damage)
 	damage_fx()

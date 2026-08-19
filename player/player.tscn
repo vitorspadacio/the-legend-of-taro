@@ -931,15 +931,15 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xldlm"]
 size = Vector2(14, 6)
 
+[sub_resource type="Curve" id="Curve_5draq"]
+_data = [Vector2(0, 0), 0.0, 1.4, 0, 0, Vector2(0.50643086, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -2.2168498, 0.0, 0, 0]
+point_count = 3
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_s88v2"]
 size = Vector2(19.25, 34)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_xldlm"]
 radius = 7.0
-
-[sub_resource type="Curve" id="Curve_5draq"]
-_data = [Vector2(0, 0), 0.0, 1.4, 0, 0, Vector2(0.50643086, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -2.2168498, 0.0, 0, 0]
-point_count = 3
 
 [node name="Player" type="CharacterBody2D" unique_id=870341819 node_paths=PackedStringArray("attack_area", "collision", "damage_area", "sprite", "sprite_attack", "state_machine", "raycast_2d", "animation", "health", "input", "jump", "movement") groups=["player"]]
 collision_layer = 32
@@ -1004,6 +1004,33 @@ collision_mask = 3
 hit_from_inside = true
 script = ExtResource("4_65viv")
 
+[node name="Components" type="Node" parent="." unique_id=405113486]
+
+[node name="AnimationComponent" type="Node" parent="Components" unique_id=1730349623 node_paths=PackedStringArray("animation_player")]
+script = ExtResource("14_kb6p2")
+animation_player = NodePath("../../AnimationPlayer")
+metadata/_custom_type_script = "uid://bavckwsbwuxsc"
+
+[node name="HealthComponent" type="Node" parent="Components" unique_id=856802278]
+script = ExtResource("14_32hag")
+max_health = 8
+metadata/_custom_type_script = "uid://dyl8o8lbuap7r"
+
+[node name="InputComponent" type="Node" parent="Components" unique_id=1587776310]
+script = ExtResource("10_8t03j")
+metadata/_custom_type_script = "uid://da2r7gn05a3nq"
+
+[node name="JumpComponent" type="Node" parent="Components" unique_id=1267836588 node_paths=PackedStringArray("raycast_2d")]
+script = ExtResource("17_e7oew")
+jump_curve = SubResource("Curve_5draq")
+raycast_2d = NodePath("../../RayCast2D")
+metadata/_custom_type_script = "uid://blposikaswy0u"
+
+[node name="MovementComponent" type="Node" parent="Components" unique_id=1166935362 node_paths=PackedStringArray("body")]
+script = ExtResource("13_yllr7")
+body = NodePath("../..")
+metadata/_custom_type_script = "uid://1t060yt1ejl"
+
 [node name="StateMachine" type="Node" parent="." unique_id=1441566676]
 script = ExtResource("4_hg6s5")
 metadata/_custom_type_script = "uid://ng48piqixoww"
@@ -1066,30 +1093,3 @@ script = ExtResource("11_2ieo8")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DamageArea" unique_id=1485156665]
 shape = SubResource("CircleShape2D_xldlm")
 debug_color = Color(0.7529412, 0.45882353, 0, 0)
-
-[node name="Components" type="Node" parent="." unique_id=405113486]
-
-[node name="AnimationComponent" type="Node" parent="Components" unique_id=1730349623 node_paths=PackedStringArray("animation_player")]
-script = ExtResource("14_kb6p2")
-animation_player = NodePath("../../AnimationPlayer")
-metadata/_custom_type_script = "uid://bavckwsbwuxsc"
-
-[node name="HealthComponent" type="Node" parent="Components" unique_id=856802278]
-script = ExtResource("14_32hag")
-max_health = 8
-metadata/_custom_type_script = "uid://dyl8o8lbuap7r"
-
-[node name="InputComponent" type="Node" parent="Components" unique_id=1587776310]
-script = ExtResource("10_8t03j")
-metadata/_custom_type_script = "uid://da2r7gn05a3nq"
-
-[node name="JumpComponent" type="Node" parent="Components" unique_id=1267836588 node_paths=PackedStringArray("raycast_2d")]
-script = ExtResource("17_e7oew")
-jump_curve = SubResource("Curve_5draq")
-raycast_2d = NodePath("../../RayCast2D")
-metadata/_custom_type_script = "uid://blposikaswy0u"
-
-[node name="MovementComponent" type="Node" parent="Components" unique_id=1166935362 node_paths=PackedStringArray("body")]
-script = ExtResource("13_yllr7")
-body = NodePath("../..")
-metadata/_custom_type_script = "uid://1t060yt1ejl"
