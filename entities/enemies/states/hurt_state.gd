@@ -3,7 +3,7 @@ class_name EnemyHurtState extends EnemyState
 
 @export var knockback_force := 30.0
 @export var invulnerable_duration := 0.2
-@export var sound_effect: AudioStream
+@export var sound: AudioStream
 
 var direction := Vector2.ZERO
 var time: float = 0.0
@@ -12,6 +12,7 @@ func init() -> void:
 	enemy.damage_taken.connect(_on_hurt)
 	
 func enter() -> void:
+	Audio.play_spatial_sound(sound, enemy.global_position)
 	enemy.animation.play("idle")
 	time = enemy.animation.animation_player.current_animation_length + 0.15
 	enemy.damage_area.make_invulnerable(time + invulnerable_duration)

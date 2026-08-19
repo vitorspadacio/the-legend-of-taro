@@ -5,6 +5,7 @@ func init() -> void:
 	enemy.damage_taken.connect(_on_hurt)
 
 func enter() -> void:
+	Audio.play_spatial_sound(sound, enemy.global_position)
 	enemy.animation.play_no_direction("hurt")
 	time = enemy.animation.animation_player.current_animation_length + 0.15
 	enemy.damage_area.make_invulnerable(time + invulnerable_duration)

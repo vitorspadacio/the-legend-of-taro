@@ -11,6 +11,7 @@
 [ext_resource type="Script" uid="uid://de137lhvib8k5" path="res://entities/enemies/states/chase_state.gd" id="8_xhwlm"]
 [ext_resource type="Script" uid="uid://cfu3rte1qqlpw" path="res://entities/enemies/states/hurt_state.gd" id="9_jbcmj"]
 [ext_resource type="Script" uid="uid://bsns8tu52ba2t" path="res://entities/enemies/states/death_state.gd" id="10_jsg3h"]
+[ext_resource type="AudioStream" uid="uid://be5v3f6qk7fsv" path="res://assets/sounds/impact2.wav" id="11_i2f3a"]
 [ext_resource type="Script" uid="uid://c5xnwwp1r457n" path="res://systems/combat/hazard_area.gd" id="11_r1mva"]
 [ext_resource type="Script" uid="uid://cs2ysdbdc7t4j" path="res://entities/enemies/states/attack_state.gd" id="11_wswv3"]
 [ext_resource type="Script" uid="uid://jn6ptg2mpq5h" path="res://systems/combat/damage_area.gd" id="12_02ecy"]
@@ -282,6 +283,7 @@ metadata/_custom_type_script = "uid://de137lhvib8k5"
 [node name="Hurt" type="Node" parent="StateMachine" unique_id=916299362]
 unique_name_in_owner = true
 script = ExtResource("9_jbcmj")
+sound = ExtResource("11_i2f3a")
 metadata/_custom_type_script = "uid://cfu3rte1qqlpw"
 
 [node name="Attack" type="Node" parent="StateMachine" unique_id=218755323]

@@ -9,13 +9,13 @@ const WEAPONS := {
 @export var cooldown := 0.001
 @export var sound: AudioStream
 
-var next_attack_time := 0.0
 var selected_weapon := WEAPONS.katana
 
 func init() -> void:
 	player.sprite_attack.visible = false
 	
 func enter() -> void:
+	Audio.play_spatial_sound(sound, player.global_position)
 	player.animation.play("attack")
 	player.animation.animation_player.animation_finished.connect(_on_animation_finished)
 	player.sprite_attack.texture = load(selected_weapon)

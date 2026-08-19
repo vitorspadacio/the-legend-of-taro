@@ -15,7 +15,9 @@
 [ext_resource type="Script" uid="uid://6kltlbyjb46s" path="res://entities/bosses/states/jump_state.gd" id="12_im8pi"]
 [ext_resource type="Script" uid="uid://c1lvj5x2olppe" path="res://entities/bosses/states/walk_state.gd" id="14_lv11g"]
 [ext_resource type="Script" uid="uid://qxkl4r6wo8iw" path="res://entities/bosses/states/death_state.gd" id="15_8lk7y"]
+[ext_resource type="AudioStream" uid="uid://mp2745pgccwy" path="res://impact.wav" id="15_e5sco"]
 [ext_resource type="Script" uid="uid://c5xnwwp1r457n" path="res://systems/combat/hazard_area.gd" id="15_fk0i0"]
+[ext_resource type="AudioStream" uid="uid://bj5ljykj4cn3h" path="res://assets/sounds/jump2.wav" id="16_520c8"]
 [ext_resource type="Script" uid="uid://bf6q1amoahgfg" path="res://entities/bosses/decision_boss/decision_boss_slime.gd" id="16_im8pi"]
 [ext_resource type="Script" uid="uid://jn6ptg2mpq5h" path="res://systems/combat/damage_area.gd" id="16_qvovf"]
 [ext_resource type="Script" uid="uid://byx6b7oeoo6oh" path="res://player/jump_blocker.gd" id="19_cp32o"]
@@ -382,10 +384,12 @@ metadata/_custom_type_script = "uid://cjbw5vvyog3r3"
 
 [node name="Hurt" type="Node" parent="StateMachine" unique_id=2073553452]
 script = ExtResource("12_5draq")
+sound = ExtResource("15_e5sco")
 metadata/_custom_type_script = "uid://cas36bw32fqng"
 
 [node name="Jump" type="Node" parent="StateMachine" unique_id=1773458284]
 script = ExtResource("12_im8pi")
+sound = ExtResource("16_520c8")
 attack_range = 50
 cooldown = 15.0
 duration = 1.3

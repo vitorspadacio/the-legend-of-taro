@@ -1,7 +1,10 @@
 @icon("res://assets/icons/state.svg")
 class_name PlayerJumpState extends PlayerState
 
+@export var sound: AudioStream
+
 func enter() -> void:
+	Audio.play_spatial_sound(sound, player.global_position)
 	player.jump.jump()
 	player.animation.play("jump")
 	player.animation.animation_player.pause()
@@ -18,7 +21,7 @@ func handle_input(_event: InputEvent) -> PlayerState:
 func physics_process(delta: float) -> PlayerState:
 	if player.jump.can_jump():
 		player.update_direction()
-		player.movement.move(delta)
+		player.movement.move(1.0, delta)
 		set_jump_frame()
 	if not player.jump.is_jumping:
 		return idle

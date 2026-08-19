@@ -12,6 +12,7 @@
 [ext_resource type="Script" uid="uid://c5xnwwp1r457n" path="res://systems/combat/hazard_area.gd" id="7_ir0ep"]
 [ext_resource type="Script" uid="uid://bsns8tu52ba2t" path="res://entities/enemies/states/death_state.gd" id="8_h3twn"]
 [ext_resource type="Script" uid="uid://bavckwsbwuxsc" path="res://systems/components/animation.gd" id="8_ir0ep"]
+[ext_resource type="AudioStream" uid="uid://be5v3f6qk7fsv" path="res://assets/sounds/impact2.wav" id="8_po64l"]
 [ext_resource type="Script" uid="uid://ckurxh5y1ibya" path="res://entities/enemies/states/spin_attack_state.gd" id="9_h3twn"]
 [ext_resource type="Script" uid="uid://da2r7gn05a3nq" path="res://systems/components/input.gd" id="9_hqf6w"]
 [ext_resource type="Script" uid="uid://btbmbpcu6oj5v" path="res://systems/combat/attack_area.gd" id="10_hqf6w"]
@@ -293,6 +294,7 @@ metadata/_custom_type_script = "uid://de137lhvib8k5"
 [node name="Hurt" type="Node" parent="StateMachine" unique_id=1720340288]
 unique_name_in_owner = true
 script = ExtResource("7_hqf6w")
+sound = ExtResource("8_po64l")
 metadata/_custom_type_script = "uid://cfu3rte1qqlpw"
 
 [node name="Death" type="Node" parent="StateMachine" unique_id=302368988]

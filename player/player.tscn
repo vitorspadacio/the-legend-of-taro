@@ -19,7 +19,10 @@
 [ext_resource type="Script" uid="uid://1t060yt1ejl" path="res://systems/components/movement.gd" id="13_yllr7"]
 [ext_resource type="Script" uid="uid://dyl8o8lbuap7r" path="res://systems/components/health.gd" id="14_32hag"]
 [ext_resource type="Script" uid="uid://bavckwsbwuxsc" path="res://systems/components/animation.gd" id="14_kb6p2"]
+[ext_resource type="AudioStream" uid="uid://cf66lbm3wmhtg" path="res://assets/sounds/slash.wav" id="16_x7c3f"]
 [ext_resource type="Script" uid="uid://blposikaswy0u" path="res://systems/components/jump.gd" id="17_e7oew"]
+[ext_resource type="AudioStream" uid="uid://xsgt48ghm5no" path="res://impact5.wav" id="18_s7qer"]
+[ext_resource type="AudioStream" uid="uid://cm0n2sms0e2l1" path="res://assets/sounds/jump.wav" id="20_bjvpn"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_kqu6x"]
 load_path = "res://.godot/imported/player.png-1ad27fc2a62fa126eae918723933dd6f.ctex"
@@ -936,7 +939,7 @@ _data = [Vector2(0, 0), 0.0, 1.4, 0, 0, Vector2(0.50643086, 1), 0.0, 0.0, 0, 0, 
 point_count = 3
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_s88v2"]
-size = Vector2(19.25, 34)
+size = Vector2(19.25, 19)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_xldlm"]
 radius = 7.0
@@ -1058,11 +1061,13 @@ metadata/_custom_type_script = "uid://dibvquiq1y44n"
 [node name="Attack" type="Node" parent="StateMachine" unique_id=1357191503]
 unique_name_in_owner = true
 script = ExtResource("7_rgyib")
+sound = ExtResource("16_x7c3f")
 metadata/_custom_type_script = "uid://i2qmst7chrxr"
 
 [node name="Hurt" type="Node" parent="StateMachine" unique_id=397549893]
 unique_name_in_owner = true
 script = ExtResource("9_ebec5")
+sound = ExtResource("18_s7qer")
 metadata/_custom_type_script = "uid://dtso3403kjldq"
 
 [node name="Death" type="Node" parent="StateMachine" unique_id=2113070146]
@@ -1072,6 +1077,7 @@ metadata/_custom_type_script = "uid://yoq0u4m0p1pq"
 [node name="Jump" type="Node" parent="StateMachine" unique_id=518687742]
 unique_name_in_owner = true
 script = ExtResource("12_c35mf")
+sound = ExtResource("20_bjvpn")
 metadata/_custom_type_script = "uid://c3rx518jf3lm2"
 
 [node name="AttackArea" type="Area2D" parent="." unique_id=311756541]
@@ -1082,7 +1088,7 @@ collision_mask = 192
 script = ExtResource("7_boad6")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea" unique_id=1787226678]
-position = Vector2(-0.99999994, -10.375)
+position = Vector2(6.5000005, -10.375)
 rotation = -1.5707964
 shape = SubResource("RectangleShape2D_s88v2")
 debug_color = Color(0.9764706, 0, 0.42352942, 0)

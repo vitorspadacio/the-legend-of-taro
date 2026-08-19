@@ -3,7 +3,7 @@ class_name PlayerHurtState extends PlayerState
 
 @export var force := 75.0
 @export var invulnerable_duration := 0.75
-@export var sound_effect: AudioStream
+@export var sound: AudioStream
 
 var buffered_attack := false
 var direction := Vector2.ZERO
@@ -13,6 +13,7 @@ func init() -> void:
 	player.damage_taken.connect(_on_hurt)
 	
 func enter() -> void:
+	Audio.play_spatial_sound(sound, player.global_position)
 	player.animation.play("hurt")
 	time = player.animation.animation_player.current_animation_length
 	player.damage_area.make_invulnerable(time + invulnerable_duration)

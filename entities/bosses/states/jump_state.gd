@@ -3,6 +3,7 @@ class_name BossJumpState extends EnemyJumpState
 
 @export var prepare_duration := 0.2
 @export var jump_end_time := 1.0
+@export var sound: AudioStream
 
 var target: Vector2
 var jump_started := false
@@ -49,6 +50,7 @@ func _start_jump() -> void:
 	if jump_started:
 		return
 
+	Audio.play_spatial_sound(sound, enemy.global_position)
 	enemy.jump.jump_duration = jump_end_time - prepare_duration
 	enemy.jump.jump()
 	jump_started = true

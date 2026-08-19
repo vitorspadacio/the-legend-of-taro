@@ -16,6 +16,7 @@
 [ext_resource type="Script" uid="uid://cfu3rte1qqlpw" path="res://entities/enemies/states/hurt_state.gd" id="10_f64ac"]
 [ext_resource type="Script" uid="uid://bsns8tu52ba2t" path="res://entities/enemies/states/death_state.gd" id="11_nc4tg"]
 [ext_resource type="Script" uid="uid://c3503keb3062u" path="res://entities/enemies/states/jump_state.gd" id="12_tvhfh"]
+[ext_resource type="AudioStream" uid="uid://be5v3f6qk7fsv" path="res://assets/sounds/impact2.wav" id="13_t7tha"]
 [ext_resource type="Script" uid="uid://byx6b7oeoo6oh" path="res://player/jump_blocker.gd" id="18_t7tha"]
 [ext_resource type="Script" uid="uid://bymg7s440aae" path="res://entities/enemies/decision_engines/decision_engine_basic.gd" id="19_t7tha"]
 
@@ -295,6 +296,7 @@ metadata/_custom_type_script = "uid://de137lhvib8k5"
 [node name="Hurt" type="Node" parent="StateMachine" unique_id=1478315784]
 unique_name_in_owner = true
 script = ExtResource("10_f64ac")
+sound = ExtResource("13_t7tha")
 metadata/_custom_type_script = "uid://cfu3rte1qqlpw"
 
 [node name="Death" type="Node" parent="StateMachine" unique_id=391338787]
