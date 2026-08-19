@@ -3,7 +3,8 @@
 [ext_resource type="PackedScene" uid="uid://c5dtb51gcaxvy" path="res://player/player.tscn" id="1_rupst"]
 [ext_resource type="Texture2D" uid="uid://ccrv0s3k84k2p" path="res://content/world/tiles/tileset_village_abandoned.png" id="2_o00ia"]
 [ext_resource type="TileSet" uid="uid://bpiosv4wrdcqu" path="res://content/world/tilesets/nature.tres" id="3_v7dth"]
-[ext_resource type="PackedScene" uid="uid://1vy678saa0gj" path="res://entities/bosses/slime_boss/slime_boss.tscn" id="4_is3ju"]
+[ext_resource type="PackedScene" uid="uid://b6nhmafoangcv" path="res://entities/enemies/lantern/lantern.tscn" id="5_4bqqs"]
+[ext_resource type="PackedScene" uid="uid://b80n5ps8xrarc" path="res://entities/enemies/lizard/lizard.tscn" id="5_o00ia"]
 [ext_resource type="Texture2D" uid="uid://dcpslblxsasba" path="res://content/world/tiles/tileset_floor.png" id="7_ynsuh"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_is3ju"]
@@ -2727,8 +2728,14 @@ tile_set = ExtResource("3_v7dth")
 
 [node name="BossArena" type="Node" parent="." unique_id=1983191747]
 
-[node name="SlimeBoss" parent="BossArena" unique_id=1996041847 instance=ExtResource("4_is3ju")]
-position = Vector2(158, 115)
+[node name="Lizard" parent="BossArena" unique_id=1716200186 instance=ExtResource("5_o00ia")]
+position = Vector2(144, 110)
+
+[node name="Lizard2" parent="BossArena" unique_id=1799161787 instance=ExtResource("5_o00ia")]
+position = Vector2(225, 96)
+
+[node name="Lantern" parent="BossArena" unique_id=822421158 instance=ExtResource("5_4bqqs")]
+position = Vector2(292, 106)
 
 [node name="Player" parent="." unique_id=870341819 instance=ExtResource("1_rupst")]
 position = Vector2(257, 161)

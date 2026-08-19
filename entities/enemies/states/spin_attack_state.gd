@@ -2,6 +2,7 @@
 class_name EnemySpinAttackState extends EnemyAttackState
 
 func enter() -> void:
+	Audio.play_spatial_sound(sound, enemy.global_position)
 	enemy.animation.play_no_direction("spin")
 	set_attack_direction(enemy.movement.direction)
 	enemy.attack_area.activate()

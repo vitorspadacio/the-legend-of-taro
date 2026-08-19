@@ -4,11 +4,13 @@ class_name EnemyAttackState extends EnemyState
 @export var attack_range := 20
 @export var cooldown := 3.0
 @export var duration := 1.0
+@export var sound: AudioStream
 
 var timer := 0.0
 var on_cooldown := false
 
 func enter() -> void:
+	Audio.play_spatial_sound(sound, enemy.global_position)
 	enemy.animation.play("idle")
 	set_attack_direction(enemy.movement.direction)
 	VisualEffects.create_claw(enemy.global_position, enemy.movement.direction)

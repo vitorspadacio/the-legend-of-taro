@@ -15,6 +15,7 @@
 [ext_resource type="Script" uid="uid://c5xnwwp1r457n" path="res://systems/combat/hazard_area.gd" id="11_r1mva"]
 [ext_resource type="Script" uid="uid://cs2ysdbdc7t4j" path="res://entities/enemies/states/attack_state.gd" id="11_wswv3"]
 [ext_resource type="Script" uid="uid://jn6ptg2mpq5h" path="res://systems/combat/damage_area.gd" id="12_02ecy"]
+[ext_resource type="AudioStream" uid="uid://dxm6nqo5j5qb3" path="res://assets/sounds/slash4.wav" id="13_hmbw6"]
 [ext_resource type="Script" uid="uid://brsq1cmtrtshq" path="res://systems/components/player_sensor.gd" id="14_g8y1a"]
 [ext_resource type="Script" uid="uid://btbmbpcu6oj5v" path="res://systems/combat/attack_area.gd" id="16_7vpym"]
 [ext_resource type="Script" uid="uid://be43a7q4k86aa" path="res://entities/enemies/decision_engines/decision_engine_attack.gd" id="17_i2f3a"]
@@ -288,6 +289,7 @@ metadata/_custom_type_script = "uid://cfu3rte1qqlpw"
 
 [node name="Attack" type="Node" parent="StateMachine" unique_id=218755323]
 script = ExtResource("11_wswv3")
+sound = ExtResource("13_hmbw6")
 metadata/_custom_type_script = "uid://cs2ysdbdc7t4j"
 
 [node name="Death" type="Node" parent="StateMachine" unique_id=1449539682]

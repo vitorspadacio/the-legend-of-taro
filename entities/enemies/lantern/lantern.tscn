@@ -17,6 +17,7 @@
 [ext_resource type="Script" uid="uid://da2r7gn05a3nq" path="res://systems/components/input.gd" id="9_hqf6w"]
 [ext_resource type="Script" uid="uid://btbmbpcu6oj5v" path="res://systems/combat/attack_area.gd" id="10_hqf6w"]
 [ext_resource type="Script" uid="uid://dyl8o8lbuap7r" path="res://systems/components/health.gd" id="10_up7p2"]
+[ext_resource type="AudioStream" uid="uid://cxjnjiex3wt3k" path="res://assets/sounds/whoosh2.wav" id="11_vtncx"]
 [ext_resource type="Script" uid="uid://brsq1cmtrtshq" path="res://systems/components/player_sensor.gd" id="13_eqkkc"]
 [ext_resource type="Script" uid="uid://be43a7q4k86aa" path="res://entities/enemies/decision_engines/decision_engine_attack.gd" id="18_h3twn"]
 
@@ -305,6 +306,7 @@ metadata/_custom_type_script = "uid://bsns8tu52ba2t"
 [node name="SpinAttack" type="Node" parent="StateMachine" unique_id=134507507]
 script = ExtResource("9_h3twn")
 attack_range = 35
+sound = ExtResource("11_vtncx")
 metadata/_custom_type_script = "uid://ckurxh5y1ibya"
 
 [node name="HazardArea" type="Area2D" parent="." unique_id=1560320956]
