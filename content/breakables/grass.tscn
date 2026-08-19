@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://domrx1cgi35kg"]
+
+[ext_resource type="PackedScene" uid="uid://b6vodxc0miclw" path="res://content/breakables/breakable.tscn" id="1_qgvs5"]
+[ext_resource type="Texture2D" uid="uid://bi6x2xy0kcgn7" path="res://content/breakables/grass.png" id="2_pwuk7"]
+[ext_resource type="Texture2D" uid="uid://b24nod8p5n05l" path="res://content/particles/particle_grass.png" id="3_ft43a"]
+[ext_resource type="Resource" uid="uid://pd5lt0y7jxun" path="res://content/particles/particle_grass.tres" id="4_4pjrf"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_m1c1i"]
+particles_animation = true
+particles_anim_h_frames = 6
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[node name="Grass" unique_id=622629986 instance=ExtResource("1_qgvs5")]
+
+[node name="Sprite" parent="." index="1" unique_id=19450043]
+texture = ExtResource("2_pwuk7")
+
+[node name="Particle" parent="." index="3" unique_id=1763944457]
+material = SubResource("CanvasItemMaterial_m1c1i")
+amount = 4
+texture = ExtResource("3_ft43a")
+resource_particle = ExtResource("4_4pjrf")
+
+[node name="HealthComponent" parent="." index="4" unique_id=867130180]
+max_health = 1

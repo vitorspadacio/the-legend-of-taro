@@ -19,3 +19,7 @@ func start_invulnerable() -> void:
 
 func end_invulnerable() -> void:
 	process_mode = Node.PROCESS_MODE_INHERIT
+
+func disable() -> void:
+	monitorable = false
+	monitoring = false

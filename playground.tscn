@@ -3,6 +3,9 @@
 [ext_resource type="PackedScene" uid="uid://c5dtb51gcaxvy" path="res://player/player.tscn" id="1_rupst"]
 [ext_resource type="Texture2D" uid="uid://ccrv0s3k84k2p" path="res://content/world/tiles/tileset_village_abandoned.png" id="2_o00ia"]
 [ext_resource type="PackedScene" uid="uid://1vy678saa0gj" path="res://entities/bosses/slime_boss/slime_boss.tscn" id="4_is3ju"]
+[ext_resource type="PackedScene" uid="uid://domrx1cgi35kg" path="res://content/breakables/grass.tscn" id="5_o00ia"]
+[ext_resource type="PackedScene" uid="uid://dc2otpemqpad2" path="res://content/breakables/crate.tscn" id="6_ynsuh"]
+[ext_resource type="PackedScene" uid="uid://dxma3r6xd3454" path="res://content/breakables/pot.tscn" id="7_v7dth"]
 [ext_resource type="Texture2D" uid="uid://dcpslblxsasba" path="res://content/world/tiles/tileset_floor.png" id="7_ynsuh"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_is3ju"]
@@ -4883,15 +4886,15 @@ tile_map_data = PackedByteArray("AAAFAAUAAgAGAAsAABAFAAYAAgAGAAsAABAFAAcAAgAGAAs
 tile_set = SubResource("TileSet_v7dth")
 
 [node name="Player" parent="." unique_id=870341819 instance=ExtResource("1_rupst")]
-position = Vector2(294, 142)
-
-[node name="SlimeBoss" parent="." unique_id=1996041847 instance=ExtResource("4_is3ju")]
-position = Vector2(209, 102)
-
-[node name="DecisionBossSlime" parent="SlimeBoss" index="7" unique_id=543990865]
-markers = Array[NodePath]([NodePath("../../BossArena/MarkerCenter"), NodePath("../../BossArena/MarkerUp"), NodePath("../../BossArena/MarkerLeft"), NodePath("../../BossArena/MarkerRight"), NodePath("../../BossArena/MarkerDown")])
+position = Vector2(248, 255)
 
 [node name="BossArena" type="Node" parent="." unique_id=1983191747]
+
+[node name="SlimeBoss" parent="BossArena" unique_id=1996041847 instance=ExtResource("4_is3ju")]
+position = Vector2(209, 102)
+
+[node name="DecisionBossSlime" parent="BossArena/SlimeBoss" index="7" unique_id=543990865]
+markers = Array[NodePath]([NodePath("../../MarkerCenter"), NodePath("../../MarkerUp"), NodePath("../../MarkerLeft"), NodePath("../../MarkerRight"), NodePath("../../MarkerDown")])
 
 [node name="MarkerCenter" type="Marker2D" parent="BossArena" unique_id=1457856327]
 unique_name_in_owner = true
@@ -4913,4 +4916,25 @@ position = Vector2(299, 189)
 unique_name_in_owner = true
 position = Vector2(294, 111)
 
-[editable path="SlimeBoss"]
+[node name="Grass" parent="." unique_id=622629986 instance=ExtResource("5_o00ia")]
+position = Vector2(102, 247)
+
+[node name="Grass2" parent="." unique_id=1180014516 instance=ExtResource("5_o00ia")]
+position = Vector2(85, 246)
+
+[node name="Grass3" parent="." unique_id=1370244097 instance=ExtResource("5_o00ia")]
+position = Vector2(68, 246)
+
+[node name="Grass4" parent="." unique_id=1058988231 instance=ExtResource("5_o00ia")]
+position = Vector2(121, 246)
+
+[node name="Grass5" parent="." unique_id=1686586433 instance=ExtResource("5_o00ia")]
+position = Vector2(139, 246)
+
+[node name="Crate" parent="." unique_id=1723769512 instance=ExtResource("6_ynsuh")]
+position = Vector2(151, 283)
+
+[node name="Pot" parent="." unique_id=571456709 instance=ExtResource("7_v7dth")]
+position = Vector2(176, 283)
+
+[editable path="BossArena/SlimeBoss"]

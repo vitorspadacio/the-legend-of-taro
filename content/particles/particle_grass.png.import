@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://0uogfcwrc24p"
-path="res://.godot/imported/hit.png-a7858beebbd0155dcd958a632e02a6f2.ctex"
+uid="uid://b24nod8p5n05l"
+path="res://.godot/imported/particle_grass.png-6de5d8616d0f2d470705e340e3bdd2e4.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://entities/bosses/slime_boss/hit.png"
-dest_files=["res://.godot/imported/hit.png-a7858beebbd0155dcd958a632e02a6f2.ctex"]
+source_file="res://content/particles/particle_grass.png"
+dest_files=["res://.godot/imported/particle_grass.png-6de5d8616d0f2d470705e340e3bdd2e4.ctex"]
 
 [params]
 

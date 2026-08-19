@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://0uogfcwrc24p"
-path="res://.godot/imported/hit.png-a7858beebbd0155dcd958a632e02a6f2.ctex"
+uid="uid://bsbilbxpu2je6"
+path="res://.godot/imported/icon_destroyable.png-e2509f8613430b76d86e53c3df5228b8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://entities/bosses/slime_boss/hit.png"
-dest_files=["res://.godot/imported/hit.png-a7858beebbd0155dcd958a632e02a6f2.ctex"]
+source_file="res://assets/icons/icon_destroyable.png"
+dest_files=["res://.godot/imported/icon_destroyable.png-e2509f8613430b76d86e53c3df5228b8.ctex"]
 
 [params]
 
