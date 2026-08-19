@@ -9,7 +9,6 @@ const WEAPONS := {
 @export var cooldown := 0.001
 @export var sound: AudioStream
 
-var buffered_attack := false
 var next_attack_time := 0.0
 var selected_weapon := WEAPONS.katana
 
@@ -22,7 +21,6 @@ func enter() -> void:
 	player.sprite_attack.texture = load(selected_weapon)
 	player.sprite_attack.visible = true
 	player.movement.lock_direction = true
-	buffered_attack = false
 	
 func exit() -> void:
 	player.animation.animation_player.animation_finished.disconnect(_on_animation_finished)
@@ -36,9 +34,6 @@ func handle_input(event: InputEvent) -> PlayerState:
 	if event.is_action_pressed("roll"):
 		return roll
 
-	if event.is_action_pressed("attack"):
-		buffered_attack = true
-
 	return null
 	
 func physics_process(_delta: float) -> PlayerState:
@@ -51,8 +46,4 @@ func can_enter() -> bool:
 	return true
 
 func _on_animation_finished(_animation_name: String) -> void:
-	if buffered_attack:
-		buffered_attack = false
-		next_state = attack
-	else:
-		next_state = idle
+	next_state = idle

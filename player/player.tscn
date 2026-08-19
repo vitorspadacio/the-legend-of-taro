@@ -959,7 +959,7 @@ jump = NodePath("Components/JumpComponent")
 movement = NodePath("Components/MovementComponent")
 
 [node name="SpriteShadow2D" type="Sprite2D" parent="." unique_id=609152420]
-position = Vector2(0, 5)
+position = Vector2(0, 6)
 texture = ExtResource("2_wodsf")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=786664194]
