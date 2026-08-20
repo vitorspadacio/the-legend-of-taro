@@ -2,9 +2,7 @@ extends Node2D
 
 # @export var starting_map: PackedScene
 
-# @onready var rain: GPUParticles2D = %Rain
 # @onready var snow: GPUParticles2D = %Snow
-# @onready var raylight: GPUParticles2D = %Raylight
 # @onready var fog: TextureRect = %Fog
 
 # @onready var transition: ColorRect = %Transition
@@ -15,6 +13,8 @@ extends Node2D
 
 @onready var cloud: GPUParticles2D = %Cloud
 @onready var leaf: GPUParticles2D = %Leaf
+@onready var rain: GPUParticles2D = %Rain
+@onready var raylight: GPUParticles2D = %Raylight
 
 @onready var camera_controller: CameraController = %CameraController
 @onready var environment_area: EnvironmentArea = %EnvironmentArea
@@ -32,6 +32,8 @@ func apply_environment(resource_environment: ResourceEnvironment) -> void:
 
 	cloud.emitting = ResourceEnvironment.Meteo.CLOUD in resource_environment.meteo_list
 	leaf.emitting = ResourceEnvironment.Meteo.LEAF in resource_environment.meteo_list
+	rain.emitting = ResourceEnvironment.Meteo.RAIN in resource_environment.meteo_list
+	raylight.emitting = ResourceEnvironment.Meteo.RAY in resource_environment.meteo_list
 
 	if resource_environment.music:
 		Audio.play_music(resource_environment.music)
