@@ -1,23 +1,25 @@
 [gd_scene format=3 uid="uid://dxma3r6xd3454"]
 
 [ext_resource type="PackedScene" uid="uid://b6vodxc0miclw" path="res://content/breakables/breakable.tscn" id="1_bsayv"]
+[ext_resource type="AudioStream" uid="uid://mp2745pgccwy" path="res://assets/sounds/impact.wav" id="2_cs612"]
 [ext_resource type="Texture2D" uid="uid://dqwyifoorh3t8" path="res://content/breakables/pot/pot.png" id="3_x688q"]
-[ext_resource type="Texture2D" uid="uid://b4xd2vlppyawo" path="res://content/particles/particle_pot.png" id="4_4bsrr"]
-[ext_resource type="Resource" uid="uid://cwqdt1vxig3wi" path="res://content/particles/particle_pot.tres" id="5_b8dec"]
+[ext_resource type="Texture2D" uid="uid://b4xd2vlppyawo" path="res://content/particles/pot/particle_pot.png" id="4_4bsrr"]
+[ext_resource type="Resource" uid="uid://cwqdt1vxig3wi" path="res://content/particles/pot/particle_pot.tres" id="5_b8dec"]
 
-[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_8erj6"]
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_v7dai"]
 particles_animation = true
 particles_anim_h_frames = 6
 particles_anim_v_frames = 1
 particles_anim_loop = false
 
 [node name="Pot" unique_id=571456709 instance=ExtResource("1_bsayv")]
+sound = ExtResource("2_cs612")
 
 [node name="Sprite" parent="." index="1" unique_id=19450043]
 texture = ExtResource("3_x688q")
 
 [node name="Particle" parent="." index="3" unique_id=1763944457]
-material = SubResource("CanvasItemMaterial_8erj6")
+material = SubResource("CanvasItemMaterial_v7dai")
 amount = 2
 texture = ExtResource("4_4bsrr")
 resource_particle = ExtResource("5_b8dec")

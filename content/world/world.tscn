@@ -1,0 +1,97 @@
+[gd_scene format=3 uid="uid://b51jnde8ydj6u"]
+
+[ext_resource type="Script" uid="uid://bnrfvqmq1c4vf" path="res://content/world/world.gd" id="1_4dfsx"]
+[ext_resource type="Script" uid="uid://cq1yk0tiyb3rq" path="res://content/world/camera_controller/camera_controller.gd" id="2_57aag"]
+[ext_resource type="PackedScene" uid="uid://c276g1c87ma5u" path="res://content/levels/01_old_village/01_old_glade.tscn" id="2_cl54s"]
+[ext_resource type="Texture2D" uid="uid://dd2kmn7tta5gu" path="res://content/environment/fx/leaf/leaf.png" id="3_cl54s"]
+[ext_resource type="Material" uid="uid://csmkat43yyjvu" path="res://content/environment/fx/leaf/leaf_env.tres" id="4_dsaeo"]
+[ext_resource type="Texture2D" uid="uid://c8h0vkd6dugv" path="res://content/environment/fx/cloud/cloud.png" id="5_lya1w"]
+[ext_resource type="Material" uid="uid://dg218cjl437xj" path="res://content/environment/fx/cloud/cloud_env.tres" id="6_lo764"]
+[ext_resource type="Texture2D" uid="uid://cpcojki7owcjg" path="res://content/environment/fx/raylight/raylight.png" id="7_q8m1i"]
+[ext_resource type="Material" uid="uid://ch4yeffd4f0f1" path="res://content/environment/fx/raylight/raylight_env.tres" id="8_tde5o"]
+[ext_resource type="Texture2D" uid="uid://bs4uxpqfesgko" path="res://content/environment/fx/rain/rain.png" id="9_uyuhx"]
+[ext_resource type="Material" uid="uid://b644konj50oy6" path="res://content/environment/fx/rain/rain_env.tres" id="10_it4b1"]
+[ext_resource type="Texture2D" uid="uid://d0kl1xfdvdsjg" path="res://content/environment/fx/rain/rain_on_floor.png" id="11_bfxvt"]
+[ext_resource type="Material" uid="uid://cfgy2lkhe86g2" path="res://content/environment/fx/rain/rain_floor_env.tres" id="12_54j6l"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_hk4jh"]
+particles_animation = true
+particles_anim_h_frames = 6
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_rruu0"]
+particles_animation = true
+particles_anim_h_frames = 3
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_r6og4"]
+particles_animation = true
+particles_anim_h_frames = 3
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[node name="World" type="Node2D" unique_id=351235205]
+script = ExtResource("1_4dfsx")
+starting_level = ExtResource("2_cl54s")
+
+[node name="CameraController" type="Camera2D" parent="." unique_id=1644416030]
+unique_name_in_owner = true
+script = ExtResource("2_57aag")
+metadata/_custom_type_script = "uid://cq1yk0tiyb3rq"
+
+[node name="Leaf" type="GPUParticles2D" parent="CameraController" unique_id=231801047]
+unique_name_in_owner = true
+z_index = 2
+material = SubResource("CanvasItemMaterial_hk4jh")
+position = Vector2(0, 1)
+emitting = false
+amount = 10
+texture = ExtResource("3_cl54s")
+lifetime = 3.0
+fixed_fps = 0
+draw_order = 0
+process_material = ExtResource("4_dsaeo")
+
+[node name="Cloud" type="GPUParticles2D" parent="CameraController" unique_id=2053930753]
+unique_name_in_owner = true
+z_index = 2
+position = Vector2(0, 1)
+emitting = false
+amount = 6
+texture = ExtResource("5_lya1w")
+lifetime = 10.0
+process_material = ExtResource("6_lo764")
+
+[node name="Raylight" type="GPUParticles2D" parent="CameraController" unique_id=848977317]
+unique_name_in_owner = true
+z_index = 2
+material = SubResource("CanvasItemMaterial_rruu0")
+position = Vector2(0, 1)
+emitting = false
+amount = 10
+texture = ExtResource("7_q8m1i")
+lifetime = 5.0
+process_material = ExtResource("8_tde5o")
+
+[node name="Rain" type="GPUParticles2D" parent="CameraController" unique_id=2011597788]
+unique_name_in_owner = true
+position = Vector2(0, 1)
+emitting = false
+amount = 30
+sub_emitter = NodePath("../RainOnFloor")
+texture = ExtResource("9_uyuhx")
+process_material = ExtResource("10_it4b1")
+
+[node name="RainOnFloor" type="GPUParticles2D" parent="CameraController" unique_id=1307758746]
+z_index = 2
+material = SubResource("CanvasItemMaterial_r6og4")
+position = Vector2(0, 1)
+emitting = false
+amount = 30
+texture = ExtResource("11_bfxvt")
+lifetime = 0.5
+fixed_fps = 0
+draw_order = 0
+process_material = ExtResource("12_54j6l")

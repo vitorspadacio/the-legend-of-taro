@@ -1,6 +1,5 @@
 extends Node2D
 
-# @export var starting_map: PackedScene
 
 # @onready var snow: GPUParticles2D = %Snow
 # @onready var fog: TextureRect = %Fog
@@ -11,21 +10,23 @@ extends Node2D
 # @onready var pivot: Node2D = %Pivot
 # @onready var player_ui: Control = %PlayerUi
 
+@export var starting_level: PackedScene
+
 @onready var cloud: GPUParticles2D = %Cloud
 @onready var leaf: GPUParticles2D = %Leaf
 @onready var rain: GPUParticles2D = %Rain
 @onready var raylight: GPUParticles2D = %Raylight
 
 @onready var camera_controller: CameraController = %CameraController
-@onready var environment_area: EnvironmentArea = %EnvironmentArea
+
+var current_level: Level
 
 func _ready():
-	environment_area.environment_changed.connect(apply_environment)
+	generate_level(starting_level)
+
 	var player = get_tree().get_first_node_in_group("player")
 	for camera in get_tree().get_nodes_in_group("camera"):
 		camera.target = player
-	# generate_map(starting_map)
-	# camera_controller.animation_finished.connect(on_camera_animation_finished)
 
 func apply_environment(resource_environment: ResourceEnvironment) -> void:
 	print("mudou", resource_environment)
@@ -40,15 +41,13 @@ func apply_environment(resource_environment: ResourceEnvironment) -> void:
 	else:
 		Audio.stop_music()
 
-# func on_camera_animation_finished():
-	# pivot.position = camera_grid.global_position
-
-# func generate_map(map_scene: PackedScene):
-# 	if map:
-# 		map.queue_free()
-# 	map = starting_map.instantiate()
-# 	add_child(map)
-# 	map.environment_area.environment_changed.connect(apply_environment)
+func generate_level(level_scene: PackedScene):
+	print("teste")
+	if current_level:
+		current_level.queue_free()
+	current_level = level_scene.instantiate()
+	add_child(current_level)
+	current_level.environment_area.environment_changed.connect(apply_environment)
 
 
 # func apply_environment(resource_environment: ResourceEnvironment):

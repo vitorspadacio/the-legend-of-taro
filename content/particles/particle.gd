@@ -1,8 +1,6 @@
 @icon("/assets/icons/icon_particle.png")
 @tool
-extends GPUParticles2D
-class_name Particle
-
+class_name Particle extends GPUParticles2D
 
 @export var resource_particle: ResourceParticle:
 	set(v):
@@ -14,7 +12,6 @@ class_name Particle
 		if !resource_particle.changed.is_connected(update_particle):
 			resource_particle.changed.connect(update_particle)
 		update_particle()
-
 
 func update_particle():
 		texture = resource_particle.texture

@@ -11,8 +11,9 @@ var player: Player
 
 func _ready() -> void:
 	player = get_tree().get_first_node_in_group("player")
-	player.health.health_changed.connect(_on_health_changed)
-	_setup_hearts()
+	if player:
+		player.health.health_changed.connect(_on_health_changed)
+		_setup_hearts()
 
 func _setup_hearts() -> void:
 	for child in hearts_container.get_children():

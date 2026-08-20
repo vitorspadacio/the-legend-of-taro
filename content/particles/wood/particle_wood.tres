@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="ResourceParticle" format=3 uid="uid://dly47plkpnxad"]
+
+[ext_resource type="Script" uid="uid://bbw058v83w4dc" path="res://content/particles/resource_particle.gd" id="1_mtbbx"]
+[ext_resource type="Texture2D" uid="uid://tc46xpav16ok" path="res://content/particles/wood/particle_wood.png" id="2_of065"]
+
+[resource]
+script = ExtResource("1_mtbbx")
+texture = ExtResource("2_of065")
+frame_h = 6

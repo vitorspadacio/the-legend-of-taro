@@ -1,0 +1,45 @@
+[gd_scene format=3 uid="uid://broclvnsd7n8n"]
+
+[ext_resource type="Script" uid="uid://dgkipfqosloy8" path="res://content/levels/level.gd" id="1_5677h"]
+[ext_resource type="Script" uid="uid://dp85c6deldfcm" path="res://content/environment/environment_area.gd" id="2_fxr8k"]
+[ext_resource type="TileSet" uid="uid://bpiosv4wrdcqu" path="res://content/world/tilesets/nature.tres" id="3_or2lb"]
+[ext_resource type="Texture2D" uid="uid://d3qatu5noma65" path="res://systems/levels/map_size_bg.png" id="4_enuun"]
+
+[node name="Level" type="Node2D" unique_id=602522296]
+script = ExtResource("1_5677h")
+
+[node name="EnvironmentArea" type="Area2D" parent="." unique_id=1987284862]
+unique_name_in_owner = true
+position = Vector2(0, 172)
+collision_mask = 32
+script = ExtResource("2_fxr8k")
+metadata/_custom_type_script = "uid://dp85c6deldfcm"
+
+[node name="Enemies" type="Node2D" parent="." unique_id=1634458535]
+z_index = 1
+position = Vector2(665, 126)
+
+[node name="Tiles" type="Node2D" parent="." unique_id=1714064168]
+y_sort_enabled = true
+position = Vector2(-158, 64)
+
+[node name="Ground" type="TileMapLayer" parent="Tiles" unique_id=175236217]
+tile_set = ExtResource("3_or2lb")
+
+[node name="Object" type="TileMapLayer" parent="Tiles" unique_id=1824364171]
+tile_set = ExtResource("3_or2lb")
+
+[node name="ScreenGridRef" type="TextureRect" parent="." unique_id=1201174568]
+modulate = Color(1, 1, 1, 0.07450981)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1416.0
+offset_top = -950.0
+offset_right = -19.0
+offset_bottom = 196.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(2, 2)
+texture = ExtResource("4_enuun")
+stretch_mode = 1

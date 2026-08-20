@@ -1,12 +1,9 @@
 @tool
-@icon("/assets/icons/icon_destroyable.png")
-extends CharacterBody2D
-class_name Breakable
+@icon("res://assets/icons/breakable.svg")
+class_name Breakable extends CharacterBody2D
 
-var push_velocity := Vector2.ZERO
-
-@onready var health: HealthComponent = $HealthComponent
 @onready var damage_area: DamageArea = $DamageArea
+@onready var health: HealthComponent = $HealthComponent
 @onready var particle: Particle = $Particle
 @onready var sprite: Sprite2D = $Sprite
 
@@ -21,13 +18,15 @@ func take_damage(attack_area: AttackArea):
 	health.damage(attack_area.damage)
 	damage_fx()
 
-func push(from, force: int):
-	push_velocity += from.direction_to(global_position) * force
-
 func damage_fx():
 	flash()
 	particle.restart()
 	await shake()
+
+func flash(time := 0.2):
+	sprite.modulate = Color(5, 5, 5)
+	await get_tree().create_timer(time).timeout
+	sprite.modulate = Color.WHITE
 
 func shake(intensity := 1.0, time := 0.1):
 	var tween = create_tween()
@@ -35,11 +34,6 @@ func shake(intensity := 1.0, time := 0.1):
 	tween.tween_property(sprite, "offset", Vector2.LEFT * intensity, time / 3)
 	tween.tween_property(sprite, "offset", Vector2.ZERO, time / 3)
 	await tween.finished
-
-func flash(time := 0.2):
-	sprite.modulate = Color(5, 5, 5)
-	await get_tree().create_timer(time).timeout
-	sprite.modulate = Color.WHITE
 
 func destroy():
 	if sound:

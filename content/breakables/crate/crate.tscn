@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://dc2otpemqpad2"]
 
 [ext_resource type="PackedScene" uid="uid://b6vodxc0miclw" path="res://content/breakables/breakable.tscn" id="1_lyh5p"]
+[ext_resource type="AudioStream" uid="uid://mp2745pgccwy" path="res://assets/sounds/impact.wav" id="2_dmxea"]
 [ext_resource type="Texture2D" uid="uid://ww3ylghfa60s" path="res://content/breakables/crate/crate.png" id="2_ppnky"]
-[ext_resource type="Texture2D" uid="uid://tc46xpav16ok" path="res://content/particles/particle_wood.png" id="3_c2bw8"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_ns8pm"]
 particles_animation = true
@@ -11,6 +11,7 @@ particles_anim_v_frames = 1
 particles_anim_loop = false
 
 [node name="Crate" unique_id=1723769512 instance=ExtResource("1_lyh5p")]
+sound = ExtResource("2_dmxea")
 
 [node name="Sprite" parent="." index="1" unique_id=19450043]
 texture = ExtResource("2_ppnky")
@@ -18,4 +19,3 @@ texture = ExtResource("2_ppnky")
 [node name="Particle" parent="." index="3" unique_id=1763944457]
 material = SubResource("CanvasItemMaterial_ns8pm")
 amount = 2
-texture = ExtResource("3_c2bw8")

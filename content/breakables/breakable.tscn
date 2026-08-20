@@ -3,10 +3,10 @@
 [ext_resource type="Script" uid="uid://cjhfcynjj0sty" path="res://content/breakables/breakable.gd" id="1_w1gja"]
 [ext_resource type="Script" uid="uid://dyl8o8lbuap7r" path="res://systems/components/health.gd" id="2_ogjwx"]
 [ext_resource type="Script" uid="uid://jn6ptg2mpq5h" path="res://systems/combat/damage_area.gd" id="3_jt54f"]
-[ext_resource type="Texture2D" uid="uid://dgbkuuwc1j8km" path="res://content/particles/particle_rock.png" id="4_af1pe"]
+[ext_resource type="Texture2D" uid="uid://tc46xpav16ok" path="res://content/particles/wood/particle_wood.png" id="3_m2u6u"]
 [ext_resource type="Material" uid="uid://cbc0e23kmqwml" path="res://content/particles/particle_process_explosion.tres" id="4_i466n"]
 [ext_resource type="Script" uid="uid://80t2nlpwsabm" path="res://content/particles/particle.gd" id="5_tljad"]
-[ext_resource type="Resource" uid="uid://h31w51nsttnc" path="res://content/particles/particle_rock.tres" id="6_ebru0"]
+[ext_resource type="Resource" uid="uid://h31w51nsttnc" path="res://content/particles/rock/particle_rock.tres" id="6_ebru0"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ewf0m"]
 radius = 8.0
@@ -14,9 +14,9 @@ radius = 8.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_nn20x"]
 radius = 12.1655
 
-[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_j2a3d"]
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_cqoei"]
 particles_animation = true
-particles_anim_h_frames = 5
+particles_anim_h_frames = 6
 particles_anim_v_frames = 1
 particles_anim_loop = false
 
@@ -43,10 +43,10 @@ shape = SubResource("CircleShape2D_nn20x")
 debug_color = Color(0.7529412, 0.45882353, 0, 0)
 
 [node name="Particle" type="GPUParticles2D" parent="." unique_id=1763944457]
-material = SubResource("CanvasItemMaterial_j2a3d")
+material = SubResource("CanvasItemMaterial_cqoei")
 position = Vector2(0, -3)
 emitting = false
-texture = ExtResource("4_af1pe")
+texture = ExtResource("3_m2u6u")
 lifetime = 0.8
 one_shot = true
 speed_scale = 1.5
