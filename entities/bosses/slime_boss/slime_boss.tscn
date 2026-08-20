@@ -15,7 +15,7 @@
 [ext_resource type="Script" uid="uid://6kltlbyjb46s" path="res://entities/bosses/states/jump_state.gd" id="12_im8pi"]
 [ext_resource type="Script" uid="uid://c1lvj5x2olppe" path="res://entities/bosses/states/walk_state.gd" id="14_lv11g"]
 [ext_resource type="Script" uid="uid://qxkl4r6wo8iw" path="res://entities/bosses/states/death_state.gd" id="15_8lk7y"]
-[ext_resource type="AudioStream" uid="uid://mp2745pgccwy" path="res://impact.wav" id="15_e5sco"]
+[ext_resource type="AudioStream" uid="uid://mp2745pgccwy" path="res://assets/sounds/impact.wav" id="15_e5sco"]
 [ext_resource type="Script" uid="uid://c5xnwwp1r457n" path="res://systems/combat/hazard_area.gd" id="15_fk0i0"]
 [ext_resource type="AudioStream" uid="uid://bj5ljykj4cn3h" path="res://assets/sounds/jump2.wav" id="16_520c8"]
 [ext_resource type="Script" uid="uid://bf6q1amoahgfg" path="res://entities/bosses/decision_boss/decision_boss_slime.gd" id="16_im8pi"]

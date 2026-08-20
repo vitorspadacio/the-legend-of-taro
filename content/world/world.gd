@@ -4,8 +4,6 @@ extends Node2D
 
 # @onready var rain: GPUParticles2D = %Rain
 # @onready var snow: GPUParticles2D = %Snow
-# @onready var cloud: GPUParticles2D = %Cloud
-# @onready var leaf: GPUParticles2D = %Leaf
 # @onready var raylight: GPUParticles2D = %Raylight
 # @onready var fog: TextureRect = %Fog
 
@@ -14,6 +12,9 @@ extends Node2D
 # @onready var color_correction: ColorRect = %ColorCorrection
 # @onready var pivot: Node2D = %Pivot
 # @onready var player_ui: Control = %PlayerUi
+
+@onready var cloud: GPUParticles2D = %Cloud
+@onready var leaf: GPUParticles2D = %Leaf
 
 @onready var camera_controller: CameraController = %CameraController
 @onready var environment_area: EnvironmentArea = %EnvironmentArea
@@ -26,9 +27,16 @@ func _ready():
 	# generate_map(starting_map)
 	# camera_controller.animation_finished.connect(on_camera_animation_finished)
 
-func apply_environment() -> void:
-	print("mudou")
-	pass
+func apply_environment(resource_environment: ResourceEnvironment) -> void:
+	print("mudou", resource_environment)
+
+	cloud.emitting = ResourceEnvironment.Meteo.CLOUD in resource_environment.meteo_list
+	leaf.emitting = ResourceEnvironment.Meteo.LEAF in resource_environment.meteo_list
+
+	if resource_environment.music:
+		Audio.play_music(resource_environment.music)
+	else:
+		Audio.stop_music()
 
 # func on_camera_animation_finished():
 	# pivot.position = camera_grid.global_position

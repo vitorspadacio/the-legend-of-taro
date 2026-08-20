@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ResourceEnvironment" format=3 uid="uid://dkwnklyceey24"]
+
+[ext_resource type="Texture2D" uid="uid://bdvl5xcum1mtt" path="res://content/environment/swamp/gradient.tres" id="1_ft5ul"]
+[ext_resource type="AudioStream" uid="uid://brromkddwr0x2" path="res://content/breakables/grass/grass.wav" id="2_6lk5o"]
+[ext_resource type="Script" uid="uid://7ykbdsbdu5gn" path="res://content/environment/resource_environment.gd" id="3_uc4sw"]
+
+[resource]
+script = ExtResource("3_uc4sw")
+color_gradient = ExtResource("1_ft5ul")
+music = ExtResource("2_6lk5o")
+meteo_list = Array[int]([4, 3])

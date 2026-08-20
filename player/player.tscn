@@ -21,7 +21,7 @@
 [ext_resource type="Script" uid="uid://bavckwsbwuxsc" path="res://systems/components/animation.gd" id="14_kb6p2"]
 [ext_resource type="AudioStream" uid="uid://cf66lbm3wmhtg" path="res://assets/sounds/slash.wav" id="16_x7c3f"]
 [ext_resource type="Script" uid="uid://blposikaswy0u" path="res://systems/components/jump.gd" id="17_e7oew"]
-[ext_resource type="AudioStream" uid="uid://xsgt48ghm5no" path="res://impact5.wav" id="18_s7qer"]
+[ext_resource type="AudioStream" uid="uid://xsgt48ghm5no" path="res://assets/sounds/impact5.wav" id="18_s7qer"]
 [ext_resource type="AudioStream" uid="uid://cm0n2sms0e2l1" path="res://assets/sounds/jump.wav" id="20_bjvpn"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_kqu6x"]
