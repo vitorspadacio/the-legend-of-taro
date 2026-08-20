@@ -932,7 +932,7 @@ _data = {
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xldlm"]
-size = Vector2(14, 6)
+size = Vector2(14, 7)
 
 [sub_resource type="Curve" id="Curve_5draq"]
 _data = [Vector2(0, 0), 0.0, 1.4, 0, 0, Vector2(0.50643086, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -2.2168498, 0.0, 0, 0]
@@ -982,7 +982,7 @@ vframes = 4
 libraries/ = SubResource("AnimationLibrary_oul6g")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1703709611]
-position = Vector2(0, 5)
+position = Vector2(0, 5.5)
 shape = SubResource("RectangleShape2D_xldlm")
 debug_color = Color(0, 0.6509804, 0.11764706, 0)
 
@@ -1000,6 +1000,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="RayCast2D" type="RayCast2D" parent="." unique_id=642531111]
+visible = false
 target_position = Vector2(0, 11)
 collision_mask = 3
 hit_from_inside = true
@@ -1079,6 +1080,7 @@ sound = ExtResource("20_bjvpn")
 metadata/_custom_type_script = "uid://c3rx518jf3lm2"
 
 [node name="AttackArea" type="Area2D" parent="." unique_id=311756541]
+visible = false
 position = Vector2(0, -1)
 rotation = -3.1415927
 collision_layer = 0
@@ -1092,8 +1094,10 @@ shape = SubResource("RectangleShape2D_s88v2")
 debug_color = Color(0.9764706, 0, 0.42352942, 0)
 
 [node name="DamageArea" type="Area2D" parent="." unique_id=1322900672]
+visible = false
 script = ExtResource("11_2ieo8")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DamageArea" unique_id=1485156665]
+position = Vector2(0, 3)
 shape = SubResource("CircleShape2D_xldlm")
 debug_color = Color(0.7529412, 0.45882353, 0, 0)
