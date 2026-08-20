@@ -986,8 +986,6 @@ position = Vector2(0, 5)
 shape = SubResource("RectangleShape2D_xldlm")
 debug_color = Color(0, 0.6509804, 0.11764706, 0)
 
-[node name="Camera2D" type="Camera2D" parent="." unique_id=542705358]
-
 [node name="StateLabel" type="Label" parent="." unique_id=342285391]
 unique_name_in_owner = true
 visible = false
