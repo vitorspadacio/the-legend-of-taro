@@ -962,10 +962,11 @@ jump = NodePath("Components/JumpComponent")
 movement = NodePath("Components/MovementComponent")
 
 [node name="SpriteShadow2D" type="Sprite2D" parent="." unique_id=609152420]
-position = Vector2(0, 6)
+position = Vector2(0, 5)
 texture = ExtResource("2_wodsf")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=786664194]
+position = Vector2(0, -1)
 scale = Vector2(1, 1.1)
 texture = SubResource("CompressedTexture2D_kqu6x")
 hframes = 8
@@ -974,6 +975,7 @@ vframes = 17
 [node name="SpriteAttack2D" type="Sprite2D" parent="." unique_id=1681474606]
 unique_name_in_owner = true
 visible = false
+position = Vector2(0, -1)
 texture = ExtResource("2_g6k8r")
 hframes = 4
 vframes = 4
@@ -982,7 +984,8 @@ vframes = 4
 libraries/ = SubResource("AnimationLibrary_oul6g")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1703709611]
-position = Vector2(0, 5.5)
+visible = false
+position = Vector2(0, 4.5)
 shape = SubResource("RectangleShape2D_xldlm")
 debug_color = Color(0, 0.6509804, 0.11764706, 0)
 
@@ -991,9 +994,9 @@ unique_name_in_owner = true
 visible = false
 z_index = 10
 offset_left = -24.0
-offset_top = -21.0
+offset_top = -22.0
 offset_right = 23.0
-offset_bottom = -9.0
+offset_bottom = -10.0
 theme_override_font_sizes/font_size = 8
 text = "Teste"
 horizontal_alignment = 1
@@ -1001,6 +1004,7 @@ vertical_alignment = 1
 
 [node name="RayCast2D" type="RayCast2D" parent="." unique_id=642531111]
 visible = false
+position = Vector2(0, -1)
 target_position = Vector2(0, 11)
 collision_mask = 3
 hit_from_inside = true
@@ -1081,7 +1085,7 @@ metadata/_custom_type_script = "uid://c3rx518jf3lm2"
 
 [node name="AttackArea" type="Area2D" parent="." unique_id=311756541]
 visible = false
-position = Vector2(0, -1)
+position = Vector2(0, -2)
 rotation = -3.1415927
 collision_layer = 0
 collision_mask = 192
@@ -1095,6 +1099,7 @@ debug_color = Color(0.9764706, 0, 0.42352942, 0)
 
 [node name="DamageArea" type="Area2D" parent="." unique_id=1322900672]
 visible = false
+position = Vector2(0, -1)
 script = ExtResource("11_2ieo8")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DamageArea" unique_id=1485156665]
