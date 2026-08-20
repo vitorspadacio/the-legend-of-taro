@@ -17,6 +17,7 @@
 [ext_resource type="Script" uid="uid://jn6ptg2mpq5h" path="res://systems/combat/damage_area.gd" id="12_02ecy"]
 [ext_resource type="AudioStream" uid="uid://dxm6nqo5j5qb3" path="res://assets/sounds/slash4.wav" id="13_hmbw6"]
 [ext_resource type="Script" uid="uid://brsq1cmtrtshq" path="res://systems/components/player_sensor.gd" id="14_g8y1a"]
+[ext_resource type="AudioStream" uid="uid://clsnedocmxyli" path="res://assets/sounds/launch.wav" id="15_33f04"]
 [ext_resource type="Script" uid="uid://btbmbpcu6oj5v" path="res://systems/combat/attack_area.gd" id="16_7vpym"]
 [ext_resource type="Script" uid="uid://be43a7q4k86aa" path="res://entities/enemies/decision_engines/decision_engine_attack.gd" id="17_i2f3a"]
 
@@ -295,6 +296,7 @@ metadata/_custom_type_script = "uid://cs2ysdbdc7t4j"
 [node name="Death" type="Node" parent="StateMachine" unique_id=1449539682]
 unique_name_in_owner = true
 script = ExtResource("10_jsg3h")
+sound = ExtResource("15_33f04")
 metadata/_custom_type_script = "uid://bsns8tu52ba2t"
 
 [node name="HazardArea" type="Area2D" parent="." unique_id=727340143]
