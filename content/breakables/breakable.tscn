@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://b6vodxc0miclw"]
 
-[ext_resource type="Script" uid="uid://cjhfcynjj0sty" path="res://content/breakables/destroyable.gd" id="1_w1gja"]
+[ext_resource type="Script" uid="uid://cjhfcynjj0sty" path="res://content/breakables/breakable.gd" id="1_w1gja"]
 [ext_resource type="Script" uid="uid://dyl8o8lbuap7r" path="res://systems/components/health.gd" id="2_ogjwx"]
 [ext_resource type="Script" uid="uid://jn6ptg2mpq5h" path="res://systems/combat/damage_area.gd" id="3_jt54f"]
 [ext_resource type="Texture2D" uid="uid://dgbkuuwc1j8km" path="res://content/particles/particle_rock.png" id="4_af1pe"]

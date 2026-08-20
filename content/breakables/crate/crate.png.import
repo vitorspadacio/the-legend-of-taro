@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dqwyifoorh3t8"
-path="res://.godot/imported/pot.png-963370658e0e02d3b1699037cec261d4.ctex"
+uid="uid://ww3ylghfa60s"
+path="res://.godot/imported/crate.png-11e7372ca9bc575775b52cda51f249a0.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://content/breakables/pot.png"
-dest_files=["res://.godot/imported/pot.png-963370658e0e02d3b1699037cec261d4.ctex"]
+source_file="res://content/breakables/crate/crate.png"
+dest_files=["res://.godot/imported/crate.png-11e7372ca9bc575775b52cda51f249a0.ctex"]
 
 [params]
 

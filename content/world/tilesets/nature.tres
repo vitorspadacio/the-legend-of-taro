@@ -1,8 +1,11 @@
 [gd_resource type="TileSet" format=3 uid="uid://bpiosv4wrdcqu"]
 
 [ext_resource type="Texture2D" uid="uid://dcpslblxsasba" path="res://content/world/tiles/tileset_floor.png" id="1_jmwp0"]
+[ext_resource type="PackedScene" uid="uid://dc2otpemqpad2" path="res://content/breakables/crate/crate.tscn" id="2_ds0ik"]
 [ext_resource type="Texture2D" uid="uid://ccrv0s3k84k2p" path="res://content/world/tiles/tileset_village_abandoned.png" id="2_rfa6o"]
+[ext_resource type="PackedScene" uid="uid://domrx1cgi35kg" path="res://content/breakables/grass/grass.tscn" id="3_8bl7k"]
 [ext_resource type="Texture2D" uid="uid://wqoy6lv5qdxq" path="res://content/world/tiles/tileset_field.png" id="3_cyq3e"]
+[ext_resource type="PackedScene" uid="uid://dxma3r6xd3454" path="res://content/breakables/pot/pot.tscn" id="4_wh7ek"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_is3ju"]
 vertices = PackedVector2Array(8, 8, -8, 8, -8, -8, 8, -8)
@@ -2312,6 +2315,12 @@ texture = ExtResource("1_jmwp0")
 18:25/0 = 0
 19:25/0 = 0
 
+[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_51uuk"]
+resource_name = "Breakables"
+scenes/1/scene = ExtResource("2_ds0ik")
+scenes/2/scene = ExtResource("3_8bl7k")
+scenes/3/scene = ExtResource("4_wh7ek")
+
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ynsuh"]
 texture = ExtResource("2_rfa6o")
 4:0/size_in_atlas = Vector2i(4, 3)
@@ -2800,3 +2809,4 @@ custom_data_layer_0/type = 2
 sources/0 = SubResource("TileSetAtlasSource_o00ia")
 sources/2 = SubResource("TileSetAtlasSource_ynsuh")
 sources/3 = SubResource("TileSetAtlasSource_pi42a")
+sources/1 = SubResource("TileSetScenesCollectionSource_51uuk")

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ww3ylghfa60s"
-path="res://.godot/imported/crate.png-bfddc9a74f9200f35f1baed8568e1613.ctex"
+uid="uid://bi6x2xy0kcgn7"
+path="res://.godot/imported/grass.png-a2a276d07eb97aecf060f2bee3883ad0.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://content/breakables/crate.png"
-dest_files=["res://.godot/imported/crate.png-bfddc9a74f9200f35f1baed8568e1613.ctex"]
+source_file="res://content/breakables/grass/grass.png"
+dest_files=["res://.godot/imported/grass.png-a2a276d07eb97aecf060f2bee3883ad0.ctex"]
 
 [params]
 

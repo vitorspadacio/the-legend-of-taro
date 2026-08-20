@@ -38,8 +38,15 @@ func process(delta: float) -> PlayerState:
 		return idle
 	return null
 
+func flash() -> void:
+	var tween := create_tween()
+	for i in 3:
+		tween.tween_property(player, "visible", false, 0.06)
+		tween.tween_property(player, "visible", true, 0.06)
+
 func _on_hurt(attack_area: AttackArea) -> void:
 	if player.health.current_health == 0:
 		return
 	player.state_machine.change_state(self)
+	flash()
 	direction = (player.global_position - attack_area.global_position).normalized()
