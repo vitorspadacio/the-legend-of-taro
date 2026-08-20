@@ -46,6 +46,13 @@ func play_music(audio: AudioStream) -> void:
 
 	current_track = next_track
 
+func stop_music() -> void:
+	for tween in music_tweens:
+		tween.kill()
+	music_tweens.clear()
+	for player in [music_1, music_2]:
+		player.stop()
+
 func fade_track_out(player: AudioStreamPlayer) -> void:
 	var tween: Tween = create_tween()
 	music_tweens.append(tween)
