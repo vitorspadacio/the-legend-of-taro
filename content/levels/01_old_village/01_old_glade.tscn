@@ -14,6 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://d3qatu5noma65" path="res://systems/levels/map_size_bg.png" id="10_61yto"]
 [ext_resource type="PackedScene" uid="uid://b6nhmafoangcv" path="res://entities/enemies/lantern/lantern.tscn" id="10_kycem"]
 [ext_resource type="Script" uid="uid://barpxe1rgafhj" path="res://systems/components/dialog.gd" id="14_isvq0"]
+[ext_resource type="PackedScene" uid="uid://cbosspiox8efp" path="res://entities/items/coin/coin.tscn" id="15_3b76q"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xldlm"]
 size = Vector2(320, 180)
@@ -38,6 +39,7 @@ script = ExtResource("1_hqs3s")
 
 [node name="EnvironmentArea" type="Area2D" parent="." unique_id=2049024696]
 unique_name_in_owner = true
+visible = false
 position = Vector2(0, 172)
 collision_mask = 32
 script = ExtResource("2_031bp")
@@ -125,3 +127,6 @@ debug_color = Color(0, 0.55503935, 0.91015494, 0)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D" unique_id=1344815619]
 shape = SubResource("RectangleShape2D_vrppe")
+
+[node name="Coin" parent="." unique_id=1098007496 instance=ExtResource("15_3b76q")]
+position = Vector2(49, 235)
