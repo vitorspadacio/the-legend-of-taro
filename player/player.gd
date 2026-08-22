@@ -24,7 +24,7 @@ func _ready() -> void:
 	state_machine.init_player(self)
 	damage_area.damage_taken.connect(_on_damage_taken)
 	health.died.connect(died.emit)
-	jump.height_changed.connect(_on_jump_height_changed)
+	jump.height_changed.connect(_on_height_changed)
 
 func _process(delta: float) -> void:
 	input.update_commands()
@@ -49,5 +49,5 @@ func _on_damage_taken(attacker_area: AttackArea) -> void:
 	health.damage(attacker_area.damage)
 	damage_taken.emit(attacker_area)
 
-func _on_jump_height_changed(height: float) -> void:
+func _on_height_changed(height: float) -> void:
 	sprite.position.y = - height

@@ -10,16 +10,24 @@ signal jump_finished
 @export var jump_duration := 0.5
 @export var raycast_2d: RayCast2D
 
+@export var gravity_up := 400.0
+@export var gravity_down := 500.0
+
+var gravity := 0.0
 var height := 0.0
 var is_jumping := false
 var jump_time := 0.0
+var velocity := 0.0
+
+func _ready() -> void:
+	gravity = (8.0 * jump_height) / (jump_duration * jump_duration)
 
 func jump() -> void:
 	if is_jumping:
 		return
 
 	is_jumping = true
-	jump_time = 0.0
+	velocity = sqrt(2.0 * gravity * jump_height)
 	jump_started.emit()
 
 func can_jump() -> bool:
@@ -46,20 +54,34 @@ func can_jump() -> bool:
 func _process(delta: float) -> void:
 	if not is_jumping:
 		return
+			
+	var current_gravity := gravity_up
 
-	jump_time += delta
+	if velocity < 0.0:
+			current_gravity = gravity_down
 
-	var progress := jump_time / jump_duration
+	velocity -= current_gravity * delta
+	height += velocity * delta
 
-	if progress >= 1.0:
-		progress = 1.0
+	if height <= 0.0 and velocity < 0.0:
+		height = 0.0
+		velocity = 0.0
 		is_jumping = false
+		jump_finished.emit()
 
-	if can_jump():
-		height = jump_curve.sample(progress) * jump_height
-	else:
-		height = jump_curve.sample(progress) * 10.0
 	height_changed.emit(height)
 
-	if not is_jumping:
-		jump_finished.emit()
+	# var progress := jump_time / jump_duration
+
+	# if progress >= 1.0:
+	# 	progress = 1.0
+	# 	is_jumping = false
+
+	# if can_jump():
+	# 	height = jump_curve.sample(progress) * jump_height
+	# else:
+	# 	height = jump_curve.sample(progress) * 10.0
+	# height_changed.emit(height)
+
+	# if not is_jumping:
+	# 	jump_finished.emit()

@@ -984,7 +984,6 @@ vframes = 4
 libraries/ = SubResource("AnimationLibrary_oul6g")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1703709611]
-visible = false
 position = Vector2(0, 4.5)
 shape = SubResource("RectangleShape2D_xldlm")
 debug_color = Color(0, 0.6509804, 0.11764706, 0)
