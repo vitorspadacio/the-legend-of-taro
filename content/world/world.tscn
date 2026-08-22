@@ -38,7 +38,10 @@ starting_level = ExtResource("2_cl54s")
 
 [node name="CameraController" type="Camera2D" parent="." unique_id=1644416030]
 unique_name_in_owner = true
+position = Vector2(0, 180)
 script = ExtResource("2_57aag")
+grid_size = Vector2(320, 180)
+current_cell = Vector2(0, 1)
 metadata/_custom_type_script = "uid://cq1yk0tiyb3rq"
 
 [node name="Leaf" type="GPUParticles2D" parent="CameraController" unique_id=231801047]

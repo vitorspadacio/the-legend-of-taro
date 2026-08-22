@@ -28,6 +28,7 @@ var target: Node2D:
 
 func _ready() -> void:
 	add_to_group("camera")
+	set_target(get_tree().get_first_node_in_group("player"), true)
 	current_cell = world_to_grid(global_position)
 	set_process(false)
 
@@ -38,6 +39,13 @@ func _process(_delta: float) -> void:
 		set_process(false)
 	go_to_world_position(target.global_position)
 
+func set_target(new_target: Node2D, teleport := false) -> void:
+	target = new_target
+	if not target:
+		return
+	if teleport:
+		go_to_cell(target.global_position, teleport)
+
 func get_world_position() -> Vector2:
 	return current_cell * grid_size
 
@@ -47,10 +55,14 @@ func go_to_world_position(pos: Vector2):
 	if cell_target != current_cell:
 		go_to_cell(cell_target)
 
-func go_to_cell(cell_target: Vector2):
+func go_to_cell(cell_target: Vector2, teleport: bool = false):
 	current_cell = cell_target
 	if tween:
 		tween.kill()
+	if teleport:
+		position = grid_to_world(current_cell)
+		return
+
 	tween = create_tween()
 	tween.tween_property(self, "position", grid_to_world(current_cell), transition_time) \
 		.set_trans(animation_trans) \

@@ -22,20 +22,24 @@ var blackboard: Blackboard
 ##### Core #####
 
 func _ready() -> void:
-	blackboard = Blackboard.new()
-	decision_engine.blackboard = blackboard
+	if decision_engine:
+		blackboard = Blackboard.new()
+		decision_engine.blackboard = blackboard
+
 	state_machine.init_enemy(self)
 	damage_area.damage_taken.connect(_on_damage_taken)
 	if jump:
 		jump.height_changed.connect(_on_jump_height_changed)
 
 	var player = get_tree().get_first_node_in_group("player")
-	player.died.connect(_on_player_death)
+	if player:
+		player.died.connect(_on_player_death)
 
 func _process(delta: float) -> void:
-	var target: Player = blackboard.target
-	var distance: float = blackboard.distance_to_target
-	%Label.text = "target: %s \ndist: %s" % [target, distance]
+	if blackboard:
+		var target: Player = blackboard.target
+		var distance: float = blackboard.distance_to_target
+		%Label.text = "target: %s \ndist: %s" % [target, distance]
 	state_machine.process(delta)
 
 func _physics_process(delta: float) -> void:

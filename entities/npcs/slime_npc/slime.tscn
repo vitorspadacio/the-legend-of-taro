@@ -1,0 +1,361 @@
+[gd_scene format=3 uid="uid://cdiuiqfew4rfj"]
+
+[ext_resource type="Script" uid="uid://7hy21q0snabx" path="res://entities/enemies/enemy.gd" id="1_aeifn"]
+[ext_resource type="Texture2D" uid="uid://yh7t5i0qpf0l" path="res://player/shadow.png" id="2_ygf52"]
+[ext_resource type="Texture2D" uid="uid://bk8jv57bgf4h8" path="res://entities/npcs/slime_npc/slime.png" id="3_kk5ld"]
+[ext_resource type="Script" uid="uid://bavckwsbwuxsc" path="res://systems/components/animation.gd" id="4_vlek8"]
+[ext_resource type="Script" uid="uid://dyl8o8lbuap7r" path="res://systems/components/health.gd" id="5_nebpq"]
+[ext_resource type="Script" uid="uid://1t060yt1ejl" path="res://systems/components/movement.gd" id="6_pdary"]
+[ext_resource type="Script" uid="uid://blposikaswy0u" path="res://systems/components/jump.gd" id="7_rrg2u"]
+[ext_resource type="Script" uid="uid://barpxe1rgafhj" path="res://systems/components/dialog.gd" id="8_4eu61"]
+[ext_resource type="Script" uid="uid://ng48piqixoww" path="res://systems/gameplay/state_machine.gd" id="8_bn0pk"]
+[ext_resource type="Script" uid="uid://2jr6y5ue0pv2" path="res://entities/enemies/states/idle_state.gd" id="9_1y37n"]
+[ext_resource type="Script" uid="uid://c1srggf83pnkt" path="res://entities/enemies/states/walk_state.gd" id="10_3usnp"]
+[ext_resource type="Script" uid="uid://de137lhvib8k5" path="res://entities/enemies/states/chase_state.gd" id="11_bh2jx"]
+[ext_resource type="Script" uid="uid://cfu3rte1qqlpw" path="res://entities/enemies/states/hurt_state.gd" id="12_tflvo"]
+[ext_resource type="AudioStream" uid="uid://be5v3f6qk7fsv" path="res://assets/sounds/impact2.wav" id="13_u8v3d"]
+[ext_resource type="Script" uid="uid://bsns8tu52ba2t" path="res://entities/enemies/states/death_state.gd" id="14_5ygod"]
+[ext_resource type="AudioStream" uid="uid://clsnedocmxyli" path="res://assets/sounds/launch.wav" id="15_hyxi4"]
+[ext_resource type="Script" uid="uid://c3503keb3062u" path="res://entities/enemies/states/jump_state.gd" id="16_b76m6"]
+[ext_resource type="Script" uid="uid://c5xnwwp1r457n" path="res://systems/combat/hazard_area.gd" id="17_4dceo"]
+[ext_resource type="Script" uid="uid://jn6ptg2mpq5h" path="res://systems/combat/damage_area.gd" id="18_fu05t"]
+[ext_resource type="Script" uid="uid://byx6b7oeoo6oh" path="res://player/jump_blocker.gd" id="19_wxwd3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4bqqs"]
+size = Vector2(14, 9)
+
+[sub_resource type="Animation" id="Animation_reset"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_idle_down"]
+resource_name = "idle_down"
+length = 0.2
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_idle_left"]
+resource_name = "idle_left"
+length = 0.2
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
+
+[sub_resource type="Animation" id="Animation_idle_right"]
+resource_name = "idle_right"
+length = 0.2
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [3]
+}
+
+[sub_resource type="Animation" id="Animation_idle_up"]
+resource_name = "idle_up"
+length = 0.2
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+
+[sub_resource type="Animation" id="Animation_walk_down"]
+resource_name = "walk_down"
+length = 0.4
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 4, 8, 12]
+}
+
+[sub_resource type="Animation" id="Animation_walk_left"]
+resource_name = "walk_left"
+length = 0.4
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [2, 6, 10, 14]
+}
+
+[sub_resource type="Animation" id="Animation_walk_right"]
+resource_name = "walk_right"
+length = 0.4
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [3, 7, 11, 15]
+}
+
+[sub_resource type="Animation" id="Animation_walk_up"]
+resource_name = "walk_up"
+length = 0.4
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [1, 5, 9, 13]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4wdl7"]
+_data = {
+&"RESET": SubResource("Animation_reset"),
+&"idle_down": SubResource("Animation_idle_down"),
+&"idle_left": SubResource("Animation_idle_left"),
+&"idle_right": SubResource("Animation_idle_right"),
+&"idle_up": SubResource("Animation_idle_up"),
+&"walk_down": SubResource("Animation_walk_down"),
+&"walk_left": SubResource("Animation_walk_left"),
+&"walk_right": SubResource("Animation_walk_right"),
+&"walk_up": SubResource("Animation_walk_up")
+}
+
+[sub_resource type="Curve" id="Curve_520c8"]
+_data = [Vector2(0.016077168, 0.001760602), 0.0, 0.0, 0, 0, Vector2(0.5176849, 0.9911972), 0.0, 0.0, 0, 0, Vector2(1, 0.001760602), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_xldlm"]
+radius = 39.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6h86f"]
+radius = 8.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0lrwo"]
+radius = 7.0
+
+[node name="Slime" type="CharacterBody2D" unique_id=1996041847 node_paths=PackedStringArray("attack_area", "collision", "damage_area", "decision_engine", "hazard_area", "sprite", "state_machine", "navigation", "animation", "health", "jump", "movement") groups=["enemies"]]
+collision_layer = 64
+collision_mask = 3
+script = ExtResource("1_aeifn")
+attack_area = NodePath("HazardArea")
+collision = NodePath("CollisionShape2D")
+damage_area = NodePath("DamageArea")
+decision_engine = NodePath("")
+hazard_area = NodePath("HazardArea")
+sprite = NodePath("Sprite2D")
+state_machine = NodePath("StateMachine")
+navigation = NodePath("NavigationAgent2D")
+animation = NodePath("Components/AnimationComponent")
+health = NodePath("Components/HealthComponent")
+jump = NodePath("Components/JumpComponent")
+movement = NodePath("Components/MovementComponent")
+
+[node name="SpriteShadow2D" type="Sprite2D" parent="." unique_id=1763367966]
+position = Vector2(0, 5)
+texture = ExtResource("2_ygf52")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1414823171]
+texture = ExtResource("3_kk5ld")
+hframes = 4
+vframes = 4
+region_rect = Rect2(0, 0, 16, 16)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2094515894]
+position = Vector2(0, 2.5)
+shape = SubResource("RectangleShape2D_4bqqs")
+debug_color = Color(0, 0.6509804, 0.11764706, 0)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=66015378]
+libraries/ = SubResource("AnimationLibrary_4wdl7")
+
+[node name="Components" type="Node" parent="." unique_id=1647763286]
+
+[node name="AnimationComponent" type="Node" parent="Components" unique_id=112754747 node_paths=PackedStringArray("animation_player")]
+script = ExtResource("4_vlek8")
+animation_player = NodePath("../../AnimationPlayer")
+
+[node name="HealthComponent" type="Node" parent="Components" unique_id=588899216]
+script = ExtResource("5_nebpq")
+max_health = 5
+
+[node name="MovementComponent" type="Node" parent="Components" unique_id=1352421591 node_paths=PackedStringArray("body")]
+script = ExtResource("6_pdary")
+body = NodePath("../..")
+speed = 35.0
+
+[node name="JumpComponent" type="Node" parent="Components" unique_id=2042509210 node_paths=PackedStringArray("raycast_2d")]
+script = ExtResource("7_rrg2u")
+jump_curve = SubResource("Curve_520c8")
+jump_duration = 1.0
+raycast_2d = NodePath("../../JumpBlocker")
+metadata/_custom_type_script = "uid://blposikaswy0u"
+
+[node name="DialogComponent" type="Area2D" parent="Components" unique_id=2108670017]
+collision_layer = 4
+collision_mask = 32
+script = ExtResource("8_4eu61")
+metadata/_custom_type_script = "uid://barpxe1rgafhj"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Components/DialogComponent" unique_id=1486530035]
+shape = SubResource("CircleShape2D_xldlm")
+debug_color = Color(0, 0.55503935, 0.91015494, 0)
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=464317413]
+path_postprocessing = 1
+
+[node name="StateLabel" type="Label" parent="." unique_id=1116733381]
+unique_name_in_owner = true
+visible = false
+z_index = 10
+offset_left = -24.0
+offset_top = -21.0
+offset_right = 23.0
+offset_bottom = -9.0
+theme_override_font_sizes/font_size = 8
+text = "Teste"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="StateMachine" type="Node" parent="." unique_id=527759229]
+script = ExtResource("8_bn0pk")
+metadata/_custom_type_script = "uid://ng48piqixoww"
+
+[node name="Idle" type="Node" parent="StateMachine" unique_id=1118385730]
+unique_name_in_owner = true
+script = ExtResource("9_1y37n")
+metadata/_custom_type_script = "uid://2jr6y5ue0pv2"
+
+[node name="Walk" type="Node" parent="StateMachine" unique_id=1011662107]
+unique_name_in_owner = true
+script = ExtResource("10_3usnp")
+metadata/_custom_type_script = "uid://c1srggf83pnkt"
+
+[node name="Chase" type="Node" parent="StateMachine" unique_id=1414035139]
+unique_name_in_owner = true
+script = ExtResource("11_bh2jx")
+metadata/_custom_type_script = "uid://de137lhvib8k5"
+
+[node name="Hurt" type="Node" parent="StateMachine" unique_id=1478315784]
+unique_name_in_owner = true
+script = ExtResource("12_tflvo")
+sound = ExtResource("13_u8v3d")
+metadata/_custom_type_script = "uid://cfu3rte1qqlpw"
+
+[node name="Death" type="Node" parent="StateMachine" unique_id=391338787]
+unique_name_in_owner = true
+script = ExtResource("14_5ygod")
+sound = ExtResource("15_hyxi4")
+metadata/_custom_type_script = "uid://bsns8tu52ba2t"
+
+[node name="Jump" type="Node" parent="StateMachine" unique_id=53287925]
+unique_name_in_owner = true
+script = ExtResource("16_b76m6")
+attack_range = 80
+metadata/_custom_type_script = "uid://c3503keb3062u"
+
+[node name="HazardArea" type="Area2D" parent="." unique_id=1411495225]
+script = ExtResource("17_4dceo")
+metadata/_custom_type_script = "uid://c5xnwwp1r457n"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HazardArea" unique_id=533454259]
+shape = SubResource("CircleShape2D_6h86f")
+debug_color = Color(0.6313726, 0.34509805, 1, 0)
+
+[node name="DamageArea" type="Area2D" parent="." unique_id=1991178186]
+collision_layer = 64
+collision_mask = 0
+script = ExtResource("18_fu05t")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DamageArea" unique_id=2039072470]
+shape = SubResource("CircleShape2D_0lrwo")
+debug_color = Color(0.7529412, 0.45882353, 0, 0)
+
+[node name="JumpBlocker" type="RayCast2D" parent="." unique_id=1061712879]
+target_position = Vector2(0, 10)
+script = ExtResource("19_wxwd3")
+metadata/_custom_type_script = "uid://byx6b7oeoo6oh"
+
+[node name="Label" type="Label" parent="." unique_id=311193273]
+unique_name_in_owner = true
+visible = false
+offset_left = -20.0
+offset_top = -35.0
+offset_right = 20.0
+offset_bottom = -19.0
+theme_override_constants/line_spacing = -3
+theme_override_font_sizes/font_size = 6
+text = "teste
+teste"
+horizontal_alignment = 1

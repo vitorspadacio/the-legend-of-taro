@@ -1,0 +1,72 @@
+[gd_scene format=3 uid="uid://bxbgy3sqkjgwp"]
+
+[ext_resource type="Script" uid="uid://3r2oornb0403" path="res://systems/dialog/dialog.gd" id="1_cveri"]
+[ext_resource type="Texture2D" uid="uid://ce0d8o2iu2fia" path="res://systems/dialog/dialogbox.png" id="1_ht65y"]
+[ext_resource type="Texture2D" uid="uid://bgpgsp7m34yxs" path="res://systems/dialog/arrow.png" id="2_qqm2g"]
+
+[sub_resource type="FontVariation" id="FontVariation_cveri"]
+spacing_space = 3
+
+[node name="Dialog" type="Control" unique_id=1430940187]
+layout_mode = 3
+anchors_preset = 0
+offset_top = 1.0
+offset_bottom = 1.0
+script = ExtResource("1_cveri")
+
+[node name="Box" type="TextureRect" parent="." unique_id=2026597785]
+layout_mode = 0
+offset_top = 118.0
+offset_right = 300.0
+offset_bottom = 176.0
+scale = Vector2(1.0666667, 1)
+offset_transform_enabled = true
+texture = ExtResource("1_ht65y")
+
+[node name="Actor" type="Label" parent="." unique_id=949639548]
+layout_mode = 0
+offset_left = 6.0
+offset_top = 115.0
+offset_right = 73.0
+offset_bottom = 132.0
+theme_override_font_sizes/font_size = 11
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="Text" type="RichTextLabel" parent="." unique_id=1798487788]
+custom_minimum_size = Vector2(290, 32)
+layout_mode = 0
+offset_left = 11.0
+offset_top = 133.0
+offset_right = 301.0
+offset_bottom = 165.0
+theme_override_colors/default_color = Color(0.3407026, 0.1742225, 0.1270568, 1)
+theme_override_fonts/normal_font = SubResource("FontVariation_cveri")
+theme_override_font_sizes/normal_font_size = 8
+text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque malesuada semper dolor, et pellentesque dui vehicula eu. Curabitur nisl tortor, commodo eu risus in."
+scroll_active = false
+visible_characters_behavior = 1
+
+[node name="Button" type="Control" parent="." unique_id=1324834576]
+anchors_preset = 0
+offset_left = 302.0
+offset_top = 159.0
+offset_right = 312.0
+offset_bottom = 169.0
+
+[node name="TextureRect" type="TextureRect" parent="Button" unique_id=679242537]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -4.5
+offset_top = -4.5
+offset_right = 8.5
+offset_bottom = 8.5
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.68, 0.68)
+texture = ExtResource("2_qqm2g")
