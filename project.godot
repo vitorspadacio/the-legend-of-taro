@@ -18,7 +18,6 @@ config/icon="res://icon.svg"
 [autoload]
 
 VisualEffects="*uid://6fsty8cc28nd"
-PlayerHud="*uid://dclu8eu4ausns"
 Audio="*uid://4gdpjf6wjaax"
 Constants="*uid://bio2kmq3hi3t0"
 

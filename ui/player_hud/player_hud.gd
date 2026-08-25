@@ -10,10 +10,17 @@ var hearts: Array[Heart] = []
 var player: Player
 
 func _ready() -> void:
-	player = get_tree().get_first_node_in_group("player")
-	if player:
-		player.health.health_changed.connect(_on_health_changed)
+		await _wait_for_player()
 		_setup_hearts()
+		player.health.health_changed.connect(_on_health_changed)
+
+
+func _wait_for_player() -> void:
+	while player == null:
+		player = get_tree().get_first_node_in_group("player")
+		if not player:
+			await get_tree().process_frame
+
 
 func _setup_hearts() -> void:
 	for child in hearts_container.get_children():
@@ -28,13 +35,25 @@ func _setup_hearts() -> void:
 	
 	set_health(player.health.max_health)
 
+
 func _on_health_changed(current_health: int, _m: int) -> void:
 	set_health(current_health)
 
+
 func set_health(health: int) -> void:
+	var affected_heart := -1
 	for i in hearts.size():
 		var heart_health := health - i * HP_PER_HEART
-		hearts[i].set_state(get_heart_state(heart_health))
+		var new_state := get_heart_state(heart_health)
+
+		if hearts[i].sprite.frame != new_state:
+			affected_heart = i
+
+		hearts[i].set_state(new_state)
+	
+	if affected_heart >= 0:
+		hearts[affected_heart].pulse()
+
 
 func get_heart_state(health: int) -> int:
 	if health <= 0:

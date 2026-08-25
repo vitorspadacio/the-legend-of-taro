@@ -13,6 +13,7 @@
 [ext_resource type="Material" uid="uid://b644konj50oy6" path="res://content/environment/fx/rain/rain_env.tres" id="10_it4b1"]
 [ext_resource type="Texture2D" uid="uid://d0kl1xfdvdsjg" path="res://content/environment/fx/rain/rain_on_floor.png" id="11_bfxvt"]
 [ext_resource type="Material" uid="uid://cfgy2lkhe86g2" path="res://content/environment/fx/rain/rain_floor_env.tres" id="12_54j6l"]
+[ext_resource type="PackedScene" uid="uid://dclu8eu4ausns" path="res://ui/player_hud/player_hud.tscn" id="14_cl54s"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_hk4jh"]
 particles_animation = true
@@ -98,3 +99,5 @@ lifetime = 0.5
 fixed_fps = 0
 draw_order = 0
 process_material = ExtResource("12_54j6l")
+
+[node name="PlayerHud" parent="." unique_id=302008842 instance=ExtResource("14_cl54s")]

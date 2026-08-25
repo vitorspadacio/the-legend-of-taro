@@ -7,6 +7,8 @@
 custom_minimum_size = Vector2(16, 16)
 layout_mode = 3
 anchors_preset = 0
+offset_right = 16.0
+offset_bottom = 16.0
 script = ExtResource("1_klh40")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1838053200]

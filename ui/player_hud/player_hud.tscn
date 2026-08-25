@@ -15,12 +15,3 @@ theme_override_constants/separation = 2
 
 [node name="Hearth" parent="Hearts" unique_id=2042825907 instance=ExtResource("2_rtdb5")]
 layout_mode = 2
-
-[node name="Hearth2" parent="Hearts" unique_id=1726676404 instance=ExtResource("2_rtdb5")]
-layout_mode = 2
-
-[node name="Hearth3" parent="Hearts" unique_id=2063944626 instance=ExtResource("2_rtdb5")]
-layout_mode = 2
-
-[node name="Hearth4" parent="Hearts" unique_id=54797738 instance=ExtResource("2_rtdb5")]
-layout_mode = 2
