@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="WeaponData" format=3 uid="uid://c20tij6l0ueyp"]
+
+[ext_resource type="Script" uid="uid://114i20mfqbig" path="res://systems/inventory/weapon_data.gd" id="1_wa7ol"]
+[ext_resource type="Texture2D" uid="uid://bden8i5f5wdrs" path="res://player/weapons/katana.png" id="2_kc07o"]
+
+[resource]
+script = ExtResource("1_wa7ol")
+damage = 1
+texture = ExtResource("2_kc07o")
+type = 1
+metadata/_custom_type_script = "uid://114i20mfqbig"

@@ -21,6 +21,9 @@ signal died()
 var block_input := false
 var inventory: Inventory
 
+var has_jump := false
+var has_roll := false
+
 ##### Core #####
 
 func _ready() -> void:

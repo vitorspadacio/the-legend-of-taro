@@ -3,7 +3,9 @@ class_name LootDropper extends Marker2D
 @export var items: Array[LootData]
 
 func _ready() -> void:
-	owner.health.died.connect(drop_loot)
+	if owner and owner.health:
+		owner.health.died.connect(drop_loot)
+
 
 func drop_loot() -> void:
 	for item in items:

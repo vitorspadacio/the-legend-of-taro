@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="WeaponData" format=3 uid="uid://bb01emd34as2c"]
+
+[ext_resource type="Script" uid="uid://114i20mfqbig" path="res://systems/inventory/weapon_data.gd" id="1_pvhak"]
+[ext_resource type="Texture2D" uid="uid://d1ihaoqhyix5j" path="res://player/weapons/pickaxe.png" id="2_oxv1v"]
+
+[resource]
+script = ExtResource("1_pvhak")
+damage = 2
+texture = ExtResource("2_oxv1v")
+type = 2
+metadata/_custom_type_script = "uid://114i20mfqbig"

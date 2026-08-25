@@ -35,6 +35,6 @@ func set_jump_frame() -> void:
 	)
 	
 func process(_delta: float) -> PlayerState:
-	# if player.input.direction.x == 0 && player.input.direction.y == 0:
-	# 	return idle
+	if player.input.direction.x == 0 && player.input.direction.y == 0:
+		return idle
 	return null

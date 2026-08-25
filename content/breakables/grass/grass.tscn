@@ -5,25 +5,38 @@
 [ext_resource type="Texture2D" uid="uid://bi6x2xy0kcgn7" path="res://content/breakables/grass/grass.png" id="2_pwuk7"]
 [ext_resource type="Texture2D" uid="uid://b24nod8p5n05l" path="res://content/particles/grass/particle_grass.png" id="3_ft43a"]
 [ext_resource type="Resource" uid="uid://pd5lt0y7jxun" path="res://content/particles/grass/particle_grass.tres" id="4_4pjrf"]
+[ext_resource type="Script" uid="uid://5nkjwhvkjr8q" path="res://systems/components/loot_dropper.gd" id="6_numtq"]
+[ext_resource type="Script" uid="uid://dli4jk0hfo2og" path="res://entities/items/loot_data.gd" id="7_v0kiw"]
 
-[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_sltsf"]
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_n0t63"]
 particles_animation = true
 particles_anim_h_frames = 6
 particles_anim_v_frames = 1
 particles_anim_loop = false
 
+[sub_resource type="Resource" id="Resource_xldlm"]
+script = ExtResource("7_v0kiw")
+item = "uid://cbosspiox8efp"
+maximum = 2
+metadata/_custom_type_script = "uid://dli4jk0hfo2og"
+
 [node name="Grass" unique_id=622629986 instance=ExtResource("1_qgvs5")]
-collision_layer = 1
+collision_layer = 0
 sound = ExtResource("2_n0t63")
 
 [node name="Sprite" parent="." index="1" unique_id=19450043]
 texture = ExtResource("2_pwuk7")
 
 [node name="Particle" parent="." index="3" unique_id=1763944457]
-material = SubResource("CanvasItemMaterial_sltsf")
+material = SubResource("CanvasItemMaterial_n0t63")
 amount = 4
 texture = ExtResource("3_ft43a")
 resource_particle = ExtResource("4_4pjrf")
 
 [node name="HealthComponent" parent="." index="4" unique_id=867130180]
 max_health = 1
+
+[node name="LootDropper" type="Marker2D" parent="." index="5" unique_id=801795016]
+script = ExtResource("6_numtq")
+items = Array[ExtResource("7_v0kiw")]([SubResource("Resource_xldlm")])
+metadata/_custom_type_script = "uid://5nkjwhvkjr8q"
