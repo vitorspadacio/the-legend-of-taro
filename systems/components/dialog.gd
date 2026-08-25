@@ -13,7 +13,7 @@ var player: Player
 
 func _ready() -> void:
 	player = get_tree().get_first_node_in_group("player")
-	set_collision_mask_value(6, true)
+	set_collision_mask_value(Constants.CollisionLayers.player, true)
 	body_entered.connect(_on_body_entered)
 	body_exited.connect(_on_body_exited)
 
@@ -36,6 +36,10 @@ func _on_body_exited(_body: Node2D) -> void:
 		buuble.queue_free()
 
 
+func _on_dialog_end() -> void:
+	player.block_input = false
+
+
 func _process(_delta: float) -> void:
 	if box:
 		return
@@ -44,6 +48,7 @@ func _process(_delta: float) -> void:
 		player.block_input = true
 		var camera = get_tree().get_first_node_in_group("camera")
 		box = DIALOG_BOX.instantiate()
+		box.dialog_ended.connect(_on_dialog_end)
 		box.dialog = lines
 		box.global_position = camera.global_position * 0.5
 		box.global_position.x -= 160

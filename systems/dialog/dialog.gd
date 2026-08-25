@@ -1,5 +1,7 @@
 class_name Dialog extends Control
 
+signal dialog_ended
+
 @onready var actor: Label = $Actor
 @onready var box: TextureRect = $Box
 @onready var button: Control = $Button
@@ -81,6 +83,7 @@ func _close() -> void:
 	text.visible = false
 	button.visible = false
 	await _animate_box(Vector2(0.05, 0.05))
+	dialog_ended.emit()
 	queue_free()
 
 
