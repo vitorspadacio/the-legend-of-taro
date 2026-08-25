@@ -129,4 +129,10 @@ debug_color = Color(0, 0.55503935, 0.91015494, 0)
 shape = SubResource("RectangleShape2D_vrppe")
 
 [node name="Coin" parent="." unique_id=1098007496 instance=ExtResource("15_3b76q")]
-position = Vector2(49, 235)
+position = Vector2(23, 210)
+
+[node name="Coin2" parent="." unique_id=573592252 instance=ExtResource("15_3b76q")]
+position = Vector2(4, 211)
+
+[node name="Coin3" parent="." unique_id=662981884 instance=ExtResource("15_3b76q")]
+position = Vector2(40, 186)

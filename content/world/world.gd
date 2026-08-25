@@ -29,8 +29,6 @@ func _ready():
 		camera.target = player
 
 func apply_environment(resource_environment: ResourceEnvironment) -> void:
-	print("mudou", resource_environment)
-
 	cloud.emitting = ResourceEnvironment.Meteo.CLOUD in resource_environment.meteo_list
 	leaf.emitting = ResourceEnvironment.Meteo.LEAF in resource_environment.meteo_list
 	rain.emitting = ResourceEnvironment.Meteo.RAIN in resource_environment.meteo_list
@@ -42,7 +40,6 @@ func apply_environment(resource_environment: ResourceEnvironment) -> void:
 		Audio.stop_music()
 
 func generate_level(level_scene: PackedScene):
-	print("teste")
 	if current_level:
 		current_level.queue_free()
 	current_level = level_scene.instantiate()

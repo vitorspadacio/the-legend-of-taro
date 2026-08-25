@@ -1,7 +1,16 @@
 [gd_scene format=3 uid="uid://cbosspiox8efp"]
 
 [ext_resource type="Texture2D" uid="uid://huqdwe4bxuqc" path="res://entities/items/coin/coin.png" id="1_tg1dx"]
-[ext_resource type="Script" uid="uid://b384plb2xdkin" path="res://entities/items/coin/coin.gd" id="1_xrii2"]
+[ext_resource type="Script" uid="uid://ckpl53rvpcd15" path="res://entities/items/pickable.gd" id="1_tofnu"]
+[ext_resource type="Script" uid="uid://2sw7t1k77w6u" path="res://systems/inventory/item_data.gd" id="2_cxxpn"]
+[ext_resource type="AudioStream" uid="uid://db8lhbbefi2ok" path="res://entities/items/coin/coin.wav" id="3_vh3py"]
+
+[sub_resource type="Resource" id="Resource_xldlm"]
+script = ExtResource("2_cxxpn")
+description = "Uma moeda antiga usada nos vilarejos."
+id = 1
+name = "Moeda"
+metadata/_custom_type_script = "uid://2sw7t1k77w6u"
 
 [sub_resource type="Animation" id="Animation_xrii2"]
 length = 0.001
@@ -45,8 +54,11 @@ _data = {
 [sub_resource type="CircleShape2D" id="CircleShape2D_xldlm"]
 radius = 6.0827627
 
-[node name="Coin" type="Node2D" unique_id=1098007496]
-script = ExtResource("1_xrii2")
+[node name="Coin" type="Node2D" unique_id=1098007496 node_paths=PackedStringArray("sprite")]
+script = ExtResource("1_tofnu")
+item = SubResource("Resource_xldlm")
+sound = ExtResource("3_vh3py")
+sprite = NodePath("Sprite2D")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1622703724]
 texture = ExtResource("1_tg1dx")

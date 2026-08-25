@@ -18,9 +18,12 @@ signal died()
 @export var jump: JumpComponent
 @export var movement: MovementComponent
 
+var inventory: Inventory
+
 ##### Core #####
 
 func _ready() -> void:
+	inventory = Inventory.new()
 	state_machine.init_player(self)
 	damage_area.damage_taken.connect(_on_damage_taken)
 	health.died.connect(died.emit)

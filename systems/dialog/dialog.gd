@@ -29,7 +29,6 @@ func _process(_delta: float) -> void:
 		if not is_writing:
 			_go_to_next_line()
 		else:
-			print("TODO: pular texto")
 			tween.set_speed_scale(20.0)
 
 func _animate_box(new_scale: Vector2, speed: float = 0.25) -> void:
