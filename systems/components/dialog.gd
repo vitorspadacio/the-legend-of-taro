@@ -16,6 +16,16 @@ func _ready() -> void:
 	set_collision_mask_value(Constants.CollisionLayers.player, true)
 	body_entered.connect(_on_body_entered)
 	body_exited.connect(_on_body_exited)
+	create_buuble()
+
+
+func create_buuble() -> void:
+	buuble = DIALOG_BUUBLE.instantiate()
+	buuble.visible = false
+	buuble.global_position = Vector2(\
+		entity.global_position.x, \
+		entity.global_position.y - 30)
+	get_tree().current_scene.add_child(buuble)
 
 
 func _on_body_entered(body: Node2D) -> void:
@@ -23,17 +33,12 @@ func _on_body_entered(body: Node2D) -> void:
 		return
 
 	is_in_range = true
-	buuble = DIALOG_BUUBLE.instantiate()
-	buuble.global_position = Vector2(\
-		entity.global_position.x, \
-		entity.global_position.y - 30)
-	get_tree().current_scene.add_child(buuble)
+	buuble.visible = true
 
 
 func _on_body_exited(_body: Node2D) -> void:
 	is_in_range = false
-	if buuble:
-		buuble.queue_free()
+	buuble.visible = false
 
 
 func _on_dialog_end() -> void:
