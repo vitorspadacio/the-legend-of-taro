@@ -7,6 +7,7 @@ func add_item(item: ItemData, amount: int = 1) -> void:
 	for entry in items:
 		if entry.item.id == item.id:
 			entry.quantity += amount
+			print(items[0].quantity)
 			return
 
 	var entry := InventoryEntry.new(item, amount)

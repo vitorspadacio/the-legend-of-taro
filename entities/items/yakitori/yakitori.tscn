@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://cvk07wf1xx4b6"]
+
+[ext_resource type="Script" uid="uid://cwohiea63dws2" path="res://entities/items/yakitori/food.gd" id="1_vnbec"]
+[ext_resource type="AudioStream" uid="uid://dcfu763lcxi00" path="res://entities/items/yakitori/food.wav" id="3_2f3qc"]
+[ext_resource type="Texture2D" uid="uid://bkjg3tk5sy2sx" path="res://entities/items/yakitori/yakitori.png" id="4_ki2qx"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_xldlm"]
+radius = 7.0
+
+[node name="Coin" type="Node2D" unique_id=1098007496 node_paths=PackedStringArray("sprite")]
+script = ExtResource("1_vnbec")
+heal_amount = 3
+sound = ExtResource("3_2f3qc")
+sprite = NodePath("Sprite2D")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1622703724]
+texture = ExtResource("4_ki2qx")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1535023162]
+collision_layer = 0
+collision_mask = 32
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=225168092]
+shape = SubResource("CircleShape2D_xldlm")
+debug_color = Color(0, 0.55503935, 0.91015494, 0)

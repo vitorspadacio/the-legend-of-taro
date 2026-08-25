@@ -18,6 +18,7 @@ signal died()
 @export var jump: JumpComponent
 @export var movement: MovementComponent
 
+var block_input := false
 var inventory: Inventory
 
 ##### Core #####
@@ -30,7 +31,8 @@ func _ready() -> void:
 	jump.height_changed.connect(_on_height_changed)
 
 func _process(delta: float) -> void:
-	input.update_commands()
+	if not block_input:
+		input.update_commands()
 	state_machine.process(delta)
 
 func _physics_process(delta: float) -> void:

@@ -6,11 +6,7 @@ class_name Dialog extends Control
 @onready var text: RichTextLabel = $Text
 
 var current_line: int = 0
-var dialog: Array[Dictionary] = [
-	{"actor": "ROGER", "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque malesuada semper dolor, et pellentesque dui vehicula eu. Curabitur nisl tortor, commodo eu risus in, euismod feugiat nibh. Duis luctus."},
-	{"actor": "ROGER", "text": "Cala boca!"},
-	{"actor": "OUTRO", "text": "Nada fica por acaso, desgraçado!"},
-]
+var dialog: Array[Dictionary] = []
 var is_writing: bool = false
 var tween: Tween
 
@@ -21,7 +17,6 @@ func _ready() -> void:
 	await _animate_box(Vector2(1.0, 1.0))
 	await _show_text()
 	_animate_arrow()
-	_show_button()
 
 
 func _process(_delta: float) -> void:
@@ -58,6 +53,7 @@ func _show_text() -> void:
 		text.text.length() / 50.0
 	)
 	await tween.finished
+	_show_button(true)
 	is_writing = false
 
 
@@ -66,8 +62,8 @@ func _shake_box() -> void:
 	await _animate_box(Vector2(1.0, 1.0), 0.1)
 
 
-func _show_button() -> void:
-	button.visible = true
+func _show_button(must_show: bool) -> void:
+	button.visible = must_show
 
 func _go_to_next_line() -> void:
 	current_line = current_line + 1
@@ -75,6 +71,7 @@ func _go_to_next_line() -> void:
 		_close()
 	else:
 		await _shake_box()
+		_show_button(false)
 		_show_text()
 		return
 

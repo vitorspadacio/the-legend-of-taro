@@ -1,0 +1,34 @@
+[gd_scene format=3 uid="uid://dk8sssbsx5tw"]
+
+[ext_resource type="Script" uid="uid://ckpl53rvpcd15" path="res://entities/items/pickable.gd" id="1_5fl4d"]
+[ext_resource type="Script" uid="uid://2sw7t1k77w6u" path="res://systems/inventory/item_data.gd" id="2_qst4h"]
+[ext_resource type="AudioStream" uid="uid://jaic71loiwdi" path="res://entities/items/coin_bag/coin.wav" id="3_wh0ae"]
+[ext_resource type="Texture2D" uid="uid://b8mahy271uoxa" path="res://entities/items/coin_bag/coin_bag.png" id="4_wf3qn"]
+
+[sub_resource type="Resource" id="Resource_xldlm"]
+script = ExtResource("2_qst4h")
+description = "Uma moeda antiga usada nos vilarejos."
+id = 1
+name = "Moeda"
+metadata/_custom_type_script = "uid://2sw7t1k77w6u"
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_xldlm"]
+radius = 7.0
+
+[node name="CoinBag" type="Node2D" unique_id=1098007496 node_paths=PackedStringArray("sprite")]
+script = ExtResource("1_5fl4d")
+amount = 10
+item = SubResource("Resource_xldlm")
+sound = ExtResource("3_wh0ae")
+sprite = NodePath("Sprite2D")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1622703724]
+texture = ExtResource("4_wf3qn")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1535023162]
+collision_layer = 0
+collision_mask = 32
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=225168092]
+shape = SubResource("CircleShape2D_xldlm")
+debug_color = Color(0, 0.55503935, 0.91015494, 0)

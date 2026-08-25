@@ -1,15 +1,5 @@
 extends Node2D
 
-
-# @onready var snow: GPUParticles2D = %Snow
-# @onready var fog: TextureRect = %Fog
-
-# @onready var transition: ColorRect = %Transition
-# @onready var music: AudioStreamPlayer = %Music
-# @onready var color_correction: ColorRect = %ColorCorrection
-# @onready var pivot: Node2D = %Pivot
-# @onready var player_ui: Control = %PlayerUi
-
 @export var starting_level: PackedScene
 
 @onready var cloud: GPUParticles2D = %Cloud

@@ -9,8 +9,10 @@ const DIALOG_BOX = preload("uid://bxbgy3sqkjgwp")
 var box: Dialog
 var buuble: Node2D
 var is_in_range: bool = false
+var player: Player
 
 func _ready() -> void:
+	player = get_tree().get_first_node_in_group("player")
 	set_collision_mask_value(6, true)
 	body_entered.connect(_on_body_entered)
 	body_exited.connect(_on_body_exited)
@@ -18,7 +20,6 @@ func _ready() -> void:
 
 func _on_body_entered(body: Node2D) -> void:
 	if body is not Player:
-		print("not player")
 		return
 
 	is_in_range = true
@@ -31,7 +32,8 @@ func _on_body_entered(body: Node2D) -> void:
 
 func _on_body_exited(_body: Node2D) -> void:
 	is_in_range = false
-	buuble.queue_free()
+	if buuble:
+		buuble.queue_free()
 
 
 func _process(_delta: float) -> void:
@@ -39,8 +41,10 @@ func _process(_delta: float) -> void:
 		return
 
 	if is_in_range and Input.is_action_just_pressed("action"):
+		player.block_input = true
 		var camera = get_tree().get_first_node_in_group("camera")
 		box = DIALOG_BOX.instantiate()
+		box.dialog = lines
 		box.global_position = camera.global_position * 0.5
 		box.global_position.x -= 160
 		get_tree().current_scene.add_child(box)

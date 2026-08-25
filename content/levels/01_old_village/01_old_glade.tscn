@@ -15,6 +15,8 @@
 [ext_resource type="PackedScene" uid="uid://b6nhmafoangcv" path="res://entities/enemies/lantern/lantern.tscn" id="10_kycem"]
 [ext_resource type="Script" uid="uid://barpxe1rgafhj" path="res://systems/components/dialog.gd" id="14_isvq0"]
 [ext_resource type="PackedScene" uid="uid://cbosspiox8efp" path="res://entities/items/coin/coin.tscn" id="15_3b76q"]
+[ext_resource type="PackedScene" uid="uid://cvk07wf1xx4b6" path="res://entities/items/yakitori/yakitori.tscn" id="16_vtrmc"]
+[ext_resource type="PackedScene" uid="uid://dk8sssbsx5tw" path="res://entities/items/coin_bag/coin_bag.tscn" id="17_wye75"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xldlm"]
 size = Vector2(320, 180)
@@ -119,6 +121,10 @@ position = Vector2(-48, 184)
 [node name="DialogComponent" type="Area2D" parent="Node2D" unique_id=112392735 node_paths=PackedStringArray("entity")]
 script = ExtResource("14_isvq0")
 entity = NodePath("..")
+lines = Array[Dictionary]([{
+"actor": "Teste",
+"text": "Teste"
+}])
 metadata/_custom_type_script = "uid://barpxe1rgafhj"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/DialogComponent" unique_id=145119360]
@@ -136,3 +142,12 @@ position = Vector2(4, 211)
 
 [node name="Coin3" parent="." unique_id=662981884 instance=ExtResource("15_3b76q")]
 position = Vector2(40, 186)
+
+[node name="Coin4" parent="." unique_id=792158576 instance=ExtResource("16_vtrmc")]
+position = Vector2(-16, 143)
+
+[node name="CoinBag" parent="." unique_id=1625543873 instance=ExtResource("17_wye75")]
+position = Vector2(23, 157)
+
+[node name="CoinBag2" parent="." unique_id=1216525855 instance=ExtResource("17_wye75")]
+position = Vector2(-35, 216)

@@ -1,0 +1,52 @@
+[gd_scene format=3 uid="uid://76i1uvsd7rmf"]
+
+[ext_resource type="Texture2D" uid="uid://c23t7pcvpsj0t" path="res://entities/effects/pick/pick.png" id="1_bfvs3"]
+[ext_resource type="Script" uid="uid://du6sguchwg0a0" path="res://entities/effects/effect.gd" id="2_jh530"]
+
+[sub_resource type="Animation" id="Animation_7xc87"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_q7e30"]
+resource_name = "effect"
+length = 0.4
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_wbwtc"]
+_data = {
+&"RESET": SubResource("Animation_7xc87"),
+&"effect": SubResource("Animation_q7e30")
+}
+
+[node name="Pick" type="Sprite2D" unique_id=683601877]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_bfvs3")
+hframes = 4
+script = ExtResource("2_jh530")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=905693129]
+libraries/ = SubResource("AnimationLibrary_wbwtc")
+autoplay = &"effect"
