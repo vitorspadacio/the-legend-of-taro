@@ -20,6 +20,8 @@
 [ext_resource type="AudioStream" uid="uid://clsnedocmxyli" path="res://assets/sounds/launch.wav" id="15_f64ac"]
 [ext_resource type="Script" uid="uid://byx6b7oeoo6oh" path="res://player/jump_blocker.gd" id="18_t7tha"]
 [ext_resource type="Script" uid="uid://bymg7s440aae" path="res://entities/enemies/decision_engines/decision_engine_basic.gd" id="19_t7tha"]
+[ext_resource type="Script" uid="uid://5nkjwhvkjr8q" path="res://systems/components/loot_dropper.gd" id="21_inkwi"]
+[ext_resource type="Script" uid="uid://dli4jk0hfo2og" path="res://entities/items/loot_data.gd" id="22_i5v6j"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4bqqs"]
 size = Vector2(14, 9)
@@ -202,6 +204,11 @@ radius = 8.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_0lrwo"]
 radius = 7.0
 
+[sub_resource type="Resource" id="Resource_xldlm"]
+script = ExtResource("22_i5v6j")
+item = "uid://cbosspiox8efp"
+metadata/_custom_type_script = "uid://dli4jk0hfo2og"
+
 [node name="Slime" type="CharacterBody2D" unique_id=1996041847 node_paths=PackedStringArray("attack_area", "collision", "damage_area", "decision_engine", "hazard_area", "sprite", "state_machine", "navigation", "animation", "health", "jump", "movement") groups=["enemies"]]
 collision_layer = 64
 collision_mask = 3
@@ -356,3 +363,8 @@ hurt = NodePath("../StateMachine/Hurt")
 idle = NodePath("../StateMachine/Idle")
 walk = NodePath("../StateMachine/Walk")
 metadata/_custom_type_script = "uid://bymg7s440aae"
+
+[node name="LootDropper" type="Marker2D" parent="." unique_id=1307306034]
+script = ExtResource("21_inkwi")
+items = Array[ExtResource("22_i5v6j")]([SubResource("Resource_xldlm")])
+metadata/_custom_type_script = "uid://5nkjwhvkjr8q"

@@ -1,4 +1,4 @@
-class_name Pickable extends Node2D
+class_name Pickable extends CharacterBody2D
 
 @export var amount: int = 1
 @export var item: ItemData
@@ -11,6 +11,7 @@ class_name Pickable extends Node2D
 
 @onready var area: Area2D = $Area2D
 
+var friction := 500.0
 var start_y := 0.0
 var time := 0.0
 
@@ -23,6 +24,11 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	time += delta * float_speed
 	sprite.position.y = start_y + sin(time) * float_height
+
+
+func _physics_process(delta: float) -> void:
+	velocity = velocity.move_toward(Vector2.ZERO, friction * delta)
+	move_and_slide()
 
 
 func _on_body_entered(body: Player) -> void:

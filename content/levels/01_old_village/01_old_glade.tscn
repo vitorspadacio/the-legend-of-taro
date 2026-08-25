@@ -30,6 +30,11 @@ meteo_list = Array[int]([3, 5])
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_s88v2"]
 size = Vector2(320, 180)
 
+[sub_resource type="Gradient" id="Gradient_wye75"]
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_xldlm"]
+gradient = SubResource("Gradient_wye75")
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_s88v2"]
 radius = 27.0
 
@@ -83,6 +88,9 @@ position = Vector2(-697, 536)
 [node name="Lantern" parent="Enemies" unique_id=822421158 instance=ExtResource("10_kycem")]
 position = Vector2(-781, 323)
 
+[node name="Slime4" parent="Enemies" unique_id=1466770854 instance=ExtResource("9_kycem")]
+position = Vector2(-746, 29)
+
 [node name="Tiles" type="Node2D" parent="." unique_id=936652788]
 y_sort_enabled = true
 position = Vector2(-158, 64)
@@ -117,6 +125,10 @@ stretch_mode = 1
 
 [node name="Node2D" type="CharacterBody2D" parent="." unique_id=1958794080]
 position = Vector2(-48, 184)
+
+[node name="Sprite2D" type="Sprite2D" parent="Node2D" unique_id=1441374090]
+scale = Vector2(0.078125, 20.000004)
+texture = SubResource("GradientTexture1D_xldlm")
 
 [node name="DialogComponent" type="Area2D" parent="Node2D" unique_id=112392735 node_paths=PackedStringArray("entity")]
 script = ExtResource("14_isvq0")

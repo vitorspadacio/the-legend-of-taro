@@ -6,7 +6,7 @@ const DIALOG_BOX = preload("uid://bxbgy3sqkjgwp")
 @export var entity: CharacterBody2D
 @export var lines: Array[Dictionary]
 
-var box: Dialog
+var box: DialogBox
 var buuble: Node2D
 var is_in_range: bool = false
 var player: Player

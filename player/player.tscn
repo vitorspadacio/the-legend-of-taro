@@ -1089,6 +1089,7 @@ rotation = -3.1415927
 collision_layer = 0
 collision_mask = 192
 script = ExtResource("7_boad6")
+damage = 10
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea" unique_id=1787226678]
 position = Vector2(6.5000005, -10.375)

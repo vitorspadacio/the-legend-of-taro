@@ -1,4 +1,4 @@
-class_name DialogBoxc extends Control
+class_name DialogBox extends Control
 
 signal dialog_ended
 

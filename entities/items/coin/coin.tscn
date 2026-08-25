@@ -54,7 +54,10 @@ _data = {
 [sub_resource type="CircleShape2D" id="CircleShape2D_xldlm"]
 radius = 6.0827627
 
-[node name="Coin" type="Node2D" unique_id=1098007496 node_paths=PackedStringArray("sprite")]
+[sub_resource type="CircleShape2D" id="CircleShape2D_s88v2"]
+radius = 3.0
+
+[node name="Coin" type="CharacterBody2D" unique_id=1620922326 node_paths=PackedStringArray("sprite")]
 script = ExtResource("1_tofnu")
 item = SubResource("Resource_xldlm")
 sound = ExtResource("3_vh3py")
@@ -75,3 +78,7 @@ collision_mask = 32
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=225168092]
 shape = SubResource("CircleShape2D_xldlm")
 debug_color = Color(0, 0.55503935, 0.91015494, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=250218595]
+shape = SubResource("CircleShape2D_s88v2")
+debug_color = Color(0, 0.6509804, 0.11764706, 0)

@@ -46,10 +46,6 @@ func _physics_process(delta: float) -> void:
 	if blackboard == null:
 		return
 
-	# if blackboard.target:
-	# 	navigation.target_position = blackboard.target.global_position
-	# 	var next_point = navigation.get_final_position()
-
 	blackboard.update_distance_to_target(global_position)
 	state_machine.change_state(decision_engine.decide())
 	state_machine.physics_process(delta)

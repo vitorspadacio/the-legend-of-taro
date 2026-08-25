@@ -7,7 +7,7 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_xldlm"]
 radius = 7.0
 
-[node name="Coin" type="Node2D" unique_id=1098007496 node_paths=PackedStringArray("sprite")]
+[node name="Coin" type="CharacterBody2D" unique_id=607678015 node_paths=PackedStringArray("sprite")]
 script = ExtResource("1_vnbec")
 heal_amount = 3
 sound = ExtResource("3_2f3qc")
