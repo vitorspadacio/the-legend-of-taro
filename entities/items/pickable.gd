@@ -1,5 +1,7 @@
 class_name Pickable extends CharacterBody2D
 
+signal item_picked
+
 @export var amount: int = 1
 @export var item: ItemData
 @export var sound: AudioStream
@@ -11,7 +13,7 @@ class_name Pickable extends CharacterBody2D
 
 @onready var area: Area2D = $Area2D
 
-var friction := 500.0
+var friction := 400.0
 var start_y := 0.0
 var time := 0.0
 
@@ -35,4 +37,5 @@ func _on_body_entered(body: Player) -> void:
 	Audio.play_spatial_sound(sound, global_position)
 	VisualEffects.create_pick(global_position)
 	body.inventory.add_item(item, amount)
+	item_picked.emit()
 	queue_free()

@@ -11,6 +11,8 @@
 [ext_resource type="PackedScene" uid="uid://ddrgs0vld8mve" path="res://entities/enemies/slime/slime.tscn" id="9_kycem"]
 [ext_resource type="Texture2D" uid="uid://d3qatu5noma65" path="res://systems/levels/map_size_bg.png" id="10_61yto"]
 [ext_resource type="PackedScene" uid="uid://q7qr8puud6sg" path="res://entities/items/katana/katana.tscn" id="12_equdi"]
+[ext_resource type="Script" uid="uid://ddu56net15a2i" path="res://content/levels/01_old_village/encounter.gd" id="13_kycem"]
+[ext_resource type="Script" uid="uid://bqevlyl1klk70" path="res://content/levels/01_old_village/spawn_point.gd" id="14_3b76q"]
 [ext_resource type="Script" uid="uid://barpxe1rgafhj" path="res://systems/components/dialog.gd" id="14_isvq0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xldlm"]
@@ -32,18 +34,8 @@ radius = 27.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vrppe"]
 
-[sub_resource type="GDScript" id="GDScript_8f3tb"]
-script/source = "extends Sprite2D
-
-func _process(_delta):
-	if frame >= hframes * vframes:
-		print(\"FRAME INVÁLIDO!\")
-		print(\"PATH: \", get_path())
-		print(\"FRAME: \", frame)
-		print(\"HFRAMES: \", hframes)
-		print(\"VFRAMES: \", vframes)
-		print_stack()
-"
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0i8ej"]
+size = Vector2(38, 20)
 
 [node name="01_OldGlade" type="Node2D" unique_id=2018566342]
 y_sort_enabled = true
@@ -86,7 +78,7 @@ position = Vector2(43, 372)
 position = Vector2(-55, 369)
 
 [node name="Player" parent="." unique_id=870341819 instance=ExtResource("1_rtynr")]
-position = Vector2(0, 176)
+position = Vector2(319, 521)
 
 [node name="ScreenGridRef" type="TextureRect" parent="." unique_id=2086119370]
 modulate = Color(1, 1, 1, 0.11764706)
@@ -128,7 +120,39 @@ debug_color = Color(0, 0.55503935, 0.91015494, 0)
 shape = SubResource("RectangleShape2D_vrppe")
 
 [node name="Katana" parent="." unique_id=1620922326 instance=ExtResource("12_equdi")]
+unique_name_in_owner = true
 position = Vector2(305, 330)
 
-[node name="Node" type="Sprite2D" parent="." unique_id=1624852427]
-script = SubResource("GDScript_8f3tb")
+[node name="Encounter" type="Node2D" parent="." unique_id=986530862]
+script = ExtResource("13_kycem")
+
+[node name="Barrier" type="StaticBody2D" parent="Encounter" unique_id=326958393]
+z_index = 1
+position = Vector2(313, 438)
+collision_layer = 2
+collision_mask = 0
+
+[node name="BarrierCollision" type="CollisionShape2D" parent="Encounter/Barrier" unique_id=1643232677]
+unique_name_in_owner = true
+shape = SubResource("RectangleShape2D_0i8ej")
+debug_color = Color(0.9750704, 0, 0.42562202, 0.41960785)
+
+[node name="Enemies" type="Node" parent="Encounter" unique_id=2075105167]
+
+[node name="Enemy1" type="Node2D" parent="Encounter/Enemies" unique_id=1745869048]
+position = Vector2(248, 334)
+script = ExtResource("14_3b76q")
+enemy_scene = ExtResource("9_kycem")
+metadata/_custom_type_script = "uid://bqevlyl1klk70"
+
+[node name="Enemy2" type="Node2D" parent="Encounter/Enemies" unique_id=1946958329]
+position = Vector2(383, 374)
+script = ExtResource("14_3b76q")
+enemy_scene = ExtResource("9_kycem")
+metadata/_custom_type_script = "uid://bqevlyl1klk70"
+
+[node name="Enemy3" type="Node2D" parent="Encounter/Enemies" unique_id=208304032]
+position = Vector2(256, 398)
+script = ExtResource("14_3b76q")
+enemy_scene = ExtResource("9_kycem")
+metadata/_custom_type_script = "uid://bqevlyl1klk70"
