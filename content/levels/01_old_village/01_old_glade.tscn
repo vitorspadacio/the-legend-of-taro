@@ -32,6 +32,19 @@ radius = 27.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vrppe"]
 
+[sub_resource type="GDScript" id="GDScript_8f3tb"]
+script/source = "extends Sprite2D
+
+func _process(_delta):
+	if frame >= hframes * vframes:
+		print(\"FRAME INVÁLIDO!\")
+		print(\"PATH: \", get_path())
+		print(\"FRAME: \", frame)
+		print(\"HFRAMES: \", hframes)
+		print(\"VFRAMES: \", vframes)
+		print_stack()
+"
+
 [node name="01_OldGlade" type="Node2D" unique_id=2018566342]
 y_sort_enabled = true
 script = ExtResource("1_hqs3s")
@@ -116,3 +129,6 @@ shape = SubResource("RectangleShape2D_vrppe")
 
 [node name="Katana" parent="." unique_id=1620922326 instance=ExtResource("12_equdi")]
 position = Vector2(305, 330)
+
+[node name="Node" type="Sprite2D" parent="." unique_id=1624852427]
+script = SubResource("GDScript_8f3tb")
