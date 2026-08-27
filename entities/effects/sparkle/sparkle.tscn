@@ -1,7 +1,7 @@
-[gd_scene format=3 uid="uid://cjtmopya5v7v0"]
+[gd_scene format=3 uid="uid://cwf1ct1jfu2lb"]
 
-[ext_resource type="Texture2D" uid="uid://b721qcuqothaj" path="res://entities/effects/claw/claw.png" id="1_hyvpd"]
-[ext_resource type="Script" uid="uid://du6sguchwg0a0" path="res://entities/effects/effect.gd" id="2_p1rcj"]
+[ext_resource type="Texture2D" uid="uid://doaw6to7q7cgu" path="res://entities/effects/sparkle/sparkle.png" id="1_vbf2c"]
+[ext_resource type="Script" uid="uid://du6sguchwg0a0" path="res://entities/effects/effect.gd" id="2_yiunu"]
 
 [sub_resource type="Animation" id="Animation_jd3yx"]
 length = 0.001
@@ -20,7 +20,6 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_rhcyq"]
 resource_name = "effect"
-length = 0.4
 step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -29,10 +28,10 @@ tracks/0/path = NodePath(".:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.90000004),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [0, 1, 2, 3]
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_xm3lg"]
@@ -41,10 +40,10 @@ _data = {
 &"effect": SubResource("Animation_rhcyq")
 }
 
-[node name="Claw" type="Sprite2D" unique_id=1287388274]
-texture = ExtResource("1_hyvpd")
-hframes = 4
-script = ExtResource("2_p1rcj")
+[node name="Sparkle" type="Sprite2D" unique_id=1287388274]
+texture = ExtResource("1_vbf2c")
+hframes = 10
+script = ExtResource("2_yiunu")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1060855315]
 libraries/ = SubResource("AnimationLibrary_xm3lg")

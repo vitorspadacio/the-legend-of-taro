@@ -3,6 +3,7 @@ extends Node
 const CLAW_EFFECT = preload("uid://cjtmopya5v7v0")
 const PICK_EFFECT = preload("uid://76i1uvsd7rmf")
 const SMOKE_EFFECT = preload("uid://bdl7svonujls4")
+const SPARKLE_EFFECT = preload("uid://cwf1ct1jfu2lb")
 
 func create_claw(position: Vector2, direction: Vector2, distance: float = 16.0) -> void:
 	var effect = CLAW_EFFECT.instantiate()
@@ -24,6 +25,11 @@ func create_smoke(position: Vector2) -> void:
 
 func create_pick(position: Vector2) -> void:
 	var effect = PICK_EFFECT.instantiate()
+	effect.global_position = position
+	get_tree().current_scene.add_child(effect)
+
+func create_sparkble(position: Vector2) -> void:
+	var effect = SPARKLE_EFFECT.instantiate()
 	effect.global_position = position
 	get_tree().current_scene.add_child(effect)
 

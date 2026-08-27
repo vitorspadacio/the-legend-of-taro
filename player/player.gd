@@ -2,6 +2,7 @@ class_name Player extends CharacterBody2D
 
 signal damage_taken(attack_area: AttackArea)
 signal died()
+signal item_took(item: ItemData, amount: int, Pick: Pickable)
 
 @export var attack_area: AttackArea
 @export var collision: CollisionShape2D
@@ -46,10 +47,17 @@ func _unhandled_input(event: InputEvent) -> void:
 
 ##### Functions #####
 
-func update_direction() -> void:
-	movement.direction = input.direction
+func update_direction(force_direction: Vector2 = Vector2.ZERO) -> void:
+	if force_direction == Vector2.ZERO:
+		movement.direction = input.direction
+	else:
+		movement.update_direction(force_direction)
 	animation.direction_name = movement.direction_name
 	animation.play()
+
+func take_item(item: ItemData, amount: int, pick: Pickable) -> void:
+	item_took.emit(item, amount, pick)
+	inventory.add_item(item, amount)
 
 ##### Side Effects #####
 

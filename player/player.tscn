@@ -23,6 +23,7 @@
 [ext_resource type="Script" uid="uid://blposikaswy0u" path="res://systems/components/jump.gd" id="17_e7oew"]
 [ext_resource type="AudioStream" uid="uid://xsgt48ghm5no" path="res://assets/sounds/impact5.wav" id="18_s7qer"]
 [ext_resource type="AudioStream" uid="uid://cm0n2sms0e2l1" path="res://assets/sounds/jump.wav" id="20_bjvpn"]
+[ext_resource type="Script" uid="uid://ceoucrx5cc3bm" path="res://player/states/item_state.gd" id="22_g4c7l"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_kqu6x"]
 load_path = "res://.godot/imported/player.png-1ad27fc2a62fa126eae918723933dd6f.ctex"
@@ -592,7 +593,6 @@ tracks/0/keys = {
 [sub_resource type="Animation" id="Animation_ge24q"]
 resource_name = "pickup"
 length = 0.4
-loop_mode = 1
 step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -605,6 +605,20 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
 "values": [110, 118, 111, 119]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("StateMachine/Item")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.2),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"show_item_higher"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_1s1yo"]
@@ -947,6 +961,7 @@ radius = 7.0
 [node name="Player" type="CharacterBody2D" unique_id=870341819 node_paths=PackedStringArray("attack_area", "collision", "damage_area", "sprite", "sprite_attack", "state_machine", "raycast_2d", "animation", "health", "input", "jump", "movement") groups=["player"]]
 collision_layer = 32
 collision_mask = 3
+safe_margin = 0.1
 script = ExtResource("1_oul6g")
 attack_area = NodePath("AttackArea")
 collision = NodePath("CollisionShape2D")
@@ -1081,6 +1096,10 @@ unique_name_in_owner = true
 script = ExtResource("12_c35mf")
 sound = ExtResource("20_bjvpn")
 metadata/_custom_type_script = "uid://c3rx518jf3lm2"
+
+[node name="Item" type="Node" parent="StateMachine" unique_id=1297611013]
+script = ExtResource("22_g4c7l")
+metadata/_custom_type_script = "uid://ceoucrx5cc3bm"
 
 [node name="AttackArea" type="Area2D" parent="." unique_id=311756541]
 visible = false

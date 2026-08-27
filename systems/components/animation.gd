@@ -1,9 +1,13 @@
 class_name AnimationComponent extends Node
 
 @export var animation_player: AnimationPlayer
+var player := animation_player
 
 var current_animation_name: String
 var direction_name := "down"
+
+func _ready() -> void:
+	player = animation_player
 
 func play(animation_name: String = current_animation_name) -> void:
 	current_animation_name = animation_name

@@ -124,10 +124,12 @@ unique_name_in_owner = true
 position = Vector2(305, 330)
 
 [node name="Encounter" type="Node2D" parent="." unique_id=986530862]
+y_sort_enabled = true
 script = ExtResource("13_kycem")
 
 [node name="Barrier" type="StaticBody2D" parent="Encounter" unique_id=326958393]
 z_index = 1
+y_sort_enabled = true
 position = Vector2(313, 438)
 collision_layer = 2
 collision_mask = 0
@@ -136,6 +138,11 @@ collision_mask = 0
 unique_name_in_owner = true
 shape = SubResource("RectangleShape2D_0i8ej")
 debug_color = Color(0.9750704, 0, 0.42562202, 0.41960785)
+
+[node name="BarrierTile" type="TileMapLayer" parent="Encounter/Barrier" unique_id=2070262857]
+position = Vector2(-313, -438)
+tile_map_data = PackedByteArray("AAASABsAAgAFAAgAAAATABsAAgAEAAgAAAAUABsAAgAFAAgAAAA=")
+tile_set = ExtResource("1_tyitp")
 
 [node name="Enemies" type="Node" parent="Encounter" unique_id=2075105167]
 

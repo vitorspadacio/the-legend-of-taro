@@ -12,10 +12,12 @@ signal item_picked
 @export var float_speed := 2.0
 
 @onready var area: Area2D = $Area2D
+@onready var collision: CollisionShape2D = $Area2D/CollisionShape2D
 
-var friction := 400.0
+var friction := 300.0
 var start_y := 0.0
 var time := 0.0
+var stop_float := false
 
 func _ready() -> void:
 	area.body_entered.connect(_on_body_entered)
@@ -25,7 +27,8 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	time += delta * float_speed
-	sprite.position.y = start_y + sin(time) * float_height
+	if not stop_float:
+		sprite.position.y = start_y + sin(time) * float_height
 
 
 func _physics_process(delta: float) -> void:
@@ -36,6 +39,10 @@ func _physics_process(delta: float) -> void:
 func _on_body_entered(body: Player) -> void:
 	Audio.play_spatial_sound(sound, global_position)
 	VisualEffects.create_pick(global_position)
-	body.inventory.add_item(item, amount)
+	collision.call_deferred("disabled", true)
+	body.take_item(item, amount, self)
 	item_picked.emit()
+
+
+func delete() -> void:
 	queue_free()
