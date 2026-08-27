@@ -28,7 +28,7 @@ func create_pick(position: Vector2) -> void:
 	effect.global_position = position
 	get_tree().current_scene.add_child(effect)
 
-func create_sparkble(position: Vector2) -> void:
+func create_sparkle(position: Vector2) -> void:
 	var effect = SPARKLE_EFFECT.instantiate()
 	effect.global_position = position
 	get_tree().current_scene.add_child(effect)

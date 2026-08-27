@@ -14,6 +14,7 @@
 [ext_resource type="Script" uid="uid://ddu56net15a2i" path="res://content/levels/01_old_village/encounter.gd" id="13_kycem"]
 [ext_resource type="Script" uid="uid://bqevlyl1klk70" path="res://content/levels/01_old_village/spawn_point.gd" id="14_3b76q"]
 [ext_resource type="Script" uid="uid://barpxe1rgafhj" path="res://systems/components/dialog.gd" id="14_isvq0"]
+[ext_resource type="AudioStream" uid="uid://cdjhd2fdsudio" path="res://assets/musics/17_fight.ogg" id="14_vtrmc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xldlm"]
 size = Vector2(320, 180)
@@ -24,6 +25,18 @@ color_gradient = ExtResource("4_3b76q")
 music = ExtResource("5_vtrmc")
 meteo_list = Array[int]([3, 5])
 
+[sub_resource type="Resource" id="Resource_3b76q"]
+script = ExtResource("6_wye75")
+color_gradient = ExtResource("4_3b76q")
+music = ExtResource("5_vtrmc")
+meteo_list = Array[int]([3, 5, 4])
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_s88v2"]
+vertices = PackedVector2Array(-52.320313, 278.97656, -40.4375, 279.96875, -40.453125, 279.97656, -52.328125, 278.9922, 56.617188, 361.25, 62.226563, 348.14844, 143.03906, 356.07813, 142.07031, 377.34375, 114.796875, 417.78125, 74.0625, 431.04688, 16.851563, 434.9922, 41.367188, 365.0625, 27.757813, 363.70313, -47.070313, 434, 50.21875, 282, 94.96094, 278.02344, 120.921875, 280.79688, 141.10156, 298.10156, 152.17969, 328.64844, 51.648438, 341.09375, -39.382813, 361.25, -33.773438, 348.14844, 31.007813, 339.79688, 23.40625, 355, 157.25781, 307.46094, -18.226563, 282, -54.632813, 365.0625, -110.796875, 436.85156, -68.24219, 363.70313, -124.296875, 406.2578, -134.96094, 372.35156, -72.59375, 355, -133.0625, 337.3125, -123.390625, 317.96875, -109.703125, 312.70313, -64.99219, 339.79688, -101.8125, 277.1797, -96.61719, 276.03125, -44.351563, 341.09375)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 5, 6, 7, 8, 9), PackedInt32Array(4, 9, 10, 11), PackedInt32Array(12, 11, 10, 13), PackedInt32Array(14, 15, 16, 17, 18, 6, 5, 19), PackedInt32Array(20, 21, 22, 23, 13), PackedInt32Array(17, 24, 18), PackedInt32Array(14, 19, 22, 25), PackedInt32Array(23, 12, 13), PackedInt32Array(26, 20, 13, 27), PackedInt32Array(28, 26, 27, 29, 30), PackedInt32Array(31, 28, 30, 32, 33, 34), PackedInt32Array(35, 31, 34, 36, 37, 3), PackedInt32Array(25, 38, 35, 3, 2), PackedInt32Array(25, 22, 21, 38)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-52, 274, -97, 271, -106, 273, -114, 309, -127, 314, -138, 336, -140, 373, -129, 408, -114, 442, -47, 439, 17, 440, 75, 436, 118, 422, 147, 379, 148, 357, 157, 330, 163, 305, 144, 294, 123, 276, 95, 273, 50, 277, -18, 277, -40, 275)])
+agent_radius = 5.0
+
 [sub_resource type="Gradient" id="Gradient_wye75"]
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_xldlm"]
@@ -33,6 +46,12 @@ gradient = SubResource("Gradient_wye75")
 radius = 27.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vrppe"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_xldlm"]
+vertices = PackedVector2Array(-16.382813, 113.46094, -13.5234375, 71.59375, -13.5234375, 71.60156, 122.74219, 124.390625, 86.5, 85.40625, 86.5, 71.921875, 141.07031, 82.0625, 151.89063, 89.28125, 159.40625, 129.63281, 166.5, 84.40625, 195.84375, 3.96875, 260.89844, 51.109375, 266.22656, 100.046875, 243.46875, 133.32031, 208.03906, 141.28906, 86.82031, 132.00781, 71.890625, 90.28125, 166.5, 70.921875, 158.4375, -4.6484375, 153.11719, 65.57031, 103.59375, -13.46875, 45.59375, -10.7109375, 144.70313, 71.1875, 73.11719, 66.57031, 38.648438, 2.1796875, -9.609375, 22.828125, -1.921875, 5.140625, 64.703125, 72.1875, -6.78125, 132.64844, 61.070313, 83.0625, 29.078125, 142.52344, 71.57031, 143.4375)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2), PackedInt32Array(3, 4, 5, 6, 7, 8), PackedInt32Array(9, 10, 11, 12, 13, 14, 8), PackedInt32Array(7, 9, 8), PackedInt32Array(4, 3, 15, 16), PackedInt32Array(10, 9, 17), PackedInt32Array(18, 10, 17, 19, 20), PackedInt32Array(21, 20, 19, 22, 5, 23, 24), PackedInt32Array(22, 6, 5), PackedInt32Array(25, 26, 24, 23, 27, 2), PackedInt32Array(28, 0, 2, 27, 29, 30), PackedInt32Array(31, 30, 29, 16, 15)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(34, -5, -7, -2, -17, 21, -21, 71, -24, 115, -12, 139, 28, 150, 74, 151, 90, 139, 123, 132, 158, 137, 208, 149, 248, 140, 274, 102, 268, 47, 199, -3, 160, -12, 104, -21, 41, -18)])
+agent_radius = 7.5
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0i8ej"]
 size = Vector2(38, 20)
@@ -53,6 +72,20 @@ position = Vector2(0, 8)
 shape = SubResource("RectangleShape2D_xldlm")
 script = ExtResource("3_1gtj0")
 resource_environment = SubResource("Resource_jls42")
+metadata/_custom_type_script = "uid://dhbqfnyusagoh"
+
+[node name="EnvironmentShape3" type="CollisionShape2D" parent="EnvironmentArea" unique_id=668921943]
+position = Vector2(321, 369)
+shape = SubResource("RectangleShape2D_xldlm")
+script = ExtResource("3_1gtj0")
+resource_environment = SubResource("Resource_jls42")
+metadata/_custom_type_script = "uid://dhbqfnyusagoh"
+
+[node name="EnvironmentShape2" type="CollisionShape2D" parent="EnvironmentArea" unique_id=1468129527]
+position = Vector2(321, 188)
+shape = SubResource("RectangleShape2D_xldlm")
+script = ExtResource("3_1gtj0")
+resource_environment = SubResource("Resource_3b76q")
 metadata/_custom_type_script = "uid://dhbqfnyusagoh"
 
 [node name="Tiles" type="Node2D" parent="." unique_id=936652788]
@@ -77,8 +110,18 @@ position = Vector2(43, 372)
 [node name="Slime2" parent="Enemies" unique_id=379022616 instance=ExtResource("9_kycem")]
 position = Vector2(-55, 369)
 
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="Enemies" unique_id=273216351]
+navigation_polygon = SubResource("NavigationPolygon_s88v2")
+
+[node name="Polygon2D" type="Polygon2D" parent="Enemies/NavigationRegion2D" unique_id=1927151897]
+polygon = PackedVector2Array(-62, 345, -67, 355, -65, 359, -55, 360, -43, 357, -40, 350, -46, 346)
+
+[node name="Polygon2D2" type="Polygon2D" parent="Enemies/NavigationRegion2D" unique_id=1117983756]
+position = Vector2(96, 0)
+polygon = PackedVector2Array(-62, 345, -67, 355, -65, 359, -55, 360, -43, 357, -40, 350, -46, 346)
+
 [node name="Player" parent="." unique_id=870341819 instance=ExtResource("1_rtynr")]
-position = Vector2(319, 521)
+position = Vector2(0, 171)
 
 [node name="ScreenGridRef" type="TextureRect" parent="." unique_id=2086119370]
 modulate = Color(1, 1, 1, 0.11764706)
@@ -126,6 +169,18 @@ position = Vector2(305, 330)
 [node name="Encounter" type="Node2D" parent="." unique_id=986530862]
 y_sort_enabled = true
 script = ExtResource("13_kycem")
+music = ExtResource("14_vtrmc")
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="Encounter" unique_id=1405538548]
+position = Vector2(191, 293)
+navigation_polygon = SubResource("NavigationPolygon_xldlm")
+
+[node name="Polygon2D" type="Polygon2D" parent="Encounter/NavigationRegion2D" unique_id=35923699]
+polygon = PackedVector2Array(71, 77, 70, 80, 73, 82, 79, 80, 79, 77, 74, 75)
+
+[node name="Polygon2D2" type="Polygon2D" parent="Encounter/NavigationRegion2D" unique_id=1572067242]
+position = Vector2(80, -1)
+polygon = PackedVector2Array(71, 77, 70, 80, 73, 82, 79, 80, 79, 77, 74, 75)
 
 [node name="Barrier" type="StaticBody2D" parent="Encounter" unique_id=326958393]
 z_index = 1
@@ -140,8 +195,8 @@ shape = SubResource("RectangleShape2D_0i8ej")
 debug_color = Color(0.9750704, 0, 0.42562202, 0.41960785)
 
 [node name="BarrierTile" type="TileMapLayer" parent="Encounter/Barrier" unique_id=2070262857]
-position = Vector2(-313, -438)
-tile_map_data = PackedByteArray("AAASABsAAgAFAAgAAAATABsAAgAEAAgAAAAUABsAAgAFAAgAAAA=")
+position = Vector2(-7, 1)
+tile_map_data = PackedByteArray("AAAAAP//AgAJAAUAAAA=")
 tile_set = ExtResource("1_tyitp")
 
 [node name="Enemies" type="Node" parent="Encounter" unique_id=2075105167]

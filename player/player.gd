@@ -55,8 +55,9 @@ func update_direction(force_direction: Vector2 = Vector2.ZERO) -> void:
 	animation.direction_name = movement.direction_name
 	animation.play()
 
-func take_item(item: ItemData, amount: int, pick: Pickable) -> void:
-	item_took.emit(item, amount, pick)
+func take_item(item: ItemData, amount: int, pick: Pickable, should_emit: bool = false) -> void:
+	if should_emit:
+		item_took.emit(item, amount, pick)
 	inventory.add_item(item, amount)
 
 ##### Side Effects #####

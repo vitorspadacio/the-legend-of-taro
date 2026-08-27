@@ -6,6 +6,7 @@ signal item_picked
 @export var item: ItemData
 @export var sound: AudioStream
 @export var sprite: Sprite2D
+@export var show_animation: bool = false
 
 @export_group("Float")
 @export var float_height := 3.0
@@ -39,9 +40,11 @@ func _physics_process(delta: float) -> void:
 func _on_body_entered(body: Player) -> void:
 	Audio.play_spatial_sound(sound, global_position)
 	VisualEffects.create_pick(global_position)
-	collision.call_deferred("disabled", true)
-	body.take_item(item, amount, self)
+	collision.set_deferred("disabled", true)
+	body.take_item(item, amount, self, show_animation)
 	item_picked.emit()
+	if not show_animation:
+		delete()
 
 
 func delete() -> void:

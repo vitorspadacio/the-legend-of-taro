@@ -72,7 +72,6 @@ libraries/ = SubResource("AnimationLibrary_tofnu")
 autoplay = &"idle"
 
 [node name="Area2D" type="Area2D" parent="." unique_id=1535023162]
-collision_layer = 0
 collision_mask = 32
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=225168092]

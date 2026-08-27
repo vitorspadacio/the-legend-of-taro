@@ -41,6 +41,7 @@ _data = {
 }
 
 [node name="Sparkle" type="Sprite2D" unique_id=1287388274]
+z_index = 1
 texture = ExtResource("1_vbf2c")
 hframes = 10
 script = ExtResource("2_yiunu")

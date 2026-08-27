@@ -51,7 +51,7 @@ func stop_music() -> void:
 		tween.kill()
 	music_tweens.clear()
 	for player in [music_1, music_2]:
-		player.stop()
+		fade_track_out(player)
 
 func fade_track_out(player: AudioStreamPlayer) -> void:
 	var tween: Tween = create_tween()

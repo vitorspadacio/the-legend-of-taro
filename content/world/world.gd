@@ -1,4 +1,4 @@
-extends Node2D
+class_name WorldManager extends Node2D
 
 @export var starting_level: PackedScene
 
@@ -10,6 +10,7 @@ extends Node2D
 @onready var camera_controller: CameraController = %CameraController
 
 var current_level: Level
+var current_resource: ResourceEnvironment
 
 func _ready():
 	generate_level(starting_level)
@@ -19,6 +20,10 @@ func _ready():
 		camera.target = player
 
 func apply_environment(resource_environment: ResourceEnvironment) -> void:
+	if not resource_environment:
+		return
+
+	current_resource = resource_environment
 	cloud.emitting = ResourceEnvironment.Meteo.CLOUD in resource_environment.meteo_list
 	leaf.emitting = ResourceEnvironment.Meteo.LEAF in resource_environment.meteo_list
 	rain.emitting = ResourceEnvironment.Meteo.RAIN in resource_environment.meteo_list

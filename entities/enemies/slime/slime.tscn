@@ -211,7 +211,7 @@ metadata/_custom_type_script = "uid://dli4jk0hfo2og"
 
 [node name="Slime" type="CharacterBody2D" unique_id=1996041847 node_paths=PackedStringArray("attack_area", "collision", "damage_area", "decision_engine", "hazard_area", "sprite", "state_machine", "navigation", "animation", "health", "jump", "movement") groups=["enemies"]]
 collision_layer = 64
-collision_mask = 3
+collision_mask = 66
 script = ExtResource("1_lcogp")
 attack_area = NodePath("HazardArea")
 collision = NodePath("CollisionShape2D")
@@ -268,6 +268,8 @@ metadata/_custom_type_script = "uid://blposikaswy0u"
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=464317413]
 path_postprocessing = 1
+avoidance_enabled = true
+radius = 15.0
 
 [node name="StateLabel" type="Label" parent="." unique_id=1116733381]
 unique_name_in_owner = true
