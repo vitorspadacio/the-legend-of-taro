@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://dxma3r6xd3454" path="res://content/breakables/pot/pot.tscn" id="4_wh7ek"]
 [ext_resource type="PackedScene" uid="uid://cx8m3jjbha3nu" path="res://content/breakables/flower/flower.tscn" id="5_wh7ek"]
 [ext_resource type="Texture2D" uid="uid://ctvc7mxkrj4xa" path="res://content/world/tiles/tileset_water.png" id="7_8bl7k"]
+[ext_resource type="PackedScene" uid="uid://cmh1qa3bisndv" path="res://content/prop/water_ripple/water_ripple.tscn" id="9_51uuk"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_ds0ik"]
 
@@ -3064,6 +3065,10 @@ texture = ExtResource("7_8bl7k")
 7:16/0 = 0
 8:16/0 = 0
 
+[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_1pvid"]
+resource_name = "Props"
+scenes/1/scene = ExtResource("9_51uuk")
+
 [resource]
 physics_layer_0/collision_layer = 2
 physics_layer_0/collision_mask = 0
@@ -3093,3 +3098,4 @@ sources/2 = SubResource("TileSetAtlasSource_ynsuh")
 sources/3 = SubResource("TileSetAtlasSource_pi42a")
 sources/1 = SubResource("TileSetScenesCollectionSource_51uuk")
 sources/4 = SubResource("TileSetAtlasSource_wh7ek")
+sources/5 = SubResource("TileSetScenesCollectionSource_1pvid")
