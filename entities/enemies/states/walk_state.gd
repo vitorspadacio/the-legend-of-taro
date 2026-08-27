@@ -2,7 +2,7 @@
 class_name EnemyWalkState extends EnemyState
 
 func enter() -> void:
-	wander()
+	await wander()
 	var next_position := enemy.navigation.get_next_path_position()
 	var direction := enemy.global_position.direction_to(next_position)
 
@@ -25,3 +25,4 @@ func wander() -> void:
 	)
 
 	enemy.navigation.target_position = target
+	await get_tree().process_frame

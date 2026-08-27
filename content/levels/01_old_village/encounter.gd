@@ -56,6 +56,7 @@ func flash_green() -> void:
 func end() -> void:
 	Audio.stop_music()
 	await get_tree().create_timer(2.5).timeout
+	VisualEffects.create_sparkle(barrier_tile.global_position)
 	await flash_green()
 	var world := get_tree().get_first_node_in_group("world") as WorldManager
 	world.apply_environment(world.current_resource)
