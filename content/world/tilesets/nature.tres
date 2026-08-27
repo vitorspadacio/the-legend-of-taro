@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://domrx1cgi35kg" path="res://content/breakables/grass/grass.tscn" id="3_8bl7k"]
 [ext_resource type="Texture2D" uid="uid://wqoy6lv5qdxq" path="res://content/world/tiles/tileset_field.png" id="3_cyq3e"]
 [ext_resource type="PackedScene" uid="uid://dxma3r6xd3454" path="res://content/breakables/pot/pot.tscn" id="4_wh7ek"]
+[ext_resource type="PackedScene" uid="uid://cx8m3jjbha3nu" path="res://content/breakables/flower/flower.tscn" id="5_wh7ek"]
 [ext_resource type="Texture2D" uid="uid://ctvc7mxkrj4xa" path="res://content/world/tiles/tileset_water.png" id="7_8bl7k"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_ds0ik"]
@@ -2012,6 +2013,7 @@ resource_name = "Breakables"
 scenes/1/scene = ExtResource("2_ds0ik")
 scenes/2/scene = ExtResource("3_8bl7k")
 scenes/3/scene = ExtResource("4_wh7ek")
+scenes/4/scene = ExtResource("5_wh7ek")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ynsuh"]
 texture = ExtResource("2_rfa6o")
