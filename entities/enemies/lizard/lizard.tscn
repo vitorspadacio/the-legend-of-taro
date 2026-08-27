@@ -290,6 +290,7 @@ metadata/_custom_type_script = "uid://cfu3rte1qqlpw"
 
 [node name="Attack" type="Node" parent="StateMachine" unique_id=218755323]
 script = ExtResource("11_wswv3")
+attack_range = 25
 sound = ExtResource("13_hmbw6")
 metadata/_custom_type_script = "uid://cs2ysdbdc7t4j"
 
