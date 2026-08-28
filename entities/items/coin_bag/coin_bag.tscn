@@ -1,16 +1,9 @@
 [gd_scene format=3 uid="uid://dk8sssbsx5tw"]
 
 [ext_resource type="Script" uid="uid://ckpl53rvpcd15" path="res://entities/items/pickable.gd" id="1_5fl4d"]
-[ext_resource type="Script" uid="uid://2sw7t1k77w6u" path="res://systems/inventory/item_data.gd" id="2_qst4h"]
+[ext_resource type="Resource" uid="uid://bc4pj8kx1i4av" path="res://entities/items/_data_collection/01_coin.tres" id="2_wf3qn"]
 [ext_resource type="AudioStream" uid="uid://jaic71loiwdi" path="res://entities/items/coin_bag/coin.wav" id="3_wh0ae"]
 [ext_resource type="Texture2D" uid="uid://b8mahy271uoxa" path="res://entities/items/coin_bag/coin_bag.png" id="4_wf3qn"]
-
-[sub_resource type="Resource" id="Resource_xldlm"]
-script = ExtResource("2_qst4h")
-description = "Uma moeda antiga usada nos vilarejos."
-id = 1
-name = "Moeda"
-metadata/_custom_type_script = "uid://2sw7t1k77w6u"
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_xldlm"]
 radius = 7.0
@@ -18,7 +11,7 @@ radius = 7.0
 [node name="CoinBag" type="CharacterBody2D" unique_id=931323488 node_paths=PackedStringArray("sprite")]
 script = ExtResource("1_5fl4d")
 amount = 10
-item = SubResource("Resource_xldlm")
+item = ExtResource("2_wf3qn")
 sound = ExtResource("3_wh0ae")
 sprite = NodePath("Sprite2D")
 

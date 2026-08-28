@@ -8,6 +8,7 @@
 spacing_space = 3
 
 [node name="Dialog" type="Control" unique_id=1430940187]
+z_index = 2
 layout_mode = 3
 anchors_preset = 0
 offset_top = 1.0
@@ -44,7 +45,12 @@ offset_bottom = 165.0
 theme_override_colors/default_color = Color(0.3407026, 0.1742225, 0.1270568, 1)
 theme_override_fonts/normal_font = SubResource("FontVariation_cveri")
 theme_override_font_sizes/normal_font_size = 8
-text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque malesuada semper dolor, et pellentesque dui vehicula eu. Curabitur nisl tortor, commodo eu risus in."
+theme_override_font_sizes/bold_font_size = 8
+theme_override_font_sizes/bold_italics_font_size = 8
+theme_override_font_sizes/italics_font_size = 8
+theme_override_font_sizes/mono_font_size = 8
+bbcode_enabled = true
+text = "Lorem ipsum [i]dolor sit[/i] amet, consectetur adipiscing elit. Quisque malesuada semper dolor, et pellentesque dui vehicula eu. Curabitur nisl tortor, commodo eu risus in."
 scroll_active = false
 visible_characters_behavior = 1
 

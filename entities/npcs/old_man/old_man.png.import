@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bk8jv57bgf4h8"
-path="res://.godot/imported/slime.png-e6502078a4fc66cc07f80725cc624444.ctex"
+uid="uid://dtix5rbqd8e6u"
+path="res://.godot/imported/old_man.png-3be380244f91306fe64ec51d17ecabce.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://entities/npcs/slime_npc/slime.png"
-dest_files=["res://.godot/imported/slime.png-e6502078a4fc66cc07f80725cc624444.ctex"]
+source_file="res://entities/npcs/old_man/old_man.png"
+dest_files=["res://.godot/imported/old_man.png-3be380244f91306fe64ec51d17ecabce.ctex"]
 
 [params]
 

@@ -1,6 +1,6 @@
 class_name DialogBox extends Control
 
-signal dialog_ended
+signal has_no_more_lines
 
 @onready var actor: Label = $Actor
 @onready var box: TextureRect = $Box
@@ -8,7 +8,7 @@ signal dialog_ended
 @onready var text: RichTextLabel = $Text
 
 var current_line: int = 0
-var dialog: Array[Dictionary] = []
+var dialog: Array[DialogLine] = []
 var is_writing: bool = false
 var tween: Tween
 
@@ -83,7 +83,7 @@ func _close() -> void:
 	text.visible = false
 	button.visible = false
 	await _animate_box(Vector2(0.05, 0.05))
-	dialog_ended.emit()
+	has_no_more_lines.emit()
 	queue_free()
 
 

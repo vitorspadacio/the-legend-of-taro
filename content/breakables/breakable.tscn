@@ -14,14 +14,14 @@ radius = 8.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_nn20x"]
 radius = 12.1655
 
-[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_cqoei"]
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_m2u6u"]
 particles_animation = true
 particles_anim_h_frames = 6
 particles_anim_v_frames = 1
 particles_anim_loop = false
 
 [node name="Breakable" type="CharacterBody2D" unique_id=292802281]
-collision_layer = 2
+collision_layer = 0
 collision_mask = 0
 motion_mode = 1
 script = ExtResource("1_w1gja")
@@ -43,7 +43,7 @@ shape = SubResource("CircleShape2D_nn20x")
 debug_color = Color(0.7529412, 0.45882353, 0, 0)
 
 [node name="Particle" type="GPUParticles2D" parent="." unique_id=1763944457]
-material = SubResource("CanvasItemMaterial_cqoei")
+material = SubResource("CanvasItemMaterial_m2u6u")
 position = Vector2(0, -3)
 emitting = false
 texture = ExtResource("3_m2u6u")
@@ -57,5 +57,5 @@ resource_particle = ExtResource("6_ebru0")
 
 [node name="HealthComponent" type="Node" parent="." unique_id=867130180]
 script = ExtResource("2_ogjwx")
-max_health = 3
+max_health = 1
 metadata/_custom_type_script = "uid://dyl8o8lbuap7r"

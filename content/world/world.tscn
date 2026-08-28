@@ -14,6 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://d0kl1xfdvdsjg" path="res://content/environment/fx/rain/rain_on_floor.png" id="11_bfxvt"]
 [ext_resource type="Material" uid="uid://cfgy2lkhe86g2" path="res://content/environment/fx/rain/rain_floor_env.tres" id="12_54j6l"]
 [ext_resource type="PackedScene" uid="uid://dclu8eu4ausns" path="res://ui/player_hud/player_hud.tscn" id="14_cl54s"]
+[ext_resource type="Script" uid="uid://ch7jseqjve0jm" path="res://content/world/debug.gd" id="15_dsaeo"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_hk4jh"]
 particles_animation = true
@@ -101,3 +102,19 @@ draw_order = 0
 process_material = ExtResource("12_54j6l")
 
 [node name="PlayerHud" parent="." unique_id=302008842 instance=ExtResource("14_cl54s")]
+
+[node name="Debug" type="Control" parent="PlayerHud" unique_id=1204139920]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("15_dsaeo")
+
+[node name="Button" type="Button" parent="PlayerHud/Debug" unique_id=712757622]
+layout_mode = 0
+offset_left = 221.0
+offset_top = 27.0
+offset_right = 313.0
+offset_bottom = 51.0
+theme_override_font_sizes/font_size = 11
+text = "Pegar Katana"

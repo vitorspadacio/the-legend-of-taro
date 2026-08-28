@@ -14,8 +14,8 @@
 [ext_resource type="PackedScene" uid="uid://q7qr8puud6sg" path="res://entities/items/katana/katana.tscn" id="12_equdi"]
 [ext_resource type="Script" uid="uid://ddu56net15a2i" path="res://content/levels/01_old_village/encounter.gd" id="13_kycem"]
 [ext_resource type="Script" uid="uid://bqevlyl1klk70" path="res://content/levels/01_old_village/spawn_point.gd" id="14_3b76q"]
-[ext_resource type="Script" uid="uid://barpxe1rgafhj" path="res://systems/components/dialog.gd" id="14_isvq0"]
 [ext_resource type="AudioStream" uid="uid://cdjhd2fdsudio" path="res://assets/musics/17_fight.ogg" id="14_vtrmc"]
+[ext_resource type="PackedScene" uid="uid://cdiuiqfew4rfj" path="res://entities/npcs/old_man/old_man.tscn" id="18_jls42"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xldlm"]
 size = Vector2(320, 180)
@@ -44,16 +44,6 @@ polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3, 4), PackedInt32
 outlines = Array[PackedVector2Array]([PackedVector2Array(-82, 285, -113, 306, -120, 320, -129, 336, -121, 360, -121, 392, -125, 410, -100, 430, -97, 447, -64, 450, -14, 450, 35, 450, 80, 435, 115, 424, 127, 400, 119, 378, 117, 364, 125, 332, 108, 313, 120, 299, 109, 290, 89, 285, 8, 288)])
 agent_radius = 5.0
 
-[sub_resource type="Gradient" id="Gradient_wye75"]
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_xldlm"]
-gradient = SubResource("Gradient_wye75")
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_s88v2"]
-radius = 27.0
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_vrppe"]
-
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_xldlm"]
 vertices = PackedVector2Array(-16.382813, 113.46094, -13.5234375, 71.59375, -13.5234375, 71.60156, 122.74219, 124.390625, 86.5, 85.40625, 86.5, 71.921875, 141.07031, 82.0625, 151.89063, 89.28125, 159.40625, 129.63281, 166.5, 84.40625, 195.84375, 3.96875, 260.89844, 51.109375, 266.22656, 100.046875, 243.46875, 133.32031, 208.03906, 141.28906, 86.82031, 132.00781, 71.890625, 90.28125, 166.5, 70.921875, 158.4375, -4.6484375, 153.11719, 65.57031, 103.59375, -13.46875, 45.59375, -10.7109375, 144.70313, 71.1875, 73.11719, 66.57031, 38.648438, 2.1796875, -9.609375, 22.828125, -1.921875, 5.140625, 64.703125, 72.1875, -6.78125, 132.64844, 61.070313, 83.0625, 29.078125, 142.52344, 71.57031, 143.4375)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2), PackedInt32Array(3, 4, 5, 6, 7, 8), PackedInt32Array(9, 10, 11, 12, 13, 14, 8), PackedInt32Array(7, 9, 8), PackedInt32Array(4, 3, 15, 16), PackedInt32Array(10, 9, 17), PackedInt32Array(18, 10, 17, 19, 20), PackedInt32Array(21, 20, 19, 22, 5, 23, 24), PackedInt32Array(22, 6, 5), PackedInt32Array(25, 26, 24, 23, 27, 2), PackedInt32Array(28, 0, 2, 27, 29, 30), PackedInt32Array(31, 30, 29, 16, 15)])
@@ -69,6 +59,7 @@ script = ExtResource("1_hqs3s")
 
 [node name="EnvironmentArea" type="Area2D" parent="." unique_id=2049024696]
 unique_name_in_owner = true
+visible = false
 position = Vector2(0, 172)
 collision_mask = 32
 script = ExtResource("2_031bp")
@@ -173,29 +164,6 @@ scale = Vector2(2, 2)
 texture = ExtResource("10_61yto")
 stretch_mode = 1
 
-[node name="DialogTest" type="CharacterBody2D" parent="." unique_id=1958794080]
-position = Vector2(-6, 124)
-
-[node name="Sprite2D" type="Sprite2D" parent="DialogTest" unique_id=1441374090]
-scale = Vector2(0.078125, 20.000004)
-texture = SubResource("GradientTexture1D_xldlm")
-
-[node name="DialogComponent" type="Area2D" parent="DialogTest" unique_id=112392735 node_paths=PackedStringArray("entity")]
-script = ExtResource("14_isvq0")
-entity = NodePath("..")
-lines = Array[Dictionary]([{
-"actor": "Teste",
-"text": "Teste"
-}])
-metadata/_custom_type_script = "uid://barpxe1rgafhj"
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="DialogTest/DialogComponent" unique_id=145119360]
-shape = SubResource("CircleShape2D_s88v2")
-debug_color = Color(0, 0.55503935, 0.91015494, 0)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="DialogTest" unique_id=1344815619]
-shape = SubResource("RectangleShape2D_vrppe")
-
 [node name="Katana" parent="." unique_id=1620922326 instance=ExtResource("12_equdi")]
 unique_name_in_owner = true
 position = Vector2(305, 330)
@@ -252,3 +220,6 @@ position = Vector2(256, 398)
 script = ExtResource("14_3b76q")
 enemy_scene = ExtResource("9_kycem")
 metadata/_custom_type_script = "uid://bqevlyl1klk70"
+
+[node name="OldMan" parent="." unique_id=969436063 instance=ExtResource("18_jls42")]
+position = Vector2(-52, 171)

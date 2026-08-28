@@ -1,10 +1,10 @@
-class_name PlayerHUD
-extends CanvasLayer
+class_name PlayerHUD extends CanvasLayer
 
 const HEART = preload("uid://ce2kyoasha10s")
 const HP_PER_HEART := 4
 
 @onready var hearts_container: HBoxContainer = $Hearts
+@onready var gold_amount: Label = $Money/Amount
 
 var hearts: Array[Heart] = []
 var player: Player
@@ -12,7 +12,9 @@ var player: Player
 func _ready() -> void:
 		await _wait_for_player()
 		_setup_hearts()
+		_setup_money()
 		player.health.health_changed.connect(_on_health_changed)
+		player.inventory.gold_changed.connect(_on_gold_changed)
 
 
 func _wait_for_player() -> void:
@@ -34,6 +36,10 @@ func _setup_hearts() -> void:
 		hearts.append(heart)
 	
 	set_health(player.health.max_health)
+
+
+func _setup_money() -> void:
+	gold_amount.text = "%s" % player.inventory.get_gold_amount()
 
 
 func _on_health_changed(current_health: int, _m: int) -> void:
@@ -64,3 +70,7 @@ func get_heart_state(health: int) -> int:
 		0,
 		4
 	)
+
+
+func _on_gold_changed(amount: int) -> void:
+	gold_amount.text = "%s" % amount

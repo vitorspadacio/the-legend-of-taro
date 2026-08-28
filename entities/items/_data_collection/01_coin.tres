@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="ItemData" format=3 uid="uid://bc4pj8kx1i4av"]
+
+[ext_resource type="Script" uid="uid://2sw7t1k77w6u" path="res://systems/inventory/item_data.gd" id="1_78gbg"]
+
+[resource]
+script = ExtResource("1_78gbg")
+description = "Uma moeda antiga usada nos vilarejos."
+id = 1
+name = "Moeda"
+metadata/_custom_type_script = "uid://2sw7t1k77w6u"
