@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://3r2oornb0403" path="res://systems/dialog/dialog_box.gd" id="1_cveri"]
 [ext_resource type="Texture2D" uid="uid://ce0d8o2iu2fia" path="res://systems/dialog/dialogbox.png" id="1_ht65y"]
 [ext_resource type="Texture2D" uid="uid://bgpgsp7m34yxs" path="res://systems/dialog/arrow.png" id="2_qqm2g"]
+[ext_resource type="Texture2D" uid="uid://0326kqvjr78f" path="res://systems/dialog/dialogbox_simple.png" id="4_iwlip"]
 
 [sub_resource type="FontVariation" id="FontVariation_cveri"]
 spacing_space = 3
@@ -23,6 +24,7 @@ offset_bottom = 176.0
 scale = Vector2(1.0666667, 1)
 offset_transform_enabled = true
 texture = ExtResource("1_ht65y")
+expand_mode = 1
 
 [node name="Actor" type="Label" parent="." unique_id=949639548]
 layout_mode = 0
@@ -36,7 +38,6 @@ vertical_alignment = 1
 uppercase = true
 
 [node name="Text" type="RichTextLabel" parent="." unique_id=1798487788]
-custom_minimum_size = Vector2(290, 32)
 layout_mode = 0
 offset_left = 11.0
 offset_top = 133.0
@@ -76,3 +77,35 @@ grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.68, 0.68)
 texture = ExtResource("2_qqm2g")
+
+[node name="Mockup" type="Container" parent="." unique_id=775043519]
+visible = false
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="XXX" type="TextureRect" parent="Mockup" unique_id=1636730275]
+layout_mode = 2
+offset_transform_enabled = true
+texture = ExtResource("4_iwlip")
+expand_mode = 1
+
+[node name="XXX2" type="TextureRect" parent="Mockup" unique_id=1297789100]
+layout_mode = 2
+offset_transform_enabled = true
+texture = ExtResource("4_iwlip")
+expand_mode = 1
+
+[node name="XXX3" type="RichTextLabel" parent="Mockup" unique_id=365771119]
+layout_mode = 2
+theme_override_colors/default_color = Color(0.3407026, 0.1742225, 0.1270568, 1)
+theme_override_fonts/normal_font = SubResource("FontVariation_cveri")
+theme_override_font_sizes/normal_font_size = 8
+theme_override_font_sizes/bold_font_size = 8
+theme_override_font_sizes/bold_italics_font_size = 8
+theme_override_font_sizes/italics_font_size = 8
+theme_override_font_sizes/mono_font_size = 8
+bbcode_enabled = true
+text = "Lorem ipsum [i]dolor sit[/i] amet, consectetur adipiscing elit. Quisque malesuada semper dolor, et pellentesque dui vehicula eu."
+scroll_active = false
+visible_characters_behavior = 1

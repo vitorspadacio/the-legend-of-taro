@@ -3,11 +3,18 @@ class_name DialogComponent extends Area2D
 const DIALOG_BUUBLE = preload("uid://cgh2qhgt12y8h")
 const DIALOG_BOX = preload("uid://bxbgy3sqkjgwp")
 
+enum DialogTypes {
+	NORMAL = 0,
+	NO_ACTOR = 1,
+	CENTER = 2
+}
+
 signal dialog_started(direction: Vector2)
 signal dialog_ended
 
-@export var entity: CharacterBody2D
+@export var entity: Node2D
 @export var lines: Array[DialogLine]
+@export var style: DialogTypes
 
 var box: DialogBox
 var buuble: Node2D
@@ -62,7 +69,8 @@ func start_dialog() -> void:
 	player.block_input = true
 	is_in_dialog = true
 	buuble.visible = false
-	dialog_started.emit(_get_entity_direction())
+	if entity:
+		dialog_started.emit(_get_entity_direction())
 	_create_dialog_box()
 
 
@@ -70,6 +78,7 @@ func _create_dialog_box() -> void:
 	var general_hud = get_tree().get_first_node_in_group("general_hud")
 	box = DIALOG_BOX.instantiate()
 	box.has_no_more_lines.connect(_on_dialog_end)
+	box.style = style
 	box.dialog = lines
 	general_hud.add_child(box)
 

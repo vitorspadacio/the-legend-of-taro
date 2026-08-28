@@ -1,5 +1,8 @@
 class_name DialogBox extends Control
 
+const ACTOR_BOX = preload("uid://ce0d8o2iu2fia")
+const NO_ACTOR_BOX = preload("uid://0326kqvjr78f")
+
 signal has_no_more_lines
 
 @onready var actor: Label = $Actor
@@ -10,15 +13,44 @@ signal has_no_more_lines
 var current_line: int = 0
 var dialog: Array[DialogLine] = []
 var is_writing: bool = false
+var style: DialogComponent.DialogTypes
 var tween: Tween
 
 func _ready() -> void:
 	text.visible_characters = 0
 	button.visible = false
 	box.offset_transform_scale = Vector2(0.05, 0.05)
+	_define_style()
 	await _animate_box(Vector2(1.0, 1.0))
 	await _show_text()
 	_animate_arrow()
+
+
+func _define_style() -> void:
+	match style:
+		DialogComponent.DialogTypes.NORMAL:
+			actor.visible = true
+			box.texture = ACTOR_BOX
+			box.size = Vector2(300, 58)
+			box.position = Vector2(0, 118)
+			text.size = Vector2(290, 32)
+			text.position = Vector2(11, 133)
+
+		DialogComponent.DialogTypes.NO_ACTOR:
+			actor.visible = false
+			box.texture = NO_ACTOR_BOX
+			box.size = Vector2(300, 50)
+			box.position = Vector2(0, 126)
+			text.size = Vector2(290, 32)
+			text.position = Vector2(11, 133)
+
+		DialogComponent.DialogTypes.CENTER:
+			actor.visible = false
+			box.texture = NO_ACTOR_BOX
+			box.size = Vector2(210, 50)
+			box.position = Vector2(50, 50)
+			text.size = Vector2(205, 34)
+			text.position = Vector2(58, 58)
 
 
 func _process(_delta: float) -> void:

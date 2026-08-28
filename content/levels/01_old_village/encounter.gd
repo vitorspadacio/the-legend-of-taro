@@ -1,6 +1,7 @@
 class_name Encounter extends Node2D
 
 @export var music: AudioStream
+@export var dialog: DialogComponent
 
 @onready var barrier_collision: CollisionShape2D = %BarrierCollision
 @onready var barrier_tile: TileMapLayer = $Barrier/BarrierTile
@@ -23,6 +24,8 @@ func start() -> void:
 	barrier_tile.collision_enabled = true
 	VisualEffects.create_sparkle(barrier_tile.global_position)
 	await flash_blue()
+	dialog.start_dialog()
+	await dialog.dialog_ended
 	Audio.play_music(music)
 	barrier_collision.set_deferred("disabled", false)
 	barrier_collision.set_deferred("visible", true)
