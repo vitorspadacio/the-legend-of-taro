@@ -67,13 +67,11 @@ func start_dialog() -> void:
 
 
 func _create_dialog_box() -> void:
-	var camera = get_tree().get_first_node_in_group("camera")
+	var general_hud = get_tree().get_first_node_in_group("general_hud")
 	box = DIALOG_BOX.instantiate()
 	box.has_no_more_lines.connect(_on_dialog_end)
 	box.dialog = lines
-	box.global_position = camera.global_position * 0.5
-	box.global_position.x -= 160
-	get_tree().current_scene.add_child(box)
+	general_hud.add_child(box)
 
 
 func _get_entity_direction() -> Vector2:

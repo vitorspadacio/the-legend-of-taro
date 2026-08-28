@@ -146,7 +146,7 @@ position = Vector2(639, 480)
 position = Vector2(714, 564)
 
 [node name="Player" parent="." unique_id=870341819 instance=ExtResource("1_rtynr")]
-position = Vector2(0, 171)
+position = Vector2(2, 161)
 
 [node name="ScreenGridRef" type="TextureRect" parent="." unique_id=2086119370]
 modulate = Color(1, 1, 1, 0.11764706)
@@ -222,4 +222,4 @@ enemy_scene = ExtResource("9_kycem")
 metadata/_custom_type_script = "uid://bqevlyl1klk70"
 
 [node name="OldMan" parent="." unique_id=969436063 instance=ExtResource("18_jls42")]
-position = Vector2(-52, 171)
+position = Vector2(596, 899)

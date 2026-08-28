@@ -46,6 +46,7 @@ folder_colors={
 player=""
 camera=""
 world=""
+general_hud=""
 
 [gui]
 

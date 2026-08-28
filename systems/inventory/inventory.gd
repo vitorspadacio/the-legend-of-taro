@@ -9,10 +9,15 @@ func add_item(item: ItemData, amount: int = 1) -> void:
 	for entry in items:
 		if entry.item.id == item.id:
 			entry.quantity += amount
-		else:
-			var new_entry := InventoryEntry.new(item, amount)
-			items.append(new_entry)
+			update_weapon_and_gold(item)
+			return
 	
+	var new_entry := InventoryEntry.new(item, amount)
+	items.append(new_entry)
+	update_weapon_and_gold(item)
+	
+
+func update_weapon_and_gold(item: ItemData) -> void:
 	if item.id == 1:
 		gold_changed.emit(get_gold_amount())
 
