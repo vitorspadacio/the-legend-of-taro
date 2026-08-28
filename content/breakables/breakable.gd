@@ -4,6 +4,7 @@ class_name Breakable extends CharacterBody2D
 
 @onready var damage_area: DamageArea = $DamageArea
 @onready var health: HealthComponent = $HealthComponent
+@onready var loot_dropper: LootDropper = $LootDropper
 @onready var particle: Particle = $Particle
 @onready var sprite: Sprite2D = $Sprite
 
@@ -44,6 +45,7 @@ func _on_died():
 	if sound:
 		Audio.play_spatial_sound(sound, global_position)
 
+	loot_dropper.drop_loot()
 	collision_layer = 0
 	await damage_fx()
 	sprite.visible = false

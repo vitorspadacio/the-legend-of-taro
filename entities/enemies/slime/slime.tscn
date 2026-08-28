@@ -207,6 +207,7 @@ radius = 7.0
 [sub_resource type="Resource" id="Resource_xldlm"]
 script = ExtResource("22_i5v6j")
 item = "uid://cbosspiox8efp"
+drop_chance = 0.8
 metadata/_custom_type_script = "uid://dli4jk0hfo2og"
 
 [node name="Slime" type="CharacterBody2D" unique_id=1996041847 node_paths=PackedStringArray("attack_area", "collision", "damage_area", "decision_engine", "hazard_area", "sprite", "state_machine", "navigation", "animation", "health", "jump", "movement") groups=["enemies"]]

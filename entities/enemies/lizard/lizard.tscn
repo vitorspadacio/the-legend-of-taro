@@ -20,6 +20,8 @@
 [ext_resource type="AudioStream" uid="uid://clsnedocmxyli" path="res://assets/sounds/launch.wav" id="15_33f04"]
 [ext_resource type="Script" uid="uid://btbmbpcu6oj5v" path="res://systems/combat/attack_area.gd" id="16_7vpym"]
 [ext_resource type="Script" uid="uid://be43a7q4k86aa" path="res://entities/enemies/decision_engines/decision_engine_attack.gd" id="17_i2f3a"]
+[ext_resource type="Script" uid="uid://5nkjwhvkjr8q" path="res://systems/components/loot_dropper.gd" id="21_jbcmj"]
+[ext_resource type="Script" uid="uid://dli4jk0hfo2og" path="res://entities/items/loot_data.gd" id="22_jsg3h"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_csq00"]
 size = Vector2(14, 9)
@@ -203,6 +205,19 @@ radius = 7.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_xldlm"]
 radius = 22.022715
 
+[sub_resource type="Resource" id="Resource_xldlm"]
+script = ExtResource("22_jsg3h")
+item = "uid://cbosspiox8efp"
+maximum = 3
+drop_chance = 0.8
+metadata/_custom_type_script = "uid://dli4jk0hfo2og"
+
+[sub_resource type="Resource" id="Resource_s88v2"]
+script = ExtResource("22_jsg3h")
+item = "uid://cvk07wf1xx4b6"
+drop_chance = 0.5
+metadata/_custom_type_script = "uid://dli4jk0hfo2og"
+
 [node name="Lizard" type="CharacterBody2D" unique_id=1716200186 node_paths=PackedStringArray("attack_area", "collision", "damage_area", "decision_engine", "sprite", "state_machine", "navigation", "animation", "health", "movement")]
 collision_layer = 64
 collision_mask = 3
@@ -290,7 +305,6 @@ metadata/_custom_type_script = "uid://cfu3rte1qqlpw"
 
 [node name="Attack" type="Node" parent="StateMachine" unique_id=218755323]
 script = ExtResource("11_wswv3")
-attack_range = 25
 sound = ExtResource("13_hmbw6")
 metadata/_custom_type_script = "uid://cs2ysdbdc7t4j"
 
@@ -363,3 +377,8 @@ hurt = NodePath("../StateMachine/Hurt")
 idle = NodePath("../StateMachine/Idle")
 walk = NodePath("../StateMachine/Walk")
 metadata/_custom_type_script = "uid://be43a7q4k86aa"
+
+[node name="LootDropper" type="Marker2D" parent="." unique_id=663137553]
+script = ExtResource("21_jbcmj")
+items = Array[ExtResource("22_jsg3h")]([SubResource("Resource_xldlm"), SubResource("Resource_s88v2")])
+metadata/_custom_type_script = "uid://5nkjwhvkjr8q"

@@ -8,7 +8,7 @@
 [ext_resource type="Script" uid="uid://5nkjwhvkjr8q" path="res://systems/components/loot_dropper.gd" id="6_numtq"]
 [ext_resource type="Script" uid="uid://dli4jk0hfo2og" path="res://entities/items/loot_data.gd" id="7_v0kiw"]
 
-[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_n0t63"]
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_bgxoo"]
 particles_animation = true
 particles_anim_h_frames = 6
 particles_anim_v_frames = 1
@@ -18,23 +18,20 @@ particles_anim_loop = false
 script = ExtResource("7_v0kiw")
 item = "uid://cbosspiox8efp"
 maximum = 2
+drop_chance = 0.05
 metadata/_custom_type_script = "uid://dli4jk0hfo2og"
 
 [node name="Grass" unique_id=622629986 instance=ExtResource("1_qgvs5")]
-collision_layer = 0
 sound = ExtResource("2_n0t63")
 
 [node name="Sprite" parent="." index="1" unique_id=19450043]
 texture = ExtResource("2_pwuk7")
 
 [node name="Particle" parent="." index="3" unique_id=1763944457]
-material = SubResource("CanvasItemMaterial_n0t63")
+material = SubResource("CanvasItemMaterial_bgxoo")
 amount = 4
 texture = ExtResource("3_ft43a")
 resource_particle = ExtResource("4_4pjrf")
-
-[node name="HealthComponent" parent="." index="4" unique_id=867130180]
-max_health = 1
 
 [node name="LootDropper" type="Marker2D" parent="." index="5" unique_id=801795016]
 script = ExtResource("6_numtq")
