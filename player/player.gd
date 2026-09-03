@@ -3,6 +3,7 @@ class_name Player extends CharacterBody2D
 signal damage_taken(attack_area: AttackArea)
 signal died()
 signal item_took(item: ItemData, amount: int, Pick: Pickable)
+signal teleported()
 
 @export var attack_area: AttackArea
 @export var collision: CollisionShape2D
@@ -59,6 +60,15 @@ func take_item(item: ItemData, amount: int, pick: Pickable, should_emit: bool = 
 	if should_emit:
 		item_took.emit(item, amount, pick)
 	inventory.add_item(item, amount)
+
+func teleport(target: Teleport, offset_position: Vector2) -> void:
+	# print("Teleportando para %s, position %s" % [target, global_position])
+	var camera = get_tree().get_first_node_in_group("camera")
+	await camera.fade_out()
+	global_position = target.global_position + offset_position
+	await camera.teleport_to(target.global_position)
+	await camera.fade_in()
+	teleported.emit()
 
 ##### Side Effects #####
 

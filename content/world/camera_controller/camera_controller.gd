@@ -20,6 +20,8 @@ signal animation_finished
 @export var animation_ease: Tween.EaseType = Tween.EASE_IN_OUT
 @export var transition_time := 0.8
 
+@onready var transition: ColorRect = %Transition
+
 var tween: Tween
 var target: Node2D:
 	set(v):
@@ -49,11 +51,11 @@ func set_target(new_target: Node2D, teleport := false) -> void:
 func get_world_position() -> Vector2:
 	return current_cell * grid_size
 
-func go_to_world_position(pos: Vector2):
+func go_to_world_position(pos: Vector2, teleport: bool = false):
 	var pos_target := pos
 	var cell_target := world_to_grid(pos_target)
 	if cell_target != current_cell:
-		go_to_cell(cell_target)
+		go_to_cell(cell_target, teleport)
 
 func go_to_cell(cell_target: Vector2, teleport: bool = false):
 	current_cell = cell_target
@@ -77,7 +79,7 @@ func set_world_position(world_pos: Vector2):
 func teleport_to(target_position: Vector2):
 	if tween:
 		tween.kill()
-	global_position = target_position
+	go_to_world_position(target_position, true)
 
 func world_to_grid(pos: Vector2) -> Vector2:
 	return ((pos - offset) / grid_size).round()
@@ -99,3 +101,13 @@ func _notification(what):
 
 func snap_to_grid():
 	set_world_position(current_cell * grid_size)
+
+func fade_out(duration: float = 0.2):
+	var tween_i = create_tween()
+	tween_i.tween_property(transition, "color:a", 1.0, duration)
+	await tween_i.finished
+
+func fade_in(duration: float = 0.5):
+	var tween_i = create_tween()
+	tween_i.tween_property(transition, "color:a", 0.0, duration)
+	await tween_i.finished

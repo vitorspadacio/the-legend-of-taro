@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://dqjj62o0hhmiq"]
+
+[ext_resource type="Script" uid="uid://b7wr81xns0lhg" path="res://systems/levels/teleport.gd" id="1_t6r3v"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_c525g"]
+radius = 9.0
+
+[node name="Teleport" type="Area2D" unique_id=335792680]
+script = ExtResource("1_t6r3v")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=319579806]
+shape = SubResource("CircleShape2D_c525g")
+debug_color = Color(1, 1, 0.2784314, 0.039215688)

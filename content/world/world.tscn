@@ -121,3 +121,13 @@ offset_right = 313.0
 offset_bottom = 51.0
 theme_override_font_sizes/font_size = 11
 text = "Pegar Katana"
+
+[node name="Transition" type="ColorRect" parent="GeneralHud" unique_id=243697058]
+unique_name_in_owner = true
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.0627451, 0.0627451, 0.0627451, 0)
