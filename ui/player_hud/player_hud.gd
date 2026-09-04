@@ -73,5 +73,4 @@ func get_heart_state(health: int) -> int:
 
 
 func _on_gold_changed(amount: int) -> void:
-	print("gold", amount)
 	gold_amount.text = "%s" % amount

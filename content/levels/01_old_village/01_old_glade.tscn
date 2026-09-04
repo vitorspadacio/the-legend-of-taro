@@ -20,6 +20,7 @@
 [ext_resource type="Script" uid="uid://dm6hxe2j82cld" path="res://systems/dialog/dialog_line.gd" id="18_j4ncf"]
 [ext_resource type="PackedScene" uid="uid://cdiuiqfew4rfj" path="res://entities/npcs/old_man/old_man.tscn" id="18_jls42"]
 [ext_resource type="PackedScene" uid="uid://dqjj62o0hhmiq" path="res://systems/levels/teleport.tscn" id="20_7ef38"]
+[ext_resource type="PackedScene" uid="uid://b6nhmafoangcv" path="res://entities/enemies/lantern/lantern.tscn" id="21_qq0ga"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xldlm"]
 size = Vector2(320, 180)
@@ -54,22 +55,6 @@ polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3, 4), PackedInt32
 outlines = Array[PackedVector2Array]([PackedVector2Array(-82, 285, -113, 306, -120, 320, -129, 336, -121, 360, -121, 392, -125, 410, -100, 430, -97, 447, -64, 450, -14, 450, 35, 450, 80, 435, 115, 424, 127, 400, 119, 378, 117, 364, 125, 332, 108, 313, 120, 299, 109, 290, 89, 285, 8, 288)])
 agent_radius = 5.0
 
-[sub_resource type="NavigationPolygon" id="NavigationPolygon_xldlm"]
-vertices = PackedVector2Array(-16.382813, 113.46094, -13.5234375, 71.59375, -13.5234375, 71.60156, 122.74219, 124.390625, 86.5, 85.40625, 86.5, 71.921875, 141.07031, 82.0625, 151.89063, 89.28125, 159.40625, 129.63281, 166.5, 84.40625, 195.84375, 3.96875, 260.89844, 51.109375, 266.22656, 100.046875, 243.46875, 133.32031, 208.03906, 141.28906, 86.82031, 132.00781, 71.890625, 90.28125, 166.5, 70.921875, 158.4375, -4.6484375, 153.11719, 65.57031, 103.59375, -13.46875, 45.59375, -10.7109375, 144.70313, 71.1875, 73.11719, 66.57031, 38.648438, 2.1796875, -9.609375, 22.828125, -1.921875, 5.140625, 64.703125, 72.1875, -6.78125, 132.64844, 61.070313, 83.0625, 29.078125, 142.52344, 71.57031, 143.4375)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2), PackedInt32Array(3, 4, 5, 6, 7, 8), PackedInt32Array(9, 10, 11, 12, 13, 14, 8), PackedInt32Array(7, 9, 8), PackedInt32Array(4, 3, 15, 16), PackedInt32Array(10, 9, 17), PackedInt32Array(18, 10, 17, 19, 20), PackedInt32Array(21, 20, 19, 22, 5, 23, 24), PackedInt32Array(22, 6, 5), PackedInt32Array(25, 26, 24, 23, 27, 2), PackedInt32Array(28, 0, 2, 27, 29, 30), PackedInt32Array(31, 30, 29, 16, 15)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(34, -5, -7, -2, -17, 21, -21, 71, -24, 115, -12, 139, 28, 150, 74, 151, 90, 139, 123, 132, 158, 137, 208, 149, 248, 140, 274, 102, 268, 47, 199, -3, 160, -12, 104, -21, 41, -18)])
-agent_radius = 7.5
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_0i8ej"]
-size = Vector2(38, 20)
-
-[sub_resource type="Resource" id="Resource_s88v2"]
-script = ExtResource("18_j4ncf")
-text = "Agora você pode usar a espada para atacar.[br]Use [b][img]uid://bp5rh1bb277ft[/img][/b] ou [b][img]uid://b1v4froaj6uly[/img] para atacar."
-metadata/_custom_type_script = "uid://dm6hxe2j82cld"
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_xldlm"]
-
 [sub_resource type="Resource" id="Resource_7ef38"]
 script = ExtResource("18_j4ncf")
 text = "Uma plata antiga com algo falhado.[br]\"A paz do... esteja com T...\""
@@ -82,6 +67,28 @@ radius = 18.027756
 script = ExtResource("18_j4ncf")
 text = "As lápides escondem nomes de uma família.[br]\"Que nossos corações enraizem junto dele.\""
 metadata/_custom_type_script = "uid://dm6hxe2j82cld"
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_j4ncf"]
+vertices = PackedVector2Array(-16.382813, 113.46094, -13.5234375, 71.59375, -13.5234375, 71.60156, 122.74219, 124.390625, 86.5, 85.40625, 86.5, 71.921875, 141.07031, 82.0625, 151.89063, 89.28125, 159.40625, 129.63281, 166.5, 84.40625, 195.84375, 3.96875, 260.89844, 51.109375, 266.22656, 100.046875, 243.46875, 133.32031, 208.03906, 141.28906, 86.82031, 132.00781, 71.890625, 90.28125, 166.5, 70.921875, 158.4375, -4.6484375, 153.11719, 65.57031, 103.59375, -13.46875, 45.59375, -10.7109375, 144.70313, 71.1875, 73.11719, 66.57031, 38.648438, 2.1796875, -9.609375, 22.828125, -1.921875, 5.140625, 64.703125, 72.1875, -6.78125, 132.64844, 61.070313, 83.0625, 29.078125, 142.52344, 71.57031, 143.4375)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2), PackedInt32Array(3, 4, 5, 6, 7, 8), PackedInt32Array(9, 10, 11, 12, 13, 14, 8), PackedInt32Array(7, 9, 8), PackedInt32Array(4, 3, 15, 16), PackedInt32Array(10, 9, 17), PackedInt32Array(18, 10, 17, 19, 20), PackedInt32Array(21, 20, 19, 22, 5, 23, 24), PackedInt32Array(22, 6, 5), PackedInt32Array(25, 26, 24, 23, 27, 2), PackedInt32Array(28, 0, 2, 27, 29, 30), PackedInt32Array(31, 30, 29, 16, 15)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(34, -5, -7, -2, -17, 21, -21, 71, -24, 115, -12, 139, 28, 150, 74, 151, 90, 139, 123, 132, 158, 137, 208, 149, 248, 140, 274, 102, 268, 47, 199, -3, 160, -12, 104, -21, 41, -18)])
+agent_radius = 7.5
+
+[sub_resource type="Resource" id="Resource_s88v2"]
+script = ExtResource("18_j4ncf")
+text = "Agora você pode usar a espada para atacar.[br]Use [b][img]uid://bp5rh1bb277ft[/img][/b] ou [b][img]uid://b1v4froaj6uly[/img] para atacar."
+metadata/_custom_type_script = "uid://dm6hxe2j82cld"
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qq0ga"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_7ef38"]
+vertices = PackedVector2Array(196.25781, 48.117188, 230.15625, 57.960938, 258.35156, 94.15625, 237.57813, 108.86719, 200.53906, 105.953125, 127, 79.75, 127, 68.46094, 137.61719, 122.65625, 106.17969, 105.96875, 112.609375, 84.50781, 263.27344, 59.703125, 184.61719, 19, 145.4375, 19, 124.21094, 14.1796875, 114.203125, 63.390625, 96.953125, 22.953125, 103.03125, 78.1875, 68.39844, 106.97656, 37.601563, 100.82031, -7.046875, 78.27344, -11.890625, 36.609375, -0.953125, 7.15625, 20.429688, 13.7421875, 52.242188, 26.070313, 106.25781, 68.63281, 1.28125, 114.203125, -2.2890625, 110.61719)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3, 4, 5, 6), PackedInt32Array(5, 4, 7, 8, 9), PackedInt32Array(1, 10, 2), PackedInt32Array(11, 0, 6, 12), PackedInt32Array(13, 12, 6, 14, 15), PackedInt32Array(16, 17, 18, 19, 20, 21, 22, 23, 24), PackedInt32Array(15, 14, 24, 23), PackedInt32Array(16, 9, 8, 17), PackedInt32Array(19, 18, 25, 26)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-4, 1, -17, 36, -12, 79, -7, 113, 0, 120, 38, 106, 68, 112, 105, 111, 137, 128, 201, 111, 239, 114, 263, 97, 269, 55, 231, 53, 200, 44, 188, 14, 146, 14, 124, 9, 96, 18, 53, 21, 22, 9)])
+agent_radius = 5.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s88v2"]
+size = Vector2(20, 88)
 
 [node name="01_OldGlade" type="Node2D" unique_id=2018566342]
 y_sort_enabled = true
@@ -191,7 +198,7 @@ position = Vector2(639, 480)
 position = Vector2(714, 564)
 
 [node name="Player" parent="." unique_id=870341819 instance=ExtResource("1_rtynr")]
-position = Vector2(-252, 547)
+position = Vector2(-4, 169)
 
 [node name="ScreenGridRef" type="TextureRect" parent="." unique_id=2086119370]
 modulate = Color(1, 1, 1, 0.11764706)
@@ -212,69 +219,6 @@ stretch_mode = 1
 [node name="Katana" parent="." unique_id=1620922326 instance=ExtResource("12_equdi")]
 unique_name_in_owner = true
 position = Vector2(305, 330)
-
-[node name="Encounter" type="Node2D" parent="." unique_id=986530862 node_paths=PackedStringArray("dialog")]
-y_sort_enabled = true
-script = ExtResource("13_kycem")
-music = ExtResource("14_vtrmc")
-dialog = NodePath("DialogComponent")
-
-[node name="NavigationRegion2D" type="NavigationRegion2D" parent="Encounter" unique_id=1405538548]
-position = Vector2(191, 293)
-navigation_polygon = SubResource("NavigationPolygon_xldlm")
-
-[node name="Polygon2D" type="Polygon2D" parent="Encounter/NavigationRegion2D" unique_id=35923699]
-polygon = PackedVector2Array(71, 77, 70, 80, 73, 82, 79, 80, 79, 77, 74, 75)
-
-[node name="Polygon2D2" type="Polygon2D" parent="Encounter/NavigationRegion2D" unique_id=1572067242]
-position = Vector2(80, -1)
-polygon = PackedVector2Array(71, 77, 70, 80, 73, 82, 79, 80, 79, 77, 74, 75)
-
-[node name="Barrier" type="StaticBody2D" parent="Encounter" unique_id=326958393]
-z_index = 1
-y_sort_enabled = true
-position = Vector2(313, 438)
-collision_layer = 2
-collision_mask = 0
-
-[node name="BarrierCollision" type="CollisionShape2D" parent="Encounter/Barrier" unique_id=1643232677]
-unique_name_in_owner = true
-shape = SubResource("RectangleShape2D_0i8ej")
-debug_color = Color(0.9750704, 0, 0.42562202, 0.41960785)
-
-[node name="BarrierTile" type="TileMapLayer" parent="Encounter/Barrier" unique_id=2070262857]
-position = Vector2(-7, 1)
-tile_map_data = PackedByteArray("AAAAAP//AgAJAAUAAAA=")
-tile_set = ExtResource("1_tyitp")
-
-[node name="Enemies" type="Node" parent="Encounter" unique_id=2075105167]
-
-[node name="Enemy1" type="Node2D" parent="Encounter/Enemies" unique_id=1745869048]
-position = Vector2(248, 334)
-script = ExtResource("14_3b76q")
-enemy_scene = ExtResource("9_kycem")
-metadata/_custom_type_script = "uid://bqevlyl1klk70"
-
-[node name="Enemy2" type="Node2D" parent="Encounter/Enemies" unique_id=1946958329]
-position = Vector2(383, 374)
-script = ExtResource("14_3b76q")
-enemy_scene = ExtResource("9_kycem")
-metadata/_custom_type_script = "uid://bqevlyl1klk70"
-
-[node name="Enemy3" type="Node2D" parent="Encounter/Enemies" unique_id=208304032]
-position = Vector2(256, 398)
-script = ExtResource("14_3b76q")
-enemy_scene = ExtResource("9_kycem")
-metadata/_custom_type_script = "uid://bqevlyl1klk70"
-
-[node name="DialogComponent" type="Area2D" parent="Encounter" unique_id=612065690]
-script = ExtResource("17_wye75")
-lines = Array[ExtResource("18_j4ncf")]([SubResource("Resource_s88v2")])
-style = 2
-metadata/_custom_type_script = "uid://barpxe1rgafhj"
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Encounter/DialogComponent" unique_id=979669586]
-shape = SubResource("CircleShape2D_xldlm")
 
 [node name="OldMan" parent="." unique_id=969436063 instance=ExtResource("18_jls42")]
 position = Vector2(590, 899)
@@ -319,3 +263,119 @@ target = NodePath("../Teleport2")
 position = Vector2(1266, 972)
 collision_mask = 33
 target = NodePath("../Teleport")
+
+[node name="Encounter1" type="Node2D" parent="." unique_id=1619423143 node_paths=PackedStringArray("barrier_tile", "dialog", "item_to_start", "navigation_region", "spawn_points")]
+script = ExtResource("13_kycem")
+barrier_tile = NodePath("BarrierTile")
+dialog = NodePath("DialogComponent")
+item_to_start = NodePath("../Katana")
+music = ExtResource("14_vtrmc")
+navigation_region = NodePath("NavigationRegion2D")
+spawn_points = [NodePath("Enemies/Enemy1"), NodePath("Enemies/Enemy2"), NodePath("Enemies/Enemy3")]
+metadata/_custom_type_script = "uid://ddu56net15a2i"
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="Encounter1" unique_id=1033638568]
+position = Vector2(191, 293)
+navigation_polygon = SubResource("NavigationPolygon_j4ncf")
+
+[node name="Polygon2D" type="Polygon2D" parent="Encounter1/NavigationRegion2D" unique_id=1116160647]
+polygon = PackedVector2Array(71, 77, 70, 80, 73, 82, 79, 80, 79, 77, 74, 75)
+
+[node name="Polygon2D2" type="Polygon2D" parent="Encounter1/NavigationRegion2D" unique_id=1500080732]
+position = Vector2(80, -1)
+polygon = PackedVector2Array(71, 77, 70, 80, 73, 82, 79, 80, 79, 77, 74, 75)
+
+[node name="BarrierTile" type="TileMapLayer" parent="Encounter1" unique_id=860621737]
+position = Vector2(-7, 1)
+tile_map_data = PackedByteArray("AAAAAP//AgAJAAUAAAA=")
+tile_set = ExtResource("1_tyitp")
+
+[node name="Enemies" type="Node" parent="Encounter1" unique_id=328100091]
+
+[node name="Enemy1" type="Node2D" parent="Encounter1/Enemies" unique_id=58266227]
+position = Vector2(248, 334)
+script = ExtResource("14_3b76q")
+enemy_scene = ExtResource("9_kycem")
+metadata/_custom_type_script = "uid://bqevlyl1klk70"
+
+[node name="Enemy2" type="Node2D" parent="Encounter1/Enemies" unique_id=391239761]
+position = Vector2(383, 374)
+script = ExtResource("14_3b76q")
+enemy_scene = ExtResource("9_kycem")
+metadata/_custom_type_script = "uid://bqevlyl1klk70"
+
+[node name="Enemy3" type="Node2D" parent="Encounter1/Enemies" unique_id=120898964]
+position = Vector2(256, 398)
+script = ExtResource("14_3b76q")
+enemy_scene = ExtResource("9_kycem")
+metadata/_custom_type_script = "uid://bqevlyl1klk70"
+
+[node name="DialogComponent" type="Area2D" parent="Encounter1" unique_id=1838225074]
+script = ExtResource("17_wye75")
+lines = Array[ExtResource("18_j4ncf")]([SubResource("Resource_s88v2")])
+style = 2
+metadata/_custom_type_script = "uid://barpxe1rgafhj"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Encounter1/DialogComponent" unique_id=963704299]
+shape = SubResource("CircleShape2D_qq0ga")
+
+[node name="Encounter2" type="Node2D" parent="." unique_id=1545971102 node_paths=PackedStringArray("barrier_tile", "dialog", "navigation_region", "starter", "spawn_points")]
+position = Vector2(-633, 188)
+script = ExtResource("13_kycem")
+barrier_tile = NodePath("BarrierTile")
+dialog = NodePath("")
+music = ExtResource("14_vtrmc")
+navigation_region = NodePath("NavigationRegion2D")
+starter = NodePath("Starter")
+spawn_points = [NodePath("Enemies/Enemy1"), NodePath("Enemies/Enemy2"), NodePath("Enemies/Enemy3"), NodePath("Enemies/Enemy4")]
+metadata/_custom_type_script = "uid://ddu56net15a2i"
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="Encounter2" unique_id=1665737185]
+position = Vector2(191, 293)
+navigation_polygon = SubResource("NavigationPolygon_7ef38")
+
+[node name="Polygon2D" type="Polygon2D" parent="Encounter2/NavigationRegion2D" unique_id=1110388571]
+position = Vector2(7.8890533, -38.14319)
+scale = Vector2(1.4444422, 1.4285758)
+polygon = PackedVector2Array(71, 77, 70, 80, 73, 82, 79, 80, 79, 77, 74, 75)
+
+[node name="BarrierTile" type="TileMapLayer" parent="Encounter2" unique_id=1926291297]
+position = Vector2(-7, 1)
+tile_map_data = PackedByteArray("AAAUABoAAgAJAAUAAAAdABUAAgAJAAUAAAAdABYAAgAJAAUAAAAdABcAAgAJAAUAAAAKABQAAgAJAAUAAAAKABUAAgAJAAUAAAA=")
+tile_set = ExtResource("1_tyitp")
+
+[node name="Enemies" type="Node" parent="Encounter2" unique_id=1322315166]
+
+[node name="Enemy1" type="Node2D" parent="Encounter2/Enemies" unique_id=883320688]
+position = Vector2(-432, 574)
+script = ExtResource("14_3b76q")
+enemy_scene = ExtResource("21_qq0ga")
+metadata/_custom_type_script = "uid://bqevlyl1klk70"
+
+[node name="Enemy2" type="Node2D" parent="Encounter2/Enemies" unique_id=795735029]
+position = Vector2(-418, 522)
+script = ExtResource("14_3b76q")
+enemy_scene = ExtResource("9_kycem")
+metadata/_custom_type_script = "uid://bqevlyl1klk70"
+
+[node name="Enemy3" type="Node2D" parent="Encounter2/Enemies" unique_id=1716026089]
+position = Vector2(-284, 577)
+script = ExtResource("14_3b76q")
+enemy_scene = ExtResource("9_kycem")
+metadata/_custom_type_script = "uid://bqevlyl1klk70"
+
+[node name="Enemy4" type="Node2D" parent="Encounter2/Enemies" unique_id=258097980]
+position = Vector2(-275, 513)
+script = ExtResource("14_3b76q")
+enemy_scene = ExtResource("21_qq0ga")
+metadata/_custom_type_script = "uid://bqevlyl1klk70"
+
+[node name="Starter" type="Area2D" parent="Encounter2" unique_id=63905294]
+position = Vector2(370, 362)
+collision_layer = 0
+collision_mask = 32
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Encounter2/Starter" unique_id=1495182917]
+position = Vector2(50, 19)
+shape = SubResource("RectangleShape2D_s88v2")
+debug_color = Color(1, 1, 0.2784314, 0.039215688)

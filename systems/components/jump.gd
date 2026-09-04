@@ -32,7 +32,6 @@ func jump() -> void:
 
 func can_jump() -> bool:
 	for raycast_2d in raycasts:
-		print("oi")
 		if not raycast_2d.is_colliding():
 			return true
 
@@ -49,7 +48,6 @@ func can_jump() -> bool:
 		var tiledata := tile_map.get_cell_tile_data(cell)
 
 		if tiledata is TileData and tiledata.has_custom_data("height"):
-			print("can jump: ", height >= tiledata.get_custom_data("height"))
 			return height >= tiledata.get_custom_data("height")
 
 	return false

@@ -20,6 +20,8 @@ signal teleported()
 @export var jump: JumpComponent
 @export var movement: MovementComponent
 
+@onready var idle: PlayerState = %Idle
+
 var block_input := false
 var inventory: Inventory
 
@@ -68,6 +70,12 @@ func teleport(target: Teleport, offset_position: Vector2) -> void:
 	await camera.teleport_to(target.global_position)
 	await camera.fade_in()
 	teleported.emit()
+
+func freeze() -> void:
+	block_input = true
+	state_machine.change_state(idle)
+	await get_tree().create_timer(0.5).timeout
+	block_input = false
 
 ##### Side Effects #####
 

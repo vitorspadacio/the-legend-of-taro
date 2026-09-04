@@ -1,34 +1,53 @@
 class_name Encounter extends Node2D
 
-@export var music: AudioStream
+@export var barrier_tile: TileMapLayer
 @export var dialog: DialogComponent
-
-@onready var barrier_collision: CollisionShape2D = %BarrierCollision
-@onready var barrier_tile: TileMapLayer = $Barrier/BarrierTile
-@onready var katana: Pickable = %Katana
-@onready var spawn_points: Array[Node] = $Enemies.get_children()
+@export var item_to_start: Pickable
+@export var music: AudioStream
+@export var navigation_region: NavigationRegion2D
+@export var starter: Area2D
+@export var spawn_points: Array[Node]
 
 var dead_enemies_count := 0
 
 func _ready() -> void:
-	barrier_collision.set_deferred("disabled", true)
-	barrier_collision.set_deferred("visible", false)
 	barrier_tile.visible = false
 	barrier_tile.collision_enabled = false
-	katana.item_picked.connect(start)
+	if item_to_start:
+		print("registro item")
+		item_to_start.item_picked.connect(start)
+	if starter:
+		print("registro starter")
+		starter.body_entered.connect(_on_enter_starter)
+
+
+func _on_enter_starter(player: Player) -> void:
+	starter.body_entered.disconnect(_on_enter_starter)
+	if player:
+		player.freeze()
+		start()
 
 
 func start() -> void:
-	await get_tree().create_timer(3.0).timeout
+	print("começo")
+	await get_tree().create_timer(2.0).timeout
+	await show_barrier()
+	if dialog:
+		dialog.start_dialog()
+		await dialog.dialog_ended
+
+	Audio.play_music(music)
+	await spawn_enemies()
+
+
+func show_barrier() -> void:
 	barrier_tile.visible = true
 	barrier_tile.collision_enabled = true
 	VisualEffects.create_sparkle(barrier_tile.global_position)
 	await flash_blue()
-	dialog.start_dialog()
-	await dialog.dialog_ended
-	Audio.play_music(music)
-	barrier_collision.set_deferred("disabled", false)
-	barrier_collision.set_deferred("visible", true)
+
+
+func spawn_enemies() -> void:
 	var player = get_tree().get_first_node_in_group("player")
 	for spawn_point: EnemySpawnPoint in spawn_points:
 		var spawned = spawn_point.enemy_scene.instantiate() as Enemy
@@ -65,8 +84,6 @@ func end() -> void:
 	world.apply_environment(world.current_resource)
 	barrier_tile.visible = false
 	barrier_tile.collision_enabled = false
-	barrier_collision.set_deferred("disabled", true)
-	barrier_collision.set_deferred("visible", false)
 
 
 func _count_dead_enemies() -> void:
