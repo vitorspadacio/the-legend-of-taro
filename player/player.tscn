@@ -969,7 +969,7 @@ damage_area = NodePath("DamageArea")
 sprite = NodePath("Sprite2D")
 sprite_attack = NodePath("SpriteAttack2D")
 state_machine = NodePath("StateMachine")
-raycast_2d = NodePath("RayCast2D")
+raycast_2d = NodePath("JumpRaycasts/RayCast2D")
 animation = NodePath("Components/AnimationComponent")
 health = NodePath("Components/HealthComponent")
 input = NodePath("Components/InputComponent")
@@ -1016,13 +1016,6 @@ text = "Teste"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="RayCast2D" type="RayCast2D" parent="." unique_id=642531111]
-position = Vector2(0, 3)
-target_position = Vector2(0, 14)
-collision_mask = 3
-hit_from_inside = true
-script = ExtResource("4_65viv")
-
 [node name="Components" type="Node" parent="." unique_id=405113486]
 
 [node name="AnimationComponent" type="Node" parent="Components" unique_id=1730349623 node_paths=PackedStringArray("animation_player")]
@@ -1039,10 +1032,10 @@ metadata/_custom_type_script = "uid://dyl8o8lbuap7r"
 script = ExtResource("10_8t03j")
 metadata/_custom_type_script = "uid://da2r7gn05a3nq"
 
-[node name="JumpComponent" type="Node" parent="Components" unique_id=1267836588 node_paths=PackedStringArray("raycast_2d")]
+[node name="JumpComponent" type="Node" parent="Components" unique_id=1267836588 node_paths=PackedStringArray("raycasts")]
 script = ExtResource("17_e7oew")
 jump_curve = SubResource("Curve_5draq")
-raycast_2d = NodePath("../../RayCast2D")
+raycasts = [NodePath("../../JumpRaycasts/RayCast2D"), NodePath("../../JumpRaycasts/RayCast2D2"), NodePath("../../JumpRaycasts/RayCast2D3")]
 metadata/_custom_type_script = "uid://blposikaswy0u"
 
 [node name="MovementComponent" type="Node" parent="Components" unique_id=1166935362 node_paths=PackedStringArray("body")]
@@ -1124,3 +1117,24 @@ script = ExtResource("11_2ieo8")
 position = Vector2(0, 3)
 shape = SubResource("CircleShape2D_xldlm")
 debug_color = Color(0.7529412, 0.45882353, 0, 0)
+
+[node name="JumpRaycasts" type="Node2D" parent="." unique_id=1689419963]
+script = ExtResource("4_65viv")
+
+[node name="RayCast2D" type="RayCast2D" parent="JumpRaycasts" unique_id=642531111]
+position = Vector2(0, 3)
+target_position = Vector2(0, 14)
+collision_mask = 3
+hit_from_inside = true
+
+[node name="RayCast2D2" type="RayCast2D" parent="JumpRaycasts" unique_id=1562382070]
+position = Vector2(-10, 3)
+target_position = Vector2(0, 14)
+collision_mask = 3
+hit_from_inside = true
+
+[node name="RayCast2D3" type="RayCast2D" parent="JumpRaycasts" unique_id=863482635]
+position = Vector2(11, 3)
+target_position = Vector2(0, 14)
+collision_mask = 3
+hit_from_inside = true

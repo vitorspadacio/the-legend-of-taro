@@ -62,7 +62,6 @@ func take_item(item: ItemData, amount: int, pick: Pickable, should_emit: bool = 
 	inventory.add_item(item, amount)
 
 func teleport(target: Teleport, offset_position: Vector2) -> void:
-	# print("Teleportando para %s, position %s" % [target, global_position])
 	var camera = get_tree().get_first_node_in_group("camera")
 	await camera.fade_out()
 	global_position = target.global_position + offset_position

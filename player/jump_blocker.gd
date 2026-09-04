@@ -1,4 +1,4 @@
-class_name JumpBlocker extends RayCast2D
+class_name JumpBlocker extends Node2D
 
 func _ready() -> void:
 	var parent = get_parent()
