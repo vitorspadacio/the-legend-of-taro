@@ -5,7 +5,6 @@ class_name PlayerJumpState extends PlayerState
 
 func enter() -> void:
 	Audio.play_spatial_sound(sound, player.global_position)
-	player.sprite.z_index = 3
 	player.jump.jump()
 	player.animation.play("jump")
 	player.animation.animation_player.pause()
@@ -22,6 +21,7 @@ func handle_input(_event: InputEvent) -> PlayerState:
 	
 func physics_process(delta: float) -> PlayerState:
 	if player.jump.can_jump():
+		player.sprite.z_index = 3
 		player.input.update_commands()
 		player.update_direction(player.input.direction)
 		player.movement.move(1.2, delta)
