@@ -106,7 +106,6 @@ process_material = ExtResource("12_54j6l")
 [node name="GeneralHud" type="CanvasLayer" parent="." unique_id=473565382 groups=["general_hud"]]
 
 [node name="Debug" type="Control" parent="GeneralHud" unique_id=1204139920]
-visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0

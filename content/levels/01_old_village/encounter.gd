@@ -14,10 +14,8 @@ func _ready() -> void:
 	barrier_tile.visible = false
 	barrier_tile.collision_enabled = false
 	if item_to_start:
-		print("registro item")
 		item_to_start.item_picked.connect(start)
 	if starter:
-		print("registro starter")
 		starter.body_entered.connect(_on_enter_starter)
 
 
@@ -29,7 +27,6 @@ func _on_enter_starter(player: Player) -> void:
 
 
 func start() -> void:
-	print("começo")
 	await get_tree().create_timer(2.0).timeout
 	await show_barrier()
 	if dialog:
@@ -52,6 +49,9 @@ func spawn_enemies() -> void:
 	for spawn_point: EnemySpawnPoint in spawn_points:
 		var spawned = spawn_point.enemy_scene.instantiate() as Enemy
 		spawned.global_position = spawn_point.global_position
+		var markers = spawn_point.get_children() as Array[Marker2D]
+		for marker in markers:
+			spawned.decision_engine.marker_nodes.append(marker)
 		VisualEffects.create_smoke(spawned.global_position)
 		add_sibling.call_deferred(spawned)
 		await get_tree().process_frame

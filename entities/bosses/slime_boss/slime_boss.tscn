@@ -356,11 +356,11 @@ script = ExtResource("6_qo01b")
 body = NodePath("../..")
 speed = 35.0
 
-[node name="JumpComponent" type="Node" parent="Components" unique_id=2042509210 node_paths=PackedStringArray("raycast_2d")]
+[node name="JumpComponent" type="Node" parent="Components" unique_id=2042509210 node_paths=PackedStringArray("raycasts")]
 script = ExtResource("7_45bgt")
 jump_curve = SubResource("Curve_im8pi")
 jump_duration = 1.0
-raycast_2d = NodePath("../../JumpBlocker")
+raycasts = [NodePath("../../JumpBlocker")]
 metadata/_custom_type_script = "uid://blposikaswy0u"
 
 [node name="DecisionBossSlime" type="Node" parent="." unique_id=543990865 node_paths=PackedStringArray("entity", "death", "hurt", "idle", "jump", "spawn", "walk")]

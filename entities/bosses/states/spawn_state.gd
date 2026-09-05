@@ -12,6 +12,7 @@ const SLIME_SCENE := preload("res://entities/enemies/slime/slime.tscn")
 var timer := 0.0
 var slimes_spawned := false
 var hurt_duration := 0.0
+var slimes_remaining := 0
 
 func enter() -> void:
 	timer = 0.0
@@ -39,17 +40,30 @@ func physics_process(delta: float) -> EnemyState:
 	return null
 
 func _spawn_slimes() -> void:
+	slimes_remaining = slime_count
 	for _index in slime_count:
 		var slime := SLIME_SCENE.instantiate() as Enemy
+		slime.health.died.connect(_on_slime_dies)
 		var direction := Vector2.from_angle(randf() * TAU)
 		var launch_distance := randf_range(
 			launch_distance_min, launch_distance_max
 		)
 
 		get_tree().current_scene.add_child(slime)
+		var player = get_tree().get_first_node_in_group("player")
+		slime.blackboard.target = player
 		slime.global_position = enemy.global_position
 		slime.jump.jump()
 		_launch_slime(slime, direction, launch_distance / launch_duration)
+
+func _on_slime_dies() -> void:
+	slimes_remaining -= 1
+
+func can_spawn_again() -> bool:
+	if slimes_remaining <= 0:
+		return true
+	else:
+		return false
 
 func _launch_slime(slime: Enemy, direction: Vector2, speed: float) -> void:
 	var elapsed := 0.0

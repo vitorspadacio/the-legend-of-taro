@@ -11,9 +11,6 @@ extends DecisionEngine
 @export var spawn: EnemyState
 @export var walk: EnemyState
 
-@export_category("Arena")
-@export var markers: Array[NodePath] = []
-
 var player: Player
 var phase_transition := StateSequence.new()
 var marker_nodes: Array[Marker2D] = []
@@ -26,10 +23,6 @@ var spawn_timer := 0.0
 
 func _ready() -> void:
 	await super()
-	for marker_path in markers:
-		var marker := get_node_or_null(marker_path) as Marker2D
-		if marker:
-			marker_nodes.append(marker)
 	blackboard.boss_phase = blackboard.BossPhase.Phase1
 
 func _process(delta: float) -> void:
@@ -45,12 +38,13 @@ func decide() -> EnemyState:
 	if phase_transition.is_running():
 		return _advance_phase_transition(Blackboard.BossPhase.Phase2)
 
-	if blackboard.is_in_phase(blackboard.BossPhase.Phase1):
-		return phase_1()
-	elif blackboard.is_in_phase(blackboard.BossPhase.Phase2):
-		return phase_2()
-
-	return null
+	match blackboard.boss_phase:
+		blackboard.BossPhase.Phase1:
+			return phase_1()
+		blackboard.BossPhase.Phase2:
+			return phase_2()
+		_:
+			return phase_1()
 
 func phase_1() -> EnemyState:
 	if blackboard.damage_source:
@@ -76,7 +70,7 @@ func phase_2() -> EnemyState:
 	if not blackboard.can_decide:
 		return null
 	
-	if spawn_timer <= 0 and blackboard.target:
+	if spawn_timer <= 0 and blackboard.target and spawn.can_spawn_again():
 		spawn_timer = spawn_cooldown
 		return spawn
 
@@ -87,7 +81,7 @@ func phase_2() -> EnemyState:
 
 func _jump() -> EnemyState:
 	jump_timer = randf_range(3 - jump_cooldown, jump_cooldown)
-	if randf() < 0.5 or marker_nodes.is_empty():
+	if randf() < 0.7 or marker_nodes.is_empty():
 		jump.target = blackboard.target.global_position
 	else:
 		jump.target = marker_nodes.pick_random().global_position

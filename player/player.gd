@@ -72,10 +72,11 @@ func teleport(target: Teleport, offset_position: Vector2) -> void:
 	teleported.emit()
 
 func freeze() -> void:
-	block_input = true
-	state_machine.change_state(idle)
-	await get_tree().create_timer(0.5).timeout
-	block_input = false
+	set_process(false)
+	set_physics_process(false)
+	await get_tree().create_timer(2.0).timeout
+	set_process(true)
+	set_physics_process(true)
 
 ##### Side Effects #####
 
