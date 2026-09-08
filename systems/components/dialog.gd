@@ -53,7 +53,7 @@ func _on_body_exited(_body: Node2D) -> void:
 func _on_dialog_end() -> void:
 	is_in_dialog = false
 	buuble.visible = true
-	player.block_input = false
+	player.end_freeze()
 	dialog_ended.emit()
 
 
@@ -66,7 +66,8 @@ func _process(_delta: float) -> void:
 
 
 func start_dialog() -> void:
-	player.block_input = true
+	player.start_freeze()
+	player.movement.facing_direction = _get_entity_direction() * -1
 	is_in_dialog = true
 	buuble.visible = false
 	if entity:

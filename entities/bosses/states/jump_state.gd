@@ -16,6 +16,7 @@ func enter() -> void:
 	enemy.animation.play_no_direction("jump")
 	enemy.animation.animation_player.pause()
 	enemy.hazard_area.monitorable = false
+	enemy.hazard_area.monitoring = false
 	enemy.damage_area.monitorable = false
 	enemy.blackboard.can_decide = false
 	on_cooldown = true
@@ -24,6 +25,7 @@ func enter() -> void:
 func exit() -> void:
 	target = Vector2.ZERO
 	enemy.jump.jump_duration = previous_jump_duration
+	enemy.hazard_area.monitoring = true
 	enemy.hazard_area.monitorable = true
 	enemy.damage_area.monitorable = true
 

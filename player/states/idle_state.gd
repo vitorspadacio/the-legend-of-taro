@@ -7,12 +7,13 @@ func init() -> void:
 	pass
 	
 func enter() -> void:
+	player.freeze.connect(_on_freeze)
 	player.animation.play("idle")
 	player.velocity.x = 0
 	player.velocity.y = 0
 	
 func exit() -> void:
-	pass
+	player.freeze.disconnect(_on_freeze)
 
 func handle_input(_event: InputEvent) -> PlayerState:
 	return null
@@ -34,3 +35,7 @@ func process(_delta: float) -> PlayerState:
 		return walk
 
 	return null
+
+
+func _on_freeze() -> void:
+	player.state_machine.change_state(self)

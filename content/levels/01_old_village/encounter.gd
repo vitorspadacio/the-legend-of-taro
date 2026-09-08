@@ -22,8 +22,9 @@ func _ready() -> void:
 func _on_enter_starter(player: Player) -> void:
 	starter.body_entered.disconnect(_on_enter_starter)
 	if player:
-		player.freeze()
-		start()
+		player.start_freeze()
+		await start()
+		player.end_freeze()
 
 
 func start() -> void:

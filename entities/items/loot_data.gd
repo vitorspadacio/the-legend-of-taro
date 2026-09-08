@@ -4,3 +4,4 @@ class_name LootData extends Resource
 @export var minimum: int = 1
 @export var maximum: int = 1
 @export var drop_chance: float = 1.0
+@export var drop_by_player_health: float = 0.0

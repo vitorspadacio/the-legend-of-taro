@@ -219,7 +219,7 @@ position = Vector2(639, 480)
 position = Vector2(714, 564)
 
 [node name="Player" parent="." unique_id=870341819 instance=ExtResource("1_rtynr")]
-position = Vector2(-698, 547)
+position = Vector2(0, 159)
 
 [node name="ScreenGridRef" type="TextureRect" parent="." unique_id=2086119370]
 modulate = Color(1, 1, 1, 0.11764706)

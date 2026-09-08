@@ -1,9 +1,11 @@
 class_name Player extends CharacterBody2D
 
 signal damage_taken(attack_area: AttackArea)
-signal died()
 signal item_took(item: ItemData, amount: int, Pick: Pickable)
-signal teleported()
+
+signal died
+signal freeze
+signal teleported
 
 @export var attack_area: AttackArea
 @export var collision: CollisionShape2D
@@ -71,12 +73,13 @@ func teleport(target: Teleport, offset_position: Vector2) -> void:
 	await camera.fade_in()
 	teleported.emit()
 
-func freeze() -> void:
-	set_process(false)
-	set_physics_process(false)
-	await get_tree().create_timer(2.0).timeout
-	set_process(true)
-	set_physics_process(true)
+func start_freeze() -> void:
+	block_input = true
+	input.direction = Vector2.ZERO
+	freeze.emit()
+
+func end_freeze() -> void:
+	block_input = false
 
 ##### Side Effects #####
 
