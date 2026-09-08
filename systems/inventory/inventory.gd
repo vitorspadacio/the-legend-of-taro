@@ -35,3 +35,11 @@ func get_gold_amount() -> int:
 			return item.quantity
 
 	return 0
+
+
+func has_item(item: ItemData) -> bool:
+	for entry in items:
+		if entry.item.id == item.id:
+			return true
+	
+	return false

@@ -8,6 +8,8 @@ class_name Encounter extends Node2D
 @export var starter: Area2D
 @export var spawn_points: Array[Node]
 
+@export var item_condition := load("uid://c20tij6l0ueyp")
+
 var dead_enemies_count := 0
 
 func _ready() -> void:
@@ -20,8 +22,12 @@ func _ready() -> void:
 
 
 func _on_enter_starter(player: Player) -> void:
-	starter.body_entered.disconnect(_on_enter_starter)
 	if player:
+		print(player.inventory.has_item(item_condition))
+		if item_condition != null and !player.inventory.has_item(item_condition):
+			return
+
+		starter.body_entered.disconnect(_on_enter_starter)
 		player.start_freeze()
 		await start()
 		player.end_freeze()
