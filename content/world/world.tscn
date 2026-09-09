@@ -113,6 +113,7 @@ offset_bottom = 40.0
 script = ExtResource("15_dsaeo")
 
 [node name="Button" type="Button" parent="GeneralHud/Debug" unique_id=712757622]
+visible = false
 layout_mode = 0
 offset_left = 221.0
 offset_top = 27.0
@@ -122,6 +123,7 @@ theme_override_font_sizes/font_size = 11
 text = "Pegar Katana"
 
 [node name="Button2" type="Button" parent="GeneralHud/Debug" unique_id=1537506416]
+visible = false
 layout_mode = 0
 offset_left = 221.0
 offset_top = 55.0

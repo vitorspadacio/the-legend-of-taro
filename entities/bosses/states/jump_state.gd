@@ -10,7 +10,6 @@ var jump_started := false
 var previous_jump_duration := 0.0
 
 func enter() -> void:
-	print(target)
 	jump_started = false
 	previous_jump_duration = enemy.jump.jump_duration
 	enemy.animation.play_no_direction("jump")
@@ -38,7 +37,6 @@ func physics_process(delta: float) -> EnemyState:
 	elif timer < jump_end_time:
 		_start_jump()
 
-		print(enemy.jump.can_jump())
 		if enemy.jump.can_jump():
 			get_target_position()
 			enemy.movement.move(3.0, delta)

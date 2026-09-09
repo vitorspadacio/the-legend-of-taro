@@ -2,6 +2,7 @@ class_name Player extends CharacterBody2D
 
 signal damage_taken(attack_area: AttackArea)
 signal item_took(item: ItemData, amount: int, Pick: Pickable)
+signal upgrade_took(Pick: Pickable)
 
 signal died
 signal freeze
@@ -27,7 +28,7 @@ signal teleported
 var block_input := false
 var inventory: Inventory
 
-var has_jump := true
+var has_jump := false
 var has_roll := false
 
 ##### Core #####
@@ -64,6 +65,10 @@ func take_item(item: ItemData, amount: int, pick: Pickable, should_emit: bool = 
 	if should_emit:
 		item_took.emit(item, amount, pick)
 	inventory.add_item(item, amount)
+
+func take_upgrade(pick: Pickable) -> void:
+	has_jump = true
+	upgrade_took.emit(pick)
 
 func teleport(target: Teleport, offset_position: Vector2) -> void:
 	var camera = get_tree().get_first_node_in_group("camera")

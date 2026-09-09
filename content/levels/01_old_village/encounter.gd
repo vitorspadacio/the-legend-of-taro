@@ -23,7 +23,6 @@ func _ready() -> void:
 
 func _on_enter_starter(player: Player) -> void:
 	if player:
-		print(player.inventory.has_item(item_condition))
 		if item_condition != null and !player.inventory.has_item(item_condition):
 			return
 

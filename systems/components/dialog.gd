@@ -53,13 +53,13 @@ func _on_body_exited(_body: Node2D) -> void:
 
 
 func _on_dialog_end() -> void:
-	if pages[current_index].dies_after_one_read:
-		current_index += 1
-
 	is_in_dialog = false
 	buuble.visible = true
 	player.end_freeze()
 	dialog_ended.emit()
+
+	if pages[current_index].dies_after_one_read:
+		current_index += 1
 
 
 func _process(_delta: float) -> void:
@@ -72,10 +72,10 @@ func _process(_delta: float) -> void:
 
 func start_dialog() -> void:
 	player.start_freeze()
-	player.movement.facing_direction = _get_entity_direction() * -1
 	is_in_dialog = true
 	buuble.visible = false
-	if entity:
+	if entity != null:
+		player.movement.facing_direction = _get_entity_direction() * -1
 		dialog_started.emit(_get_entity_direction())
 	check_pages_condition()
 	_create_dialog_box()
@@ -100,8 +100,8 @@ func _get_entity_direction() -> Vector2:
 
 func check_pages_condition() -> void:
 	for page in pages:
-		print(page.item_condition)
-		if page.item_condition:
+		var page_index = pages.find(page)
+		if page.item_condition and page_index >= current_index:
 			var item = page.item_condition
 
 			if player.inventory.has_item_with_quantity(item, page.quantity):

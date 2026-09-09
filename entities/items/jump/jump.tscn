@@ -1,0 +1,34 @@
+[gd_scene format=3 uid="uid://ckyoxcwmfp5mc"]
+
+[ext_resource type="Script" uid="uid://ckpl53rvpcd15" path="res://entities/items/pickable.gd" id="1_7fdxe"]
+[ext_resource type="Resource" uid="uid://c20tij6l0ueyp" path="res://player/weapons/katana.tres" id="2_u2gxw"]
+[ext_resource type="AudioStream" uid="uid://js2qf5pi1qa3" path="res://entities/items/jump/level_up.wav" id="3_2abb8"]
+[ext_resource type="Texture2D" uid="uid://3lffu286xbq6" path="res://entities/items/jump/Scroll.png" id="4_0ic2d"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_xldlm"]
+radius = 6.0827627
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_s88v2"]
+radius = 3.0
+
+[node name="Jump" type="CharacterBody2D" unique_id=1620922326 node_paths=PackedStringArray("sprite")]
+script = ExtResource("1_7fdxe")
+item = ExtResource("2_u2gxw")
+sound = ExtResource("3_2abb8")
+sprite = NodePath("Sprite2D")
+show_animation = true
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1622703724]
+texture = ExtResource("4_0ic2d")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1535023162]
+collision_layer = 0
+collision_mask = 32
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=225168092]
+shape = SubResource("CircleShape2D_xldlm")
+debug_color = Color(0, 0.55503935, 0.91015494, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=250218595]
+shape = SubResource("CircleShape2D_s88v2")
+debug_color = Color(0, 0.6509804, 0.11764706, 0)
