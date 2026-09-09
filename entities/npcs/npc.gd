@@ -5,6 +5,8 @@ class_name Npc extends CharacterBody2D
 @export var upgrade: Pickable
 @export var event_dialog: DialogComponent
 
+var coin = load("uid://ul36oy6ljp5j")
+
 @export_category("components")
 @export var animation: AnimationComponent
 @export var dialog: DialogComponent
@@ -31,8 +33,8 @@ func _on_dialog_ended() -> void:
 	animation.play()
 
 func give_upgrade() -> void:
-	print(upgrade)
-	var player = get_tree().get_first_node_in_group("player")
+	var player: Player = get_tree().get_first_node_in_group("player")
 	player.take_upgrade(upgrade)
+	player.inventory.remove_item(coin, 20)
 	await get_tree().create_timer(2.0).timeout
 	event_dialog.start_dialog()
