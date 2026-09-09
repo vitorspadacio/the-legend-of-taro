@@ -43,3 +43,11 @@ func has_item(item: ItemData) -> bool:
 			return true
 	
 	return false
+
+
+func has_item_with_quantity(item: ItemData, quantity: int) -> bool:
+	for entry in items:
+		if entry.item.id == item.id and entry.quantity >= quantity:
+			return true
+	
+	return false

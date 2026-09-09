@@ -13,11 +13,12 @@ signal dialog_started(direction: Vector2)
 signal dialog_ended
 
 @export var entity: Node2D
-@export var lines: Array[DialogLine]
+@export var pages: Array[DialogPage]
 @export var style: DialogTypes
 
 var box: DialogBox
 var buuble: Node2D
+var current_index: int
 var is_in_dialog: bool = false
 var is_in_range: bool = false
 var player: Player
@@ -27,6 +28,7 @@ func _ready() -> void:
 	set_collision_mask_value(Constants.CollisionLayers.player, true)
 	body_entered.connect(_on_body_entered)
 	body_exited.connect(_on_body_exited)
+	current_index = 0
 	create_buuble()
 
 
@@ -51,6 +53,9 @@ func _on_body_exited(_body: Node2D) -> void:
 
 
 func _on_dialog_end() -> void:
+	if pages[current_index].dies_after_one_read:
+		current_index += 1
+
 	is_in_dialog = false
 	buuble.visible = true
 	player.end_freeze()
@@ -72,6 +77,7 @@ func start_dialog() -> void:
 	buuble.visible = false
 	if entity:
 		dialog_started.emit(_get_entity_direction())
+	check_pages_condition()
 	_create_dialog_box()
 
 
@@ -80,7 +86,7 @@ func _create_dialog_box() -> void:
 	box = DIALOG_BOX.instantiate()
 	box.has_no_more_lines.connect(_on_dialog_end)
 	box.style = style
-	box.dialog = lines
+	box.dialog = pages[current_index].lines
 	general_hud.add_child(box)
 
 
@@ -90,3 +96,13 @@ func _get_entity_direction() -> Vector2:
 	if abs(direction.x) > abs(direction.y):
 		return Vector2.RIGHT if direction.x > 0 else Vector2.LEFT
 	return Vector2.DOWN if direction.y > 0 else Vector2.UP
+
+
+func check_pages_condition() -> void:
+	for page in pages:
+		print(page.item_condition)
+		if page.item_condition:
+			var item = page.item_condition
+
+			if player.inventory.has_item_with_quantity(item, page.quantity):
+				current_index = pages.find(page)

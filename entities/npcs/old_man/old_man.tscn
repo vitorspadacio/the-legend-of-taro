@@ -4,8 +4,10 @@
 [ext_resource type="Texture2D" uid="uid://dtix5rbqd8e6u" path="res://entities/npcs/old_man/old_man.png" id="2_2qi3x"]
 [ext_resource type="Texture2D" uid="uid://yh7t5i0qpf0l" path="res://player/shadow.png" id="2_ygf52"]
 [ext_resource type="Script" uid="uid://bavckwsbwuxsc" path="res://systems/components/animation.gd" id="4_vlek8"]
+[ext_resource type="Script" uid="uid://dj8iirxi7aqd6" path="res://systems/dialog/dialog_page.gd" id="5_q4yaf"]
 [ext_resource type="Script" uid="uid://1t060yt1ejl" path="res://systems/components/movement.gd" id="6_pdary"]
 [ext_resource type="Script" uid="uid://dm6hxe2j82cld" path="res://systems/dialog/dialog_line.gd" id="6_svj2v"]
+[ext_resource type="Resource" uid="uid://ul36oy6ljp5j" path="res://entities/items/coin/coin.tres" id="7_rlq3m"]
 [ext_resource type="Script" uid="uid://barpxe1rgafhj" path="res://systems/components/dialog.gd" id="8_4eu61"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4bqqs"]
@@ -179,41 +181,77 @@ _data = {
 &"walk_up": SubResource("Animation_walk_up")
 }
 
-[sub_resource type="Resource" id="Resource_dsaeo"]
+[sub_resource type="Resource" id="Resource_fcw4k"]
 script = ExtResource("6_svj2v")
 actor = "Velho"
-text = "Ho, há quanto tempo não vejo ninguém aqui."
+text = "Quem vem lá. Um garoto!"
 metadata/_custom_type_script = "uid://dm6hxe2j82cld"
 
-[sub_resource type="Resource" id="Resource_huj5j"]
+[sub_resource type="Resource" id="Resource_e4thx"]
 script = ExtResource("6_svj2v")
 actor = "Velho"
-text = "Você parece perdido, garoto.[br]Talvez precise de ajuda para sair dessa antiga clareira."
+text = "Não vejo ninguém por aqui, de onde você saiu?"
 metadata/_custom_type_script = "uid://dm6hxe2j82cld"
 
-[sub_resource type="Resource" id="Resource_q4yaf"]
+[sub_resource type="Resource" id="Resource_i36jk"]
 script = ExtResource("6_svj2v")
 actor = "Velho"
-text = "Eu posso te ajudar, mas minha idade me obriga a pedir algo em troca."
+text = "Não importa. Imagino que esteja procurando como sair dessa clareira, não?"
 metadata/_custom_type_script = "uid://dm6hxe2j82cld"
 
-[sub_resource type="Resource" id="Resource_rlq3m"]
+[sub_resource type="Resource" id="Resource_l78t1"]
 script = ExtResource("6_svj2v")
 actor = "Velho"
-text = "Me traga [b]20 moedas[/b].[br]Vai me ajudar bastante nas minhas visitas à cidade."
+text = "Eu posso te ajudar, mas tudo tem seu preço, não é mesmo?"
 metadata/_custom_type_script = "uid://dm6hxe2j82cld"
 
-[sub_resource type="Resource" id="Resource_71ylx"]
+[sub_resource type="Resource" id="Resource_w4psr"]
 script = ExtResource("6_svj2v")
 actor = "Velho"
-text = "Então te ensinarei a [i]saltar[/i] pelos seus obstáculos."
+text = "Me traga [b]20 moedas[/b] que consigo te ensinar uma técnica muito útil por aqui."
 metadata/_custom_type_script = "uid://dm6hxe2j82cld"
+
+[sub_resource type="Resource" id="Resource_81iq7"]
+script = ExtResource("6_svj2v")
+actor = "Velho"
+text = "Te ensino a saltar!"
+metadata/_custom_type_script = "uid://dm6hxe2j82cld"
+
+[sub_resource type="Resource" id="Resource_f0vsp"]
+script = ExtResource("6_svj2v")
+actor = "Velho"
+text = "Agora arrange as moedas que te ajudo."
+metadata/_custom_type_script = "uid://dm6hxe2j82cld"
+
+[sub_resource type="Resource" id="Resource_mbudi"]
+script = ExtResource("5_q4yaf")
+dies_after_one_read = true
+lines = Array[ExtResource("6_svj2v")]([SubResource("Resource_fcw4k"), SubResource("Resource_e4thx"), SubResource("Resource_i36jk"), SubResource("Resource_l78t1"), SubResource("Resource_w4psr"), SubResource("Resource_81iq7"), SubResource("Resource_f0vsp")])
+metadata/_custom_type_script = "uid://dj8iirxi7aqd6"
+
+[sub_resource type="Resource" id="Resource_04yw4"]
+script = ExtResource("6_svj2v")
+actor = "Velho"
+text = "Encontre as moedas e me trague aqui!"
+metadata/_custom_type_script = "uid://dm6hxe2j82cld"
+
+[sub_resource type="Resource" id="Resource_63yqk"]
+script = ExtResource("5_q4yaf")
+lines = Array[ExtResource("6_svj2v")]([SubResource("Resource_04yw4")])
+metadata/_custom_type_script = "uid://dj8iirxi7aqd6"
 
 [sub_resource type="Resource" id="Resource_chpip"]
 script = ExtResource("6_svj2v")
 actor = "Velho"
-text = "Talvez encontre uma forma de sair dessa clareira.[br]Ho, ho ho."
+text = "Veja só, parece que juntou as moedas que pedi."
 metadata/_custom_type_script = "uid://dm6hxe2j82cld"
+
+[sub_resource type="Resource" id="Resource_rlq3m"]
+script = ExtResource("5_q4yaf")
+item_condition = ExtResource("7_rlq3m")
+quantity = 20
+lines = Array[ExtResource("6_svj2v")]([SubResource("Resource_chpip")])
+metadata/_custom_type_script = "uid://dj8iirxi7aqd6"
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_s88v2"]
 radius = 19.026299
@@ -252,7 +290,7 @@ collision_layer = 32
 collision_mask = 0
 script = ExtResource("8_4eu61")
 entity = NodePath("..")
-lines = Array[ExtResource("6_svj2v")]([SubResource("Resource_dsaeo"), SubResource("Resource_huj5j"), SubResource("Resource_q4yaf"), SubResource("Resource_rlq3m"), SubResource("Resource_71ylx"), SubResource("Resource_chpip")])
+pages = Array[ExtResource("5_q4yaf")]([SubResource("Resource_mbudi"), SubResource("Resource_63yqk"), SubResource("Resource_rlq3m")])
 metadata/_custom_type_script = "uid://barpxe1rgafhj"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DialogComponent" unique_id=966874920]

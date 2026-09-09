@@ -1,7 +1,7 @@
 class_name InventoryEntry extends Resource
 
-var item: ItemData
-var quantity: int
+@export var item: ItemData
+@export var quantity: int
 
 func _init(
 	i_item: ItemData,

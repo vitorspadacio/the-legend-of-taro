@@ -16,6 +16,7 @@
 [ext_resource type="Script" uid="uid://ddu56net15a2i" path="res://content/levels/01_old_village/encounter.gd" id="13_kycem"]
 [ext_resource type="Script" uid="uid://bqevlyl1klk70" path="res://content/levels/01_old_village/spawn_point.gd" id="14_3b76q"]
 [ext_resource type="AudioStream" uid="uid://cdjhd2fdsudio" path="res://assets/musics/17_fight.ogg" id="14_vtrmc"]
+[ext_resource type="Script" uid="uid://dj8iirxi7aqd6" path="res://systems/dialog/dialog_page.gd" id="16_ctdfl"]
 [ext_resource type="Script" uid="uid://barpxe1rgafhj" path="res://systems/components/dialog.gd" id="17_wye75"]
 [ext_resource type="Script" uid="uid://dm6hxe2j82cld" path="res://systems/dialog/dialog_line.gd" id="18_j4ncf"]
 [ext_resource type="PackedScene" uid="uid://cdiuiqfew4rfj" path="res://entities/npcs/old_man/old_man.tscn" id="18_jls42"]
@@ -56,29 +57,34 @@ polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3, 4), PackedInt32
 outlines = Array[PackedVector2Array]([PackedVector2Array(-82, 285, -113, 306, -120, 320, -129, 336, -121, 360, -121, 392, -125, 410, -100, 430, -97, 447, -64, 450, -14, 450, 35, 450, 80, 435, 115, 424, 127, 400, 119, 378, 117, 364, 125, 332, 108, 313, 120, 299, 109, 290, 89, 285, 8, 288)])
 agent_radius = 5.0
 
-[sub_resource type="Resource" id="Resource_7ef38"]
+[sub_resource type="Resource" id="Resource_srlht"]
 script = ExtResource("18_j4ncf")
-text = "Uma plata antiga com algo falhado.[br]\"A paz do... esteja com T...\""
+text = "Uma placa antiga com texto falhado.[br]\"Que a paz... continue com Ele.\""
 metadata/_custom_type_script = "uid://dm6hxe2j82cld"
+
+[sub_resource type="Resource" id="Resource_flqm7"]
+script = ExtResource("16_ctdfl")
+lines = Array[ExtResource("18_j4ncf")]([SubResource("Resource_srlht")])
+metadata/_custom_type_script = "uid://dj8iirxi7aqd6"
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_jls42"]
 radius = 18.027756
 
-[sub_resource type="Resource" id="Resource_wye75"]
+[sub_resource type="Resource" id="Resource_s88v2"]
 script = ExtResource("18_j4ncf")
-text = "As lápides escondem nomes de uma família.[br]\"Que nossos corações enraizem junto dele.\""
+text = "As lápides parecem antigas.[br]Existe o nome de uma família inteira aqui."
 metadata/_custom_type_script = "uid://dm6hxe2j82cld"
+
+[sub_resource type="Resource" id="Resource_xldlm"]
+script = ExtResource("16_ctdfl")
+lines = Array[ExtResource("18_j4ncf")]([SubResource("Resource_s88v2")])
+metadata/_custom_type_script = "uid://dj8iirxi7aqd6"
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_j4ncf"]
 vertices = PackedVector2Array(-16.382813, 113.46094, -13.5234375, 71.59375, -13.5234375, 71.60156, 122.74219, 124.390625, 86.5, 85.40625, 86.5, 71.921875, 141.07031, 82.0625, 151.89063, 89.28125, 159.40625, 129.63281, 166.5, 84.40625, 195.84375, 3.96875, 260.89844, 51.109375, 266.22656, 100.046875, 243.46875, 133.32031, 208.03906, 141.28906, 86.82031, 132.00781, 71.890625, 90.28125, 166.5, 70.921875, 158.4375, -4.6484375, 153.11719, 65.57031, 103.59375, -13.46875, 45.59375, -10.7109375, 144.70313, 71.1875, 73.11719, 66.57031, 38.648438, 2.1796875, -9.609375, 22.828125, -1.921875, 5.140625, 64.703125, 72.1875, -6.78125, 132.64844, 61.070313, 83.0625, 29.078125, 142.52344, 71.57031, 143.4375)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2), PackedInt32Array(3, 4, 5, 6, 7, 8), PackedInt32Array(9, 10, 11, 12, 13, 14, 8), PackedInt32Array(7, 9, 8), PackedInt32Array(4, 3, 15, 16), PackedInt32Array(10, 9, 17), PackedInt32Array(18, 10, 17, 19, 20), PackedInt32Array(21, 20, 19, 22, 5, 23, 24), PackedInt32Array(22, 6, 5), PackedInt32Array(25, 26, 24, 23, 27, 2), PackedInt32Array(28, 0, 2, 27, 29, 30), PackedInt32Array(31, 30, 29, 16, 15)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(34, -5, -7, -2, -17, 21, -21, 71, -24, 115, -12, 139, 28, 150, 74, 151, 90, 139, 123, 132, 158, 137, 208, 149, 248, 140, 274, 102, 268, 47, 199, -3, 160, -12, 104, -21, 41, -18)])
 agent_radius = 7.5
-
-[sub_resource type="Resource" id="Resource_s88v2"]
-script = ExtResource("18_j4ncf")
-text = "Agora você pode usar a espada para atacar.[br]Use [b][img]uid://bp5rh1bb277ft[/img][/b] ou [b][img]uid://b1v4froaj6uly[/img] para atacar."
-metadata/_custom_type_script = "uid://dm6hxe2j82cld"
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_qq0ga"]
 
@@ -250,7 +256,7 @@ position = Vector2(682, 654)
 [node name="DialogComponent" type="Area2D" parent="Board" unique_id=2119605269 node_paths=PackedStringArray("entity")]
 script = ExtResource("17_wye75")
 entity = NodePath("..")
-lines = Array[ExtResource("18_j4ncf")]([SubResource("Resource_7ef38")])
+pages = Array[ExtResource("16_ctdfl")]([SubResource("Resource_flqm7")])
 style = 1
 metadata/_custom_type_script = "uid://barpxe1rgafhj"
 
@@ -265,7 +271,7 @@ position = Vector2(603, 681)
 [node name="DialogComponent" type="Area2D" parent="Tombstones" unique_id=1980970543 node_paths=PackedStringArray("entity")]
 script = ExtResource("17_wye75")
 entity = NodePath("..")
-lines = Array[ExtResource("18_j4ncf")]([SubResource("Resource_wye75")])
+pages = Array[ExtResource("16_ctdfl")]([SubResource("Resource_xldlm")])
 style = 1
 metadata/_custom_type_script = "uid://barpxe1rgafhj"
 
@@ -333,7 +339,6 @@ metadata/_custom_type_script = "uid://bqevlyl1klk70"
 
 [node name="DialogComponent" type="Area2D" parent="Encounter1" unique_id=1838225074]
 script = ExtResource("17_wye75")
-lines = Array[ExtResource("18_j4ncf")]([SubResource("Resource_s88v2")])
 style = 2
 metadata/_custom_type_script = "uid://barpxe1rgafhj"
 

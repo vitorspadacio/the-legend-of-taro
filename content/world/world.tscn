@@ -121,6 +121,15 @@ offset_bottom = 51.0
 theme_override_font_sizes/font_size = 11
 text = "Pegar Katana"
 
+[node name="Button2" type="Button" parent="GeneralHud/Debug" unique_id=1537506416]
+layout_mode = 0
+offset_left = 221.0
+offset_top = 55.0
+offset_right = 313.0
+offset_bottom = 79.0
+theme_override_font_sizes/font_size = 11
+text = "Pegar Moeda"
+
 [node name="Transition" type="ColorRect" parent="GeneralHud" unique_id=243697058]
 unique_name_in_owner = true
 anchors_preset = 15

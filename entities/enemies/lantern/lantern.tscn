@@ -21,6 +21,8 @@
 [ext_resource type="AudioStream" uid="uid://cxjnjiex3wt3k" path="res://assets/sounds/whoosh2.wav" id="11_vtncx"]
 [ext_resource type="Script" uid="uid://brsq1cmtrtshq" path="res://systems/components/player_sensor.gd" id="13_eqkkc"]
 [ext_resource type="Script" uid="uid://be43a7q4k86aa" path="res://entities/enemies/decision_engines/decision_engine_attack.gd" id="18_h3twn"]
+[ext_resource type="Script" uid="uid://5nkjwhvkjr8q" path="res://systems/components/loot_dropper.gd" id="22_mbudi"]
+[ext_resource type="Script" uid="uid://dli4jk0hfo2og" path="res://entities/items/loot_data.gd" id="23_fcw4k"]
 
 [sub_resource type="Animation" id="Animation_h3twn"]
 length = 0.001
@@ -228,9 +230,15 @@ radius = 7.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_xldlm"]
 radius = 77.10383
 
+[sub_resource type="Resource" id="Resource_xldlm"]
+script = ExtResource("23_fcw4k")
+item = "uid://cbosspiox8efp"
+drop_chance = 0.6
+metadata/_custom_type_script = "uid://dli4jk0hfo2og"
+
 [node name="Lantern" type="CharacterBody2D" unique_id=822421158 node_paths=PackedStringArray("attack_area", "collision", "damage_area", "decision_engine", "sprite", "state_machine", "navigation", "animation", "health", "movement")]
 collision_layer = 64
-collision_mask = 3
+collision_mask = 66
 motion_mode = 1
 script = ExtResource("1_8opbg")
 attack_area = NodePath("AttackArea")
@@ -389,3 +397,8 @@ hurt = NodePath("../StateMachine/Hurt")
 idle = NodePath("../StateMachine/Idle")
 walk = NodePath("../StateMachine/Walk")
 metadata/_custom_type_script = "uid://be43a7q4k86aa"
+
+[node name="LootDropper" type="Marker2D" parent="." unique_id=917193319]
+script = ExtResource("22_mbudi")
+items = Array[ExtResource("23_fcw4k")]([SubResource("Resource_xldlm")])
+metadata/_custom_type_script = "uid://5nkjwhvkjr8q"
