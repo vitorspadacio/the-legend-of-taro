@@ -39,10 +39,10 @@ func create_buuble() -> void:
 	add_sibling.call_deferred(buuble)
 
 
-func _on_body_entered(body: Node2D) -> void:
+func _on_body_entered(body: Player) -> void:
 	if body is not Player:
 		return
-
+	
 	is_in_range = true
 	buuble.visible = true
 
@@ -55,6 +55,7 @@ func _on_body_exited(_body: Node2D) -> void:
 func _on_dialog_end() -> void:
 	is_in_dialog = false
 	buuble.visible = true
+	player.block_dialog = false
 	player.end_freeze()
 	dialog_ended.emit()
 
@@ -66,12 +67,13 @@ func _process(_delta: float) -> void:
 	if box:
 		return
 
-	if is_in_range and Input.is_action_just_pressed("action"):
+	if is_in_range and Input.is_action_just_pressed("action") and not player.block_dialog:
 		start_dialog()
 
 
 func start_dialog() -> void:
 	player.start_freeze()
+	player.block_dialog = true
 	is_in_dialog = true
 	buuble.visible = false
 	if entity != null:

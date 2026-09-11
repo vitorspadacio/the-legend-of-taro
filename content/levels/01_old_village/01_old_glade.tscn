@@ -24,6 +24,7 @@
 [ext_resource type="PackedScene" uid="uid://b6nhmafoangcv" path="res://entities/enemies/lantern/lantern.tscn" id="21_qq0ga"]
 [ext_resource type="PackedScene" uid="uid://1vy678saa0gj" path="res://entities/bosses/slime_boss/slime_boss.tscn" id="22_6lv1a"]
 [ext_resource type="AudioStream" uid="uid://cuaisf4cadnt" path="res://assets/musics/8_boss_theme.ogg" id="23_x4bk6"]
+[ext_resource type="Script" uid="uid://b27sl4d3qpm2h" path="res://content/levels/01_old_village/comida.gd" id="25_l62nk"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xldlm"]
 size = Vector2(320, 180)
@@ -125,6 +126,52 @@ vertices = PackedVector2Array(232.15625, 19.023438, 235.82031, 124.03906, 23.343
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3, 4, 5), PackedInt32Array(0, 5, 6)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(52, 15, 237, 14, 241, 129, 18, 131, 21, 86, 26, 65, 40, 47)])
 agent_radius = 5.0
+
+[sub_resource type="Resource" id="Resource_0i8ej"]
+script = ExtResource("18_j4ncf")
+text = "Uma sopa fresca que assim que você experimenta recupera sua vitalidade."
+metadata/_custom_type_script = "uid://dm6hxe2j82cld"
+
+[sub_resource type="Resource" id="Resource_vrppe"]
+script = ExtResource("16_ctdfl")
+lines = Array[ExtResource("18_j4ncf")]([SubResource("Resource_0i8ej")])
+metadata/_custom_type_script = "uid://dj8iirxi7aqd6"
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_s88v2"]
+radius = 13.0
+
+[sub_resource type="Resource" id="Resource_yqo22"]
+script = ExtResource("18_j4ncf")
+text = "Peixes e tomates frescos guardados pra consumir em breve."
+metadata/_custom_type_script = "uid://dm6hxe2j82cld"
+
+[sub_resource type="Resource" id="Resource_l62nk"]
+script = ExtResource("16_ctdfl")
+lines = Array[ExtResource("18_j4ncf")]([SubResource("Resource_yqo22")])
+metadata/_custom_type_script = "uid://dj8iirxi7aqd6"
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vrppe"]
+radius = 11.0
+
+[sub_resource type="Resource" id="Resource_v3hjo"]
+script = ExtResource("18_j4ncf")
+text = "Um totem de treino chamado mook jong. Há marcas de uso muito antigas."
+metadata/_custom_type_script = "uid://dm6hxe2j82cld"
+
+[sub_resource type="Resource" id="Resource_6xnkv"]
+script = ExtResource("16_ctdfl")
+lines = Array[ExtResource("18_j4ncf")]([SubResource("Resource_v3hjo")])
+metadata/_custom_type_script = "uid://dj8iirxi7aqd6"
+
+[sub_resource type="Resource" id="Resource_y0gmi"]
+script = ExtResource("18_j4ncf")
+text = "Uma caixa de correspondência que não é usada há anos."
+metadata/_custom_type_script = "uid://dm6hxe2j82cld"
+
+[sub_resource type="Resource" id="Resource_pa2e3"]
+script = ExtResource("16_ctdfl")
+lines = Array[ExtResource("18_j4ncf")]([SubResource("Resource_y0gmi")])
+metadata/_custom_type_script = "uid://dj8iirxi7aqd6"
 
 [node name="01_OldGlade" type="Node2D" unique_id=2018566342]
 y_sort_enabled = true
@@ -480,4 +527,65 @@ collision_mask = 32
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Encounter3/Starter" unique_id=724168749]
 position = Vector2(101, 43)
 shape = SubResource("RectangleShape2D_s88v2")
+debug_color = Color(1, 1, 0.2784314, 0.039215688)
+
+[node name="Comida" type="Node2D" parent="." unique_id=666051959]
+position = Vector2(1338, 839)
+script = ExtResource("25_l62nk")
+
+[node name="DialogComponent" type="Area2D" parent="Comida" unique_id=1747198030 node_paths=PackedStringArray("entity")]
+script = ExtResource("17_wye75")
+entity = NodePath("..")
+pages = Array[ExtResource("16_ctdfl")]([SubResource("Resource_vrppe")])
+style = 1
+metadata/_custom_type_script = "uid://barpxe1rgafhj"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Comida/DialogComponent" unique_id=1154033460]
+position = Vector2(0, 1)
+shape = SubResource("CircleShape2D_s88v2")
+debug_color = Color(1, 1, 0.2784314, 0.039215688)
+
+[node name="Peixes" type="Node2D" parent="." unique_id=845957387]
+position = Vector2(1202, 842)
+
+[node name="DialogComponent" type="Area2D" parent="Peixes" unique_id=1644283297 node_paths=PackedStringArray("entity")]
+position = Vector2(0, -3)
+script = ExtResource("17_wye75")
+entity = NodePath("..")
+pages = Array[ExtResource("16_ctdfl")]([SubResource("Resource_l62nk")])
+style = 1
+metadata/_custom_type_script = "uid://barpxe1rgafhj"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Peixes/DialogComponent" unique_id=437049924]
+shape = SubResource("CircleShape2D_vrppe")
+debug_color = Color(1, 1, 0.2784314, 0.039215688)
+
+[node name="Treino" type="Node2D" parent="." unique_id=1028593428]
+position = Vector2(1228, 910)
+
+[node name="DialogComponent" type="Area2D" parent="Treino" unique_id=656512436 node_paths=PackedStringArray("entity")]
+position = Vector2(0, -3)
+script = ExtResource("17_wye75")
+entity = NodePath("..")
+pages = Array[ExtResource("16_ctdfl")]([SubResource("Resource_6xnkv")])
+style = 1
+metadata/_custom_type_script = "uid://barpxe1rgafhj"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Treino/DialogComponent" unique_id=1626553700]
+shape = SubResource("CircleShape2D_vrppe")
+debug_color = Color(1, 1, 0.2784314, 0.039215688)
+
+[node name="Correio" type="Node2D" parent="." unique_id=2052407059]
+position = Vector2(650, 910)
+
+[node name="DialogComponent" type="Area2D" parent="Correio" unique_id=709451635 node_paths=PackedStringArray("entity")]
+position = Vector2(0, -3)
+script = ExtResource("17_wye75")
+entity = NodePath("..")
+pages = Array[ExtResource("16_ctdfl")]([SubResource("Resource_pa2e3")])
+style = 1
+metadata/_custom_type_script = "uid://barpxe1rgafhj"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Correio/DialogComponent" unique_id=2073273300]
+shape = SubResource("CircleShape2D_vrppe")
 debug_color = Color(1, 1, 0.2784314, 0.039215688)

@@ -26,6 +26,8 @@ signal teleported
 @onready var idle: PlayerState = %Idle
 
 var block_input := false
+var block_dialog := false
+
 var inventory: Inventory
 
 var has_jump := false
