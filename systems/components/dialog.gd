@@ -39,7 +39,7 @@ func create_buuble() -> void:
 	add_sibling.call_deferred(buuble)
 
 
-func _on_body_entered(body: Player) -> void:
+func _on_body_entered(body: Node2D) -> void:
 	if body is not Player:
 		return
 	
