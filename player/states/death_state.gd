@@ -15,6 +15,8 @@ func _on_animation_finished(animation_name: String) -> void:
 	await get_tree().create_timer(3.0).timeout
 	VisualEffects.create_smoke(player.global_position)
 	player.visible = false
+	await get_tree().create_timer(1.0).timeout
+	player.respawn_player()
 	
 func _on_death() -> void:
 	player.state_machine.change_state(self)

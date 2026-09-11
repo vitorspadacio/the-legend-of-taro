@@ -7,6 +7,7 @@ signal upgrade_took(Pick: Pickable)
 signal died
 signal freeze
 signal teleported
+signal death_end
 
 @export var attack_area: AttackArea
 @export var collision: CollisionShape2D
@@ -29,6 +30,7 @@ var block_input := false
 var block_dialog := false
 
 var inventory: Inventory
+var respawn: Teleport
 
 var has_jump := false
 var has_roll := false
@@ -87,6 +89,12 @@ func start_freeze() -> void:
 
 func end_freeze() -> void:
 	block_input = false
+
+func respawn_player() -> void:
+	health.heal(8)
+	teleport(respawn, Vector2.ZERO)
+	state_machine.change_state(idle)
+	visible = true
 
 ##### Side Effects #####
 

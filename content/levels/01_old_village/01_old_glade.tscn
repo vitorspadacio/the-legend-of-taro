@@ -25,6 +25,7 @@
 [ext_resource type="AudioStream" uid="uid://cuaisf4cadnt" path="res://assets/musics/8_boss_theme.ogg" id="23_x4bk6"]
 [ext_resource type="Script" uid="uid://b27sl4d3qpm2h" path="res://content/levels/01_old_village/comida.gd" id="25_l62nk"]
 [ext_resource type="PackedScene" uid="uid://uibxsqvdwk30" path="res://player/player_spawn.tscn" id="25_v3hjo"]
+[ext_resource type="Script" uid="uid://b7wr81xns0lhg" path="res://systems/levels/teleport.gd" id="26_v3hjo"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xldlm"]
 size = Vector2(320, 180)
@@ -172,6 +173,9 @@ metadata/_custom_type_script = "uid://dm6hxe2j82cld"
 script = ExtResource("16_ctdfl")
 lines = Array[ExtResource("18_j4ncf")]([SubResource("Resource_y0gmi")])
 metadata/_custom_type_script = "uid://dj8iirxi7aqd6"
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_xldlm"]
+radius = 11.0
 
 [node name="01_OldGlade" type="Node2D" unique_id=2018566342]
 y_sort_enabled = true
@@ -591,5 +595,17 @@ metadata/_custom_type_script = "uid://barpxe1rgafhj"
 shape = SubResource("CircleShape2D_vrppe")
 debug_color = Color(1, 1, 0.2784314, 0.039215688)
 
-[node name="PlayerSpawn" parent="." unique_id=258529745 instance=ExtResource("25_v3hjo")]
+[node name="PlayerSpawn" parent="." unique_id=258529745 node_paths=PackedStringArray("respawn") instance=ExtResource("25_v3hjo")]
 position = Vector2(0, 168)
+respawn = NodePath("../Respawn")
+
+[node name="Respawn" type="Area2D" parent="." unique_id=611611930]
+position = Vector2(0, 168)
+collision_mask = 33
+script = ExtResource("26_v3hjo")
+metadata/_custom_type_script = "uid://b7wr81xns0lhg"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Respawn" unique_id=1582269286]
+shape = SubResource("CircleShape2D_xldlm")
+disabled = true
+debug_color = Color(1, 1, 0.2784314, 0.039215688)

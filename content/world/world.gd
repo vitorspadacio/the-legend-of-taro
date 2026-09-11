@@ -11,13 +11,13 @@ class_name WorldManager extends Node2D
 
 var current_level: Level
 var current_resource: ResourceEnvironment
+var player: Player
 
 func _ready():
 	generate_level(starting_level)
 
-	var player = get_tree().get_first_node_in_group("player")
-	for camera in get_tree().get_nodes_in_group("camera"):
-		camera.target = player
+	player = get_tree().get_first_node_in_group("player")
+	camera_controller.target = player
 
 func apply_environment(resource_environment: ResourceEnvironment) -> void:
 	if not resource_environment:
