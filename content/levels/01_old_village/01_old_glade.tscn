@@ -1,7 +1,6 @@
 [gd_scene format=4 uid="uid://c276g1c87ma5u"]
 
 [ext_resource type="Script" uid="uid://dgkipfqosloy8" path="res://content/levels/level.gd" id="1_hqs3s"]
-[ext_resource type="PackedScene" uid="uid://c5dtb51gcaxvy" path="res://player/player.tscn" id="1_rtynr"]
 [ext_resource type="TileSet" uid="uid://bpiosv4wrdcqu" path="res://content/world/tilesets/nature.tres" id="1_tyitp"]
 [ext_resource type="Script" uid="uid://dp85c6deldfcm" path="res://content/environment/environment_area.gd" id="2_031bp"]
 [ext_resource type="Script" uid="uid://dhbqfnyusagoh" path="res://content/environment/environment_shape.gd" id="3_1gtj0"]
@@ -25,6 +24,7 @@
 [ext_resource type="PackedScene" uid="uid://1vy678saa0gj" path="res://entities/bosses/slime_boss/slime_boss.tscn" id="22_6lv1a"]
 [ext_resource type="AudioStream" uid="uid://cuaisf4cadnt" path="res://assets/musics/8_boss_theme.ogg" id="23_x4bk6"]
 [ext_resource type="Script" uid="uid://b27sl4d3qpm2h" path="res://content/levels/01_old_village/comida.gd" id="25_l62nk"]
+[ext_resource type="PackedScene" uid="uid://uibxsqvdwk30" path="res://player/player_spawn.tscn" id="25_v3hjo"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xldlm"]
 size = Vector2(320, 180)
@@ -293,9 +293,6 @@ position = Vector2(639, 480)
 
 [node name="Lizard2" parent="Enemies/Encounter2" unique_id=250653305 instance=ExtResource("9_vtrmc")]
 position = Vector2(714, 564)
-
-[node name="Player" parent="." unique_id=870341819 instance=ExtResource("1_rtynr")]
-position = Vector2(546, 911)
 
 [node name="ScreenGridRef" type="TextureRect" parent="." unique_id=2086119370]
 modulate = Color(1, 1, 1, 0.11764706)
@@ -593,3 +590,6 @@ metadata/_custom_type_script = "uid://barpxe1rgafhj"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Correio/DialogComponent" unique_id=2073273300]
 shape = SubResource("CircleShape2D_vrppe")
 debug_color = Color(1, 1, 0.2784314, 0.039215688)
+
+[node name="PlayerSpawn" parent="." unique_id=258529745 instance=ExtResource("25_v3hjo")]
+position = Vector2(0, 168)

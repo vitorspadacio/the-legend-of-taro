@@ -233,7 +233,8 @@ radius = 77.10383
 [sub_resource type="Resource" id="Resource_xldlm"]
 script = ExtResource("23_fcw4k")
 item = "uid://cbosspiox8efp"
-drop_chance = 0.6
+maximum = 2
+drop_chance = 0.9
 metadata/_custom_type_script = "uid://dli4jk0hfo2og"
 
 [node name="Lantern" type="CharacterBody2D" unique_id=822421158 node_paths=PackedStringArray("attack_area", "collision", "damage_area", "decision_engine", "sprite", "state_machine", "navigation", "animation", "health", "movement")]
