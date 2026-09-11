@@ -18,6 +18,7 @@ func _ready() -> void:
 	dialog.dialog_started.connect(_on_dialog_start)
 	dialog.dialog_ended.connect(_on_dialog_ended)
 	animation.play("idle")
+	upgrade.collision.set_deferred("disabled", true)
 
 func _on_dialog_start(direction: Vector2) -> void:
 	movement.update_direction(direction)
@@ -25,7 +26,6 @@ func _on_dialog_start(direction: Vector2) -> void:
 	animation.play()
 
 func _on_dialog_ended() -> void:
-	print(dialog.current_index)
 	if dialog.current_index == 2:
 		give_upgrade()
 	movement.update_direction(Vector2.DOWN)

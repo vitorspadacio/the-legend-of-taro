@@ -8,6 +8,7 @@ func init() -> void:
 	player.item_took.connect(_on_get_item)
 	player.upgrade_took.connect(_on_get_upgrade)
 
+
 func enter() -> void:
 	player.update_direction(Vector2.DOWN)
 	player.animation.play_no_direction("pickup")
@@ -19,6 +20,9 @@ func enter() -> void:
 
 
 func exit() -> void:
+	pick = null
+	item = null
+	next_state = null
 	player.animation.player.animation_finished.disconnect(_on_animation_finished)
 
 
@@ -41,7 +45,9 @@ func _on_get_item(item_got: ItemData, _amount: int, pick_got: Pickable) -> void:
 	pick = pick_got
 	player.state_machine.change_state(self)
 
+
 func _on_get_upgrade(pick_got: Pickable) -> void:
 	pick = pick_got
 	pick.visible = true
+	pick.execute_effect_when_picked()
 	player.state_machine.change_state(self)

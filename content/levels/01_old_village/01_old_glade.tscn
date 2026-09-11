@@ -318,6 +318,10 @@ metadata/_edit_lock_ = true
 unique_name_in_owner = true
 position = Vector2(305, 330)
 
+[node name="Katana2" parent="." unique_id=1213436139 instance=ExtResource("12_equdi")]
+unique_name_in_owner = true
+position = Vector2(710, 894)
+
 [node name="OldMan" parent="." unique_id=969436063 node_paths=PackedStringArray("event_dialog") instance=ExtResource("18_jls42")]
 position = Vector2(590, 899)
 event_dialog = NodePath("../Encounter1/DialogComponent")

@@ -55,7 +55,6 @@ func has_item_with_quantity(item: ItemData, quantity: int) -> bool:
 
 func remove_item(item: ItemData, quantity: int) -> void:
 	for entry in items:
-		print(entry.item.id)
 		if entry.item.id == item.id:
 			entry.quantity -= quantity
 			update_weapon_and_gold(item)

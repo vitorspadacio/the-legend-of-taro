@@ -37,9 +37,13 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 
-func _on_body_entered(body: Player) -> void:
+func execute_effect_when_picked() -> void:
 	Audio.play_spatial_sound(sound, global_position)
 	VisualEffects.create_pick(global_position)
+
+
+func _on_body_entered(body: Player) -> void:
+	execute_effect_when_picked()
 	collision.set_deferred("disabled", true)
 	body.take_item(item, amount, self, show_animation)
 	item_picked.emit()

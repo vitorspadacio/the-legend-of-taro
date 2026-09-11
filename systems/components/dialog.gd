@@ -67,7 +67,9 @@ func _process(_delta: float) -> void:
 	if box:
 		return
 
-	if is_in_range and Input.is_action_just_pressed("action") and not player.block_dialog:
+	if is_in_range and \
+		Input.is_action_just_pressed("action") and \
+		not player.block_dialog:
 		start_dialog()
 
 
@@ -103,8 +105,8 @@ func _get_entity_direction() -> Vector2:
 func check_pages_condition() -> void:
 	for page in pages:
 		var page_index = pages.find(page)
-		if page.item_condition and page_index >= current_index:
+		if page.item_condition and page_index <= current_index + 1:
 			var item = page.item_condition
 
 			if player.inventory.has_item_with_quantity(item, page.quantity):
-				current_index = pages.find(page)
+				current_index = page_index
