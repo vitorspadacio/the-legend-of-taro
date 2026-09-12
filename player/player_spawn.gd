@@ -16,5 +16,5 @@ func _ready() -> void:
 	player.respawn = respawn
 	var camera = get_tree().get_first_node_in_group("camera")
 	camera.target = player
-	get_tree().root.add_child(player)
+	get_tree().current_scene.add_child(player)
 	player.global_position = self.global_position

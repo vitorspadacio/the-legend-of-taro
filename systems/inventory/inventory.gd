@@ -58,3 +58,14 @@ func remove_item(item: ItemData, quantity: int) -> void:
 		if entry.item.id == item.id:
 			entry.quantity -= quantity
 			update_weapon_and_gold(item)
+
+func remove_random_coins() -> int:
+	for entry in items:
+		if entry.item.id == 1:
+			var drop_cost := randi_range(1, 10)
+			var dropped = min(drop_cost, entry.quantity)
+			entry.quantity -= dropped
+			update_weapon_and_gold(entry.item)
+			return dropped
+	
+	return 0

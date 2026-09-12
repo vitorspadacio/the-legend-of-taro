@@ -1,5 +1,6 @@
 class_name PlayerHUD extends CanvasLayer
 
+const HEART_BEAT = preload("uid://dpwc8iqqmmsap")
 const HEART = preload("uid://ce2kyoasha10s")
 const HP_PER_HEART := 4
 
@@ -44,6 +45,8 @@ func _setup_money() -> void:
 
 func _on_health_changed(current_health: int, _m: int) -> void:
 	set_health(current_health)
+	if current_health <= 3:
+		Audio.play_spatial_sound(HEART_BEAT, player.global_position)
 
 
 func set_health(health: int) -> void:

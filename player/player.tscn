@@ -22,6 +22,7 @@
 [ext_resource type="AudioStream" uid="uid://cf66lbm3wmhtg" path="res://assets/sounds/slash.wav" id="16_x7c3f"]
 [ext_resource type="Script" uid="uid://blposikaswy0u" path="res://systems/components/jump.gd" id="17_e7oew"]
 [ext_resource type="AudioStream" uid="uid://xsgt48ghm5no" path="res://assets/sounds/impact5.wav" id="18_s7qer"]
+[ext_resource type="AudioStream" uid="uid://dtoopgd4wj4lw" path="res://assets/sounds/gameover.wav" id="19_knn7v"]
 [ext_resource type="AudioStream" uid="uid://cm0n2sms0e2l1" path="res://assets/sounds/jump.wav" id="20_bjvpn"]
 [ext_resource type="Script" uid="uid://ceoucrx5cc3bm" path="res://player/states/item_state.gd" id="22_g4c7l"]
 
@@ -1081,6 +1082,7 @@ metadata/_custom_type_script = "uid://dtso3403kjldq"
 
 [node name="Death" type="Node" parent="StateMachine" unique_id=2113070146]
 script = ExtResource("11_tqiix")
+sound = ExtResource("19_knn7v")
 metadata/_custom_type_script = "uid://yoq0u4m0p1pq"
 
 [node name="Jump" type="Node" parent="StateMachine" unique_id=518687742]

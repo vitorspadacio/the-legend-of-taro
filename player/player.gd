@@ -92,9 +92,25 @@ func end_freeze() -> void:
 
 func respawn_player() -> void:
 	health.heal(8)
-	teleport(respawn, Vector2.ZERO)
+	await teleport(respawn, Vector2.ZERO)
+	input.direction = Vector2.DOWN
 	state_machine.change_state(idle)
+	VisualEffects.create_smoke(global_position)
+	await get_tree().create_timer(0.5).timeout
 	visible = true
+
+func drop_coins() -> void:
+	var drop_count = inventory.remove_random_coins()
+	print(drop_count)
+	var drop_scene = load("uid://cbosspiox8efp")
+	for j in drop_count:
+		var drop = drop_scene.instantiate()
+		get_tree().current_scene.add_sibling.call_deferred(drop)
+		drop.global_position = global_position
+		if drop is CharacterBody2D:
+			var x = randf_range(-40, 40)
+			var y = randf_range(-40, -60)
+			drop.velocity = Vector2(x, y)
 
 ##### Side Effects #####
 

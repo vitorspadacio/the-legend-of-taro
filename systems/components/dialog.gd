@@ -24,7 +24,6 @@ var is_in_range: bool = false
 var player: Player
 
 func _ready() -> void:
-	player = get_tree().get_first_node_in_group("player")
 	set_collision_mask_value(Constants.CollisionLayers.player, true)
 	body_entered.connect(_on_body_entered)
 	body_exited.connect(_on_body_exited)
@@ -74,6 +73,7 @@ func _process(_delta: float) -> void:
 
 
 func start_dialog() -> void:
+	player = get_tree().get_first_node_in_group("player")
 	player.start_freeze()
 	player.block_dialog = true
 	is_in_dialog = true
