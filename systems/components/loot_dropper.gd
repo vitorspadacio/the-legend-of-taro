@@ -26,7 +26,8 @@ func drop_item(item: LootData) -> void:
 		for j in count:
 			var drop = drop_scene.instantiate()
 			drop.global_position = global_position
-			get_tree().current_scene.add_sibling.call_deferred(drop)
+			var world = get_tree().get_first_node_in_group("world")
+			world.add_sibling.call_deferred(drop)
 			if drop is CharacterBody2D:
 				var x = randf_range(-100, 100)
 				var y = randf_range(-100, 100)

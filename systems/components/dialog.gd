@@ -29,6 +29,7 @@ func _ready() -> void:
 	body_exited.connect(_on_body_exited)
 	current_index = 0
 	create_buuble()
+	player = get_tree().get_first_node_in_group("player")
 
 
 func create_buuble() -> void:

@@ -152,7 +152,7 @@ lines = Array[ExtResource("18_j4ncf")]([SubResource("Resource_yqo22")])
 metadata/_custom_type_script = "uid://dj8iirxi7aqd6"
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_vrppe"]
-radius = 11.0
+radius = 14.0
 
 [sub_resource type="Resource" id="Resource_v3hjo"]
 script = ExtResource("18_j4ncf")
@@ -162,6 +162,16 @@ metadata/_custom_type_script = "uid://dm6hxe2j82cld"
 [sub_resource type="Resource" id="Resource_6xnkv"]
 script = ExtResource("16_ctdfl")
 lines = Array[ExtResource("18_j4ncf")]([SubResource("Resource_v3hjo")])
+metadata/_custom_type_script = "uid://dj8iirxi7aqd6"
+
+[sub_resource type="Resource" id="Resource_hcv8k"]
+script = ExtResource("18_j4ncf")
+text = "\"O espírito de Taro habita nossa base.\""
+metadata/_custom_type_script = "uid://dm6hxe2j82cld"
+
+[sub_resource type="Resource" id="Resource_2ffvy"]
+script = ExtResource("16_ctdfl")
+lines = Array[ExtResource("18_j4ncf")]([SubResource("Resource_hcv8k")])
 metadata/_custom_type_script = "uid://dj8iirxi7aqd6"
 
 [sub_resource type="Resource" id="Resource_y0gmi"]
@@ -318,10 +328,6 @@ metadata/_edit_lock_ = true
 [node name="Katana" parent="." unique_id=1620922326 instance=ExtResource("12_equdi")]
 unique_name_in_owner = true
 position = Vector2(305, 330)
-
-[node name="Katana2" parent="." unique_id=1213436139 instance=ExtResource("12_equdi")]
-unique_name_in_owner = true
-position = Vector2(710, 894)
 
 [node name="OldMan" parent="." unique_id=969436063 node_paths=PackedStringArray("event_dialog") instance=ExtResource("18_jls42")]
 position = Vector2(590, 899)
@@ -577,6 +583,21 @@ style = 1
 metadata/_custom_type_script = "uid://barpxe1rgafhj"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Treino/DialogComponent" unique_id=1626553700]
+shape = SubResource("CircleShape2D_vrppe")
+debug_color = Color(1, 1, 0.2784314, 0.039215688)
+
+[node name="Treino2" type="Node2D" parent="." unique_id=1500891627]
+position = Vector2(-102, 539)
+
+[node name="DialogComponent" type="Area2D" parent="Treino2" unique_id=317048023 node_paths=PackedStringArray("entity")]
+position = Vector2(0, -3)
+script = ExtResource("17_wye75")
+entity = NodePath("..")
+pages = Array[ExtResource("16_ctdfl")]([SubResource("Resource_2ffvy")])
+style = 1
+metadata/_custom_type_script = "uid://barpxe1rgafhj"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Treino2/DialogComponent" unique_id=1909387215]
 shape = SubResource("CircleShape2D_vrppe")
 debug_color = Color(1, 1, 0.2784314, 0.039215688)
 

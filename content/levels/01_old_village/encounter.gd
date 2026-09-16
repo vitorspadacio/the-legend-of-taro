@@ -11,6 +11,8 @@ class_name Encounter extends Node2D
 @export var item_condition := load("uid://c20tij6l0ueyp")
 
 var dead_enemies_count := 0
+var actual_player
+var spawned_enemies: Array[Enemy] = []
 
 func _ready() -> void:
 	barrier_tile.visible = false
@@ -21,13 +23,27 @@ func _ready() -> void:
 		starter.body_entered.connect(_on_enter_starter)
 
 
+func reset_encounter() -> void:
+	if item_to_start:
+		item_to_start.item_picked.connect(start)
+	if starter:
+		starter.body_entered.connect(_on_enter_starter)
+
+	for enemy in spawned_enemies:
+		enemy.queue_free()
+	
+	end()
+
+
 func _on_enter_starter(player: Player) -> void:
 	if player:
 		if item_condition != null and !player.inventory.has_item(item_condition):
 			return
 
+		actual_player = player
 		starter.body_entered.disconnect(_on_enter_starter)
 		player.start_freeze()
+		player.died.connect(_on_player_death)
 		await start()
 		player.end_freeze()
 
@@ -63,6 +79,7 @@ func spawn_enemies() -> void:
 		await get_tree().process_frame
 		spawned.blackboard.target = player
 		spawned.health.died.connect(_count_dead_enemies)
+		spawned_enemies.append(spawned)
 
 
 func flash_blue() -> void:
@@ -96,3 +113,9 @@ func _count_dead_enemies() -> void:
 	dead_enemies_count += 1
 	if dead_enemies_count == spawn_points.size():
 		end()
+
+
+func _on_player_death() -> void:
+	actual_player.died.disconnect(_on_player_death)
+	await get_tree().create_timer(3.0).timeout
+	reset_encounter()
