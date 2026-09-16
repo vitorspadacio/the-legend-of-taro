@@ -16,6 +16,7 @@ func _ready() -> void:
 		_setup_money()
 		player.health.health_changed.connect(_on_health_changed)
 		player.inventory.gold_changed.connect(_on_gold_changed)
+		player.health.max_health_changed.connect(_setup_hearts)
 
 
 func _wait_for_player() -> void:
@@ -27,6 +28,7 @@ func _wait_for_player() -> void:
 
 func _setup_hearts() -> void:
 	for child in hearts_container.get_children():
+		hearts = []
 		child.queue_free()
 
 	var heart_count := ceili(float(player.health.max_health) / HP_PER_HEART)
@@ -50,6 +52,7 @@ func _on_health_changed(current_health: int, _m: int) -> void:
 
 
 func set_health(health: int) -> void:
+	print(health)
 	var affected_heart := -1
 	for i in hearts.size():
 		var heart_health := health - i * HP_PER_HEART

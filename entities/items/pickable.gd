@@ -7,6 +7,7 @@ signal item_picked
 @export var sound: AudioStream
 @export var sprite: Sprite2D
 @export var show_animation: bool = false
+@export var update_life: bool = false
 
 @export_group("Float")
 @export var float_height := 3.0
@@ -40,6 +41,9 @@ func _physics_process(delta: float) -> void:
 func execute_effect_when_picked() -> void:
 	Audio.play_spatial_sound(sound, global_position)
 	VisualEffects.create_pick(global_position)
+	if update_life:
+		var player = get_tree().get_first_node_in_group("player")
+		player.health.upgrade_max_health()
 
 
 func _on_body_entered(body: Player) -> void:
