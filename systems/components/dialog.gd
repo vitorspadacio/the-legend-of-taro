@@ -29,7 +29,6 @@ func _ready() -> void:
 	body_exited.connect(_on_body_exited)
 	current_index = 0
 	create_buuble()
-	player = get_tree().get_first_node_in_group("player")
 
 
 func create_buuble() -> void:
@@ -45,6 +44,7 @@ func _on_body_entered(body: Node2D) -> void:
 	
 	is_in_range = true
 	buuble.visible = true
+	player = body as Player
 
 
 func _on_body_exited(_body: Node2D) -> void:
