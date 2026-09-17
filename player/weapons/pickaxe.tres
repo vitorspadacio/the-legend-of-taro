@@ -8,4 +8,5 @@ script = ExtResource("1_pvhak")
 damage = 2
 texture = ExtResource("2_oxv1v")
 type = 2
+id = 2
 metadata/_custom_type_script = "uid://114i20mfqbig"

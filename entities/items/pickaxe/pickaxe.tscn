@@ -1,0 +1,34 @@
+[gd_scene format=3 uid="uid://bvd1xx07lqwjp"]
+
+[ext_resource type="Script" uid="uid://ckpl53rvpcd15" path="res://entities/items/pickable.gd" id="1_lsmlm"]
+[ext_resource type="Resource" uid="uid://bb01emd34as2c" path="res://player/weapons/pickaxe.tres" id="2_3bd2x"]
+[ext_resource type="AudioStream" uid="uid://bgy128yklt0nt" path="res://entities/items/pickaxe/level_up.wav" id="3_s6ndb"]
+[ext_resource type="Texture2D" uid="uid://b0g4jx010530j" path="res://entities/items/pickaxe/pickaxe.png" id="4_vt4q4"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_xldlm"]
+radius = 6.0827627
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_s88v2"]
+radius = 3.0
+
+[node name="Pickaxe" type="CharacterBody2D" unique_id=1620922326 node_paths=PackedStringArray("sprite")]
+script = ExtResource("1_lsmlm")
+item = ExtResource("2_3bd2x")
+sound = ExtResource("3_s6ndb")
+sprite = NodePath("Sprite2D")
+show_animation = true
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1622703724]
+texture = ExtResource("4_vt4q4")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1535023162]
+collision_layer = 0
+collision_mask = 32
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=225168092]
+shape = SubResource("CircleShape2D_xldlm")
+debug_color = Color(0, 0.55503935, 0.91015494, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=250218595]
+shape = SubResource("CircleShape2D_s88v2")
+debug_color = Color(0, 0.6509804, 0.11764706, 0)
