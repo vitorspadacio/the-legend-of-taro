@@ -3,6 +3,7 @@ class_name Inventory extends Resource
 signal gold_changed(amount: int)
 
 var current_weapon: WeaponData = null
+var current_tool: WeaponData = null
 var items: Array[InventoryEntry] = []
 
 func add_item(item: ItemData, amount: int = 1) -> void:
@@ -26,7 +27,12 @@ func update_weapon_and_gold(item: ItemData) -> void:
 
 
 func equip_weapon(weapon_to_equip: WeaponData) -> void:
-	current_weapon = weapon_to_equip
+	if weapon_to_equip.type != WeaponData.WeaponTypes.PICKAXE:
+		current_weapon = weapon_to_equip
+
+
+func equip_tool(tool_to_equip: WeaponData) -> void:
+	current_tool = tool_to_equip
 
 
 func get_gold_amount() -> int:

@@ -52,7 +52,6 @@ func _on_health_changed(current_health: int, _m: int) -> void:
 
 
 func set_health(health: int) -> void:
-	print(health)
 	var affected_heart := -1
 	for i in hearts.size():
 		var heart_health := health - i * HP_PER_HEART

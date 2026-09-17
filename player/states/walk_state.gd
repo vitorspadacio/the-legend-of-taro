@@ -19,7 +19,7 @@ func physics_process(delta: float) -> PlayerState:
 	return null
 	
 func process(_delta: float) -> PlayerState:
-	if player.input.attack and player.inventory.current_weapon:
+	if player.input.attack and attack.can_enter():
 		return attack
 	if player.input.roll and player.has_roll:
 		return roll

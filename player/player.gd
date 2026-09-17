@@ -28,6 +28,7 @@ signal death_end
 
 var block_input := false
 var block_dialog := false
+var is_using_tool := false
 
 var inventory: Inventory
 var respawn: Teleport
@@ -101,7 +102,6 @@ func respawn_player() -> void:
 
 func drop_coins() -> void:
 	var drop_count = inventory.remove_random_coins()
-	print(drop_count)
 	var drop_scene = load("uid://cbosspiox8efp")
 	for j in drop_count:
 		var drop = drop_scene.instantiate()
