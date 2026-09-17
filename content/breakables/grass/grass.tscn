@@ -8,7 +8,7 @@
 [ext_resource type="Script" uid="uid://5nkjwhvkjr8q" path="res://systems/components/loot_dropper.gd" id="6_numtq"]
 [ext_resource type="Script" uid="uid://dli4jk0hfo2og" path="res://entities/items/loot_data.gd" id="7_v0kiw"]
 
-[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_bgxoo"]
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_numtq"]
 particles_animation = true
 particles_anim_h_frames = 6
 particles_anim_v_frames = 1
@@ -17,8 +17,7 @@ particles_anim_loop = false
 [sub_resource type="Resource" id="Resource_xldlm"]
 script = ExtResource("7_v0kiw")
 item = "uid://cbosspiox8efp"
-maximum = 2
-drop_chance = 0.05
+drop_chance = 0.025
 metadata/_custom_type_script = "uid://dli4jk0hfo2og"
 
 [node name="Grass" unique_id=622629986 instance=ExtResource("1_qgvs5")]
@@ -28,7 +27,7 @@ sound = ExtResource("2_n0t63")
 texture = ExtResource("2_pwuk7")
 
 [node name="Particle" parent="." index="3" unique_id=1763944457]
-material = SubResource("CanvasItemMaterial_bgxoo")
+material = SubResource("CanvasItemMaterial_numtq")
 amount = 4
 texture = ExtResource("3_ft43a")
 resource_particle = ExtResource("4_4pjrf")

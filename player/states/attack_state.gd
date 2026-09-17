@@ -16,7 +16,8 @@ func enter() -> void:
 		selected_weapon = player.inventory.current_weapon
 	
 	if not selected_weapon:
-		exit()
+		next_state = idle
+		return
 
 	player.attack_area.damage = selected_weapon.damage
 	player.attack_area.type = selected_weapon.type
