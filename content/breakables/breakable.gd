@@ -9,9 +9,11 @@ class_name Breakable extends CharacterBody2D
 @onready var sprite: Sprite2D = $Sprite
 
 @export var sound: AudioStream
+@export var collide := false
 
 func _ready() -> void:
-	collision_layer = 0
+	if collide:
+		collision_layer = 2
 	damage_area.damage_taken.connect(take_damage)
 	health.died.connect(_on_died)
 
