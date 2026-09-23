@@ -52,12 +52,13 @@ func execute_effect_when_picked() -> void:
 
 
 func _on_body_entered(body: Player) -> void:
-	execute_effect_when_picked()
 	collision.set_deferred("disabled", true)
 	body.take_item(item, amount, self, show_animation)
+	item_picked.emit()
+	await get_tree().create_timer(1.0).timeout
+	await execute_effect_when_picked()
 	if is_tool:
 		body.inventory.equip_tool(item)
-	item_picked.emit()
 	if not show_animation:
 		delete()
 

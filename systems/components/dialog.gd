@@ -53,6 +53,7 @@ func _on_body_exited(_body: Node2D) -> void:
 
 
 func _on_dialog_end() -> void:
+	print("dialog endou")
 	is_in_dialog = false
 	buuble.visible = true
 	player.block_dialog = false
@@ -89,10 +90,10 @@ func start_dialog() -> void:
 func _create_dialog_box() -> void:
 	var general_hud = get_tree().get_first_node_in_group("general_hud")
 	box = DIALOG_BOX.instantiate()
-	box.has_no_more_lines.connect(_on_dialog_end)
 	box.style = style
 	box.dialog = pages[current_index].lines
 	general_hud.add_child(box)
+	box.has_no_more_lines.connect(_on_dialog_end)
 
 
 func _get_entity_direction() -> Vector2:

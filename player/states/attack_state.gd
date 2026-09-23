@@ -30,7 +30,8 @@ func enter() -> void:
 
 	
 func exit() -> void:
-	player.animation.animation_player.animation_finished.disconnect(_on_animation_finished)
+	if player.animation.animation_player.animation_finished.is_connected(_on_animation_finished):
+		player.animation.animation_player.animation_finished.disconnect(_on_animation_finished)
 	player.animation.animation_player.clear_queue()
 	player.movement.lock_direction = false
 	player.sprite_attack.visible = false

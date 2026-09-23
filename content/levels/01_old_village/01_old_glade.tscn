@@ -240,13 +240,6 @@ script = ExtResource("3_1gtj0")
 resource_environment = SubResource("Resource_jls42")
 metadata/_custom_type_script = "uid://dhbqfnyusagoh"
 
-[node name="EnvironmentShape4" type="CollisionShape2D" parent="EnvironmentArea" unique_id=11705432]
-position = Vector2(-640, 368)
-shape = SubResource("RectangleShape2D_xldlm")
-script = ExtResource("3_1gtj0")
-resource_environment = SubResource("Resource_jls42")
-metadata/_custom_type_script = "uid://dhbqfnyusagoh"
-
 [node name="Tiles" type="Node2D" parent="." unique_id=936652788]
 y_sort_enabled = true
 position = Vector2(-158, 64)
