@@ -14,19 +14,19 @@ var audio_index: int = 0
 @onready var ui: AudioStreamPlayer = %UI
 
 func _ready() -> void:
-	# ui.play()
-	# ui_audio_player = ui.get_stream_playback()
 	for i in 32:
 		var audio_player := AudioStreamPlayer2D.new()
 		add_child(audio_player)
 		audio_player.bus = "SFX"
 		audio_pool.append(audio_player)
 
+
 func play_ui_audio(audio: AudioStream) -> void:
 	if ui_audio_player:
 		ui_audio_player.play_stream(audio)
 
-func play_music(audio: AudioStream) -> void:
+
+func play_music(audio: AudioStreamOggVorbis) -> void:
 	var current_player: AudioStreamPlayer = get_music_player(current_track)
 	if current_player.stream == audio:
 		return
@@ -46,6 +46,7 @@ func play_music(audio: AudioStream) -> void:
 
 	current_track = next_track
 
+
 func stop_music() -> void:
 	for tween in music_tweens:
 		tween.kill()
@@ -53,22 +54,26 @@ func stop_music() -> void:
 	for player in [music_1, music_2]:
 		fade_track_out(player)
 
+
 func fade_track_out(player: AudioStreamPlayer) -> void:
 	var tween: Tween = create_tween()
 	music_tweens.append(tween)
 	tween.tween_property(player, "volume_linear", 0.0, 1.5)
 	tween.tween_callback(player.stop)
 
+
 func fade_track_in(player: AudioStreamPlayer) -> void:
 	var tween: Tween = create_tween()
 	music_tweens.append(tween)
 	tween.tween_property(player, "volume_linear", 1.0, 1.0)
+
 
 func get_music_player(i: int) -> AudioStreamPlayer:
 	if i == 0:
 		return music_1
 	else:
 		return music_2
+
 
 func set_reverb(type: REVERB_TYPE) -> void:
 	var reverb_fx: AudioEffectReverb = AudioServer.get_bus_effect(1, 0)

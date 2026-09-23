@@ -124,7 +124,6 @@ theme_override_font_sizes/font_size = 11
 text = "Pegar Katana"
 
 [node name="Button2" type="Button" parent="GeneralHud/Debug" unique_id=1537506416]
-visible = false
 layout_mode = 0
 offset_left = 221.0
 offset_top = 55.0
@@ -141,6 +140,15 @@ offset_right = 313.0
 offset_bottom = 107.0
 theme_override_font_sizes/font_size = 11
 text = "Pegar Picareta"
+
+[node name="Button4" type="Button" parent="GeneralHud/Debug" unique_id=919726475]
+layout_mode = 0
+offset_left = 239.0
+offset_top = 112.0
+offset_right = 313.0
+offset_bottom = 136.0
+theme_override_font_sizes/font_size = 11
+text = "Pegar pulo"
 
 [node name="Transition" type="ColorRect" parent="GeneralHud" unique_id=243697058]
 unique_name_in_owner = true

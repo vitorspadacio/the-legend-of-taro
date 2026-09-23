@@ -28,9 +28,11 @@ particles_anim_loop = false
 radius = 18.0
 
 [node name="Bolder" unique_id=571456709 instance=ExtResource("1_nsp7s")]
+collision_layer = 2
 collision_mask = 32
-sound = ExtResource("2_404qg")
 collide = true
+height = 20
+sound = ExtResource("2_404qg")
 
 [node name="Shape" parent="." index="0" unique_id=158956409]
 y_sort_enabled = true

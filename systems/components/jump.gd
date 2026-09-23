@@ -35,10 +35,16 @@ func can_jump() -> bool:
 		if not raycast_2d.is_colliding():
 			return true
 
-		var tile_map := raycast_2d.get_collider() as TileMapLayer
+		var collider = raycast_2d.get_collider()
 
-		if tile_map == null:
+		if collider == null:
 			return true
+		
+		if collider is Breakable:
+			print("pegou breakable")
+			return height >= collider.height
+		
+		var tile_map := collider as TileMapLayer
 
 		var collision_point := raycast_2d.get_collision_point()
 

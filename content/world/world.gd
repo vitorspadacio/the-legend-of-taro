@@ -19,6 +19,7 @@ func _ready():
 	player = get_tree().get_first_node_in_group("player")
 	camera_controller.target = player
 
+
 func apply_environment(resource_environment: ResourceEnvironment) -> void:
 	if not resource_environment:
 		return
@@ -34,33 +35,10 @@ func apply_environment(resource_environment: ResourceEnvironment) -> void:
 	else:
 		Audio.stop_music()
 
+
 func generate_level(level_scene: PackedScene):
 	if current_level:
 		current_level.queue_free()
 	current_level = level_scene.instantiate()
 	add_child(current_level)
 	current_level.environment_area.environment_changed.connect(apply_environment)
-
-
-# func apply_environment(resource_environment: ResourceEnvironment):
-# 	# METEO
-# 	if !resource_environment:
-# 		return
-# 	rain.emitting = ResourceEnvironment.Meteo.RAIN in resource_environment.meteo_list
-# 	snow.emitting = ResourceEnvironment.Meteo.SNOW in resource_environment.meteo_list
-# 	cloud.emitting = ResourceEnvironment.Meteo.CLOUD in resource_environment.meteo_list
-# 	leaf.emitting = ResourceEnvironment.Meteo.LEAF in resource_environment.meteo_list
-# 	fog.active = ResourceEnvironment.Meteo.FOG in resource_environment.meteo_list
-# 	raylight.emitting = ResourceEnvironment.Meteo.RAY in resource_environment.meteo_list
-# 	# MUSIC
-# 	if resource_environment.music:
-# 		music.change_music(resource_environment.music)
-# 	else:
-# 		music.stop_music()
-	
-# 	# GRADIENT
-# 	color_correction.gradient = resource_environment.color_gradient
-
-
-# func play_transition(type: Transition.Type):
-# 	transition

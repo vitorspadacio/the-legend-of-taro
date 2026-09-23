@@ -10,6 +10,9 @@ func _ready() -> void:
 
 func _on_dialog_end() -> void:
 	var player: Player = get_tree().get_first_node_in_group("player")
+	player.block_input = true
 	Audio.play_spatial_sound(BONUS_SOUND, global_position)
-	player.health.heal(8)
-	await get_tree().create_timer(1.5).timeout
+	VisualEffects.create_sparkle(player.global_position)
+	player.health.heal(12)
+	await get_tree().create_timer(1.0).timeout
+	player.block_input = false

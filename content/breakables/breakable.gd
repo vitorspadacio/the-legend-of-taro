@@ -8,8 +8,10 @@ class_name Breakable extends CharacterBody2D
 @onready var particle: Particle = $Particle
 @onready var sprite: Sprite2D = $Sprite
 
-@export var sound: AudioStream
 @export var collide := false
+@export var height := 5
+@export var sound: AudioStream
+
 
 func _ready() -> void:
 	if collide:

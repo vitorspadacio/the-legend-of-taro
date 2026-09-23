@@ -30,7 +30,7 @@ func reset_encounter() -> void:
 		starter.body_entered.connect(_on_enter_starter)
 
 	for enemy in spawned_enemies:
-		if not enemy.is_queued_for_deletion():
+		if is_instance_valid(enemy):
 			enemy.queue_free()
 	
 	end()
