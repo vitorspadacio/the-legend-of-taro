@@ -7,10 +7,7 @@ func _ready() -> void:
 	await get_tree().process_frame
 
 	if get_tree().get_first_node_in_group("player"):
-		print('Player already exists')
 		return
-
-	print('Player not found')
 
 	var player = load("uid://c5dtb51gcaxvy").instantiate()
 	player.respawn = respawn

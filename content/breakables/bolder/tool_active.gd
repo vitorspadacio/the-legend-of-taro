@@ -11,7 +11,6 @@ func _on_player_entered(body: Node2D) -> void:
 
 	var player = body as Player
 	player.is_using_tool = true
-	print("ativou tool")
 
 
 func _on_player_exited(body: Node2D) -> void:
@@ -20,4 +19,3 @@ func _on_player_exited(body: Node2D) -> void:
 	
 	var player = body as Player
 	player.is_using_tool = false
-	print("desativou tool")
