@@ -17,6 +17,7 @@ item = ExtResource("2_3bd2x")
 sound = ExtResource("3_s6ndb")
 sprite = NodePath("Sprite2D")
 show_animation = true
+is_tool = true
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1622703724]
 texture = ExtResource("4_vt4q4")

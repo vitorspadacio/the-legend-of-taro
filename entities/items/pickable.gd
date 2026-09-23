@@ -3,10 +3,12 @@ class_name Pickable extends CharacterBody2D
 signal item_picked
 
 @export var amount: int = 1
+@export var dialog: DialogComponent
+@export var is_tool: bool = false
 @export var item: ItemData
+@export var show_animation: bool = false
 @export var sound: AudioStream
 @export var sprite: Sprite2D
-@export var show_animation: bool = false
 @export var update_life: bool = false
 
 @export_group("Float")
@@ -44,12 +46,17 @@ func execute_effect_when_picked() -> void:
 	if update_life:
 		var player = get_tree().get_first_node_in_group("player")
 		player.health.upgrade_max_health()
+	if dialog:
+		dialog.start_dialog()
+		await dialog.dialog_ended
 
 
 func _on_body_entered(body: Player) -> void:
 	execute_effect_when_picked()
 	collision.set_deferred("disabled", true)
 	body.take_item(item, amount, self, show_animation)
+	if is_tool:
+		body.inventory.equip_tool(item)
 	item_picked.emit()
 	if not show_animation:
 		delete()

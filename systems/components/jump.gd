@@ -41,7 +41,6 @@ func can_jump() -> bool:
 			return true
 		
 		if collider is Breakable:
-			print("pegou breakable")
 			return height >= collider.height
 		
 		var tile_map := collider as TileMapLayer
