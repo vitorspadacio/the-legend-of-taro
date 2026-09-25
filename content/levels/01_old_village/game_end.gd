@@ -18,6 +18,7 @@ func _on_player_entered(body: Node2D) -> void:
 	player.state_machine.change_state(player.walk)
 	await get_tree().create_timer(1.0).timeout
 	player.start_freeze()
+	Audio.stop_music()
 	await camera.fade_out(1.0)
 	dialog.start_dialog()
 	await dialog.dialog_ended

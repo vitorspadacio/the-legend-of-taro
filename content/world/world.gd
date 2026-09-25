@@ -8,14 +8,15 @@ class_name WorldManager extends Node2D
 @onready var raylight: GPUParticles2D = %Raylight
 
 @onready var camera_controller: CameraController = %CameraController
+@onready var intro: Control = %Intro
 
 var current_level: Level
 var current_resource: ResourceEnvironment
 var player: Player
 
 func _ready():
-	generate_level(starting_level)
-
+	await game_start()
+	await generate_level(starting_level)
 	player = get_tree().get_first_node_in_group("player")
 	camera_controller.target = player
 
@@ -42,3 +43,11 @@ func generate_level(level_scene: PackedScene):
 	current_level = level_scene.instantiate()
 	add_child(current_level)
 	current_level.environment_area.environment_changed.connect(apply_environment)
+	await camera_controller.fade_in()
+
+
+func game_start() -> void:
+	await get_tree().create_timer(10.0).timeout
+	var tween = create_tween()
+	tween.tween_property(intro, "modulate:a", 0.0, 1.0)
+	await tween.finished
