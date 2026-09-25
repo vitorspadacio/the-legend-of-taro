@@ -52,6 +52,14 @@ func _define_style() -> void:
 			text.size = Vector2(205, 34)
 			text.position = Vector2(58, 58)
 
+		DialogComponent.DialogTypes.NONE:
+			actor.visible = false
+			box.texture = null
+			box.size = Vector2(210, 50)
+			box.position = Vector2(50, 50)
+			text.size = Vector2(205, 34)
+			text.position = Vector2(58, 58)
+
 
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("action"):

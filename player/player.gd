@@ -25,6 +25,7 @@ signal death_end
 @export var movement: MovementComponent
 
 @onready var idle: PlayerState = %Idle
+@onready var walk: PlayerState = %Walk
 
 var block_input := false
 var block_dialog := false

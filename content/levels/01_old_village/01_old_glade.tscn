@@ -28,6 +28,7 @@
 [ext_resource type="Script" uid="uid://b7wr81xns0lhg" path="res://systems/levels/teleport.gd" id="26_v3hjo"]
 [ext_resource type="PackedScene" uid="uid://cdupkjambmy3d" path="res://entities/items/life_upgrade/life_upgrade.tscn" id="27_6xnkv"]
 [ext_resource type="PackedScene" uid="uid://bvd1xx07lqwjp" path="res://entities/items/pickaxe/pickaxe.tscn" id="28_y0gmi"]
+[ext_resource type="Script" uid="uid://c4o85y46jsga4" path="res://content/levels/01_old_village/game_end.gd" id="29_pa2e3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xldlm"]
 size = Vector2(320, 180)
@@ -207,6 +208,26 @@ lines = Array[ExtResource("18_j4ncf")]([SubResource("Resource_lh23c")])
 metadata/_custom_type_script = "uid://dj8iirxi7aqd6"
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0i8ej"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vrppe"]
+size = Vector2(314, 20)
+
+[sub_resource type="Resource" id="Resource_30yf7"]
+script = ExtResource("18_j4ncf")
+text = "O garoto viajou pelas planícies até chegar num pequeno vilarejo. Descobriria que sua aventura seria enorme."
+metadata/_custom_type_script = "uid://dm6hxe2j82cld"
+
+[sub_resource type="Resource" id="Resource_qxakh"]
+script = ExtResource("18_j4ncf")
+text = "Mas essa aventura ficará pro futuro.[br]Obrigado por jogar :)"
+metadata/_custom_type_script = "uid://dm6hxe2j82cld"
+
+[sub_resource type="Resource" id="Resource_r7a7k"]
+script = ExtResource("16_ctdfl")
+lines = Array[ExtResource("18_j4ncf")]([SubResource("Resource_30yf7"), SubResource("Resource_qxakh")])
+metadata/_custom_type_script = "uid://dj8iirxi7aqd6"
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_yqo22"]
 
 [node name="01_OldGlade" type="Node2D" unique_id=2018566342]
 y_sort_enabled = true
@@ -670,7 +691,7 @@ shape = SubResource("CircleShape2D_vrppe")
 debug_color = Color(1, 1, 0.2784314, 0.039215688)
 
 [node name="PlayerSpawn" parent="." unique_id=258529745 node_paths=PackedStringArray("respawn") instance=ExtResource("25_v3hjo")]
-position = Vector2(0, 168)
+position = Vector2(-329, 855)
 respawn = NodePath("../Respawn")
 
 [node name="Respawn" type="Area2D" parent="." unique_id=611611930]
@@ -705,3 +726,23 @@ metadata/_custom_type_script = "uid://barpxe1rgafhj"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Pickaxe/DialogComponent" unique_id=850951129]
 shape = SubResource("CircleShape2D_0i8ej")
 disabled = true
+
+[node name="Area2D" type="Area2D" parent="." unique_id=390786253]
+position = Vector2(-324, 957)
+collision_layer = 0
+collision_mask = 32
+script = ExtResource("29_pa2e3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1884120583]
+shape = SubResource("RectangleShape2D_vrppe")
+
+[node name="DialogComponent" type="Area2D" parent="Area2D" unique_id=1947007199]
+position = Vector2(160, -41)
+script = ExtResource("17_wye75")
+pages = Array[ExtResource("16_ctdfl")]([SubResource("Resource_r7a7k")])
+style = 3
+text_color = Color(1, 1, 1, 1)
+metadata/_custom_type_script = "uid://barpxe1rgafhj"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D/DialogComponent" unique_id=9866496]
+shape = SubResource("CircleShape2D_yqo22")

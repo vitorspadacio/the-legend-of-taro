@@ -144,6 +144,7 @@ theme_override_font_sizes/font_size = 11
 text = "Pegar Picareta"
 
 [node name="Button4" type="Button" parent="GeneralHud/Debug" unique_id=919726475]
+visible = false
 layout_mode = 0
 offset_left = 239.0
 offset_top = 112.0

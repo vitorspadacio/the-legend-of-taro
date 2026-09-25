@@ -1,12 +1,14 @@
 class_name DialogComponent extends Area2D
 
+const DEFAULT_COLOR := Color("#572c20")
 const DIALOG_BUUBLE = preload("uid://cgh2qhgt12y8h")
 const DIALOG_BOX = preload("uid://bxbgy3sqkjgwp")
 
 enum DialogTypes {
 	NORMAL = 0,
 	NO_ACTOR = 1,
-	CENTER = 2
+	CENTER = 2,
+	NONE = 3
 }
 
 signal dialog_started(direction: Vector2)
@@ -15,6 +17,7 @@ signal dialog_ended
 @export var entity: Node2D
 @export var pages: Array[DialogPage]
 @export var style: DialogTypes
+@export var text_color: Color = DEFAULT_COLOR
 
 var box: DialogBox
 var buuble: Node2D
@@ -93,6 +96,7 @@ func _create_dialog_box() -> void:
 	box.style = style
 	box.dialog = pages[current_index].lines
 	general_hud.add_child(box)
+	box.text.add_theme_color_override("default_color", text_color)
 	box.has_no_more_lines.connect(_on_dialog_end)
 
 
