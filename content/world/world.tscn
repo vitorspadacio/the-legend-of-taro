@@ -15,13 +15,15 @@
 [ext_resource type="Material" uid="uid://cfgy2lkhe86g2" path="res://content/environment/fx/rain/rain_floor_env.tres" id="12_54j6l"]
 [ext_resource type="PackedScene" uid="uid://dclu8eu4ausns" path="res://ui/player_hud/player_hud.tscn" id="14_cl54s"]
 [ext_resource type="Script" uid="uid://ch7jseqjve0jm" path="res://content/world/debug.gd" id="15_dsaeo"]
-[ext_resource type="Texture2D" uid="uid://ny8kjn6i7xqr" path="res://systems/inputs/KeyLeft.png" id="16_bfxvt"]
-[ext_resource type="Texture2D" uid="uid://bir6ww0wu8rhs" path="res://systems/inputs/KeyRight.png" id="17_54j6l"]
-[ext_resource type="Texture2D" uid="uid://8i0odpoerigc" path="res://systems/inputs/KeyUp.png" id="18_hk4jh"]
-[ext_resource type="Texture2D" uid="uid://bfacwun4coflh" path="res://systems/inputs/KeyDown.png" id="19_rruu0"]
+[ext_resource type="Texture2D" uid="uid://cns6vuee8vyoq" path="res://systems/inputs/KeyA.png" id="16_bfxvt"]
+[ext_resource type="Texture2D" uid="uid://da85n58m830gr" path="res://systems/inputs/KeyD.png" id="17_54j6l"]
+[ext_resource type="Texture2D" uid="uid://cct25kdbqr56n" path="res://systems/inputs/KeyW.png" id="18_hk4jh"]
+[ext_resource type="Texture2D" uid="uid://2dtwnol763h6" path="res://systems/inputs/KeyS.png" id="19_rruu0"]
 [ext_resource type="Texture2D" uid="uid://cuwjg1o5pyfj4" path="res://systems/inputs/JoystickRight.png" id="20_r6og4"]
 [ext_resource type="Texture2D" uid="uid://dlle1kd1dln1x" path="res://systems/inputs/KeyI.png" id="21_tgxwr"]
 [ext_resource type="Texture2D" uid="uid://dnibui4a4p75e" path="res://systems/inputs/ButtonY.png" id="22_3pain"]
+[ext_resource type="Texture2D" uid="uid://baly16k61qj2p" path="res://systems/inputs/IconGamepad.png" id="23_hk4jh"]
+[ext_resource type="Texture2D" uid="uid://c56x31jkermcs" path="res://systems/inputs/IconKeyboard.png" id="24_rruu0"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_hk4jh"]
 particles_animation = true
@@ -183,9 +185,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -109.0
-offset_top = -56.5
+offset_top = -55.5
 offset_right = 109.0
-offset_bottom = 56.5
+offset_bottom = 57.5
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
@@ -195,11 +197,12 @@ size_flags_vertical = 4
 custom_minimum_size = Vector2(272, 17.5)
 layout_mode = 0
 offset_left = -28.0
+offset_top = 25.0
 offset_right = 244.0
-offset_bottom = 17.5
+offset_bottom = 42.5
 theme_override_fonts/font = SubResource("FontVariation_dsaeo")
 theme_override_font_sizes/font_size = 10
-text = "Utilize as setas para controlar o personagem."
+text = "Utilize as teclas para controlar o personagem."
 horizontal_alignment = 1
 autowrap_mode = 2
 
@@ -207,21 +210,34 @@ autowrap_mode = 2
 custom_minimum_size = Vector2(272, 17.5)
 layout_mode = 0
 offset_left = -28.0
-offset_top = 59.5
+offset_top = 84.5
 offset_right = 244.0
-offset_bottom = 77.0
+offset_bottom = 102.0
 theme_override_fonts/font = SubResource("FontVariation_dsaeo")
 theme_override_font_sizes/font_size = 10
 text = "Para interagir utilize o botão."
 horizontal_alignment = 1
 autowrap_mode = 2
 
+[node name="Label3" type="Label" parent="GeneralHud/Intro" unique_id=238604313]
+custom_minimum_size = Vector2(272, 17.5)
+layout_mode = 0
+offset_left = -28.0
+offset_top = -23.5
+offset_right = 244.0
+offset_bottom = -6.0
+theme_override_fonts/font = SubResource("FontVariation_dsaeo")
+theme_override_font_sizes/font_size = 10
+text = "Ambos dispositivos são suportados."
+horizontal_alignment = 1
+autowrap_mode = 2
+
 [node name="Container" type="Control" parent="GeneralHud/Intro" unique_id=1214776016]
 anchors_preset = 0
 offset_left = 42.0
-offset_top = -0.5
+offset_top = 24.5
 offset_right = 82.0
-offset_bottom = 39.5
+offset_bottom = 64.5
 
 [node name="KeyLeft" type="Sprite2D" parent="GeneralHud/Intro/Container" unique_id=2081455281]
 position = Vector2(3, 45.5)
@@ -249,11 +265,21 @@ scale = Vector2(1.5, 1.5)
 texture = ExtResource("20_r6og4")
 
 [node name="KeyI" type="Sprite2D" parent="GeneralHud/Intro/Container" unique_id=856717741]
-position = Vector2(20, 97)
+position = Vector2(20, 92)
 scale = Vector2(1.5, 1.5)
 texture = ExtResource("21_tgxwr")
 
 [node name="ButtonY" type="Sprite2D" parent="GeneralHud/Intro/Container" unique_id=668912113]
-position = Vector2(99, 98.00001)
+position = Vector2(99, 93)
 scale = Vector2(1.5, 1.5)
 texture = ExtResource("22_3pain")
+
+[node name="IconGamepad" type="Sprite2D" parent="GeneralHud/Intro" unique_id=1380762915]
+position = Vector2(143, 7.5)
+scale = Vector2(2, 2)
+texture = ExtResource("23_hk4jh")
+
+[node name="IconKeyboard" type="Sprite2D" parent="GeneralHud/Intro" unique_id=1623731338]
+position = Vector2(61, 6.5)
+scale = Vector2(2, 2)
+texture = ExtResource("24_rruu0")

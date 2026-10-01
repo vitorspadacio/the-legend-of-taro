@@ -56,7 +56,6 @@ func _on_body_exited(_body: Node2D) -> void:
 
 
 func _on_dialog_end() -> void:
-	print("dialog endou")
 	is_in_dialog = false
 	buuble.visible = true
 	player.block_dialog = false

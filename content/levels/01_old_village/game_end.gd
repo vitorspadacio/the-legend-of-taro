@@ -10,7 +10,6 @@ func _on_player_entered(body: Node2D) -> void:
 	if body is not Player:
 		return
 	
-	print("player entrou")
 	var player = body as Player
 	var camera: CameraController = get_tree().get_first_node_in_group("camera")
 	camera.target = null
@@ -22,4 +21,3 @@ func _on_player_entered(body: Node2D) -> void:
 	await camera.fade_out(1.0)
 	dialog.start_dialog()
 	await dialog.dialog_ended
-	print("terminou")
