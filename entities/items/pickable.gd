@@ -40,9 +40,12 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 
-func execute_effect_when_picked() -> void:
+func _show_pick_effect() -> void:
 	Audio.play_spatial_sound(sound, global_position)
 	VisualEffects.create_pick(global_position)
+
+
+func execute_effect_when_picked() -> void:
 	if update_life:
 		var player = get_tree().get_first_node_in_group("player")
 		player.health.upgrade_max_health()
@@ -55,8 +58,10 @@ func _on_body_entered(body: Player) -> void:
 	collision.set_deferred("disabled", true)
 	body.take_item(item, amount, self, show_animation)
 	item_picked.emit()
-	await get_tree().create_timer(1.0).timeout
-	await execute_effect_when_picked()
+	_show_pick_effect()
+	if update_life or dialog:
+		await get_tree().create_timer(1.0).timeout
+		await execute_effect_when_picked()
 	if is_tool:
 		body.inventory.equip_tool(item)
 	if not show_animation:

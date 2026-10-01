@@ -1,6 +1,5 @@
 class_name PlayerAttackState extends PlayerState
 
-@export var cooldown := 0.001
 @export var sound: AudioStream
 
 var selected_weapon: WeaponData

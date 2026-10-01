@@ -36,7 +36,8 @@ func show_item_higher() -> void:
 
 func _on_animation_finished(_n: String) -> void:
 	await get_tree().create_timer(3.0).timeout
-	pick.delete()
+	if pick:
+		pick.delete()
 	next_state = idle
 
 
