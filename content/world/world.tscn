@@ -136,7 +136,6 @@ theme_override_font_sizes/font_size = 11
 text = "Pegar Katana"
 
 [node name="Button2" type="Button" parent="GeneralHud/Debug" unique_id=1537506416]
-visible = false
 layout_mode = 0
 offset_left = 221.0
 offset_top = 55.0
@@ -146,7 +145,6 @@ theme_override_font_sizes/font_size = 11
 text = "Pegar Moeda"
 
 [node name="Button3" type="Button" parent="GeneralHud/Debug" unique_id=1383883686]
-visible = false
 layout_mode = 0
 offset_left = 210.0
 offset_top = 83.0
