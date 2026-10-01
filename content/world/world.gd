@@ -15,7 +15,7 @@ var current_resource: ResourceEnvironment
 var player: Player
 
 func _ready():
-	await game_start()
+	# await game_start()
 	await generate_level(starting_level)
 	player = get_tree().get_first_node_in_group("player")
 	camera_controller.target = player

@@ -33,6 +33,7 @@ func reset_encounter() -> void:
 		if is_instance_valid(enemy):
 			enemy.queue_free()
 	
+	dead_enemies_count = 0
 	end()
 
 

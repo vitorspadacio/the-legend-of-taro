@@ -313,6 +313,7 @@ metadata/_custom_type_script = "uid://de137lhvib8k5"
 [node name="Hurt" type="Node" parent="StateMachine" unique_id=1478315784]
 unique_name_in_owner = true
 script = ExtResource("10_f64ac")
+knockback_force = 40.0
 sound = ExtResource("13_t7tha")
 metadata/_custom_type_script = "uid://cfu3rte1qqlpw"
 

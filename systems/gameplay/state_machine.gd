@@ -58,6 +58,9 @@ func change_state(new_state: State) -> void:
 	elif new_state == current_state:
 		if enemy:
 			current_state.re_enter()
+		if new_state is PlayerAttackState:
+			current_state.exit()
+			current_state.enter()
 		return
 		
 	states.push_front(new_state)

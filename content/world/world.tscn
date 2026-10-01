@@ -127,7 +127,6 @@ offset_bottom = 40.0
 script = ExtResource("15_dsaeo")
 
 [node name="Button" type="Button" parent="GeneralHud/Debug" unique_id=712757622]
-visible = false
 layout_mode = 0
 offset_left = 221.0
 offset_top = 27.0
@@ -157,7 +156,6 @@ theme_override_font_sizes/font_size = 11
 text = "Pegar Picareta"
 
 [node name="Button4" type="Button" parent="GeneralHud/Debug" unique_id=919726475]
-visible = false
 layout_mode = 0
 offset_left = 239.0
 offset_top = 112.0
@@ -178,6 +176,7 @@ color = Color(0.0627451, 0.0627451, 0.0627451, 1)
 
 [node name="Intro" type="Control" parent="GeneralHud" unique_id=632910486]
 unique_name_in_owner = true
+visible = false
 layout_mode = 3
 anchors_preset = 8
 anchor_left = 0.5
