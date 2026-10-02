@@ -4,6 +4,7 @@
 [ext_resource type="Resource" uid="uid://c20tij6l0ueyp" path="res://player/weapons/katana.tres" id="2_u2gxw"]
 [ext_resource type="AudioStream" uid="uid://js2qf5pi1qa3" path="res://entities/items/jump/level_up.wav" id="3_2abb8"]
 [ext_resource type="Texture2D" uid="uid://3lffu286xbq6" path="res://entities/items/jump/Scroll.png" id="4_0ic2d"]
+[ext_resource type="Texture2D" uid="uid://yh7t5i0qpf0l" path="res://player/shadow.png" id="4_xqeny"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_xldlm"]
 radius = 6.0827627
@@ -14,9 +15,14 @@ radius = 3.0
 [node name="Jump" type="CharacterBody2D" unique_id=1620922326 node_paths=PackedStringArray("sprite")]
 script = ExtResource("1_7fdxe")
 item = ExtResource("2_u2gxw")
+show_animation = true
 sound = ExtResource("3_2abb8")
 sprite = NodePath("Sprite2D")
-show_animation = true
+
+[node name="SpriteShadow2D" type="Sprite2D" parent="." unique_id=1978410639]
+position = Vector2(0, 7)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("4_xqeny")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1622703724]
 texture = ExtResource("4_0ic2d")

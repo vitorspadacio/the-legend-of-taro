@@ -56,6 +56,7 @@ func _on_body_exited(_body: Node2D) -> void:
 
 
 func _on_dialog_end() -> void:
+	print("acabou")
 	is_in_dialog = false
 	buuble.visible = true
 	player.block_dialog = false
@@ -94,9 +95,9 @@ func _create_dialog_box() -> void:
 	box = DIALOG_BOX.instantiate()
 	box.style = style
 	box.dialog = pages[current_index].lines
+	box.has_no_more_lines.connect(_on_dialog_end)
 	general_hud.add_child(box)
 	box.text.add_theme_color_override("default_color", text_color)
-	box.has_no_more_lines.connect(_on_dialog_end)
 
 
 func _get_entity_direction() -> Vector2:

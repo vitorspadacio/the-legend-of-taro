@@ -14,8 +14,6 @@ func enter() -> void:
 	previous_jump_duration = enemy.jump.jump_duration
 	enemy.animation.play_no_direction("jump")
 	enemy.animation.animation_player.pause()
-	enemy.hazard_area.monitorable = false
-	enemy.hazard_area.monitoring = false
 	enemy.damage_area.monitorable = false
 	enemy.blackboard.can_decide = false
 	on_cooldown = true
@@ -65,3 +63,8 @@ func get_target_position() -> void:
 func set_jump_frame() -> void:
 	enemy.animation.animation_player.seek(
 		minf(timer, duration), true)
+
+
+func toggle_hazard(enable: bool) -> void:
+	enemy.hazard_area.monitorable = enable
+	enemy.hazard_area.monitoring = enable

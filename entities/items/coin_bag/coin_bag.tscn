@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://ckpl53rvpcd15" path="res://entities/items/pickable.gd" id="1_5fl4d"]
 [ext_resource type="Resource" uid="uid://bc4pj8kx1i4av" path="res://entities/items/_data_collection/01_coin.tres" id="2_wf3qn"]
 [ext_resource type="AudioStream" uid="uid://jaic71loiwdi" path="res://entities/items/coin_bag/coin.wav" id="3_wh0ae"]
+[ext_resource type="Texture2D" uid="uid://yh7t5i0qpf0l" path="res://player/shadow.png" id="4_vm4pk"]
 [ext_resource type="Texture2D" uid="uid://b8mahy271uoxa" path="res://entities/items/coin_bag/coin_bag.png" id="4_wf3qn"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_xldlm"]
@@ -14,6 +15,11 @@ amount = 10
 item = ExtResource("2_wf3qn")
 sound = ExtResource("3_wh0ae")
 sprite = NodePath("Sprite2D")
+
+[node name="SpriteShadow2D" type="Sprite2D" parent="." unique_id=280855359]
+position = Vector2(0, 7)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("4_vm4pk")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1622703724]
 texture = ExtResource("4_wf3qn")

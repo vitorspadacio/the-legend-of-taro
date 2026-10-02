@@ -32,6 +32,7 @@ func process(_delta: float) -> PlayerState:
 
 func show_item_higher() -> void:
 	pick.global_position.y -= 35
+	pick.sprite_shadow.visible = false
 
 
 func _on_animation_finished(_n: String) -> void:

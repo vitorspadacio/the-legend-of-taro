@@ -570,6 +570,7 @@ collision_mask = 32
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Encounter3/Starter" unique_id=724168749]
 position = Vector2(101, 43)
 shape = SubResource("RectangleShape2D_s88v2")
+disabled = true
 debug_color = Color(1, 1, 0.2784314, 0.039215688)
 
 [node name="Encounter4" type="Node2D" parent="." unique_id=2037148981 node_paths=PackedStringArray("barrier_tile", "item_to_start", "navigation_region", "spawn_points")]
@@ -719,7 +720,7 @@ position = Vector2(-966, 710)
 dialog = NodePath("DialogComponent")
 
 [node name="DialogComponent" type="Area2D" parent="Pickaxe" unique_id=1657456180 node_paths=PackedStringArray("entity")]
-position = Vector2(-99, -47)
+position = Vector2(141, -37)
 script = ExtResource("17_wye75")
 entity = NodePath(".")
 pages = Array[ExtResource("16_ctdfl")]([SubResource("Resource_rejp7")])

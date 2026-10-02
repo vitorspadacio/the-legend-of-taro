@@ -15,7 +15,7 @@ var player: Player
 var phase_transition := StateSequence.new()
 var marker_nodes: Array[Marker2D] = []
 
-var jump_cooldown := 5.0
+var jump_cooldown := 4.0
 var jump_timer := 0.0
 
 var spawn_cooldown := 20.0

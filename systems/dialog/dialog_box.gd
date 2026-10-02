@@ -122,8 +122,8 @@ func _close() -> void:
 	actor.visible = false
 	text.visible = false
 	button.visible = false
-	await _animate_box(Vector2(0.05, 0.05))
 	has_no_more_lines.emit()
+	await _animate_box(Vector2(0.05, 0.05))
 	queue_free()
 
 

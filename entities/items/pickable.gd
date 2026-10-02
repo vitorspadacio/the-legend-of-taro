@@ -17,6 +17,7 @@ signal item_picked
 
 @onready var area: Area2D = $Area2D
 @onready var collision: CollisionShape2D = $Area2D/CollisionShape2D
+@onready var sprite_shadow: Sprite2D = $SpriteShadow2D
 
 var friction := 300.0
 var start_y := 0.0
