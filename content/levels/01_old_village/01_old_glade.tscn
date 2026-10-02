@@ -570,7 +570,6 @@ collision_mask = 32
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Encounter3/Starter" unique_id=724168749]
 position = Vector2(101, 43)
 shape = SubResource("RectangleShape2D_s88v2")
-disabled = true
 debug_color = Color(1, 1, 0.2784314, 0.039215688)
 
 [node name="Encounter4" type="Node2D" parent="." unique_id=2037148981 node_paths=PackedStringArray("barrier_tile", "item_to_start", "navigation_region", "spawn_points")]

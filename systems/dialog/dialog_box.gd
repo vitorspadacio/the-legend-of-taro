@@ -108,7 +108,7 @@ func _show_button(must_show: bool) -> void:
 	button.visible = must_show
 
 func _go_to_next_line() -> void:
-	current_line = current_line + 1
+	current_line += 1
 	if current_line + 1 > dialog.size():
 		_close()
 	else:
