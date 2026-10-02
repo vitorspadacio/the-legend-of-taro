@@ -175,7 +175,6 @@ color = Color(0.0627451, 0.0627451, 0.0627451, 1)
 
 [node name="Intro" type="Control" parent="GeneralHud" unique_id=632910486]
 unique_name_in_owner = true
-visible = false
 layout_mode = 3
 anchors_preset = 8
 anchor_left = 0.5
