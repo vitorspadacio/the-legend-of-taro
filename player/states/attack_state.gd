@@ -10,6 +10,7 @@ func init() -> void:
 
 
 func enter() -> void:
+	print(player.inventory.current_tool)
 	if player.is_using_tool:
 		selected_weapon = player.inventory.current_tool
 	else:

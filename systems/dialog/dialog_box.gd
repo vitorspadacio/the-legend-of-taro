@@ -109,6 +109,7 @@ func _show_button(must_show: bool) -> void:
 
 func _go_to_next_line() -> void:
 	current_line += 1
+	print("ativou close()? ", current_line + 1 > dialog.size())
 	if current_line + 1 > dialog.size():
 		_close()
 	else:

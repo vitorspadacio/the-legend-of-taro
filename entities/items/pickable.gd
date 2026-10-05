@@ -60,11 +60,14 @@ func _on_body_entered(body: Player) -> void:
 	body.take_item(item, amount, self, show_animation)
 	item_picked.emit()
 	_show_pick_effect()
+	
+	if is_tool:
+		body.inventory.equip_tool(item)
+
 	if update_life or dialog:
 		await get_tree().create_timer(1.0).timeout
 		await execute_effect_when_picked()
-	if is_tool:
-		body.inventory.equip_tool(item)
+
 	if not show_animation:
 		delete()
 

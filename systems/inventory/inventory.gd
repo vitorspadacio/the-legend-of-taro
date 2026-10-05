@@ -32,6 +32,7 @@ func equip_weapon(weapon_to_equip: WeaponData) -> void:
 
 
 func equip_tool(tool_to_equip: WeaponData) -> void:
+	print("equipou tool")
 	current_tool = tool_to_equip
 
 

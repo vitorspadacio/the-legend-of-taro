@@ -65,7 +65,7 @@ agent_radius = 5.0
 
 [sub_resource type="Resource" id="Resource_srlht"]
 script = ExtResource("18_j4ncf")
-text = "Uma placa antiga com texto falhado.[br]\"Que a paz... continue com Ele.\""
+text = "An old sign with faded text.[br]\"May peace... remain with Him.\""
 metadata/_custom_type_script = "uid://dm6hxe2j82cld"
 
 [sub_resource type="Resource" id="Resource_flqm7"]
@@ -78,7 +78,7 @@ radius = 18.027756
 
 [sub_resource type="Resource" id="Resource_s88v2"]
 script = ExtResource("18_j4ncf")
-text = "As lápides parecem antigas.[br]Existe o nome de uma família inteira aqui."
+text = "The tombstones look ancient.[br]The names of an entire family are here."
 metadata/_custom_type_script = "uid://dm6hxe2j82cld"
 
 [sub_resource type="Resource" id="Resource_xldlm"]
@@ -94,7 +94,7 @@ agent_radius = 7.5
 
 [sub_resource type="Resource" id="Resource_x4bk6"]
 script = ExtResource("18_j4ncf")
-text = "Você adquiriu uma arma.[br]Use [img]uid://b1v4froaj6uly[/img] ou [img]uid://bp5rh1bb277ft[/img] para atacar."
+text = "You acquired a weapon.[br]Use [img]uid://b1v4froaj6uly[/img] or [img]uid://bp5rh1bb277ft[/img] to attack."
 metadata/_custom_type_script = "uid://dm6hxe2j82cld"
 
 [sub_resource type="Resource" id="Resource_ctdfl"]
@@ -105,7 +105,7 @@ metadata/_custom_type_script = "uid://dj8iirxi7aqd6"
 
 [sub_resource type="Resource" id="Resource_fw2sb"]
 script = ExtResource("18_j4ncf")
-text = "Agora você pode pular.[br]Use [img]uid://bkolcnuqxhnw8[/img] ou [img]uid://dp0xruro087vd[/img] para saltar troncos."
+text = "You can now jump.[br]Use [img]uid://bkolcnuqxhnw8[/img] or [img]uid://dp0xruro087vd[/img] to jump over logs."
 metadata/_custom_type_script = "uid://dm6hxe2j82cld"
 
 [sub_resource type="Resource" id="Resource_chpip"]
@@ -139,7 +139,7 @@ agent_radius = 3.0
 
 [sub_resource type="Resource" id="Resource_0i8ej"]
 script = ExtResource("18_j4ncf")
-text = "Uma sopa fresca que assim que você experimenta recupera sua vitalidade."
+text = "A fresh soup that restores your vitality as soon as you taste it."
 metadata/_custom_type_script = "uid://dm6hxe2j82cld"
 
 [sub_resource type="Resource" id="Resource_vrppe"]
@@ -152,7 +152,7 @@ radius = 13.0
 
 [sub_resource type="Resource" id="Resource_yqo22"]
 script = ExtResource("18_j4ncf")
-text = "Peixes e tomates frescos guardados pra consumir em breve."
+text = "Fresh fish and tomatoes, stored to be eaten soon."
 metadata/_custom_type_script = "uid://dm6hxe2j82cld"
 
 [sub_resource type="Resource" id="Resource_l62nk"]
@@ -165,7 +165,7 @@ radius = 14.0
 
 [sub_resource type="Resource" id="Resource_v3hjo"]
 script = ExtResource("18_j4ncf")
-text = "Um totem de treino chamado mook jong. Há marcas de uso muito antigas."
+text = "A training totem called a mook jong. There are very old marks of use on it."
 metadata/_custom_type_script = "uid://dm6hxe2j82cld"
 
 [sub_resource type="Resource" id="Resource_6xnkv"]
@@ -175,7 +175,7 @@ metadata/_custom_type_script = "uid://dj8iirxi7aqd6"
 
 [sub_resource type="Resource" id="Resource_hcv8k"]
 script = ExtResource("18_j4ncf")
-text = "\"O espírito de Taro habita nossa base.\""
+text = "\"The spirit of Taro lives within us.\""
 metadata/_custom_type_script = "uid://dm6hxe2j82cld"
 
 [sub_resource type="Resource" id="Resource_2ffvy"]
@@ -185,7 +185,7 @@ metadata/_custom_type_script = "uid://dj8iirxi7aqd6"
 
 [sub_resource type="Resource" id="Resource_y0gmi"]
 script = ExtResource("18_j4ncf")
-text = "Uma caixa de correspondência que não é usada há anos."
+text = "A mailbox that hasn't been used in years."
 metadata/_custom_type_script = "uid://dm6hxe2j82cld"
 
 [sub_resource type="Resource" id="Resource_pa2e3"]
@@ -196,9 +196,34 @@ metadata/_custom_type_script = "uid://dj8iirxi7aqd6"
 [sub_resource type="CircleShape2D" id="CircleShape2D_xldlm"]
 radius = 11.0
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vrppe"]
+size = Vector2(314, 20)
+
+[sub_resource type="Resource" id="Resource_30yf7"]
+script = ExtResource("18_j4ncf")
+text = "The boy traveled across the plains until he reached a small village. He would soon discover that his adventure was a big one."
+metadata/_custom_type_script = "uid://dm6hxe2j82cld"
+
+[sub_resource type="Resource" id="Resource_qxakh"]
+script = ExtResource("18_j4ncf")
+text = "But that adventure will have to wait for a legendary future."
+metadata/_custom_type_script = "uid://dm6hxe2j82cld"
+
+[sub_resource type="Resource" id="Resource_pxo2m"]
+script = ExtResource("18_j4ncf")
+text = "Thank you for playing :)"
+metadata/_custom_type_script = "uid://dm6hxe2j82cld"
+
+[sub_resource type="Resource" id="Resource_r7a7k"]
+script = ExtResource("16_ctdfl")
+lines = Array[ExtResource("18_j4ncf")]([SubResource("Resource_30yf7"), SubResource("Resource_qxakh"), SubResource("Resource_pxo2m")])
+metadata/_custom_type_script = "uid://dj8iirxi7aqd6"
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_yqo22"]
+
 [sub_resource type="Resource" id="Resource_lh23c"]
 script = ExtResource("18_j4ncf")
-text = "Você adquiriu uma ferramenta. Use [img]uid://b1v4froaj6uly[/img] ou [img]uid://bp5rh1bb277ft[/img] perto de uma rocha para quebrá-lá."
+text = "You acquired a tool. Use [img]uid://b1v4froaj6uly[/img] or [img]uid://bp5rh1bb277ft[/img] near a rock to break it."
 metadata/_custom_type_script = "uid://dm6hxe2j82cld"
 
 [sub_resource type="Resource" id="Resource_rejp7"]
@@ -208,31 +233,6 @@ lines = Array[ExtResource("18_j4ncf")]([SubResource("Resource_lh23c")])
 metadata/_custom_type_script = "uid://dj8iirxi7aqd6"
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0i8ej"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_vrppe"]
-size = Vector2(314, 20)
-
-[sub_resource type="Resource" id="Resource_30yf7"]
-script = ExtResource("18_j4ncf")
-text = "O garoto viajou pelas planícies até chegar num pequeno vilarejo. Descobriria que sua aventura seria enorme."
-metadata/_custom_type_script = "uid://dm6hxe2j82cld"
-
-[sub_resource type="Resource" id="Resource_qxakh"]
-script = ExtResource("18_j4ncf")
-text = "Mas essa aventura ficará prum futuro lendário."
-metadata/_custom_type_script = "uid://dm6hxe2j82cld"
-
-[sub_resource type="Resource" id="Resource_pxo2m"]
-script = ExtResource("18_j4ncf")
-text = "Obrigado por jogar :)"
-metadata/_custom_type_script = "uid://dm6hxe2j82cld"
-
-[sub_resource type="Resource" id="Resource_r7a7k"]
-script = ExtResource("16_ctdfl")
-lines = Array[ExtResource("18_j4ncf")]([SubResource("Resource_30yf7"), SubResource("Resource_qxakh"), SubResource("Resource_pxo2m")])
-metadata/_custom_type_script = "uid://dj8iirxi7aqd6"
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_yqo22"]
 
 [node name="01_OldGlade" type="Node2D" unique_id=2018566342]
 y_sort_enabled = true
@@ -714,22 +714,6 @@ position = Vector2(298, 695)
 [node name="LifeUpgrade2" parent="." unique_id=201976009 instance=ExtResource("27_6xnkv")]
 position = Vector2(673, 379)
 
-[node name="Pickaxe" parent="." unique_id=643415039 node_paths=PackedStringArray("dialog") instance=ExtResource("28_y0gmi")]
-position = Vector2(-966, 710)
-dialog = NodePath("DialogComponent")
-
-[node name="DialogComponent" type="Area2D" parent="Pickaxe" unique_id=1657456180 node_paths=PackedStringArray("entity")]
-position = Vector2(141, -37)
-script = ExtResource("17_wye75")
-entity = NodePath(".")
-pages = Array[ExtResource("16_ctdfl")]([SubResource("Resource_rejp7")])
-style = 2
-metadata/_custom_type_script = "uid://barpxe1rgafhj"
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Pickaxe/DialogComponent" unique_id=850951129]
-shape = SubResource("CircleShape2D_0i8ej")
-disabled = true
-
 [node name="Area2D" type="Area2D" parent="." unique_id=390786253]
 position = Vector2(-324, 957)
 collision_layer = 0
@@ -749,3 +733,22 @@ metadata/_custom_type_script = "uid://barpxe1rgafhj"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D/DialogComponent" unique_id=9866496]
 shape = SubResource("CircleShape2D_yqo22")
+
+[node name="Node2D" type="Node2D" parent="." unique_id=237258287]
+
+[node name="Pickaxe" parent="Node2D" unique_id=643415039 node_paths=PackedStringArray("dialog") instance=ExtResource("28_y0gmi")]
+z_index = 1
+position = Vector2(-966, 710)
+dialog = NodePath("../DialogComponent")
+
+[node name="DialogComponent" type="Area2D" parent="Node2D" unique_id=1657456180 node_paths=PackedStringArray("entity")]
+position = Vector2(-825, 673)
+script = ExtResource("17_wye75")
+entity = NodePath(".")
+pages = Array[ExtResource("16_ctdfl")]([SubResource("Resource_rejp7")])
+style = 2
+metadata/_custom_type_script = "uid://barpxe1rgafhj"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/DialogComponent" unique_id=850951129]
+shape = SubResource("CircleShape2D_0i8ej")
+disabled = true

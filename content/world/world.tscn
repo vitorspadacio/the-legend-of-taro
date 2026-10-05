@@ -199,7 +199,7 @@ offset_right = 244.0
 offset_bottom = 42.5
 theme_override_fonts/font = SubResource("FontVariation_dsaeo")
 theme_override_font_sizes/font_size = 10
-text = "Utilize as teclas para controlar o personagem."
+text = "Use the keys to control the character."
 horizontal_alignment = 1
 autowrap_mode = 2
 
@@ -212,7 +212,7 @@ offset_right = 244.0
 offset_bottom = 102.0
 theme_override_fonts/font = SubResource("FontVariation_dsaeo")
 theme_override_font_sizes/font_size = 10
-text = "Para interagir utilize o botão."
+text = "To interact, use the button."
 horizontal_alignment = 1
 autowrap_mode = 2
 
@@ -225,7 +225,7 @@ offset_right = 244.0
 offset_bottom = -6.0
 theme_override_fonts/font = SubResource("FontVariation_dsaeo")
 theme_override_font_sizes/font_size = 10
-text = "Ambos dispositivos são suportados."
+text = "Both devices are supported."
 horizontal_alignment = 1
 autowrap_mode = 2
 
